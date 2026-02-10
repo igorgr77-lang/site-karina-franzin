@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://karinafranlin.com/sitemap.xml
