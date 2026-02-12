@@ -124,19 +124,19 @@ a {
     right: 24px;
     width: 64px;
     height: 64px;
-    background: #25D366;
+    background: transparent;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+    box-shadow: none;
     z-index: 1000;
     transition: var(--transition);
 }
 
 .whatsapp-float:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.6);
+    box-shadow: none;
 }
 
 /* ===========================
