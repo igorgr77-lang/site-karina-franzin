@@ -88,21 +88,7 @@ if ('IntersectionObserver' in window) {
             if (entry.isIntersecting) {
                 const img = entry.target;
                 
-                // Add loading animation
-                img.style.opacity = '0';
-                img.style.transition = 'opacity 0.3s ease';
-                
-                // Handle load event
-                img.addEventListener('load', () => {
-                    img.style.opacity = '1';
-                    img.classList.add('loaded');
-                });
-                
-                // Handle error
-                img.addEventListener('error', () => {
-                    img.style.opacity = '1';
-                    console.warn('Image failed to load:', img.src);
-                });
+                img.classList.add('loaded');
                 
                 observer.unobserve(img);
             }

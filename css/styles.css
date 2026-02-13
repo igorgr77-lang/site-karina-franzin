@@ -38,8 +38,6 @@ img {
     max-width: 100%;
     height: auto;
     display: block;
-    loading: lazy; /* Native lazy loading */
-    decoding: async; /* Async image decoding */
 }
 
 a {
