@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
+# Sitemap location
 Sitemap: https://karinafranlin.com/sitemap.xml
+
+# Optimize crawl budget - block unnecessary paths
+Disallow: /assets/icons/
+Disallow: /*.js$
+Disallow: /*.css$

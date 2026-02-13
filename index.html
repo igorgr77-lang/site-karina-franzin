@@ -21,10 +21,24 @@
     <meta name="twitter:image" content="./assets/img/karina-hero.jpg">
     
     <title>Karina Franzin - Treinamento de Corrida Personalizado</title>
+    <!-- Preload critical resources -->
     <link rel="preload" href="./css/styles.css" as="style">
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="preload" href="./assets/img/karina-hero.jpg" as="image">
+    <link rel="preload" href="./js/main.js" as="script">
+    
+    <!-- DNS prefetching for external domains -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://wa.me">
+    
+    <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Load CSS -->
+    <link rel="stylesheet" href="./css/styles.css">
+    
+    <!-- Load fonts asynchronously -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"></noscript>
 </head>
@@ -385,6 +399,22 @@
         </div>
     </footer>
 
-    <script src="./js/main.js"></script>
+    <!-- Register Service Worker for caching -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+
+    <!-- Load JavaScript with defer for better performance -->
+    <script src="./js/main.js" defer></script>
 </body>
 </html>

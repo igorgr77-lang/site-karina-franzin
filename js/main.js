@@ -80,19 +80,38 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ===========================
-// Lazy Loading Images Enhancement
+// Enhanced Lazy Loading with Performance Optimizations
 // ===========================
 if ('IntersectionObserver' in window) {
     const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const img = entry.target;
-                img.classList.add('loaded');
+                
+                // Add loading animation
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.3s ease';
+                
+                // Handle load event
+                img.addEventListener('load', () => {
+                    img.style.opacity = '1';
+                    img.classList.add('loaded');
+                });
+                
+                // Handle error
+                img.addEventListener('error', () => {
+                    img.style.opacity = '1';
+                    console.warn('Image failed to load:', img.src);
+                });
+                
                 observer.unobserve(img);
             }
         });
+    }, {
+        rootMargin: '50px' // Start loading 50px before entering viewport
     });
     
+    // Observe all images with lazy loading
     document.querySelectorAll('img[loading="lazy"]').forEach(img => {
         imageObserver.observe(img);
     });
