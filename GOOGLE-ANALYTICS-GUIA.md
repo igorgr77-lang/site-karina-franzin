@@ -97,11 +97,43 @@ O Google Analytics 4 foi implementado com sucesso em **todas as páginas** do si
 
 ---
 
-## 🎯 Eventos Personalizados (Futuros)
+## 🎯 Eventos Personalizados Configurados
 
-Você pode configurar eventos personalizados para rastrear:
+### ✅ **Cliques no WhatsApp** - ATIVO
 
-- ✉️ **Cliques no WhatsApp** - Ver quantas pessoas clicam para conversar
+O site agora rastreia **automaticamente** todos os cliques nos botões do WhatsApp!
+
+**O que é rastreado:**
+- 📍 **Localização do botão:** De onde o usuário clicou
+  - Botão flutuante (canto inferior direito)
+  - Seção Hero (topo da página)
+  - Seção de depoimentos
+  - CTA no blog
+  - CTA dentro dos artigos
+  - Footer dos artigos
+  
+- 📄 **Página atual:** Qual página o usuário estava
+- 🔤 **Texto do botão:** O que estava escrito no botão
+- 💰 **Valor:** Cada clique vale 1 ponto
+
+**Como ver no Analytics:**
+1. Vá em **"Relatórios" → "Engajamento" → "Eventos"**
+2. Procure pelo evento: `click_whatsapp`
+3. Veja quantos cliques teve e de onde vieram!
+
+**Evento enviado:**
+```javascript
+Nome: click_whatsapp
+Categoria: Conversão
+Label: (localização do botão)
+Página: (URL da página)
+Texto do botão: (texto do link)
+```
+
+---
+
+### 🔜 Eventos Futuros (A implementar):
+
 - 📞 **Formulários enviados** - Quando implementar formulário de contato
 - 📥 **Downloads** - Se disponibilizar PDFs de planilhas
 - ▶️ **Vídeos assistidos** - Quando adicionar vídeos
@@ -213,12 +245,82 @@ Baixe o app para acompanhar seu site no celular:
 ## 📝 Próximos Passos Recomendados
 
 1. ✅ Google Analytics implementado
-2. ⏳ Aguardar 24-48h para primeiros dados
-3. 🎯 Configurar metas personalizadas
-4. 📊 Criar relatórios customizados
-5. 🔗 Integrar com Google Search Console
+2. ✅ Rastreamento de cliques no WhatsApp configurado
+3. ⏳ Aguardar 24-48h para primeiros dados
+4. 🎯 Configurar metas personalizadas no painel do Analytics
+5. 📊 Criar relatórios customizados
+6. 🔗 Integrar com Google Search Console
+
+---
+
+## 🧪 Como Testar os Eventos (Cliques no WhatsApp)
+
+### Teste Imediato:
+
+1. **Abra o site** em uma aba: https://karinafranzin.com.br
+2. **Abra o Console do navegador:**
+   - Pressione `F12`
+   - Vá na aba "Console"
+3. **Clique em qualquer botão do WhatsApp** no site
+4. **Você verá no console:**
+   ```
+   📊 Evento enviado ao Analytics: {
+       evento: 'click_whatsapp',
+       localizacao: 'botao_flutuante',
+       pagina: '/',
+       texto_botao: 'Falar com Karina'
+   }
+   ```
+
+### Teste no Google Analytics (Tempo Real):
+
+1. Acesse: https://analytics.google.com/
+2. Vá em **"Relatórios" → "Tempo real" → "Visão geral dos eventos"**
+3. Abra o site em outra aba
+4. Clique em um botão do WhatsApp
+5. **Em poucos segundos**, você verá o evento `click_whatsapp` aparecer!
+
+### Ver Relatório Completo (após alguns dias):
+
+1. Vá em **"Relatórios" → "Engajamento" → "Eventos"**
+2. Procure o evento `click_whatsapp`
+3. Clique nele para ver detalhes:
+   - Total de cliques
+   - De quais páginas vieram
+   - Quais botões foram mais clicados
+   - Evolução ao longo do tempo
+
+---
+
+## 💡 Como Usar Esses Dados
+
+### 📊 Análise de Conversão:
+
+**Exemplo de perguntas que você pode responder:**
+
+1. **Quantas pessoas clicam no WhatsApp por dia/semana/mês?**
+   - Veja a evolução e identifique dias/horários de pico
+
+2. **Qual botão converte mais?**
+   - Botão flutuante vs. botões nas seções
+   - Identifique o que funciona melhor
+
+3. **Quais artigos geram mais contatos?**
+   - Compare cliques por página
+   - Produza mais conteúdo similar aos que convertem
+
+4. **Taxa de conversão:**
+   - Visitantes ÷ Cliques no WhatsApp = % de conversão
+   - Meta: Aumentar essa taxa ao longo do tempo
+
+### 🎯 Tome Decisões:
+
+- 📈 **Botão X converte muito?** → Destaque-o mais!
+- 📉 **Página com poucos cliques?** → Melhore o conteúdo ou CTA
+- 🔥 **Artigo gera muitos contatos?** → Crie conteúdo similar
+- ⏰ **Mais cliques em certos horários?** → Programe posts nesse horário
 
 ---
 
 **Documentação criada em:** 18/02/2026  
-**Última atualização:** 18/02/2026
+**Última atualização:** 18/02/2026 (Rastreamento de WhatsApp adicionado)

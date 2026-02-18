@@ -472,3 +472,84 @@ document.addEventListener('visibilitychange', () => {
         initFeedbackLightbox();
     }
 });
+
+// ===========================
+// GOOGLE ANALYTICS - RASTREAMENTO DE CLIQUES NO WHATSAPP
+// ===========================
+
+/**
+ * Rastreia cliques em links do WhatsApp
+ * Envia evento para o Google Analytics 4
+ */
+function trackWhatsAppClicks() {
+    // Seleciona todos os links que apontam para wa.me
+    const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+    
+    whatsappLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Verifica se o gtag está disponível
+            if (typeof gtag !== 'undefined') {
+                // Identifica de onde veio o clique
+                let location = 'unknown';
+                
+                // Botão flutuante
+                if (this.classList.contains('whatsapp-float')) {
+                    location = 'botao_flutuante';
+                }
+                // Seção Hero
+                else if (this.closest('#hero')) {
+                    location = 'secao_hero';
+                }
+                // Seção de depoimentos
+                else if (this.closest('#depoimentos')) {
+                    location = 'secao_depoimentos';
+                }
+                // CTA do blog
+                else if (this.closest('.blog-cta')) {
+                    location = 'cta_blog';
+                }
+                // CTA dentro de artigos
+                else if (this.closest('.article-cta')) {
+                    location = 'cta_artigo';
+                }
+                // Footer do artigo
+                else if (this.closest('.article-footer-cta')) {
+                    location = 'footer_artigo';
+                }
+                // Outros locais
+                else {
+                    location = 'outro';
+                }
+                
+                // Pega o texto do link (se houver)
+                const linkText = this.textContent.trim() || 'sem_texto';
+                
+                // Pega a URL da página atual
+                const currentPage = window.location.pathname;
+                
+                // Envia evento para o Google Analytics
+                gtag('event', 'click_whatsapp', {
+                    'event_category': 'Conversão',
+                    'event_label': location,
+                    'page_location': currentPage,
+                    'button_text': linkText,
+                    'value': 1
+                });
+                
+                console.log('📊 Evento enviado ao Analytics:', {
+                    evento: 'click_whatsapp',
+                    localizacao: location,
+                    pagina: currentPage,
+                    texto_botao: linkText
+                });
+            }
+        });
+    });
+}
+
+// Inicializa o rastreamento quando a página carregar
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', trackWhatsAppClicks);
+} else {
+    trackWhatsAppClicks();
+}
