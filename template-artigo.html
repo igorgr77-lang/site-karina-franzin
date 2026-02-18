@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{DESCRICAO}}">
+    <meta name="keywords" content="corrida, treinamento, educação física, Karina Franzin">
+    <meta name="author" content="{{AUTOR}}">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{TITULO}}">
+    <meta property="og:description" content="{{DESCRICAO}}">
+    <meta property="og:image" content="/assets/img/{{IMAGEM}}">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{TITULO}}">
+    <meta name="twitter:description" content="{{DESCRICAO}}">
+    <meta name="twitter:image" content="/assets/img/{{IMAGEM}}">
+    
+    <title>{{TITULO}} | Blog Karina Franzin</title>
+    
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/blog.css">
+</head>
+<body>
+    <!-- Header / Navegação -->
+    <header class="header">
+        <nav class="container">
+            <div class="logo">
+                <a href="/">Karina Franzin</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav>
+                <a href="/">Home</a> → <a href="/blog/">Blog</a> → <span>{{TITULO}}</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Artigo -->
+    <article class="blog-post">
+        <div class="container">
+            <!-- Cabeçalho do artigo -->
+            <header class="post-header">
+                <h1 class="post-title">{{TITULO}}</h1>
+                <div class="post-meta">
+                    <span class="post-author">Por {{AUTOR}}</span>
+                    <span class="post-date">{{DATA}}</span>
+                </div>
+                <img src="/assets/img/{{IMAGEM}}" alt="{{ALT_IMAGEM}}" class="post-featured-image" loading="lazy">
+            </header>
+
+            <!-- Conteúdo do artigo -->
+            <div class="post-content">
+                {{CONTEUDO}}
+            </div>
+
+            <!-- Footer do artigo -->
+            <footer class="post-footer">
+                <div class="author-bio">
+                    <img src="/assets/img/karina-profile.jpg" alt="Karina Franzin" class="author-avatar">
+                    <div class="author-info">
+                        <h3>{{AUTOR}}</h3>
+                        <p>Profissional de Educação Física especializada em corrida. Ajudo pessoas a alcançarem seus objetivos através de treinos personalizados e acompanhamento individual.</p>
+                    </div>
+                </div>
+                
+                <div class="post-actions">
+                    <a href="/blog/" class="back-to-blog">← Voltar para o Blog</a>
+                    <a href="https://wa.me/5517988031555?text=Olá!%20Vi%20o%20artigo%20sobre%20{{TITULO}}%20e%20gostaria%20de%20mais%20informações" 
+                       class="btn-cta" target="_blank" rel="noopener">
+                        Fale comigo no WhatsApp
+                    </a>
+                </div>
+            </footer>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Karina Franzin - Educação Física. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <a href="/">Início</a>
+                <a href="/blog/" rel="noopener">Blog</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
