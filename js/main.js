@@ -26,41 +26,43 @@ document.addEventListener('DOMContentLoaded', function() {
 // ===========================
 // Contact Form to WhatsApp
 // ===========================
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const name = document.getElementById('name').value;
-    const goal = document.getElementById('goal').value;
-    const level = document.getElementById('level').value;
-    
-    // Map select values to readable text
-    const goalTexts = {
-        'comecar': 'Começar a correr do zero',
-        'melhorar': 'Melhorar meus tempos',
-        'prova': 'Me preparar para uma prova',
-        'saude': 'Correr com saúde e consistência',
-        'outro': 'Outro objetivo'
-    };
-    
-    const levelTexts = {
-        'iniciante': 'Iniciante',
-        'intermediario': 'Intermediário',
-        'avancado': 'Avançado'
-    };
-    
-    const message = `Olá, Karina! Meu nome é ${name}.
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const goal = document.getElementById('goal').value;
+        const level = document.getElementById('level').value;
+        
+        const goalTexts = {
+            'comecar': 'Comecar a correr do zero',
+            'melhorar': 'Melhorar meus tempos',
+            'prova': 'Me preparar para uma prova',
+            'saude': 'Correr com saude e consistencia',
+            'outro': 'Outro objetivo'
+        };
+        
+        const levelTexts = {
+            'iniciante': 'Iniciante',
+            'intermediario': 'Intermediario',
+            'avancado': 'Avancado'
+        };
+        
+        const message = `Ola, Karina! Meu nome e ${name}.
 
-Vim pelo seu site e quero começar uma assessoria de corrida.
+Vim pelo seu site e quero comecar uma assessoria de corrida.
 
-📌 Meu objetivo: ${goalTexts[goal]}
-📊 Meu nível atual: ${levelTexts[level]}
+Meu objetivo: ${goalTexts[goal]}
+Meu nivel atual: ${levelTexts[level]}
 
 Pode me explicar como funciona?`;
-    
-    const whatsappURL = `https://wa.me/5517996566908?text=${encodeURIComponent(message)}`;
-    
-    window.open(whatsappURL, '_blank');
-});
+        
+        const whatsappURL = `https://wa.me/5517996566908?text=${encodeURIComponent(message)}`;
+        
+        window.open(whatsappURL, '_blank');
+    });
+}
 
 // ===========================
 // Smooth Scroll Enhancement
@@ -80,24 +82,21 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ===========================
-// Enhanced Lazy Loading with Performance Optimizations
+// Enhanced Lazy Loading
 // ===========================
 if ('IntersectionObserver' in window) {
     const imageObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const img = entry.target;
-                
                 img.classList.add('loaded');
-                
                 observer.unobserve(img);
             }
         });
     }, {
-        rootMargin: '50px' // Start loading 50px before entering viewport
+        rootMargin: '50px'
     });
     
-    // Observe all images with lazy loading
     document.querySelectorAll('img[loading="lazy"]').forEach(img => {
         imageObserver.observe(img);
     });
@@ -120,7 +119,6 @@ const sectionObserver = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Apply animation to sections
 document.querySelectorAll('section').forEach(section => {
     section.style.opacity = '0';
     section.style.transform = 'translateY(20px)';
@@ -141,7 +139,6 @@ if (whatsappButton) {
     }, 5000);
 }
 
-// Add pulse animation to CSS via JavaScript
 const style = document.createElement('style');
 style.textContent = `
     @keyframes pulse {
@@ -152,399 +149,150 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ===========================
-// Carrossel de Feedbacks - 3 Imagens
+// Carrossel de Feedbacks
 // ===========================
-class FeedbackCarousel {
-    constructor() {
-        // Elementos DOM
-        this.carousel = document.querySelector('.feedbacks-carousel');
-        this.track = document.querySelector('.carousel-track');
-        this.slides = Array.from(document.querySelectorAll('.carousel-slide'));
-        this.prevBtn = document.querySelector('.carousel-btn.prev');
-        this.nextBtn = document.querySelector('.carousel-btn.next');
-        this.indicatorsContainer = document.querySelector('.carousel-indicators');
-        this.container = document.querySelector('.carousel-container');
-        
-        // Estado
-        this.currentPage = 0;
-        this.slidesPerView = 3;
-        this.totalSlides = this.slides.length;
-        this.isTransitioning = false;
-        
-        // Inicializar
-        this.init();
-    }
+(function() {
+    console.log('[CAROUSEL] Iniciando...');
     
-    init() {
-        if (!this.track || this.totalSlides === 0) {
-            return; // Carrossel não encontrado ou vazio
+    function init() {
+        var track = document.querySelector('.carousel-track');
+        var slides = document.querySelectorAll('.carousel-slide');
+        var prevBtn = document.querySelector('.carousel-btn.prev');
+        var nextBtn = document.querySelector('.carousel-btn.next');
+        var indicators = document.querySelector('.carousel-indicators');
+        
+        if (!track || slides.length === 0) {
+            console.log('[CAROUSEL] Elementos nao encontrados');
+            return;
         }
         
-        // Calcular slides por visualização
-        this.updateSlidesPerView();
+        console.log('[CAROUSEL] Encontrados ' + slides.length + ' slides');
         
-        // Criar indicadores
-        this.createIndicators();
+        var currentPage = 0;
+        var slidesPerView = 3;
         
-        // Event listeners
-        this.prevBtn?.addEventListener('click', () => this.goToPrevPage());
-        this.nextBtn?.addEventListener('click', () => this.goToNextPage());
-        
-        // Navegação por teclado
-        document.addEventListener('keydown', (e) => this.handleKeyboard(e));
-        
-        // Touch/Swipe para mobile
-        this.setupTouchEvents();
-        
-        // Resize
-        this.setupResizeHandler();
-        
-        // Atualizar visual inicial
-        this.updateCarousel();
-    }
-    
-    updateSlidesPerView() {
-        if (window.innerWidth <= 640) {
-            this.slidesPerView = 1;
-        } else if (window.innerWidth <= 968) {
-            this.slidesPerView = 2;
-        } else {
-            this.slidesPerView = 3;
-        }
-    }
-    
-    getTotalPages() {
-        return Math.ceil(this.totalSlides / this.slidesPerView);
-    }
-    
-    createIndicators() {
-        if (!this.indicatorsContainer) return;
-        
-        this.indicatorsContainer.innerHTML = '';
-        const totalPages = this.getTotalPages();
-        
-        for (let i = 0; i < totalPages; i++) {
-            const indicator = document.createElement('button');
-            indicator.className = 'indicator';
-            indicator.setAttribute('aria-label', `Ir para página ${i + 1}`);
-            indicator.addEventListener('click', () => this.goToPage(i));
-            this.indicatorsContainer.appendChild(indicator);
-        }
-    }
-    
-    goToPage(pageIndex) {
-        if (this.isTransitioning) return;
-        
-        const totalPages = this.getTotalPages();
-        if (pageIndex < 0 || pageIndex >= totalPages) return;
-        
-        this.currentPage = pageIndex;
-        this.updateCarousel();
-    }
-    
-    goToNextPage() {
-        if (this.isTransitioning) return;
-        
-        const totalPages = this.getTotalPages();
-        // Navegação cíclica: volta para a primeira página após a última
-        this.currentPage = (this.currentPage + 1) % totalPages;
-        this.updateCarousel();
-    }
-    
-    goToPrevPage() {
-        if (this.isTransitioning) return;
-        
-        const totalPages = this.getTotalPages();
-        // Navegação cíclica: vai para a última página antes da primeira
-        this.currentPage = (this.currentPage - 1 + totalPages) % totalPages;
-        this.updateCarousel();
-    }
-    
-    updateCarousel() {
-        this.isTransitioning = true;
-        
-        const totalPages = this.getTotalPages();
-        this.currentPage = Math.max(0, Math.min(this.currentPage, totalPages - 1));
-        
-        // Calcular o deslocamento
-        const slideWidth = 100 / this.slidesPerView;
-        const movePercentage = -this.currentPage * slideWidth * this.slidesPerView;
-        this.track.style.transform = `translateX(${movePercentage}%)`;
-        
-        // Atualizar indicadores
-        const indicators = this.indicatorsContainer?.querySelectorAll('.indicator');
-        indicators?.forEach((indicator, i) => {
-            indicator.classList.toggle('active', i === this.currentPage);
-        });
-        
-        // Navegação cíclica: botões sempre ativos
-        if (this.prevBtn) {
-            this.prevBtn.disabled = false;
-        }
-        if (this.nextBtn) {
-            this.nextBtn.disabled = false;
+        function updateSlidesPerView() {
+            var w = window.innerWidth;
+            slidesPerView = w <= 640 ? 1 : w <= 968 ? 2 : 3;
         }
         
-        // Liberar após transição
-        setTimeout(() => {
-            this.isTransitioning = false;
-        }, 500);
-    }
-    
-    handleKeyboard(e) {
-        if (!this.carousel) return;
-        
-        const carouselRect = this.carousel.getBoundingClientRect();
-        const isInViewport = carouselRect.top < window.innerHeight && carouselRect.bottom > 0;
-        if (!isInViewport) return;
-        
-        switch(e.key) {
-            case 'ArrowLeft':
-                e.preventDefault();
-                this.goToPrevPage();
-                break;
-            case 'ArrowRight':
-                e.preventDefault();
-                this.goToNextPage();
-                break;
+        function getTotalPages() {
+            return Math.ceil(slides.length / slidesPerView);
         }
-    }
-    
-    setupTouchEvents() {
-        let touchStartX = 0;
-        let touchEndX = 0;
-        const minSwipeDistance = 50;
         
-        this.track?.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
+        function createDots() {
+            if (!indicators) return;
+            indicators.innerHTML = '';
+            var total = getTotalPages();
+            for (var i = 0; i < total; i++) {
+                var dot = document.createElement('button');
+                dot.className = 'indicator';
+                dot.setAttribute('data-page', i);
+                dot.onclick = (function(page) {
+                    return function() { goToPage(page); };
+                })(i);
+                indicators.appendChild(dot);
+            }
+            console.log('[CAROUSEL] Criados ' + total + ' dots');
+        }
         
-        this.track?.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            const diff = touchStartX - touchEndX;
+        function update() {
+            var total = getTotalPages();
+            currentPage = Math.max(0, Math.min(currentPage, total - 1));
+            var move = -currentPage * 100;
+            track.style.transform = 'translateX(' + move + '%)';
             
-            if (Math.abs(diff) > minSwipeDistance) {
-                if (diff > 0) {
-                    this.goToNextPage();
-                } else {
-                    this.goToPrevPage();
-                }
+            var dots = indicators ? indicators.querySelectorAll('.indicator') : [];
+            for (var i = 0; i < dots.length; i++) {
+                dots[i].className = i === currentPage ? 'indicator active' : 'indicator';
             }
-        }, { passive: true });
+        }
+        
+        function goToPage(page) {
+            currentPage = page;
+            update();
+        }
+        
+        function goNext() {
+            currentPage = (currentPage + 1) % getTotalPages();
+            update();
+        }
+        
+        function goPrev() {
+            var total = getTotalPages();
+            currentPage = (currentPage - 1 + total) % total;
+            update();
+        }
+        
+        if (prevBtn) prevBtn.onclick = goPrev;
+        if (nextBtn) nextBtn.onclick = goNext;
+        
+        updateSlidesPerView();
+        createDots();
+        update();
+        
+        console.log('[CAROUSEL] Inicializado com sucesso!');
     }
     
-    setupResizeHandler() {
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                const oldSlidesPerView = this.slidesPerView;
-                this.updateSlidesPerView();
-                
-                if (oldSlidesPerView !== this.slidesPerView) {
-                    this.currentPage = 0;
-                    this.createIndicators();
-                    this.updateCarousel();
-                }
-            }, 250);
-        });
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
     }
-    
-    destroy() {
-        // Cleanup se necessário
-    }
-}
-
-// Inicializar carrossel quando o DOM estiver pronto
-function initFeedbackCarousel() {
-    // Destruir instância anterior se existir
-    if (window.feedbackCarousel) {
-        window.feedbackCarousel.destroy();
-    }
-    // Criar nova instância
-    window.feedbackCarousel = new FeedbackCarousel();
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initFeedbackCarousel);
-} else {
-    initFeedbackCarousel();
-}
-
-// Reinicializar quando a página voltar a ficar visível (navegação back/forward)
-document.addEventListener('visibilitychange', () => {
-    if (!document.hidden && document.querySelector('.feedbacks-carousel')) {
-        initFeedbackCarousel();
-    }
-});
-
-// Cleanup ao sair da página
-window.addEventListener('beforeunload', () => {
-    if (window.feedbackCarousel) {
-        window.feedbackCarousel.destroy();
-    }
-});
+})();
 
 // ===========================
-// Lightbox para Feedbacks
+// Lightbox
 // ===========================
-class FeedbackLightbox {
-    constructor() {
-        this.lightbox = document.getElementById('feedbackLightbox');
-        this.lightboxImage = document.getElementById('lightboxImage');
-        this.closeBtn = this.lightbox?.querySelector('.lightbox-close');
-        this.overlay = this.lightbox?.querySelector('.lightbox-overlay');
-        
-        this.init();
-    }
+(function() {
+    console.log('[LIGHTBOX] Iniciando...');
     
-    init() {
-        if (!this.lightbox) return;
+    function init() {
+        var lightbox = document.getElementById('feedbackLightbox');
+        var lightboxImg = document.getElementById('lightboxImage');
         
-        // Adicionar event listeners em todas as imagens de feedback
-        const feedbackImages = document.querySelectorAll('.feedback-card img');
-        feedbackImages.forEach(img => {
-            img.style.cursor = 'pointer';
-            img.addEventListener('click', (e) => this.openLightbox(e.target));
-        });
+        if (!lightbox || !lightboxImg) {
+            console.log('[LIGHTBOX] Elementos nao encontrados');
+            return;
+        }
         
-        // Event listeners para fechar
-        this.closeBtn?.addEventListener('click', () => this.closeLightbox());
-        this.overlay?.addEventListener('click', () => this.closeLightbox());
+        var images = document.querySelectorAll('.feedback-card img');
+        console.log('[LIGHTBOX] Encontradas ' + images.length + ' imagens');
         
-        // Fechar com tecla ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && this.lightbox.classList.contains('active')) {
-                this.closeLightbox();
+        for (var i = 0; i < images.length; i++) {
+            images[i].style.cursor = 'pointer';
+            images[i].onclick = (function(img) {
+                return function() {
+                    lightboxImg.src = img.src;
+                    lightbox.className = 'lightbox active';
+                    document.body.style.overflow = 'hidden';
+                };
+            })(images[i]);
+        }
+        
+        function close() {
+            lightbox.className = 'lightbox';
+            document.body.style.overflow = '';
+        }
+        
+        var closeBtn = lightbox.querySelector('.lightbox-close');
+        var overlay = lightbox.querySelector('.lightbox-overlay');
+        
+        if (closeBtn) closeBtn.onclick = close;
+        if (overlay) overlay.onclick = close;
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && lightbox.className.indexOf('active') >= 0) {
+                close();
             }
         });
+        
+        console.log('[LIGHTBOX] Inicializado com sucesso!');
     }
     
-    openLightbox(imgElement) {
-        if (!this.lightbox || !this.lightboxImage) return;
-        
-        // Definir a imagem do lightbox
-        this.lightboxImage.src = imgElement.src;
-        this.lightboxImage.alt = imgElement.alt;
-        
-        // Mostrar o lightbox
-        this.lightbox.classList.add('active');
-        this.lightbox.setAttribute('aria-hidden', 'false');
-        
-        // Prevenir scroll do body
-        document.body.style.overflow = 'hidden';
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
     }
-    
-    closeLightbox() {
-        if (!this.lightbox) return;
-        
-        // Esconder o lightbox
-        this.lightbox.classList.remove('active');
-        this.lightbox.setAttribute('aria-hidden', 'true');
-        
-        // Restaurar scroll do body
-        document.body.style.overflow = '';
-        
-        // Limpar a imagem após a animação
-        setTimeout(() => {
-            if (this.lightboxImage) {
-                this.lightboxImage.src = '';
-                this.lightboxImage.alt = '';
-            }
-        }, 300);
-    }
-}
-
-// Inicializar lightbox quando o DOM estiver pronto
-function initFeedbackLightbox() {
-    window.feedbackLightbox = new FeedbackLightbox();
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initFeedbackLightbox);
-} else {
-    initFeedbackLightbox();
-}
-
-// Reinicializar quando a página voltar a ficar visível
-document.addEventListener('visibilitychange', () => {
-    if (!document.hidden && document.getElementById('feedbackLightbox')) {
-        initFeedbackLightbox();
-    }
-});
-
-// ===========================
-// GOOGLE ANALYTICS - RASTREAMENTO DE CLIQUES NO WHATSAPP
-// ===========================
-
-/**
- * Rastreia cliques em links do WhatsApp
- * Envia evento para o Google Analytics 4
- */
-function trackWhatsAppClicks() {
-    // Seleciona todos os links que apontam para wa.me
-    const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
-    
-    whatsappLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            // Verifica se o gtag está disponível
-            if (typeof gtag !== 'undefined') {
-                // Identifica de onde veio o clique
-                let location = 'unknown';
-                
-                // Botão flutuante
-                if (this.classList.contains('whatsapp-float')) {
-                    location = 'botao_flutuante';
-                }
-                // Seção Hero
-                else if (this.closest('#hero')) {
-                    location = 'secao_hero';
-                }
-                // Seção de depoimentos
-                else if (this.closest('#depoimentos')) {
-                    location = 'secao_depoimentos';
-                }
-                // CTA do blog
-                else if (this.closest('.blog-cta')) {
-                    location = 'cta_blog';
-                }
-                // CTA dentro de artigos
-                else if (this.closest('.article-cta')) {
-                    location = 'cta_artigo';
-                }
-                // Footer do artigo
-                else if (this.closest('.article-footer-cta')) {
-                    location = 'footer_artigo';
-                }
-                // Outros locais
-                else {
-                    location = 'outro';
-                }
-                
-                // Pega o texto do link (se houver)
-                const linkText = this.textContent.trim() || 'sem_texto';
-                
-                // Pega a URL da página atual
-                const currentPage = window.location.pathname;
-                
-                // Envia evento para o Google Analytics
-                gtag('event', 'click_whatsapp', {
-                    'event_category': 'Conversão',
-                    'event_label': location,
-                    'page_location': currentPage,
-                    'button_text': linkText,
-                    'value': 1
-                });
-                
-                console.log('📊 Evento enviado ao Analytics:', {
-                    evento: 'click_whatsapp',
-                    localizacao: location,
-                    pagina: currentPage,
-                    texto_botao: linkText
-                });
-            }
-        });
-    });
-}
-
-Tool call argument 'replace' pruned from message history.
+})();
