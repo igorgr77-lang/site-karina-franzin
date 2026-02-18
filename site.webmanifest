@@ -1,0 +1,22 @@
+{
+    "name": "Karina Franzin - Treinamento de Corrida",
+    "short_name": "Karina Franzin",
+    "description": "Treinamento de corrida personalizado com planilhas online semanais e acompanhamento individual",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#FF6B35",
+    "icons": [
+        {
+            "src": "/favicon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ]
+}
