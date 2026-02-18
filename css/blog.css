@@ -219,6 +219,30 @@
     padding: 3rem 0 4rem;
 }
 
+/* Featured Image */
+.featured-image {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.featured-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    max-height: 500px;
+}
+
+@media (max-width: 768px) {
+    .featured-image {
+        border-radius: 0;
+        margin-bottom: 2rem;
+    }
+}
+
 .article-head {
     text-align: center;
     max-width: 800px;
