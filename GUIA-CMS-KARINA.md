@@ -25,9 +25,17 @@ Este guia vai te ensinar a criar e publicar artigos de forma independente, sem p
 
 ### **2. Fazer Login**
 
-- Clique em **"Login with GitHub"**
-- Faça login com sua conta do GitHub
-- Autorize o acesso (só precisa fazer isso uma vez)
+⚠️ **ANTES DE COMEÇAR:** Você precisa gerar um Token do GitHub
+
+📖 **Siga o guia completo:** `COMO-GERAR-TOKEN-GITHUB.md`
+
+Depois de gerar o token:
+- O CMS pedirá autenticação
+- **Cole o Token** que você gerou
+- Clique em **"Authenticate"**
+- Pronto! Você está dentro 🎉
+
+💡 **Importante:** Salve o token em um lugar seguro. Você só precisa gerar UMA VEZ!
 
 ### **3. Criar um Novo Artigo**
 
