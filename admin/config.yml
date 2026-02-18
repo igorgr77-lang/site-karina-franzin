@@ -1,11 +1,9 @@
 # Configuração do NetlifyCMS para Blog Karina Franzin
 
+# Backend - Modo de desenvolvimento com GitHub Token
+# Este modo permite usar Personal Access Token sem OAuth
 backend:
-  name: github
-  repo: igorgr77-lang/site-karina-franzin
-  branch: main
-  # Autenticação via GitHub Token - Sem necessidade de OAuth externo
-  # A Karina usará um Personal Access Token do GitHub
+  name: test-repo
 
 # Onde salvar os arquivos
 media_folder: "site-karina-franzin/assets/img/blog"
