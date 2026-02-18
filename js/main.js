@@ -547,9 +547,4 @@ function trackWhatsAppClicks() {
     });
 }
 
-// Inicializa o rastreamento quando a página carregar
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', trackWhatsAppClicks);
-} else {
-    trackWhatsAppClicks();
-}
+Tool call argument 'replace' pruned from message history.

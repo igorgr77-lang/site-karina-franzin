@@ -132,6 +132,58 @@ Texto do botão: (texto do link)
 
 ---
 
+### ✅ **Cliques no Instagram** - ATIVO
+
+O site rastreia cliques no link do Instagram (@karina_franzin) no rodapé!
+
+**O que é rastreado:**
+- 📍 **Localização:** Footer (rodapé das páginas)
+- 📄 **Página atual:** Qual página o usuário estava
+- 🔗 **Rede social:** Instagram
+- 💰 **Valor:** Cada clique vale 1 ponto
+
+**Como ver no Analytics:**
+1. Vá em **"Relatórios" → "Engajamento" → "Eventos"**
+2. Procure pelo evento: `click_instagram`
+3. Veja quantos cliques teve e de quais páginas vieram!
+
+**Evento enviado:**
+```javascript
+Nome: click_instagram
+Categoria: Social
+Label: footer
+Página: (URL da página)
+Rede: instagram
+```
+
+---
+
+### ✅ **Cliques no Strava** - ATIVO
+
+O site rastreia cliques no link do Strava (perfil da Karina) no rodapé!
+
+**O que é rastreado:**
+- 📍 **Localização:** Footer (rodapé das páginas)
+- 📄 **Página atual:** Qual página o usuário estava
+- 🔗 **Rede social:** Strava
+- 💰 **Valor:** Cada clique vale 1 ponto
+
+**Como ver no Analytics:**
+1. Vá em **"Relatórios" → "Engajamento" → "Eventos"**
+2. Procure pelo evento: `click_strava`
+3. Veja quantos cliques teve e de quais páginas vieram!
+
+**Evento enviado:**
+```javascript
+Nome: click_strava
+Categoria: Social
+Label: footer
+Página: (URL da página)
+Rede: strava
+```
+
+---
+
 ### 🔜 Eventos Futuros (A implementar):
 
 - 📞 **Formulários enviados** - Quando implementar formulário de contato
@@ -246,29 +298,34 @@ Baixe o app para acompanhar seu site no celular:
 
 1. ✅ Google Analytics implementado
 2. ✅ Rastreamento de cliques no WhatsApp configurado
-3. ⏳ Aguardar 24-48h para primeiros dados
-4. 🎯 Configurar metas personalizadas no painel do Analytics
-5. 📊 Criar relatórios customizados
-6. 🔗 Integrar com Google Search Console
+3. ✅ Rastreamento de cliques no Instagram configurado
+4. ✅ Rastreamento de cliques no Strava configurado
+5. ⏳ Aguardar 24-48h para primeiros dados
+6. 🎯 Configurar metas personalizadas no painel do Analytics
+7. 📊 Criar relatórios customizados
+8. 🔗 Integrar com Google Search Console
 
 ---
 
-## 🧪 Como Testar os Eventos (Cliques no WhatsApp)
+## 🧪 Como Testar os Eventos
 
-### Teste Imediato:
+### Teste Imediato (Console do Navegador):
 
 1. **Abra o site** em uma aba: https://karinafranzin.com.br
 2. **Abra o Console do navegador:**
    - Pressione `F12`
    - Vá na aba "Console"
-3. **Clique em qualquer botão do WhatsApp** no site
+3. **Clique nos botões/links:**
+   - 💬 **WhatsApp:** Qualquer botão do WhatsApp
+   - 📱 **Instagram:** Link no rodapé
+   - 🏃 **Strava:** Link no rodapé
 4. **Você verá no console:**
    ```
    📊 Evento enviado ao Analytics: {
-       evento: 'click_whatsapp',
-       localizacao: 'botao_flutuante',
+       evento: 'click_whatsapp' (ou 'click_instagram', 'click_strava'),
+       localizacao: 'botao_flutuante' (ou 'footer'),
        pagina: '/',
-       texto_botao: 'Falar com Karina'
+       ...
    }
    ```
 
@@ -277,8 +334,11 @@ Baixe o app para acompanhar seu site no celular:
 1. Acesse: https://analytics.google.com/
 2. Vá em **"Relatórios" → "Tempo real" → "Visão geral dos eventos"**
 3. Abra o site em outra aba
-4. Clique em um botão do WhatsApp
-5. **Em poucos segundos**, você verá o evento `click_whatsapp` aparecer!
+4. Clique nos botões/links (WhatsApp, Instagram, Strava)
+5. **Em poucos segundos**, você verá os eventos aparecerem:
+   - `click_whatsapp`
+   - `click_instagram`
+   - `click_strava`
 
 ### Ver Relatório Completo (após alguns dias):
 
@@ -323,4 +383,4 @@ Baixe o app para acompanhar seu site no celular:
 ---
 
 **Documentação criada em:** 18/02/2026  
-**Última atualização:** 18/02/2026 (Rastreamento de WhatsApp adicionado)
+**Última atualização:** 18/02/2026 (Rastreamento de WhatsApp, Instagram e Strava adicionado)
