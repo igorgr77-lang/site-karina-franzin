@@ -3,7 +3,8 @@ titulo: 5 Dicas Para Correr Seu Primeiro 10km
 slug: dicas-correr-primeiro-10km
 descricao: Descubra as 5 dicas essenciais para completar sua primeira corrida de 10km com sucesso e segurança
 imagem: cabecalho-10km-iniciantes.jpg
-alt_imagem: Corredor cruzando linha de chegada de uma prova de 10km
+categoria: Iniciantes
+keywords: corrida 10km, primeira corrida 10km, dicas corrida iniciantes, como correr 10km
 data: 2026-02-18
 autor: Karina Franzin
 ---
