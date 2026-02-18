@@ -361,22 +361,89 @@
                 <img src="./assets/img/alunos-podio-03.jpg" alt="Atleta da assessoria esportiva conquistando pódio em prova de corrida" width="1200" height="1600" loading="lazy">
             </div>
 
-            <div class="testimonials">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">[SUBSTITUIR PELO REAL] "A assessoria da Karina transformou minha relação com a corrida. Consegui melhorar meu tempo e correr sem lesões!"</p>
-                    <p class="testimonial-author">— Aluno(a) da assessoria</p>
+            <!-- Carrossel de Feedbacks - 3 Imagens -->
+            <section class="feedbacks-carousel">
+                <div class="carousel-container">
+                    <button class="carousel-btn prev" aria-label="Feedbacks anteriores">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    
+                    <div class="carousel-track-wrapper">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="./assets/img/feedbacks/1.jpg" alt="Feedback de aluno da assessoria de corrida Karina Franzin" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="./assets/img/feedbacks/2.jpg" alt="Depoimento de corredor treinado pela Karina Franzin" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="./assets/img/feedbacks/3.jpg" alt="Testemunho de aluno sobre assessoria esportiva de corrida" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="./assets/img/feedbacks/4.jpg" alt="Avaliação positiva de assessoria de corrida online" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="./assets/img/feedbacks/5.jpg" alt="Relato de transformação com treinamento personalizado de corrida" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="./assets/img/feedbacks/6.jpg" alt="Comentário de aluno sobre planilhas de treino personalizadas" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="./assets/img/feedbacks/7.jpg" alt="Opinião de corredor sobre acompanhamento individual da Karina" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="./assets/img/feedbacks/8.jpg" alt="Feedback sobre evolução na corrida com assessoria profissional" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="./assets/img/feedbacks/9.jpg" alt="Depoimento de aluno satisfeito com treinamento de corrida" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="./assets/img/feedbacks/10.jpg" alt="Testemunho sobre resultados alcançados com assessoria esportiva" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="carousel-btn next" aria-label="Próximos feedbacks">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
                 </div>
                 
-                <div class="testimonial-card">
-                    <p class="testimonial-text">[SUBSTITUIR PELO REAL] "Comecei do zero e hoje já corro 10km com facilidade. A atenção individual faz toda diferença!"</p>
-                    <p class="testimonial-author">— Aluno(a) da assessoria</p>
-                </div>
-                
-                <div class="testimonial-card">
-                    <p class="testimonial-text">[SUBSTITUIR PELO REAL] "Profissionalismo e empatia em cada treino. A Karina entende o que eu preciso e me ajuda a evoluir constantemente."</p>
-                    <p class="testimonial-author">— Aluno(a) da assessoria</p>
-                </div>
-            </div>
+                <!-- Indicadores (dots) - Criados dinamicamente pelo JavaScript -->
+                <div class="carousel-indicators"></div>
+            </section>
         </div>
     </section>
 
@@ -522,6 +589,20 @@
             </a>
         </div>
     </section>
+
+    <!-- Lightbox para ampliar feedbacks -->
+    <div id="feedbackLightbox" class="lightbox" aria-hidden="true">
+        <div class="lightbox-overlay"></div>
+        <div class="lightbox-content">
+            <button class="lightbox-close" aria-label="Fechar imagem ampliada">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <img id="lightboxImage" src="" alt="" />
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">

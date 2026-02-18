@@ -763,3 +763,414 @@ a {
         transition: none !important;
     }
 }
+
+/* ===========================
+   CARROSSEL DE FEEDBACKS - 3 IMAGENS CLEAN
+   =========================== */
+
+.feedbacks-carousel {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    padding: 40px 0;
+}
+
+/* Container do Carrossel */
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Wrapper da Track (área visível - mostra 3 imagens) */
+.carousel-track-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
+/* Track (trilho dos slides) */
+.carousel-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease;
+    will-change: transform;
+}
+
+/* Cada Slide - 33.33% para mostrar 3 por vez */
+.carousel-slide {
+    flex: 0 0 calc(33.333% - 14px);
+    min-width: 0;
+}
+
+/* Card do Feedback */
+.feedback-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.feedback-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.feedback-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    aspect-ratio: 3/4;
+}
+
+/* Botões de Navegação (Setas) */
+.carousel-btn {
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    color: #333;
+    flex-shrink: 0;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    transform: scale(1.05);
+}
+
+.carousel-btn:active {
+    transform: scale(0.95);
+}
+
+.carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.carousel-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Indicadores (Dots) */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.indicator:hover {
+    background: #999;
+    transform: scale(1.2);
+}
+
+.indicator.active {
+    background: #e63946;
+    width: 24px;
+    border-radius: 5px;
+}
+
+/* ===========================
+   RESPONSIVIDADE - CARROSSEL
+   =========================== */
+
+/* Tablets - Mostra 2 imagens */
+@media (max-width: 968px) {
+    .feedbacks-carousel {
+        max-width: 100%;
+        padding: 30px 20px;
+    }
+    
+    .carousel-slide {
+        flex: 0 0 calc(50% - 10px);
+    }
+    
+    .carousel-track {
+        gap: 15px;
+    }
+}
+
+/* Mobile - Mostra 1 imagem */
+@media (max-width: 640px) {
+    .feedbacks-carousel {
+        padding: 20px 15px;
+    }
+    
+    .carousel-slide {
+        flex: 0 0 100%;
+    }
+    
+    .carousel-track {
+        gap: 0;
+    }
+    
+    .carousel-container {
+        gap: 10px;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .carousel-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .carousel-indicators {
+        gap: 6px;
+        margin-top: 20px;
+    }
+    
+    .indicator {
+        width: 8px;
+        height: 8px;
+    }
+    
+    .indicator.active {
+        width: 20px;
+    }
+}
+
+/* Mobile muito pequeno */
+@media (max-width: 360px) {
+    .carousel-btn {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .carousel-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* ===========================
+   LIGHTBOX PARA FEEDBACKS
+   =========================== */
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    cursor: pointer;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    z-index: 10000;
+    animation: zoomIn 0.3s ease;
+}
+
+.lightbox-content img {
+    width: auto;
+    height: auto;
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10001;
+}
+
+.lightbox-close:hover {
+    background: #fff;
+    transform: scale(1.1);
+}
+
+.lightbox-close svg {
+    color: #333;
+}
+
+/* Animações do Lightbox */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Responsividade do Lightbox */
+@media (max-width: 768px) {
+    .lightbox-content img {
+        max-width: 95vw;
+        max-height: 95vh;
+    }
+    
+    .lightbox-close {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .lightbox-close svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* ===========================
+   ANIMAÇÕES - CARROSSEL
+   =========================== */
+
+/* Animação de fade para transição suave */
+@keyframes fadeIn {
+    from {
+        opacity: 0.7;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.carousel-slide.active .feedback-card {
+    animation: fadeIn 0.6s ease;
+}
+
+/* Efeito de loading para imagens */
+.feedback-card img {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.feedback-card img[src] {
+    animation: none;
+    background: none;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ===========================
+   ACESSIBILIDADE - CARROSSEL
+   =========================== */
+
+/* Focus visible para teclado */
+.carousel-btn:focus-visible,
+.indicator:focus-visible {
+    outline: 3px solid #e63946;
+    outline-offset: 3px;
+}
+
+/* Remover outline padrão */
+.carousel-btn:focus,
+.indicator:focus {
+    outline: none;
+}
+
+/* Modo de alto contraste */
+@media (prefers-contrast: high) {
+    .carousel-btn {
+        border: 2px solid #000;
+    }
+    
+    .indicator {
+        border-width: 3px;
+    }
+}
+
+/* Reduzir movimento para usuários com preferência */
+@media (prefers-reduced-motion: reduce) {
+    .carousel-track {
+        transition: none;
+    }
+    
+    .carousel-btn,
+    .indicator {
+        transition: none;
+    }
+    
+    .feedback-card img {
+        animation: none;
+    }
+    
+    .carousel-slide.active .feedback-card {
+        animation: none;
+    }
+}
