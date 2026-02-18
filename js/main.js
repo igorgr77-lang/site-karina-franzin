@@ -356,13 +356,27 @@ class FeedbackCarousel {
 }
 
 // Inicializar carrossel quando o DOM estiver pronto
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        window.feedbackCarousel = new FeedbackCarousel();
-    });
-} else {
+function initFeedbackCarousel() {
+    // Destruir instância anterior se existir
+    if (window.feedbackCarousel) {
+        window.feedbackCarousel.destroy();
+    }
+    // Criar nova instância
     window.feedbackCarousel = new FeedbackCarousel();
 }
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFeedbackCarousel);
+} else {
+    initFeedbackCarousel();
+}
+
+// Reinicializar quando a página voltar a ficar visível (navegação back/forward)
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && document.querySelector('.feedbacks-carousel')) {
+        initFeedbackCarousel();
+    }
+});
 
 // Cleanup ao sair da página
 window.addEventListener('beforeunload', () => {
@@ -442,10 +456,19 @@ class FeedbackLightbox {
 }
 
 // Inicializar lightbox quando o DOM estiver pronto
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        window.feedbackLightbox = new FeedbackLightbox();
-    });
-} else {
+function initFeedbackLightbox() {
     window.feedbackLightbox = new FeedbackLightbox();
 }
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFeedbackLightbox);
+} else {
+    initFeedbackLightbox();
+}
+
+// Reinicializar quando a página voltar a ficar visível
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && document.getElementById('feedbackLightbox')) {
+        initFeedbackLightbox();
+    }
+});
