@@ -149,10 +149,10 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ===========================
-// Carrossel de Feedbacks
+// Carrossel de Feedbacks com Swipe
 // ===========================
 (function() {
-    console.log('[CAROUSEL] Iniciando...');
+    console.log('[CAROUSEL] Iniciando com suporte a swipe...');
     
     function init() {
         var track = document.querySelector('.carousel-track');
@@ -170,6 +170,14 @@ document.head.appendChild(style);
         
         var currentPage = 0;
         var slidesPerView = 3;
+        
+        // Variáveis para controle de swipe/drag
+        var startX = 0;
+        var currentX = 0;
+        var isDragging = false;
+        var hasMoved = false;
+        var touchStartTime = 0;
+        var clickedImage = null;
         
         function updateSlidesPerView() {
             var w = window.innerWidth;
@@ -224,14 +232,140 @@ document.head.appendChild(style);
             update();
         }
         
+        // ===========================
+        // SWIPE/TOUCH FUNCTIONALITY
+        // ===========================
+        
+        function getPositionX(event) {
+            return event.type.indexOf('mouse') !== -1 ? event.pageX : event.touches[0].clientX;
+        }
+        
+        function touchStart(event) {
+            startX = getPositionX(event);
+            isDragging = true;
+            hasMoved = false;
+            touchStartTime = Date.now();
+            
+            // Verifica se clicou em uma imagem (busca também em parent caso clique na borda)
+            var target = event.target;
+            if (target.tagName === 'IMG') {
+                clickedImage = target;
+            } else if (target.querySelector && target.querySelector('img')) {
+                clickedImage = target.querySelector('img');
+            } else {
+                clickedImage = null;
+            }
+            
+            // Desabilita a transição durante o drag
+            track.style.transition = 'none';
+        }
+        
+        function touchMove(event) {
+            if (!isDragging) return;
+            
+            currentX = getPositionX(event);
+            var diffX = currentX - startX;
+            
+            // Marca que houve movimento se passar de 5px
+            if (Math.abs(diffX) > 5) {
+                hasMoved = true;
+            }
+            
+            // Calcula a posição atual do carrossel
+            var currentTranslate = -currentPage * 100;
+            
+            // Converte o movimento do mouse/dedo em porcentagem
+            var trackWidth = track.offsetWidth;
+            var movePercent = (diffX / trackWidth) * 100;
+            
+            // Aplica o movimento
+            track.style.transform = 'translateX(' + (currentTranslate + movePercent) + '%)';
+        }
+        
+        function touchEnd(event) {
+            if (!isDragging) return;
+            
+            isDragging = false;
+            
+            // Reativa a transição
+            track.style.transition = 'transform 0.5s ease';
+            
+            var diffX = currentX - startX;
+            var threshold = 50; // pixels mínimos para mudar de página
+            var touchDuration = Date.now() - touchStartTime;
+            
+            // Se foi um clique rápido (sem movimento) E clicou em uma imagem
+            // Abre o lightbox diretamente aqui
+            if (!hasMoved && touchDuration < 300 && clickedImage) {
+                update();
+                console.log('[CAROUSEL] Clique rápido em imagem - abrindo lightbox');
+                
+                // Abre o lightbox diretamente
+                var lightbox = document.getElementById('feedbackLightbox');
+                var lightboxImg = document.getElementById('lightboxImage');
+                
+                if (lightbox && lightboxImg && clickedImage) {
+                    lightboxImg.src = clickedImage.src;
+                    lightbox.className = 'lightbox active';
+                    lightbox.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                    console.log('[CAROUSEL] Lightbox aberto com sucesso!');
+                }
+                
+                return;
+            }
+            
+            if (Math.abs(diffX) > threshold) {
+                if (diffX > 0) {
+                    // Swipe para direita (voltar)
+                    goPrev();
+                } else {
+                    // Swipe para esquerda (avançar)
+                    goNext();
+                }
+            } else {
+                // Volta para a posição atual
+                update();
+            }
+        }
+        
+        // Event listeners para TOUCH (mobile)
+        track.addEventListener('touchstart', touchStart);
+        track.addEventListener('touchmove', touchMove, { passive: true });
+        track.addEventListener('touchend', touchEnd);
+        
+        // Event listeners para MOUSE (desktop - drag)
+        track.addEventListener('mousedown', touchStart);
+        track.addEventListener('mousemove', touchMove);
+        track.addEventListener('mouseup', touchEnd);
+        track.addEventListener('mouseleave', function() {
+            if (isDragging) {
+                touchEnd();
+            }
+        });
+        
+        // Previne o comportamento padrão de arrastar imagem
+        track.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+        });
+        
+        // Botões de navegação
         if (prevBtn) prevBtn.onclick = goPrev;
         if (nextBtn) nextBtn.onclick = goNext;
         
+        // Inicialização
         updateSlidesPerView();
         createDots();
         update();
         
-        console.log('[CAROUSEL] Inicializado com sucesso!');
+        // Atualiza ao redimensionar a janela
+        window.addEventListener('resize', function() {
+            updateSlidesPerView();
+            createDots();
+            update();
+        });
+        
+        console.log('[CAROUSEL] Inicializado com sucesso! Swipe ativado.');
     }
     
     if (document.readyState === 'loading') {
@@ -259,20 +393,24 @@ document.head.appendChild(style);
         var images = document.querySelectorAll('.feedback-card img');
         console.log('[LIGHTBOX] Encontradas ' + images.length + ' imagens');
         
+        // Apenas adiciona cursor pointer e previne drag
         for (var i = 0; i < images.length; i++) {
             images[i].style.cursor = 'pointer';
-            images[i].onclick = (function(img) {
-                return function() {
-                    lightboxImg.src = img.src;
-                    lightbox.className = 'lightbox active';
-                    document.body.style.overflow = 'hidden';
-                };
-            })(images[i]);
+            
+            // Previne o comportamento padrão de arrastar imagem
+            images[i].addEventListener('dragstart', function(e) {
+                e.preventDefault();
+            });
         }
+        
+        // NOTA: O lightbox agora é aberto diretamente pelo carrossel
+        // quando detecta um clique rápido em uma imagem.
         
         function close() {
             lightbox.className = 'lightbox';
+            lightbox.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
+            console.log('[LIGHTBOX] Fechado');
         }
         
         var closeBtn = lightbox.querySelector('.lightbox-close');
