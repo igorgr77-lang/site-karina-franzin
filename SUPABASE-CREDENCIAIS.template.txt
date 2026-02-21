@@ -1,0 +1,36 @@
+# 🔐 CREDENCIAIS SUPABASE - BLOG KARINA FRANZIN
+# =============================================
+# IMPORTANTE: Este arquivo é um TEMPLATE
+# Copie este arquivo para: SUPABASE-CREDENCIAIS.txt
+# E preencha com suas credenciais reais
+# =============================================
+
+# 📍 PROJECT URL
+# Exemplo: https://xyzabc123.supabase.co
+PROJECT_URL=
+
+# 🔑 ANON PUBLIC KEY (chave pública - pode expor no site)
+# Exemplo: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+ANON_KEY=
+
+# 🔐 SERVICE ROLE KEY (chave secreta - NUNCA expor!)
+# Exemplo: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+SERVICE_ROLE_KEY=
+
+# 📧 CREDENCIAIS DA KARINA
+# Email usado para login no painel admin
+KARINA_EMAIL=
+
+# Senha (anotar em local seguro)
+KARINA_PASSWORD=
+
+# 🗄️ DATABASE PASSWORD
+# Senha do banco de dados PostgreSQL
+DATABASE_PASSWORD=
+
+# =============================================
+# OBSERVAÇÕES:
+# - Nunca compartilhe a SERVICE_ROLE_KEY
+# - Não faça commit deste arquivo no Git
+# - Mantenha backup dessas credenciais
+# =============================================

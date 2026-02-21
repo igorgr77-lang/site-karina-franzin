@@ -29,3 +29,10 @@ build/
 # Arquivos sensíveis (não commitamos dados privados)
 *.env
 .env.local
+
+# Credenciais do Supabase
+SUPABASE-CREDENCIAIS.txt
+js/supabase-config.js
+
+# Arquivos temporários de teste
+tmp_rovodev_*

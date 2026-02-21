@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor de Artigos | Karina Franzin</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/editor.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <h1>🏃‍♀️ Karina Franzin</h1>
+                <p>Editor de Artigos</p>
+            </div>
+            <div class="user-info">
+                <span id="userEmail">Carregando...</span>
+                <button id="btnBackToList" class="btn-secondary">← Voltar</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="editor-container">
+                <form id="articleForm">
+                    <!-- Imagem do Card -->
+                    <div class="form-section">
+                        <h3>📷 Imagem do Card</h3>
+                        <p class="section-description">Esta imagem aparecerá na lista de artigos (recomendado: 800x450px)</p>
+                        
+                        <div class="image-upload-area" id="cardImageArea">
+                            <div class="image-preview" id="cardImagePreview">
+                                <img id="cardImageImg" src="" alt="Preview" style="display: none;">
+                                <div class="upload-placeholder" id="cardImagePlaceholder">
+                                    <div class="upload-icon">📁</div>
+                                    <p>Clique ou arraste a imagem aqui</p>
+                                    <span>JPG, PNG ou WebP (max 2MB)</span>
+                                </div>
+                            </div>
+                            <input 
+                                type="file" 
+                                id="cardImageInput" 
+                                accept="image/jpeg,image/png,image/webp"
+                                style="display: none;"
+                            >
+                            <button type="button" class="btn-upload" onclick="document.getElementById('cardImageInput').click()">
+                                Escolher Imagem
+                            </button>
+                            <input type="hidden" id="cardImageUrl" name="image_url">
+                        </div>
+                    </div>
+
+                    <!-- Informações Básicas -->
+                    <div class="form-section">
+                        <h3>📝 Informações Básicas</h3>
+                        
+                        <div class="form-group">
+                            <label for="title">Título do Artigo *</label>
+                            <input 
+                                type="text" 
+                                id="title" 
+                                name="title" 
+                                placeholder="Ex: Como Começar a Correr do Zero"
+                                required
+                                maxlength="200"
+                            >
+                            <small class="char-counter"><span id="titleCount">0</span>/200</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="slug">URL Amigável (Slug) *</label>
+                            <input 
+                                type="text" 
+                                id="slug" 
+                                name="slug" 
+                                placeholder="como-comecar-a-correr-do-zero"
+                                required
+                                pattern="[a-z0-9-]+"
+                            >
+                            <small>URL do artigo: karinafranzin.com.br/blog/<strong id="slugPreview">seu-artigo</strong></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Resumo do Card *</label>
+                            <textarea 
+                                id="description" 
+                                name="description" 
+                                rows="3" 
+                                placeholder="Breve descrição que aparecerá no card do artigo"
+                                required
+                                maxlength="300"
+                            ></textarea>
+                            <small class="char-counter"><span id="descriptionCount">0</span>/300</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subtitle">Subtítulo / Introdução</label>
+                            <textarea 
+                                id="subtitle" 
+                                name="subtitle" 
+                                rows="4" 
+                                maxlength="500"
+                                placeholder="Texto introdutório que aparece no topo da página do artigo, entre o título e o conteúdo (opcional)"
+                            ></textarea>
+                            <small class="char-counter"><span id="subtitleCount">0</span>/500</small>
+                        </div>
+                    </div>
+
+                    <!-- Imagem do Cabeçalho -->
+                    <div class="form-section">
+                        <h3>🖼️ Imagem do Cabeçalho do Artigo</h3>
+                        <p class="section-description">Esta imagem aparecerá no topo do artigo (recomendado: 1200x600px)</p>
+                        
+                        <div class="image-upload-area" id="headerImageArea">
+                            <div class="image-preview" id="headerImagePreview">
+                                <img id="headerImageImg" src="" alt="Preview" style="display: none;">
+                                <div class="upload-placeholder" id="headerImagePlaceholder">
+                                    <div class="upload-icon">📁</div>
+                                    <p>Clique ou arraste a imagem aqui</p>
+                                    <span>JPG, PNG ou WebP (max 2MB)</span>
+                                </div>
+                            </div>
+                            <input 
+                                type="file" 
+                                id="headerImageInput" 
+                                accept="image/jpeg,image/png,image/webp"
+                                style="display: none;"
+                            >
+                            <button type="button" class="btn-upload" onclick="document.getElementById('headerImageInput').click()">
+                                Escolher Imagem
+                            </button>
+                            <input type="hidden" id="headerImageUrl" name="header_image_url">
+                        </div>
+                    </div>
+
+                    <!-- Conteúdo do Artigo -->
+                    <div class="form-section">
+                        <h3>✍️ Conteúdo do Artigo *</h3>
+                        <p class="section-description">Escreva o conteúdo completo do artigo em HTML</p>
+                        
+                        <div class="form-group">
+                            <textarea 
+                                id="content" 
+                                name="content" 
+                                rows="20" 
+                                placeholder="<p>Digite o conteúdo do artigo aqui...</p>"
+                                required
+                            ></textarea>
+                            <small>💡 Dica: Use tags HTML como &lt;p&gt;, &lt;h2&gt;, &lt;h3&gt;, &lt;ul&gt;, &lt;li&gt;, etc.</small>
+                        </div>
+                    </div>
+
+                    <!-- SEO -->
+                    <div class="form-section">
+                        <h3>🔍 SEO (Otimização para Buscadores)</h3>
+                        
+                        <div class="form-group">
+                            <label for="metaTitle">Meta Título (Tag Title)</label>
+                            <input 
+                                type="text" 
+                                id="metaTitle" 
+                                name="meta_title" 
+                                placeholder="Deixe vazio para usar o título do artigo"
+                                maxlength="60"
+                            >
+                            <small class="char-counter"><span id="metaTitleCount">0</span>/60 (ideal: 50-60)</small>
+                            <small style="display: block; margin-top: 5px; color: #6b7280;">
+                                💡 Este é o título que aparece no Google e na aba do navegador
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="metaDescription">Meta Descrição</label>
+                            <textarea 
+                                id="metaDescription" 
+                                name="meta_description" 
+                                rows="2" 
+                                placeholder="Deixe vazio para usar o resumo do card"
+                                maxlength="160"
+                            ></textarea>
+                            <small class="char-counter"><span id="metaDescriptionCount">0</span>/160 (ideal: 150-160)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="keywords">Palavras-Chave (separadas por vírgula)</label>
+                            <input 
+                                type="text" 
+                                id="keywords" 
+                                name="keywords" 
+                                placeholder="corrida, iniciantes, treino, saúde"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Autor e Data -->
+                    <div class="form-section">
+                        <h3>👤 Informações do Autor</h3>
+                        
+                        <div class="form-group">
+                            <label for="author">Nome do Autor</label>
+                            <input 
+                                type="text" 
+                                id="author" 
+                                name="author" 
+                                value="Karina Franzin"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label>⏱️ Tempo de Leitura (calculado automaticamente)</label>
+                            <div class="reading-time-display">
+                                <span id="readingTimeDisplay" class="reading-time-value">0 min de leitura</span>
+                                <small>Baseado no conteúdo do artigo (média: 200 palavras/min)</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Status de Publicação -->
+                    <div class="form-section">
+                        <h3>🚀 Publicação</h3>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="published" name="published">
+                                <span>Publicar artigo (tornar visível no site)</span>
+                            </label>
+                            <small>Se desmarcado, o artigo ficará como rascunho</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="publishedAt">Data de Publicação</label>
+                            <input 
+                                type="datetime-local" 
+                                id="publishedAt" 
+                                name="published_at"
+                            >
+                            <small>Deixe vazio para usar a data/hora atual</small>
+                        </div>
+                    </div>
+
+                    <!-- Ações -->
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="window.location.href='/admin/index.html'">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn-primary" id="btnSave">
+                            💾 Salvar Artigo
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p id="loadingText">Processando...</p>
+        </div>
+    </div>
+
+    <!-- Utilitários -->
+    <script src="../js/utils.js"></script>
+    
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.js"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="js/editor.js"></script>
+</body>
+</html>
