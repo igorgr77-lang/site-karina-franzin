@@ -28,6 +28,11 @@
     <link rel="stylesheet" href="../css/blog.css">
 </head>
 <body>
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>Carregando artigos...</p>
+    </div>
     <header class="blog-header">
         <div class="container">
             <a href="/" class="back-link">← Voltar para o site</a>
@@ -38,87 +43,35 @@
 
     <main class="blog-main">
         <div class="container">
-            <div class="articles-grid">
-                
-                <!-- Artigo RUN AVOA 2026 -->
-                <article class="article-card">
-                    <div class="article-image">
-                        <img src="../assets/img/cabecalho-run-avoa-2026.jpg" alt="RUN AVOA 2026 Votuporanga" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <span class="article-category">Eventos</span>
-                        <h2 class="article-title">RUN AVOA 2026 Votuporanga: Tudo Sobre a Prova + Dicas de Preparação</h2>
-                        <p class="article-excerpt">
-                            A 11ª edição da RUN AVOA está chegando! Saiba tudo sobre a prova, como se inscrever e como se preparar da melhor forma para arrasar em Votuporanga-SP.
-                        </p>
-                        <div class="article-meta">
-                            <span class="article-date">📅 17 de fevereiro, 2026</span>
-                            <span class="article-reading-time">⏱️ 10 min de leitura</span>
-                        </div>
-                        <a href="./run-avoa-2026-votuporanga/" class="article-link">Ler artigo completo →</a>
-                    </div>
-                </article>
-
-                <!-- Artigo 1 -->
-                <article class="article-card">
-                    <div class="article-image">
-                        <img src="../assets/img/cabecalho-correr-do-zero.jpg" alt="Como começar a correr do zero - Guia completo" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <span class="article-category">Iniciantes</span>
-                        <h2 class="article-title">Como Começar a Correr do Zero: Guia Completo para Iniciantes</h2>
-                        <p class="article-excerpt">
-                            Quer começar a correr mas não sabe por onde começar? Este guia completo vai te ensinar tudo que você precisa saber para dar os primeiros passos com segurança e motivação.
-                        </p>
-                        <div class="article-meta">
-                            <span class="article-date">📅 13 de fevereiro, 2026</span>
-                            <span class="article-reading-time">⏱️ 8 min de leitura</span>
-                        </div>
-                        <a href="./como-comecar-a-correr-do-zero/" class="article-link">Ler artigo completo →</a>
-                    </div>
-                </article>
-
-                <!-- Artigo 2 -->
-                <article class="article-card">
-                    <div class="article-image">
-                        <img src="../assets/img/cabecalho-plano-treino-5km.jpg" alt="Plano de treino 5km para iniciantes" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <span class="article-category">Treinos</span>
-                        <h2 class="article-title">Plano de Treino para Correr 5km em 8 Semanas (Iniciantes)</h2>
-                        <p class="article-excerpt">
-                            Planilha completa de 8 semanas para você conseguir correr seus primeiros 5km. Progressão segura, sem lesões e com resultados garantidos.
-                        </p>
-                        <div class="article-meta">
-                            <span class="article-date">📅 13 de fevereiro, 2026</span>
-                            <span class="article-reading-time">⏱️ 10 min de leitura</span>
-                        </div>
-                        <a href="./plano-de-treino-5km-para-iniciantes/" class="article-link">Ler artigo completo →</a>
-                    </div>
-                </article>
-
-                <!-- Artigo 3 -->
-                <article class="article-card">
-                    <div class="article-image">
-                        <img src="../assets/img/cabecalho-10-erros-comuns.jpg" alt="Erros comuns de iniciantes na corrida" loading="lazy">
-                    </div>
-                    <div class="article-content">
-                        <span class="article-category">Dicas</span>
-                        <h2 class="article-title">10 Erros Comuns de Iniciantes na Corrida (e Como Evitá-los)</h2>
-                        <p class="article-excerpt">
-                            Descubra os erros mais frequentes que iniciantes cometem e aprenda como evitá-los para progredir mais rápido e com menos riscos de lesão.
-                        </p>
-                        <div class="article-meta">
-                            <span class="article-date">📅 13 de fevereiro, 2026</span>
-                            <span class="article-reading-time">⏱️ 7 min de leitura</span>
-                        </div>
-                        <a href="./erros-comuns-corrida-iniciantes/" class="article-link">Ler artigo completo →</a>
-                    </div>
-                </article>
-
+            <div id="articlesGrid" class="articles-grid">
+                <!-- Artigos serão carregados dinamicamente aqui -->
+            </div>
+            
+            <!-- Mensagem caso não haja artigos -->
+            <div id="noArticles" class="no-articles" style="display: none;">
+                <p>Nenhum artigo publicado no momento. Volte em breve!</p>
             </div>
         </div>
     </main>
+
+    <!-- Template de artigo (oculto) -->
+    <template id="articleCardTemplate">
+        <article class="article-card">
+            <div class="article-image">
+                <img data-src="" alt="" loading="lazy">
+            </div>
+            <div class="article-content">
+                <span class="article-category"></span>
+                <h2 class="article-title"></h2>
+                <p class="article-excerpt"></p>
+                <div class="article-meta">
+                    <span class="article-date"></span>
+                    <span class="article-reading-time"></span>
+                </div>
+                <a href="" class="article-link">Ler artigo completo →</a>
+            </div>
+        </article>
+    </template>
 
     <section class="blog-cta">
         <div class="container">
@@ -140,6 +93,12 @@
             <a href="/">Voltar para o site principal</a>
         </div>
     </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.js"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/blog-list.js"></script>
 </body>
 </html>
 
