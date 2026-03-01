@@ -42,7 +42,8 @@ async function carregarArtigo() {
         
         // Mostrar conteúdo
         loadingOverlay.style.display = 'none';
-        articleContent.style.display = 'block';
+        document.getElementById('articleHeader').style.display = 'block';
+        document.getElementById('articleContainer').style.display = 'block';
         
     } catch (error) {
         console.error('Erro ao carregar artigo:', error);
@@ -53,83 +54,38 @@ async function carregarArtigo() {
 
 // Renderizar artigo na página
 function renderizarArtigo(artigo) {
-    const articleContent = document.getElementById('articleContent');
-    
     // Calcular tempo de leitura
     const tempoLeitura = calcularTempoLeitura(artigo.conteudo || '');
-    const tempoFormatado = formatarTempoLeitura(tempoLeitura);
     
     // Formatar data
     const dataFormatada = formatarData(artigo.data_publicacao);
     
-    // Categoria (primeira palavra-chave ou "Blog")
+    // Categoria (primeira palavra-chave ou "CORRIDA")
     const categoria = artigo.palavras_chave && artigo.palavras_chave.length > 0
-        ? artigo.palavras_chave[0].charAt(0).toUpperCase() + artigo.palavras_chave[0].slice(1)
-        : 'Blog';
+        ? artigo.palavras_chave[0].toUpperCase()
+        : 'CORRIDA';
     
-    // Criar HTML do artigo
-    const html = `
-        <!-- Header -->
-        <header class="article-header" style="background-image: url('${artigo.imagem_cabecalho || artigo.imagem_card || '../assets/img/placeholder.jpg'}');">
-            <div class="header-overlay"></div>
-            <div class="container">
-                <nav class="breadcrumb">
-                    <a href="/">Home</a> → 
-                    <a href="/blog/">Blog</a> → 
-                    <span>${categoria}</span>
-                </nav>
-                
-                <span class="article-category">${categoria}</span>
-                <h1>${artigo.titulo}</h1>
-                
-                <div class="article-meta">
-                    <span>📅 ${dataFormatada}</span>
-                    <span>⏱️ ${tempoFormatado}</span>
-                    <span>✍️ Por ${artigo.autor || 'Karina Franzin'}</span>
-                </div>
-            </div>
-        </header>
-
-        <!-- Article Content -->
-        <article class="article-single">
-            <div class="container">
-                ${artigo.subtitulo ? `
-                <div class="article-subtitle">
-                    <p>${artigo.subtitulo}</p>
-                </div>
-                ` : ''}
-                
-                <div class="article-body">
-                    ${artigo.conteudo || '<p>Conteúdo não disponível.</p>'}
-                </div>
-                
-                <!-- Social Share -->
-                <div class="social-share">
-                    <p>Compartilhe este artigo:</p>
-                    <div class="share-buttons">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}" target="_blank" class="share-btn facebook">Facebook</a>
-                        <a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(artigo.titulo)}" target="_blank" class="share-btn twitter">Twitter</a>
-                        <a href="https://wa.me/?text=${encodeURIComponent(artigo.titulo + ' ' + window.location.href)}" target="_blank" class="share-btn whatsapp">WhatsApp</a>
-                    </div>
-                </div>
-                
-                <!-- Back to Blog -->
-                <div class="back-to-blog">
-                    <a href="/blog/" class="btn-primary">← Voltar para o blog</a>
-                </div>
-            </div>
-        </article>
-
-        <!-- Footer -->
-        <footer class="blog-footer">
-            <div class="container">
-                <p>&copy; 2026 Karina Franzin - Todos os direitos reservados</p>
-                <a href="/">Voltar para o site principal</a>
-            </div>
-        </footer>
-    `;
+    // Preencher elementos do HTML existente
+    document.getElementById('articleCategory').textContent = categoria;
+    document.getElementById('articleTitle').textContent = artigo.titulo;
+    document.getElementById('articleDate').textContent = `📅 ${dataFormatada}`;
+    document.getElementById('articleReadingTime').textContent = `⏱️ ${tempoLeitura} min de leitura`;
+    document.getElementById('articleAuthor').textContent = `✍️ Por ${artigo.autor || 'Karina Franzin'}`;
     
-    articleContent.innerHTML = html;
+    // Subtítulo (se existir)
+    const subtituloEl = document.getElementById('articleSubtitle');
+    if (artigo.subtitulo) {
+        subtituloEl.innerHTML = `<p>${artigo.subtitulo}</p>`;
+        subtituloEl.style.display = 'block';
+    } else {
+        subtituloEl.style.display = 'none';
+    }
+    
+    // Conteúdo do artigo
+    document.getElementById('articleContent').innerHTML = artigo.conteudo || '<p>Conteúdo não disponível.</p>';
+    
+    // Breadcrumb
+    document.getElementById('breadcrumbCurrent').textContent = artigo.titulo;
 }
 
 // Atualizar meta tags para SEO
@@ -137,26 +93,33 @@ function atualizarMetaTags(artigo) {
     // Title
     const title = artigo.meta_titulo || artigo.titulo;
     document.title = `${title} | Karina Franzin`;
-    document.getElementById('pageTitle').textContent = `${title} | Karina Franzin`;
+    const pageTitle = document.getElementById('pageTitle');
+    if (pageTitle) pageTitle.textContent = `${title} | Karina Franzin`;
     
     // Description
     const description = artigo.meta_description || artigo.resumo || '';
-    document.getElementById('metaDescription').setAttribute('content', description);
+    const metaDesc = document.getElementById('metaDescription');
+    if (metaDesc) metaDesc.setAttribute('content', description);
     
     // Keywords
     const keywords = artigo.palavras_chave ? artigo.palavras_chave.join(', ') : '';
-    document.getElementById('metaKeywords').setAttribute('content', keywords);
+    const metaKeywords = document.getElementById('metaKeywords');
+    if (metaKeywords) metaKeywords.setAttribute('content', keywords);
+    
+    // Canonical URL
+    const canonical = document.getElementById('canonical');
+    if (canonical) canonical.setAttribute('href', window.location.href);
     
     // Open Graph
-    document.getElementById('ogTitle').setAttribute('content', title);
-    document.getElementById('ogDescription').setAttribute('content', description);
-    document.getElementById('ogImage').setAttribute('content', artigo.imagem_card || '');
-    document.getElementById('ogUrl').setAttribute('content', window.location.href);
+    const ogTitle = document.getElementById('ogTitle');
+    const ogDescription = document.getElementById('ogDescription');
+    const ogImage = document.getElementById('ogImage');
+    const ogUrl = document.getElementById('ogUrl');
     
-    // Twitter
-    document.getElementById('twitterTitle').setAttribute('content', title);
-    document.getElementById('twitterDescription').setAttribute('content', description);
-    document.getElementById('twitterImage').setAttribute('content', artigo.imagem_card || '');
+    if (ogTitle) ogTitle.setAttribute('content', title);
+    if (ogDescription) ogDescription.setAttribute('content', description);
+    if (ogImage) ogImage.setAttribute('content', artigo.imagem_card || '/assets/img/karina-profile.jpg');
+    if (ogUrl) ogUrl.setAttribute('content', window.location.href);
 }
 
 // Formatar data para pt-BR
