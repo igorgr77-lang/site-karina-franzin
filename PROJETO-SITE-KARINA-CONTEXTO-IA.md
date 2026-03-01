@@ -231,10 +231,13 @@ git commit -m "descrição das mudanças"
 git push
 ```
 
+**⚠️ IMPORTANTE:** Apenas o desenvolvedor Igor realiza commits no repositório.
+
 ### **Deploy Automático:**
 - GitHub Pages ativo
 - Deploy automático a cada push na branch `main`
 - Tempo de propagação: 5-10 minutos
+- **Branch de trabalho atual:** `develop`
 
 ### **Testes Locais:**
 ```powershell
@@ -374,6 +377,7 @@ Disallow: /*.css$
 - [x] ~~Implementar Google Analytics~~ ✅ GA4 configurado (ID: G-J488T0R72B) - 18/02/2026
 - [x] ~~Rastreamento de conversões (cliques WhatsApp)~~ ✅ Eventos GA4 implementados - 18/02/2026
 - [x] ~~Rastreamento de engajamento (Instagram e Strava)~~ ✅ Eventos GA4 implementados - 18/02/2026
+- [x] ~~Página da 2ª Cãominhada 2026~~ ✅ Publicada em https://karinafranzin.com.br/cao-minhada-2026/
 - [ ] Adicionar testimoniais reais de clientes
 - [ ] Otimizar imagens para formato WebP/AVIF
 - [ ] Substituir imagens placeholder do blog
@@ -480,11 +484,12 @@ Disallow: /*.css$
 
 ---
 
-**Data da Última Atualização:** 19 de Fevereiro de 2026  
-**Versão do Projeto:** v4.2 (Carrossel com Swipe/Touch + Lightbox + Otimizações PageSpeed)  
+**Data da Última Atualização:** 01 de Março de 2026  
+**Versão do Projeto:** v4.3 (Site + Blog + CMS + Página Cãominhada 2026)  
 **Status:** ✅ Produção - Site 100% funcional com todas as otimizações SEO e Performance implementadas  
 **URL:** https://karinafranzin.com.br  
-**HTTPS:** ✅ Ativo (Cloudflare SSL Full)
+**HTTPS:** ✅ Ativo (Cloudflare SSL Full)  
+**Branch Atual:** develop (commits realizados apenas pelo desenvolvedor Igor)
 
 ---
 
@@ -962,13 +967,16 @@ Com os dados coletados, você poderá:
 ### 🎯 Status do Projeto:
 
 **Site:** ✅ 100% Funcional  
-**Blog:** ✅ 4 artigos publicados  
+**Blog:** ✅ Sistema dinâmico 100% funcional + 4 artigos publicados  
 **SEO:** ✅ Schema Markup JSON-LD completo + Canonical URLs + Sitemap atualizado  
 **Analytics:** ✅ Completo com rastreamento de conversões  
 **Performance:** ✅ Otimizada (PWA, lazy loading, cache)  
 **Deploy:** ✅ Automatizado via GitHub Pages  
 **Domínio:** ✅ karinafranzin.com.br (Cloudflare)  
-**Carrossel:** ✅ 100% Funcional (Dots, Setas, Swipe/Touch Mobile, Lightbox, Imagens Completas)
+**Carrossel:** ✅ 100% Funcional (Dots, Setas, Swipe/Touch Mobile, Lightbox, Imagens Completas)  
+**Cãominhada 2026:** ✅ Página publicada em https://karinafranzin.com.br/cao-minhada-2026/  
+**CMS/Painel Admin:** ✅ Sistema completo e funcional (CRUD + Upload + Publicação dinâmica)  
+**Blog Dinâmico:** ✅ Artigos do Supabase renderizados automaticamente (sem editar HTML)
 
 ---
 
@@ -1208,6 +1216,137 @@ Otimiza ícone WhatsApp para melhor performance
 
 ## 📊 HISTÓRICO DETALHADO DE ALTERAÇÕES
 
+### **01/03/2026 - Atualização de Contexto:**
+**Status do Projeto:**
+- ✅ Site principal 100% funcional em https://karinafranzin.com.br
+- ✅ Página da 2ª Cãominhada 2026 no ar: https://karinafranzin.com.br/cao-minhada-2026/
+- ✅ Blog com 4 artigos publicados
+- ✅ **Sistema de CMS 100% FUNCIONAL** (Supabase + Painel Admin + Frontend Dinâmico)
+- ✅ **FASE 3 CONCLUÍDA:** Blog totalmente dinâmico - artigos criados no `/admin` aparecem automaticamente
+- ✅ Google Analytics 4 rastreando conversões e engajamento
+- ✅ SEO otimizado com Schema Markup JSON-LD
+- ✅ Working tree limpo na branch `develop`
+- ⚠️ Commits realizados exclusivamente pelo desenvolvedor Igor
+
+**🎯 Sistema de Publicação Dinâmica:**
+1. Admin acessa `/admin/login.html`
+2. Cria novo artigo no `/admin/editor.html`
+3. Faz upload de imagens (Supabase Storage)
+4. Publica artigo (checkbox "Publicado")
+5. **Artigo aparece automaticamente em `/blog/`** (sem mexer em HTML)
+6. URL individual gerada: `/blog/artigo.html?slug=nome-do-artigo`
+7. Meta tags, Open Graph e SEO aplicados dinamicamente
+
+**Arquivos do Sistema Dinâmico:**
+- `blog/index.html` - Lista dinâmica de artigos (template HTML)
+- `blog/artigo.html` - Página individual dinâmica (template único para todos os artigos)
+- `js/blog-list.js` - Carrega artigos do Supabase
+- `js/blog-article.js` - Renderiza artigo individual com SEO
+- `js/utils.js` - Funções auxiliares (tempo de leitura, formatação)
+
+---
+
+## 🔧 COMO FUNCIONA O SISTEMA DE URL DINÂMICA (Solução do Erro 404)
+
+### **🔴 Problema Original:**
+Ao criar artigos pelo `/admin`, tentávamos acessar URLs como:
+```
+https://karinafranzin.com.br/blog/como-comecar-a-correr/
+```
+Mas o GitHub Pages retornava **404 (página não encontrada)** porque esse arquivo HTML não existia fisicamente no repositório.
+
+### **✅ Solução Implementada: Template Único com Query String**
+
+**Conceito:** Ao invés de criar um arquivo HTML para cada artigo, usamos **1 único arquivo template** (`blog/artigo.html`) que carrega dinamicamente o conteúdo do Supabase.
+
+### **Fluxo Completo:**
+
+**1. Criação do Artigo no Admin:**
+- Usuário cria artigo com título: "Como Começar a Correr do Zero"
+- Sistema gera slug automaticamente: `como-comecar-a-correr-do-zero`
+- Artigo é salvo no Supabase com todos os metadados
+
+**2. URL Dinâmica Gerada:**
+```
+https://karinafranzin.com.br/blog/artigo.html?slug=como-comecar-a-correr-do-zero
+```
+- `blog/artigo.html` → Arquivo físico único (existe no repositório)
+- `?slug=como-comecar-a-correr-do-zero` → Parâmetro (não é arquivo/pasta)
+
+**3. JavaScript Carrega o Conteúdo:**
+```javascript
+// blog-article.js (simplificado)
+const urlParams = new URLSearchParams(window.location.search);
+const slug = urlParams.get('slug'); // Pega 'como-comecar-a-correr-do-zero'
+
+// Busca artigo no Supabase
+const { data, error } = await supabase
+  .from('artigos')
+  .select('*')
+  .eq('slug', slug)
+  .eq('publicado', true)
+  .single();
+
+// Preenche o template HTML
+document.getElementById('articleTitle').textContent = data.titulo;
+document.getElementById('articleContent').innerHTML = data.conteudo;
+document.getElementById('articleImage').src = data.imagem_destaque;
+// ... meta tags, Open Graph, Schema Markup dinâmicos
+```
+
+**4. Template HTML (blog/artigo.html):**
+```html
+<article>
+  <h1 id="articleTitle"></h1>
+  <img id="articleImage" alt="">
+  <div id="articleMeta"></div>
+  <div id="articleContent"></div>
+</article>
+```
+
+### **🎯 Vantagens desta Solução:**
+
+✅ **Sem Erro 404:** O arquivo `artigo.html` sempre existe  
+✅ **Sem Commits:** Criar artigo não requer push no Git  
+✅ **Instantâneo:** Artigo publicado aparece imediatamente  
+✅ **SEO Preservado:** Meta tags e Schema Markup dinâmicos  
+✅ **Layout Consistente:** Todos os artigos usam o mesmo template  
+✅ **Escalável:** Suporta milhares de artigos sem criar arquivos  
+
+### **📂 Estrutura Final:**
+
+```
+site-karina-franzin/
+├── blog/
+│   ├── index.html           ← Lista de artigos (dinâmica)
+│   └── artigo.html          ← Template único (dinâmico)
+│
+├── js/
+│   ├── blog-list.js         ← Carrega lista do Supabase
+│   ├── blog-article.js      ← Carrega artigo individual
+│   └── utils.js             ← Funções auxiliares
+│
+└── admin/
+    ├── editor.html          ← CRUD de artigos
+    └── ...
+```
+
+### **🔗 Exemplos de URLs Reais:**
+
+```
+Lista:    https://karinafranzin.com.br/blog/
+Artigo 1: https://karinafranzin.com.br/blog/artigo.html?slug=como-comecar-a-correr-do-zero
+Artigo 2: https://karinafranzin.com.br/blog/artigo.html?slug=plano-treino-5km
+Artigo 3: https://karinafranzin.com.br/blog/artigo.html?slug=erros-comuns-corrida
+```
+
+**Todos usam o mesmo `artigo.html`, mas exibem conteúdo diferente!**
+
+**Último Commit:**
+- `7e00e5d feat: adiciona página da 2ª Cãominhada 2026`
+
+---
+
 ### **18/02/2026 - Sessão 2 (19h00):**
 **Carrossel de Feedbacks - Correção Completa:**
 - ✅ Identificado e corrigido problema de codificação (emojis causavam "Script error")
@@ -1438,11 +1577,15 @@ cd site-karina-franzin
 
 ### 🎯 **PRÓXIMAS FASES (APÓS TESTES):**
 
-**FASE 3: Integração Frontend**
-- Modificar `blog/index.html` para consumir API Supabase
-- Criar template dinâmico para artigos individuais
-- Manter SEO (Schema Markup dinâmico)
-- Migrar artigos estáticos para banco de dados
+**✅ FASE 3 CONCLUÍDA: Integração Frontend Dinâmica**
+- ✅ `blog/index.html` modificado para consumir API Supabase
+- ✅ Template dinâmico para artigos individuais (`blog/artigo.html`)
+- ✅ SEO mantido (Meta tags dinâmicas, Open Graph, Schema Markup)
+- ✅ Sistema totalmente funcional: criar artigo no `/admin` → publicar → aparece automaticamente no blog
+- ✅ Scripts criados:
+  - `js/blog-list.js` - Carrega lista de artigos do Supabase
+  - `js/blog-article.js` - Carrega artigo individual por slug
+  - `js/utils.js` - Funções utilitárias (tempo de leitura, formatação)
 
 **FASE 4: Melhorias e Otimizações**
 - Editor de texto rico (WYSIWYG)
