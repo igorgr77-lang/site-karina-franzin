@@ -378,6 +378,7 @@ Disallow: /*.css$
 - [x] ~~Rastreamento de conversões (cliques WhatsApp)~~ ✅ Eventos GA4 implementados - 18/02/2026
 - [x] ~~Rastreamento de engajamento (Instagram e Strava)~~ ✅ Eventos GA4 implementados - 18/02/2026
 - [x] ~~Página da 2ª Cãominhada 2026~~ ✅ Publicada em https://karinafranzin.com.br/cao-minhada-2026/
+- [ ] **Implementar Cloudflare Workers para SEO dinâmico** (planejado - ver seção abaixo)
 - [ ] Adicionar testimoniais reais de clientes
 - [ ] Otimizar imagens para formato WebP/AVIF
 - [ ] Substituir imagens placeholder do blog
@@ -1214,9 +1215,132 @@ Otimiza ícone WhatsApp para melhor performance
 
 ---
 
+## 🔮 MELHORIAS FUTURAS PLANEJADAS
+
+### **SEO Dinâmico com Cloudflare Workers** (Planejado)
+
+#### **🔴 Problema Identificado:**
+Artigos do blog aparecem incorretamente nas pesquisas do Google:
+- **Título exibido:** "Carregando... | Blog Karina Franzin"
+- **Descrição exibida:** Fragmentos do template vazio
+- **Causa:** Google indexa a página antes do JavaScript carregar dados do Supabase
+
+**Exemplo real:**
+- Busca: "karina franzin corrida de lourdes 2026"
+- Google mostra: "Carregando..." ao invés do título real do artigo
+- Ao clicar: Artigo abre corretamente (problema é só no preview do Google)
+
+#### **✅ Solução: Cloudflare Workers com Pre-rendering**
+
+**Conceito:**
+- **Usuários normais** → Recebem site JavaScript normal (atual)
+- **Bots (Google, Bing)** → Recebem HTML pré-renderizado com conteúdo completo
+
+**Fluxo:**
+```
+Googlebot acessa artigo
+    ↓
+Cloudflare Worker detecta (User-Agent = bot)
+    ↓
+Worker renderiza página com Puppeteer/Chrome Headless
+    ↓
+JavaScript executa e carrega dados do Supabase
+    ↓
+HTML completo (título, descrição, conteúdo) enviado ao Google
+    ↓
+Google indexa corretamente! ✅
+```
+
+#### **💰 Custos:**
+- **Cloudflare Workers (Free tier):**
+  - ✅ 100.000 requisições/dia (grátis)
+  - ✅ Suficiente para o projeto
+  - 💵 Se ultrapassar: $5/mês para 10 milhões de requests
+
+#### **✅ Vantagens:**
+- ✅ **GitHub Pages continua** sendo a hospedagem
+- ✅ **Git continua** funcionando igual (add, commit, push)
+- ✅ **Cloudflare continua** com DNS + SSL
+- ✅ **ZERO mudanças** no código do site
+- ✅ **ZERO mudanças** no workflow de desenvolvimento
+- ✅ `/admin` continua funcionando igual
+- ✅ Supabase continua funcionando igual
+- ✅ Deploy automático (`git push`) continua igual
+- ✅ Branches (develop, main) continuam iguais
+- ✅ **SEO 100% dinâmico** - cada artigo indexado corretamente
+
+#### **🚫 O que NÃO muda:**
+- Hospedagem continua no GitHub Pages
+- Versionamento Git preservado
+- Workflow de commits/push não muda
+- Estrutura de arquivos não muda
+- Código do site não muda
+- Admin não muda
+- Supabase não muda
+
+#### **🔧 Implementação Planejada:**
+
+**Arquivos a criar:**
+```
+site-karina-franzin/
+└── cloudflare/
+    ├── worker.js           ← Código do Worker (detecção de bots + rendering)
+    ├── wrangler.toml       ← Configuração do Cloudflare
+    └── README.md           ← Instruções de deploy
+```
+
+**Passos:**
+1. Criar Cloudflare Worker com detecção de User-Agent (Googlebot, Bingbot, etc)
+2. Integrar biblioteca de pre-rendering (Puppeteer Cloudflare)
+3. Configurar rotas para artigos do blog (`/blog/artigo.html?slug=*`)
+4. Testar com Google Search Console
+5. Deploy no Cloudflare (não afeta GitHub Pages)
+
+**Workflow final:**
+```bash
+# Desenvolvedor continua fazendo:
+git add .
+git commit -m "feat: novo artigo"
+git push origin main
+
+# GitHub Pages faz deploy automático (como sempre)
+# Cloudflare Worker intercepta bots automaticamente (transparente)
+# Usuários normais continuam vendo site normal (como sempre)
+```
+
+#### **📊 Resultado Esperado:**
+
+**Antes (atual):**
+```
+Google Search:
+[Carregando... | Blog Karina Franzin]
+Desculpe, não conseguimos encontrar este artigo. ← Voltar para...
+```
+
+**Depois (com Worker):**
+```
+Google Search:
+[Run Avoa 2026: Tudo sobre a corrida | Blog Karina Franzin]
+Participe da Run Avoa 2026 em Votuporanga! Conheça o percurso,
+inscrições, dicas de treino e como se preparar para esta corrida...
+```
+
+#### **⏱️ Estimativa:**
+- Implementação: 2-3 horas
+- Testes: 1 hora
+- Deploy e configuração: 30 minutos
+- **Total:** ~4 horas de trabalho
+
+#### **🎯 Status:**
+- ⏳ **Planejado** (não iniciado)
+- Aguardando decisão do desenvolvedor Igor
+- Documentação completa criada para implementação futura
+
+---
+
 ## 📊 HISTÓRICO DETALHADO DE ALTERAÇÕES
 
-### **01/03/2026 - Atualização de Contexto:**
+### **01/03/2026 - Sessão 1 - Atualização de Contexto:**
 **Status do Projeto:**
 - ✅ Site principal 100% funcional em https://karinafranzin.com.br
 - ✅ Página da 2ª Cãominhada 2026 no ar: https://karinafranzin.com.br/cao-minhada-2026/
@@ -1227,6 +1351,25 @@ Otimiza ícone WhatsApp para melhor performance
 - ✅ SEO otimizado com Schema Markup JSON-LD
 - ✅ Working tree limpo na branch `develop`
 - ⚠️ Commits realizados exclusivamente pelo desenvolvedor Igor
+
+### **01/03/2026 - Sessão 2 - CTA Cãominhada nos Artigos:**
+**Implementação:**
+- ✅ Adicionado card promocional da 2ª Cãominhada nos artigos do blog
+- ✅ Posicionamento: Entre CTA do WhatsApp e rodapé do artigo
+- ✅ Design: Card verde (#4CAF50) com badge "🐕 EVENTO ESPECIAL"
+- ✅ Texto final: "Passos que alimentam, patinhas que agradecem! / Uma experiência inesquecível com seu melhor amigo!"
+- ✅ Link: https://karinafranzin.com.br/cao-minhada-2026/
+- ✅ Google Analytics: Evento `click_caominhada_cta` (category: blog)
+- ✅ Responsivo para mobile
+
+**Arquivos Modificados:**
+- `blog/artigo.html` - Adicionado HTML do card da Cãominhada
+- `css/blog.css` - Adicionado CSS `.event-cta` e `.event-box` com responsividade
+
+**Workflow:**
+- Commits feitos na branch `develop`
+- Merge de `develop` para `main` realizado
+- Retorno para `develop` para continuar desenvolvimento
 
 **🎯 Sistema de Publicação Dinâmica:**
 1. Admin acessa `/admin/login.html`
