@@ -89,8 +89,8 @@ function criarCardArtigo(artigo) {
     const tempoLeitura = calcularTempoLeitura(artigo.conteudo || '');
     readingTime.textContent = `⏱️ ${formatarTempoLeitura(tempoLeitura)}`;
     
-    // Link para artigo individual (página dinâmica)
-    link.href = `./artigo.html?slug=${artigo.slug}`;
+    // Link para artigo individual (página estática)
+    link.href = `./${artigo.slug}/`;
     
     return clone;
 }
