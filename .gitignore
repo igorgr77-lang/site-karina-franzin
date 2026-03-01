@@ -32,7 +32,7 @@ build/
 
 # Credenciais do Supabase
 SUPABASE-CREDENCIAIS.txt
-js/supabase-config.js
+# js/supabase-config.js  # Comentado para permitir deploy
 
 # Arquivos temporários de teste
 tmp_rovodev_*
