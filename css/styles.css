@@ -647,6 +647,19 @@ a {
     transform: translateY(-2px);
 }
 
+/* Ícone do Treinus - PNG transparente */
+.treinus-icon {
+    vertical-align: middle;
+    transition: var(--transition);
+    display: inline-block;
+    filter: brightness(0) invert(1); /* Fica branco */
+}
+
+.treinus-link:hover .treinus-icon {
+    filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(346deg) brightness(98%) contrast(97%);
+    /* Fica laranja no hover */
+}
+
 .footer-copy {
     opacity: 0.85;
     font-size: 0.9rem;
