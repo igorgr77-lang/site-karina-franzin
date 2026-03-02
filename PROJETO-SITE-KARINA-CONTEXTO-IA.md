@@ -1371,6 +1371,38 @@ inscrições, dicas de treino e como se preparar para esta corrida...
 - Merge de `develop` para `main` realizado
 - Retorno para `develop` para continuar desenvolvimento
 
+---
+
+### **01/03/2026 - Sessão 3 - Ícone Treinus no Rodapé:**
+**Implementação:**
+- ✅ Adicionado ícone do Treinus no rodapé do site (2 páginas)
+- ✅ Páginas modificadas:
+  - `index.html` (página principal)
+  - `blog/artigo.html` (página de artigos)
+- ✅ Ordem dos ícones: Blog → Instagram → Strava → WhatsApp → **Treinus**
+- ✅ Logo: `treinus.png` (versão sem fundo otimizada - logo_sem_fundo_6.png)
+- ✅ Link: https://karinafranzin.treinus.com.br/
+- ✅ Efeito hover: Branco → Laranja (igual aos outros ícones)
+- ✅ Google Analytics: Evento `click_treinus` (category: footer / footer_blog)
+
+**Arquivos Modificados:**
+- `index.html` - Adicionado link do Treinus no rodapé
+- `blog/artigo.html` - Adicionado link do Treinus no rodapé
+- `css/styles.css` - Adicionado CSS `.treinus-icon` e `.treinus-link` com filtro de cor
+- `assets/icons/treinus.png` - Novo ícone adicionado
+
+**Detalhes Técnicos:**
+- Imagem PNG com fundo transparente
+- Filtro CSS para mudança de cor: `brightness(0) invert(1)` (branco)
+- Hover: Filtro complexo para transformar em laranja (#FF6B35)
+- Transição suave com `transition: var(--transition)`
+
+**Workflow:**
+- Commits feitos na branch `develop`
+- Merge de `develop` para `main` realizado
+- **Deploy concluído:** Mudanças online em produção
+- Retorno para `develop` para continuar desenvolvimento
+
 **🎯 Sistema de Publicação Dinâmica:**
 1. Admin acessa `/admin/login.html`
 2. Cria novo artigo no `/admin/editor.html`
