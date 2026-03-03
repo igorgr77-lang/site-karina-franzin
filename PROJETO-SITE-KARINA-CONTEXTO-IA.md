@@ -52,27 +52,72 @@ Gerar leads qualificados via **WhatsApp** para assessoria de corrida online.
 
 ## 🏗️ ARQUITETURA DO SITE
 
+### ⚡ **IMPORTANTE: SISTEMA DE ARTIGOS DINÂMICO**
+
+**🔴 ATENÇÃO - LEIA ANTES DE FAZER QUALQUER ALTERAÇÃO NO BLOG:**
+
+Os artigos do blog são **100% DINÂMICOS** e carregados de um **ÚNICO ARQUIVO HTML**:
+
+📄 **Arquivo Principal:** `site-karina-franzin/blog/artigo.html`
+
+**Como funciona:**
+- **Todos os artigos** são renderizados a partir de `blog/artigo.html`
+- Os dados vêm do **Supabase** (banco de dados)
+- O conteúdo é carregado dinamicamente via JavaScript (`blog-article.js`)
+- URL pattern: `https://karinafranzin.com.br/blog/artigo.html?slug=nome-do-artigo`
+
+**❌ NÃO EXISTEM múltiplos arquivos HTML para cada artigo**
+- As pastas `blog/como-comecar-a-correr-do-zero/`, `blog/run-avoa-2026-votuporanga/`, etc. são **antigas** e **NÃO SÃO MAIS USADAS**
+- O sistema atual é **CMS dinâmico com Supabase**
+
+**✅ Para alterar qualquer elemento visual/layout dos artigos:**
+- **SEMPRE edite:** `site-karina-franzin/blog/artigo.html`
+- **CSS dos artigos:** `site-karina-franzin/css/blog.css`
+- **JavaScript:** `site-karina-franzin/js/blog-article.js`
+- **A mudança será aplicada AUTOMATICAMENTE em TODOS os artigos**
+
+**✅ Para adicionar/editar conteúdo dos artigos:**
+- Use o **Painel Administrativo:** `https://karinafranzin.com.br/admin/`
+- Ou edite diretamente no **Supabase** (tabela `artigos`)
+
+**📋 Exemplo prático:**
+- ✅ Alterar banner da Cãominhada → Edite `blog/artigo.html` (afeta todos os artigos)
+- ✅ Mudar cores do CTA → Edite `css/blog.css` (afeta todos os artigos)
+- ✅ Adicionar novo artigo → Use `/admin/` ou Supabase
+- ❌ **NUNCA** crie arquivos HTML individuais para artigos
+
+---
+
 ### **Estrutura de Pastas:**
 ```
 site-karina-franzin/
 ├── index.html (página principal - landing page)
 ├── blog/
-│   ├── index.html (listagem de artigos)
-│   ├── run-avoa-2026-votuporanga/index.html (NOVO)
-│   ├── como-comecar-a-correr-do-zero/index.html
-│   ├── plano-de-treino-5km-para-iniciantes/index.html
-│   └── erros-comuns-corrida-iniciantes/index.html
+│   ├── index.html (listagem de artigos - carrega do Supabase)
+│   ├── artigo.html ⭐ ÚNICO TEMPLATE USADO POR TODOS OS ARTIGOS
+│   ├── como-comecar-a-correr-do-zero/ ❌ ANTIGO - NÃO USADO
+│   ├── plano-de-treino-5km-para-iniciantes/ ❌ ANTIGO - NÃO USADO
+│   ├── erros-comuns-corrida-iniciantes/ ❌ ANTIGO - NÃO USADO
+│   └── run-avoa-2026-votuporanga/ ❌ ANTIGO - NÃO USADO
+├── admin/ ⭐ PAINEL ADMINISTRATIVO (CMS)
+│   ├── index.html (dashboard - lista artigos)
+│   ├── editor.html (editor de artigos)
+│   ├── login.html (autenticação)
+│   ├── css/
+│   └── js/
 ├── css/
 │   ├── styles.css (estilos do site principal)
-│   └── blog.css (estilos do blog - ATUALIZADO)
+│   └── blog.css ⭐ ESTILOS DOS ARTIGOS DINÂMICOS
 ├── js/
-│   └── main.js (interatividade)
+│   ├── main.js (interatividade do site principal)
+│   ├── blog-list.js ⭐ CARREGA LISTA DE ARTIGOS DO SUPABASE
+│   ├── blog-article.js ⭐ CARREGA ARTIGO INDIVIDUAL DO SUPABASE
+│   ├── utils.js (funções auxiliares)
+│   └── supabase-config.js (configuração do banco de dados)
 ├── assets/
 │   ├── img/ 
-│   │   ├── cabecalho-run-avoa-2026.jpg (NOVO)
-│   │   ├── cabecalho-correr-do-zero.jpg (NOVO)
-│   │   ├── cabecalho-plano-treino-5km.jpg (NOVO)
-│   │   ├── cabecalho-10-erros-comuns.jpg (NOVO)
+│   │   ├── banner_caminhada.png ⭐ BANNER CTA CÃOMINHADA
+│   │   ├── cabecalho-*.jpg (imagens dos artigos)
 │   │   ├── karina-hero.jpg
 │   │   ├── karina-profile.jpg
 │   │   ├── logo.jpg
@@ -81,7 +126,7 @@ site-karina-franzin/
 ├── .htaccess (cache e compressão)
 ├── sw.js (service worker para performance)
 ├── robots.txt (URL correta: karinafranzin.com.br)
-├── sitemap.xml (inclui blog - URL correta - ATUALIZAR!)
+├── sitemap.xml (inclui blog - URL correta)
 └── CNAME (karinafranzin.com.br)
 ```
 
