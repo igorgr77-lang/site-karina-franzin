@@ -59,7 +59,7 @@
 /* Blog Header */
 .blog-header {
     background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-    padding: 4rem 0 3rem;
+    padding: 6rem 0 3rem; /* 6rem = 4rem original + 2rem para compensar navbar fixa (64px) */
     color: white;
     text-align: center;
 }

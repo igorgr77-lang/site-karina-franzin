@@ -71,6 +71,40 @@
     </script>
 </head>
 <body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar navbar-scrolled" id="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-brand" aria-label="Ir ao site principal">
+                <img src="../../assets/img/logo.jpg" alt="Karina Franzin" class="navbar-logo">
+                <span class="navbar-name">Karina Franzin</span>
+            </a>
+            <ul class="navbar-links" id="navbarLinks">
+                <li><a href="/#como-funciona" class="nav-link">Como Funciona</a></li>
+                <li><a href="/#prova-social" class="nav-link">Resultados</a></li>
+                <li><a href="/#sobre" class="nav-link">Minha História</a></li>
+                <li><a href="/blog/" class="nav-link active">Blog</a></li>
+                <li>
+                    <a href="https://karinafranzin.treinus.com.br/"
+                       class="nav-link nav-portal"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Portal do Aluno
+                    </a>
+                </li>
+                <li>
+                    <a href="/#contato" class="nav-link nav-cta">Quero Fazer Parte</a>
+                </li>
+            </ul>
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbarLinks">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+    <div class="navbar-overlay" id="navbarOverlay"></div>
+
     <header class="article-header">
         <div class="container">
             <nav class="breadcrumb">
@@ -249,6 +283,34 @@
             </div>
         </div>
     </footer>
+    <!-- Navbar JS -->
+    <script>
+    (function () {
+        var navbar  = document.getElementById('navbar');
+        var toggle  = document.getElementById('navbarToggle');
+        var links   = document.getElementById('navbarLinks');
+        var overlay = document.getElementById('navbarOverlay');
+        if (!navbar || !toggle || !links) return;
+        function openMenu() {
+            links.classList.add('open');
+            toggle.classList.add('open');
+            if (overlay) overlay.classList.add('open');
+            toggle.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+            links.classList.remove('open');
+            toggle.classList.remove('open');
+            if (overlay) overlay.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+        toggle.addEventListener('click', function () {
+            links.classList.contains('open') ? closeMenu() : openMenu();
+        });
+        if (overlay) overlay.addEventListener('click', closeMenu);
+    })();
+    </script>
 </body>
 </html>
 

@@ -1,4 +1,93 @@
 // ===========================
+// NAVBAR - Menu de Navegação
+// ===========================
+(function () {
+    var navbar    = document.getElementById('navbar');
+    var toggle    = document.getElementById('navbarToggle');
+    var links     = document.getElementById('navbarLinks');
+    var overlay   = document.getElementById('navbarOverlay');
+    var navLinks  = document.querySelectorAll('.nav-link:not(.nav-cta)');
+
+    if (!navbar || !toggle || !links) return;
+
+    // ── Abrir / Fechar menu mobile ──
+    function openMenu() {
+        links.classList.add('open');
+        toggle.classList.add('open');
+        if (overlay) overlay.classList.add('open');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+        links.classList.remove('open');
+        toggle.classList.remove('open');
+        if (overlay) overlay.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+
+    toggle.addEventListener('click', function () {
+        var isOpen = links.classList.contains('open');
+        isOpen ? closeMenu() : openMenu();
+    });
+
+    if (overlay) overlay.addEventListener('click', closeMenu);
+
+    // Fechar ao clicar em link interno
+    links.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', closeMenu);
+    });
+
+    // ── Escurecer navbar ao rolar (nunca some) ──
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 40) {
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
+        }
+    }, { passive: true });
+
+    // ── Highlight do link ativo conforme seção visível ──
+    var sections = document.querySelectorAll('section[id]');
+
+    function highlightNav() {
+        var scrollY = window.scrollY + 90; // offset da navbar
+
+        sections.forEach(function (sec) {
+            var top    = sec.offsetTop;
+            var height = sec.offsetHeight;
+            var id     = sec.getAttribute('id');
+
+            var link = links.querySelector('a[href="#' + id + '"]');
+            if (!link) return;
+
+            if (scrollY >= top && scrollY < top + height) {
+                navLinks.forEach(function (l) { l.classList.remove('active'); });
+                link.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', highlightNav, { passive: true });
+    highlightNav(); // roda na carga inicial
+
+    // ── Smooth scroll com offset da navbar ──
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+            var href   = this.getAttribute('href');
+            var target = document.querySelector(href);
+            if (!target || href === '#') return;
+            e.preventDefault();
+            var offset = navbar.offsetHeight + 8;
+            var top    = target.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top: top, behavior: 'smooth' });
+        });
+    });
+
+})();
+
+// ===========================
 // FAQ Accordion
 // ===========================
 document.addEventListener('DOMContentLoaded', function() {
@@ -64,22 +153,7 @@ Pode me explicar como funciona?`;
     });
 }
 
-// ===========================
-// Smooth Scroll Enhancement
-// ===========================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
+// Smooth Scroll — tratado pela NAVBAR (com offset correto)
 
 // ===========================
 // Enhanced Lazy Loading

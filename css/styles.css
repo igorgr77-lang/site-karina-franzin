@@ -1,4 +1,232 @@
 /* ===========================
+   NAVBAR
+=========================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid transparent;
+    transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.35s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+.navbar.navbar-hidden {
+    transform: translateY(-100%);
+}
+
+.navbar.navbar-scrolled {
+    background: rgba(20, 20, 20, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+/* Brand / Logo */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.navbar-logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ff6b35;
+}
+
+.navbar-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.3px;
+}
+
+/* Links */
+.navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    display: inline-block;
+    padding: 8px 13px;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: color 0.2s ease, background 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: #ff6b35;
+    background: rgba(255, 107, 53, 0.1);
+}
+
+.nav-link.active {
+    color: #ff6b35;
+    font-weight: 600;
+}
+
+/* Botão Portal do Aluno */
+.nav-portal {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 8px !important;
+    padding: 8px 13px !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease !important;
+}
+
+.nav-portal:hover {
+    border-color: #ff6b35 !important;
+    color: #ff6b35 !important;
+    background: rgba(255, 107, 53, 0.08) !important;
+}
+
+/* Botão CTA no menu */
+.nav-cta {
+    background: #ff6b35 !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+    border-radius: 8px !important;
+    padding: 9px 15px !important;
+    margin-left: 6px;
+    transition: background 0.2s ease, transform 0.15s ease !important;
+}
+
+.nav-cta:hover {
+    background: #e55a25 !important;
+    color: #fff !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Hamburger (Mobile) */
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.hamburger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hamburger → X quando aberto */
+.navbar-toggle.open .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.navbar-toggle.open .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.navbar-toggle.open .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Overlay do menu mobile */
+.navbar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 999;
+}
+.navbar-overlay.open {
+    display: block;
+}
+
+/* ── Responsivo Navbar ── */
+@media (max-width: 860px) {
+    .navbar-toggle {
+        display: flex;
+    }
+
+    .navbar-links {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        position: fixed;
+        top: 0;
+        right: -280px;
+        width: 270px;
+        height: 100dvh;
+        background: #141414;
+        border-left: 2px solid #ff6b35;
+        padding: 80px 0 24px;
+        box-shadow: -4px 0 24px rgba(0,0,0,0.5);
+        z-index: 1001;
+        transition: right 0.3s ease;
+        overflow-y: auto;
+    }
+
+    .navbar-links.open {
+        right: 0;
+    }
+
+    .navbar-links li {
+        width: 100%;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 15px 24px;
+        font-size: 1rem;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        color: rgba(255,255,255,0.9);
+    }
+
+    .nav-cta {
+        display: block;
+        margin: 16px 16px 0 !important;
+        text-align: center;
+        border-radius: 8px !important;
+        padding: 14px 16px !important;
+    }
+}
+
+/* ===========================
    Reset & Base Styles
    =========================== */
 * {
@@ -32,6 +260,7 @@ body {
     line-height: 1.6;
     font-size: 16px;
     overflow-x: hidden;
+    /* sem padding-top: a hero ocupa 100vh e a navbar flutua sobre ela */
 }
 
 img {

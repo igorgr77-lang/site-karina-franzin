@@ -210,6 +210,48 @@
     </script>
 </head>
 <body>
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <!-- Logo / Nome -->
+            <a href="#inicio" class="navbar-brand" aria-label="Ir ao início">
+                <img src="./assets/img/logo.jpg" alt="Karina Franzin" class="navbar-logo">
+                <span class="navbar-name">Karina Franzin</span>
+            </a>
+
+            <!-- Links Desktop -->
+            <ul class="navbar-links" id="navbarLinks">
+                <li><a href="#como-funciona" class="nav-link">Como Funciona</a></li>
+                <li><a href="#prova-social" class="nav-link">Resultados</a></li>
+                <li><a href="#sobre" class="nav-link">Minha História</a></li>
+                <li><a href="./blog/" class="nav-link">Blog</a></li>
+                <li>
+                    <a href="https://karinafranzin.treinus.com.br/" 
+                       class="nav-link nav-portal"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Portal do Aluno
+                    </a>
+                </li>
+                <li>
+                    <a href="#contato"
+                       class="nav-link nav-cta">
+                        Quero Fazer Parte
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Botão Hamburger (Mobile) -->
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbarLinks">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- Overlay escuro ao abrir menu mobile -->
+    <div class="navbar-overlay" id="navbarOverlay"></div>
+
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/5517996566908?text=Ol%C3%A1%2C%20Karina%21%20Vim%20pelo%20seu%20site%20e%20quero%20come%C3%A7ar%20uma%20assessoria%20de%20corrida.%20Pode%20me%20explicar%20como%20funciona%3F" 
        class="whatsapp-float" 
