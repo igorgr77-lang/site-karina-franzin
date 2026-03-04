@@ -52,21 +52,27 @@
     var sections = document.querySelectorAll('section[id]');
 
     function highlightNav() {
-        var scrollY = window.scrollY + 90; // offset da navbar
+        var scrollY  = window.scrollY + 90; // offset da navbar
+        var found    = false;
 
         sections.forEach(function (sec) {
             var top    = sec.offsetTop;
             var height = sec.offsetHeight;
             var id     = sec.getAttribute('id');
-
-            var link = links.querySelector('a[href="#' + id + '"]');
+            var link   = links.querySelector('a[href="#' + id + '"]');
             if (!link) return;
 
             if (scrollY >= top && scrollY < top + height) {
                 navLinks.forEach(function (l) { l.classList.remove('active'); });
                 link.classList.add('active');
+                found = true;
             }
         });
+
+        // Se não está dentro de nenhuma seção (ex: topo da página), remove todos
+        if (!found) {
+            navLinks.forEach(function (l) { l.classList.remove('active'); });
+        }
     }
 
     window.addEventListener('scroll', highlightNav, { passive: true });
