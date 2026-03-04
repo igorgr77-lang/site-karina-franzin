@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2ª Cãominhada - Studio Ativo | Karina Franzin</title>
+    <meta name="description" content="2ª Cãominhada Studio Ativo - 14 de Março de 2026 em Votuporanga SP. Uma caminhada solidária com pets, arrecadando ração para animais em situação de rua.">
+    <link rel="canonical" href="https://karinafranzin.com.br/eventos/cao-minhada-2026/">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS Global (navbar) -->
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-yellow': '#FFD100',
+                        'brand-blue': '#0060AD',
+                        'brand-dark': '#1A1A1A'
+                    },
+                    fontFamily: {
+                        'sans': ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Compensa a navbar fixa */
+        body { padding-top: 64px; }
+
+        .paw-bg {
+            background-image: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            background-size: 100px 100px;
+        }
+        .clip-diagonal {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+        }
+        @media (min-width: 768px) {
+            .clip-diagonal {
+                clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+            }
+        }
+        .btn-hover-effect {
+            transition: all 0.3s ease;
+        }
+        .btn-hover-effect:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 96, 173, 0.3);
+        }
+        @keyframes pulse-whatsapp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        .btn-whatsapp {
+            animation: pulse-whatsapp 2s infinite;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .btn-whatsapp:hover {
+            transform: translateY(-4px) scale(1.03);
+            animation: none;
+            box-shadow: 0 12px 24px rgba(37, 211, 102, 0.4);
+        }
+        @keyframes float-balloon {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+        .float-animation {
+            animation: float-balloon 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-brand-dark antialiased font-sans flex flex-col min-h-screen">
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar navbar-scrolled" id="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-brand" aria-label="Ir ao site principal">
+                <img src="../../assets/img/logo.jpg" alt="Karina Franzin" class="navbar-logo">
+                <span class="navbar-name">Karina Franzin</span>
+            </a>
+            <ul class="navbar-links" id="navbarLinks">
+                <li><a href="/#como-funciona" class="nav-link">Como Funciona</a></li>
+                <li><a href="/#prova-social" class="nav-link">Resultados</a></li>
+                <li><a href="/#sobre" class="nav-link">Minha História</a></li>
+                <li><a href="/blog/" class="nav-link">Blog</a></li>
+                <li><a href="/eventos/" class="nav-link active">Eventos</a></li>
+                <li>
+                    <a href="https://karinafranzin.treinus.com.br/"
+                       class="nav-link nav-portal"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Portal do Atleta
+                    </a>
+                </li>
+                <li>
+                    <a href="/#contato" class="nav-link nav-cta">Começar Agora</a>
+                </li>
+            </ul>
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbarLinks">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+    <div class="navbar-overlay" id="navbarOverlay"></div>
+
+    <!-- Seção Hero -->
+    <header class="relative bg-brand-yellow pb-20 pt-10 clip-diagonal overflow-hidden paw-bg">
+        <i class="fa-solid fa-paw absolute top-10 left-10 text-black opacity-10 text-6xl transform -rotate-12"></i>
+        <i class="fa-solid fa-paw absolute bottom-32 right-20 text-black opacity-10 text-8xl transform rotate-12"></i>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center md:text-left flex flex-col md:flex-row items-center justify-between">
+            <div class="w-full md:w-3/5">
+                <div class="inline-block bg-black text-brand-yellow font-bold px-4 py-1 rounded-full mb-4 text-sm uppercase tracking-wider">
+                    Studio Ativo Apresenta
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black leading-tight text-black uppercase mb-2">
+                    2ª Cão<br><span class="text-brand-blue">minhada</span>
+                </h1>
+                <p class="text-xl md:text-3xl font-black mt-4 mb-6 text-brand-dark italic leading-tight">
+                    Passos que <span class="text-brand-blue underline decoration-black">alimentam</span>,<br>patinhas que agradecem!
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="https://wa.me/5517997219809?text=Oi%20Bárbara!%20Quero%20garantir%20minha%20vaga%20na%202ª%20Cãominhada!" target="_blank" class="btn-whatsapp bg-[#25D366] hover:bg-[#20bd5a] text-white font-black text-xl px-8 py-4 rounded-full flex items-center justify-center gap-3 w-full sm:w-auto">
+                        <i class="fa-brands fa-whatsapp text-3xl"></i> Falar com a Bárbara
+                    </a>
+                    <a href="#detalhes" class="btn-hover-effect bg-white text-black border-2 border-black font-bold text-lg px-8 py-4 rounded-full flex items-center justify-center gap-2 w-full sm:w-auto">
+                        <i class="fa-solid fa-circle-info"></i> Mais Detalhes
+                    </a>
+                </div>
+            </div>
+            
+            <div class="w-full md:w-2/5 mt-10 md:mt-0 flex justify-center">
+                <div class="bg-white p-6 rounded-3xl shadow-2xl border-4 border-brand-blue transform rotate-3 hover:rotate-0 transition-transform duration-300 max-w-sm">
+                    <div class="text-center">
+                        <h3 class="text-brand-blue font-black uppercase text-2xl mb-2">Inscrição</h3>
+                        <div class="text-5xl font-black text-black flex justify-center items-start">
+                            <span class="text-2xl mt-2 mr-1">R$</span>20<span class="text-2xl mt-2">,00</span>
+                        </div>
+                        <div class="text-3xl font-black text-brand-blue my-2">+ 1KG</div>
+                        <div class="font-bold text-gray-600 uppercase text-sm">de ração</div>
+                        <hr class="my-4 border-gray-200">
+                        <p class="text-xs font-bold text-gray-500 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-heart text-red-500 text-lg"></i>
+                            Toda arrecadação para a causa animal de Votuporanga!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contador Regressivo -->
+    <section class="max-w-4xl mx-auto px-6 -mt-12 relative z-20 w-full mb-16">
+        <div class="bg-brand-dark text-white rounded-2xl shadow-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between border-b-4 border-brand-yellow">
+            <div class="mb-6 md:mb-0 text-center md:text-left">
+                <h3 class="text-xl font-bold text-brand-yellow">Falta pouco!</h3>
+                <p class="text-gray-300 text-sm mt-1">Prepare a coleira e a garrafinha de água.</p>
+            </div>
+            <div class="flex gap-4 md:gap-6 text-center" id="countdown">
+                <div class="flex flex-col"><span class="text-3xl md:text-4xl font-black text-white" id="cd-days">--</span><span class="text-xs text-gray-400 uppercase">Dias</span></div>
+                <div class="text-3xl md:text-4xl font-black text-brand-blue">:</div>
+                <div class="flex flex-col"><span class="text-3xl md:text-4xl font-black text-white" id="cd-hours">--</span><span class="text-xs text-gray-400 uppercase">Horas</span></div>
+                <div class="text-3xl md:text-4xl font-black text-brand-blue">:</div>
+                <div class="flex flex-col"><span class="text-3xl md:text-4xl font-black text-white" id="cd-mins">--</span><span class="text-xs text-gray-400 uppercase">Min</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detalhes do Evento -->
+    <main id="detalhes" class="flex-grow max-w-5xl mx-auto px-6 py-8 w-full">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            
+            <!-- Quando -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow flex items-start gap-5">
+                <div class="bg-brand-yellow w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="fa-regular fa-calendar-check text-2xl text-black"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-black text-brand-dark mb-2">Quando será?</h3>
+                    <p class="text-xl font-bold text-brand-blue">14 de Março <span class="text-gray-500 font-medium text-lg">às</span> 07H</p>
+                    <p class="text-sm text-gray-500 mt-2 font-medium italic">No Studio Ativo.</p>
+                </div>
+            </div>
+
+            <!-- Onde -->
+            <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow flex items-start gap-5 relative overflow-hidden">
+                <div class="bg-brand-blue w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-location-dot text-2xl text-white"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-black text-brand-dark mb-2">Local de Largada</h3>
+                    <p class="text-lg font-bold text-black mb-1">Studio Ativo</p>
+                    <p class="text-sm text-gray-600 mb-4">R. André Scamatti, 783 - Jardim Universitário<br>Votuporanga - SP, 15503-440</p>
+                    <a href="https://maps.google.com/?q=R.+André+Scamatti,+783+-+Jardim+Universitário,+Votuporanga+-+SP" target="_blank" class="text-sm font-bold text-brand-blue hover:text-blue-800 flex items-center gap-1">
+                        Abrir no Mapa <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+                <i class="fa-solid fa-map-location-dot absolute -bottom-4 -right-4 text-gray-100 text-8xl -z-10"></i>
+            </div>
+        </div>
+
+        <!-- Banner Causa Animal -->
+        <div id="banner-causa" class="bg-brand-blue text-white rounded-3xl p-8 md:p-12 text-center shadow-2xl relative overflow-hidden">
+            <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
+            <div class="relative z-10">
+                
+                <!-- Pista Interativa do Cachorrinho -->
+                <div id="dog-track-container" class="relative w-4/5 max-w-md mx-auto h-24 mb-6 group cursor-crosshair">
+                    <div class="absolute bottom-1 left-0 w-full h-1 bg-brand-yellow/30 rounded-full"></div>
+                    <div id="moving-dog" class="absolute bottom-0 left-1/2 flex flex-col items-center justify-end origin-bottom pointer-events-none" style="transform: translateX(-50%); transition: transform 0.15s ease-out;">
+                        <div class="float-animation absolute -top-8 text-xs font-bold text-brand-blue bg-white px-3 py-1 rounded-full shadow-lg whitespace-nowrap">
+                            Me leve junto! 🐾
+                        </div>
+                        <i id="dog-icon" class="fa-solid fa-dog text-5xl text-brand-yellow drop-shadow-lg transition-transform duration-200" style="transform: scaleX(1);"></i>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl md:text-4xl font-black mb-4">Passos que alimentam, patinhas que agradecem!</h2>
+                <p class="text-lg md:text-xl font-medium max-w-3xl mx-auto mb-4">
+                    O objetivo é tirar você e seu pet do sofá para uma manhã cheia de energia <strong>E</strong> ajudar os animais que aguardam um lar em Votuporanga.
+                </p>
+                <p class="text-lg md:text-xl font-medium max-w-3xl mx-auto mb-6">
+                    Sua inscrição vale <strong class="text-brand-yellow">R$ 20,00 + 1kg de ração</strong>, que será destinado para doação. Você exercita-se, diverte-se e ajuda quem precisa.
+                </p>
+                <div class="bg-white/10 inline-block px-6 py-3 rounded-xl border border-white/20 mb-8 backdrop-blur-sm">
+                    <p class="text-brand-yellow font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Vagas limitadas para a segurança de todos os pets.
+                    </p>
+                </div>
+                <div>
+                    <a href="https://wa.me/5517997219809?text=Oi%20Bárbara!%20Quero%20garantir%20minha%20vaga%20na%202ª%20Cãominhada!" target="_blank" class="btn-whatsapp inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#20bd5a] text-white font-black text-2xl px-12 py-5 rounded-full w-full sm:w-auto">
+                        <i class="fa-brands fa-whatsapp text-4xl"></i> Garanta a sua agora!
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-brand-dark text-white py-12 mt-auto border-t-4 border-brand-yellow">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-center md:text-left">
+                    <p class="font-black text-2xl text-brand-yellow uppercase tracking-tighter mb-1">Studio Ativo</p>
+                    <p class="text-sm text-gray-400">Promovendo saúde para você e para o seu pet.</p>
+                </div>
+                <div class="flex flex-col items-center gap-3">
+                    <p class="text-xs font-bold uppercase tracking-widest text-gray-500">Siga a Studio</p>
+                    <a href="https://www.instagram.com/studioativo/" target="_blank" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-brand-yellow hover:text-black transition-all duration-300 text-2xl shadow-lg">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="text-center md:text-right">
+                    <div class="text-sm text-gray-400 mb-2">Divulgação</div>
+                    <a href="https://karinafranzin.com.br/" target="_blank" class="inline-block bg-black bg-opacity-40 px-4 py-2 rounded-full border border-gray-800 hover:border-brand-yellow transition-colors group">
+                        <span class="text-xs text-gray-500 mr-1">Blog</span>
+                        <span class="text-white font-bold group-hover:text-brand-yellow">Karina Franzin</span>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-10 pt-8 border-t border-white/5 text-center">
+                <p class="text-[10px] text-gray-600 uppercase tracking-widest">© 2026 Studio Ativo Votuporanga - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const targetDate = new Date("March 14, 2026 07:00:00").getTime();
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "<div class='text-2xl font-black text-brand-yellow'>O Evento Chegou!</div>";
+                return;
+            }
+            const days  = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins  = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("cd-days").innerText  = days.toString().padStart(2, '0');
+            document.getElementById("cd-hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("cd-mins").innerText  = mins.toString().padStart(2, '0');
+        };
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+
+        const dogTrack = document.getElementById('dog-track-container');
+        const movingDog = document.getElementById('moving-dog');
+        const dogIcon   = document.getElementById('dog-icon');
+        if (dogTrack && movingDog && dogIcon) {
+            const handleDogMovement = (clientX) => {
+                const rect = dogTrack.getBoundingClientRect();
+                let mouseX = Math.max(0, Math.min(clientX - rect.left, rect.width));
+                const translation = mouseX - rect.width / 2;
+                movingDog.style.transform = `translateX(calc(-50% + ${translation}px))`;
+                if (translation < -10) dogIcon.style.transform = 'scaleX(1)';
+                else if (translation > 10) dogIcon.style.transform = 'scaleX(-1)';
+            };
+            dogTrack.addEventListener('mousemove', e => handleDogMovement(e.clientX));
+            dogTrack.addEventListener('touchmove', e => { if (e.touches.length > 0) handleDogMovement(e.touches[0].clientX); }, { passive: true });
+            dogTrack.addEventListener('mouseleave', () => {
+                movingDog.style.transform = 'translateX(-50%)';
+                dogIcon.style.transform = 'scaleX(1)';
+            });
+        }
+    </script>
+
+    <!-- Navbar JS -->
+    <script>
+    (function () {
+        var navbar  = document.getElementById('navbar');
+        var toggle  = document.getElementById('navbarToggle');
+        var links   = document.getElementById('navbarLinks');
+        var overlay = document.getElementById('navbarOverlay');
+        if (!navbar || !toggle || !links) return;
+        function openMenu() {
+            links.classList.add('open');
+            toggle.classList.add('open');
+            if (overlay) overlay.classList.add('open');
+            toggle.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+            links.classList.remove('open');
+            toggle.classList.remove('open');
+            if (overlay) overlay.classList.remove('open');
+            toggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+        toggle.addEventListener('click', function () {
+            links.classList.contains('open') ? closeMenu() : openMenu();
+        });
+        if (overlay) overlay.addEventListener('click', closeMenu);
+    })();
+    </script>
+
+</body>
+</html>

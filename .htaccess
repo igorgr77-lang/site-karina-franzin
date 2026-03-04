@@ -101,6 +101,15 @@ FileETag None
 </IfModule>
 
 # ===========================================
+# REDIRECTS PERMANENTES (301)
+# ===========================================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Cãominhada: URL antiga → nova URL dentro de /eventos/
+    RewriteRule ^cao-minhada-2026/?$ /eventos/cao-minhada-2026/ [R=301,L]
+</IfModule>
+
+# ===========================================
 # MIME TYPES
 # ===========================================
 
