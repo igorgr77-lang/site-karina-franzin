@@ -40,13 +40,15 @@
     });
 
     // ── Escurecer navbar ao rolar (nunca some) ──
-    window.addEventListener('scroll', function () {
+    function updateNavbar() {
         if (window.scrollY > 40) {
             navbar.classList.add('navbar-scrolled');
         } else {
             navbar.classList.remove('navbar-scrolled');
         }
-    }, { passive: true });
+    }
+    window.addEventListener('scroll', updateNavbar, { passive: true });
+    updateNavbar(); // Verifica posição imediatamente ao carregar
 
     // ── Highlight do link ativo conforme seção visível ──
     var sections = document.querySelectorAll('section[id]');

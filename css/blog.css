@@ -111,6 +111,18 @@
 }
 
 /* Article Card */
+.article-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.article-card-link:hover .article-card {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(255, 107, 53, 0.15);
+}
+
 .article-card {
     background: white;
     border-radius: 12px;

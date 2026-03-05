@@ -60,6 +60,7 @@ function criarCardArtigo(artigo) {
     const excerpt = clone.querySelector('.article-excerpt');
     const date = clone.querySelector('.article-date');
     const readingTime = clone.querySelector('.article-reading-time');
+    const cardLink = clone.querySelector('.article-card-link');
     const link = clone.querySelector('.article-link');
     
     // Imagem do card
@@ -89,8 +90,9 @@ function criarCardArtigo(artigo) {
     const tempoLeitura = calcularTempoLeitura(artigo.conteudo || '');
     readingTime.textContent = `⏱️ ${formatarTempoLeitura(tempoLeitura)}`;
     
-    // Link para artigo individual (página dinâmica)
-    link.href = `./artigo.html?slug=${artigo.slug}`;
+    // Link para artigo individual (página dinâmica) — card inteiro clicável
+    const url = `./artigo.html?slug=${artigo.slug}`;
+    cardLink.href = url;
     
     return clone;
 }
