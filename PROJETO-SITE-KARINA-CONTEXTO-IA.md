@@ -1980,3 +1980,62 @@ tmp_rovodev_*
 - Ao criar/modificar qualquer página, sempre incluir a **mesma navbar e rodapé** das outras páginas
 - Novos artigos do blog **não precisam de arquivo HTML** — apenas inserir no Supabase
 - Novos eventos precisam de: card em `eventos/index.html` + nova pasta `eventos/nome-evento/index.html`
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 04/03/2026
+
+### 🚀 Commits do Dia (2 commits):
+
+| Hash | Horário | Descrição |
+|------|---------|-----------|
+| `c675a36` | 21:26 | Página do evento Lord Lion concluída, card do evento também |
+| `3da34d2` | 21:56 | Resolvido erro da navbar que não carregava corretamente |
+
+### ✅ O que foi feito nesta sessão:
+
+**Evento "A Noite É Delas!" - Dia da Mulher Lord Lion:**
+- Card do evento criado em `eventos/index.html` com imagem `lordcard.webp`, data 08/03/2026 e link para `/eventos/dia-da-mulher-lord-lion/`
+- Nova página dedicada criada em `eventos/dia-da-mulher-lord-lion/index.html` com:
+  - Hero com título "A Noite É Delas!", foto do evento (Unsplash) e botão WhatsApp
+  - Seção sobre o evento com destaque para atração Maria Paula
+  - Bloco de entrada gratuita para alunos da Karina Franzin (4 passos)
+  - Aviso especial para alunos homens (podem doar a entrada para uma mulher)
+  - Rodapé com logos da Lord Lion e Karina Franzin com links para Instagram
+- Navbar padrão do site da Karina incluída (com "Eventos" ativo)
+- Imagens copiadas para `assets/img/`: `logoLordLion.png`, `logoKarinaFranzin.png`, `lordcard.webp`, `banner-dia-da-mulher-lord-lion.jpg`
+
+**Projeto LordLion_Diadamulher (página standalone):**
+- Logo Lord Lion: link atualizado para `https://www.instagram.com/lordlioncervejaria/`, texto `@lordlioncervejaria`
+- Logo Karina Franzin: link atualizado para `https://www.instagram.com/karina_franzin/`, texto `@karina_franzin`
+- Removida barra superior "Portal de Eventos | Treinadora Karina Franzin"
+- Removido texto de copyright do rodapé
+
+**Correção do bug da Navbar (commit `3da34d2`):**
+- **Problema:** Em alguns celulares e navegadores, a navbar não carregava corretamente — o logo e os links apareciam em coluna abaixo uns dos outros. Limpando cookies resolvia, pois o CSS ficava em cache.
+- **Causa:** FOUC (Flash of Unstyled Content) — o HTML renderizava antes do `styles.css` carregar, sem estilos de layout
+- **Solução:** Adicionado **CSS crítico inline** no `<head>` do `index.html` com os estilos mínimos da navbar (posicionamento, flex, hamburger, responsivo). Navbar começa transparente no topo e escurece ao rolar (comportamento original mantido).
+- **Resultado:** Navbar sempre renderiza corretamente desde o primeiro pixel, independente do cache ou velocidade de conexão
+
+### 📁 Arquivos Criados/Modificados:
+**Novos:**
+- `eventos/dia-da-mulher-lord-lion/index.html` — Página dedicada do evento
+- `assets/img/logoLordLion.png`
+- `assets/img/logoKarinaFranzin.png`
+- `assets/img/lordcard.webp`
+- `assets/img/banner-dia-da-mulher-lord-lion.jpg`
+
+**Modificados:**
+- `index.html` — CSS crítico inline adicionado no `<head>` (fix navbar FOUC)
+- `eventos/index.html` — Card do evento Dia da Mulher adicionado
+
+### 📌 Estado do Projeto após 04/03/2026:
+- ✅ Evento **"A Noite É Delas!" (Lord Lion x Karina Franzin)** com card e página dedicada
+- ✅ Bug da navbar corrigido — sem mais FOUC em nenhum dispositivo
+- ✅ Projeto online em `karinafranzin.com.br` (branch main)
+- 🔧 Desenvolvimento ativo na branch **develop**
+
+### 🗂️ Parceiro de Projeto:
+- **Lord Lion Cervejaria** — Instagram: `@lordlioncervejaria`
+- Projeto standalone da página do evento em: `C:\Users\oigor\PROJETOS\LordLion_Diadamulher\`
+- Futuramente a página será integrada ao site da Karina como evento oficial
