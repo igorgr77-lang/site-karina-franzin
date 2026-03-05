@@ -64,6 +64,12 @@
     text-align: center;
 }
 
+@media (max-width: 768px) {
+    .blog-header {
+        padding: 9rem 1rem 2.5rem; /* padding-top maior no mobile para compensar navbar */
+    }
+}
+
 .back-link {
     display: inline-block;
     color: rgba(255, 255, 255, 0.9);
@@ -258,6 +264,12 @@
 .article-header {
     background: #f8f9fa;
     padding: 2rem 0 1rem;
+}
+
+@media (min-width: 769px) {
+    #articleBreadcrumb {
+        display: block !important;
+    }
 }
 
 .breadcrumb {
