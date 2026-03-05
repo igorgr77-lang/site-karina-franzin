@@ -2029,7 +2029,7 @@ tmp_rovodev_*
 - `index.html` — CSS crítico inline adicionado no `<head>` (fix navbar FOUC)
 - `eventos/index.html` — Card do evento Dia da Mulher adicionado
 
-### 📌 Estado do Projeto após 04/03/2026:
+### 📌 Estado do Projeto após 04/03/2026 (sessão 1):
 - ✅ Evento **"A Noite É Delas!" (Lord Lion x Karina Franzin)** com card e página dedicada
 - ✅ Bug da navbar corrigido — sem mais FOUC em nenhum dispositivo
 - ✅ Projeto online em `karinafranzin.com.br` (branch main)
@@ -2039,3 +2039,44 @@ tmp_rovodev_*
 - **Lord Lion Cervejaria** — Instagram: `@lordlioncervejaria`
 - Projeto standalone da página do evento em: `C:\Users\oigor\PROJETOS\LordLion_Diadamulher\`
 - Futuramente a página será integrada ao site da Karina como evento oficial
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 04/03/2026 (continuação)
+
+### ✅ O que foi feito nesta sessão:
+
+**Troca do logo na navbar:**
+- Logo antigo: `assets/img/logo.jpg` — 1080x1136px, 85KB (muito pesado!)
+- Logo novo: `assets/img/KarinaFranzin80.webp` — 80x80px, formato WebP otimizado (~5KB)
+- Atualizado em **todas as páginas** via script PowerShell (10 arquivos)
+- Economia de ~90% no peso da imagem por carregamento de página
+
+**Fix FOUC navbar em páginas secundárias:**
+- O CSS crítico inline que resolve o bug da navbar só havia sido adicionado na home (`index.html`)
+- Páginas secundárias (`blog/`, `eventos/`, etc.) ainda apresentavam o problema no localhost
+- Adicionado o CSS crítico inline (navbar sempre escura, pois não são páginas com hero transparente) em:
+  - `blog/index.html`
+  - `blog/artigo.html`
+  - `eventos/index.html`
+  - `eventos/cao-minhada-2026/index.html`
+  - `eventos/dia-da-mulher-lord-lion/index.html`
+
+### ⚠️ Comportamento da Navbar por página:
+- **Home (`index.html`)** → Navbar começa **transparente** no topo, escurece ao rolar (CSS crítico com `background: transparent`)
+- **Páginas secundárias** → Navbar sempre **escura** (`navbar-scrolled` já aplicado no HTML + CSS crítico com fundo escuro)
+
+### 📁 Arquivos Modificados:
+- `index.html` — CSS crítico atualizado (transparente no topo)
+- `blog/index.html` — CSS crítico adicionado + logo atualizado
+- `blog/artigo.html` — CSS crítico adicionado + logo atualizado
+- `eventos/index.html` — CSS crítico adicionado + logo atualizado
+- `eventos/cao-minhada-2026/index.html` — CSS crítico adicionado + logo atualizado
+- `eventos/dia-da-mulher-lord-lion/index.html` — CSS crítico adicionado + logo atualizado
+- `assets/img/KarinaFranzin80.webp` — novo logo otimizado adicionado
+
+### 📌 Estado do Projeto após 04/03/2026 (sessão 2):
+- ✅ Logo da navbar trocado para WebP otimizado em todas as páginas
+- ✅ CSS crítico inline aplicado em **todas as páginas** do site
+- ✅ Bug do FOUC da navbar 100% resolvido em todas as páginas e dispositivos
+- 🔧 Desenvolvimento ativo na branch **develop**
