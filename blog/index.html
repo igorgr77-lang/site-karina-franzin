@@ -26,6 +26,7 @@
     
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/blog.css">
+
     <!-- CSS Crítico Inline: evita FOUC (Flash of Unstyled Content) na navbar -->
     <style>
         .navbar {
@@ -201,21 +202,23 @@
 
     <!-- Template de artigo (oculto) -->
     <template id="articleCardTemplate">
-        <article class="article-card">
-            <div class="article-image">
-                <img data-src="" alt="" loading="lazy">
-            </div>
-            <div class="article-content">
-                <span class="article-category"></span>
-                <h2 class="article-title"></h2>
-                <p class="article-excerpt"></p>
-                <div class="article-meta">
-                    <span class="article-date"></span>
-                    <span class="article-reading-time"></span>
+        <a href="" class="article-card-link">
+            <article class="article-card">
+                <div class="article-image">
+                    <img data-src="" alt="" loading="lazy">
                 </div>
-                <a href="" class="article-link">Ler artigo completo →</a>
-            </div>
-        </article>
+                <div class="article-content">
+                    <span class="article-category"></span>
+                    <h2 class="article-title"></h2>
+                    <p class="article-excerpt"></p>
+                    <div class="article-meta">
+                        <span class="article-date"></span>
+                        <span class="article-reading-time"></span>
+                    </div>
+                    <span class="article-link">Ler artigo completo →</span>
+                </div>
+            </article>
+        </a>
     </template>
 
     <section class="blog-cta">
@@ -301,6 +304,5 @@
     </script>
 </body>
 </html>
-
 
 
