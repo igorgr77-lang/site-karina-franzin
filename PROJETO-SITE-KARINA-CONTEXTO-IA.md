@@ -530,8 +530,8 @@ Disallow: /*.css$
 
 ---
 
-**Data da Última Atualização:** 01 de Março de 2026  
-**Versão do Projeto:** v4.3 (Site + Blog + CMS + Página Cãominhada 2026)  
+**Data da Última Atualização:** 03 de Março de 2026  
+**Versão do Projeto:** v4.4 (Site + Blog + CMS + Navbar Global + Página de Eventos)  
 **Status:** ✅ Produção - Site 100% funcional com todas as otimizações SEO e Performance implementadas  
 **URL:** https://karinafranzin.com.br  
 **HTTPS:** ✅ Ativo (Cloudflare SSL Full)  
@@ -1884,4 +1884,99 @@ tmp_rovodev_*
 
 ---
 
-Tool call argument 'replace' pruned from message history.
+## 📅 SESSÃO DE DESENVOLVIMENTO — 03/03/2026
+
+### 🚀 Commits do Dia (8 commits):
+
+| Hash | Horário | Descrição |
+|------|---------|-----------|
+| `e330262` | 23:11 | Arrumando descrição do card da Cãominhada |
+| `f776dd3` | 22:47 | Implantação do navbar e página de Eventos concluída |
+| `e701aaf` | 22:39 | Layout da página funcionando |
+| `adfcea0` | 21:38 | Botão Eventos criado na navbar |
+| `87f376a` | 21:11 | Ajustando o laranja do botão como funciona |
+| `2e06304` | 18:56 | Incluindo navbar em todo o site |
+| `e0ee314` | 13:28 | Atualização arquivo contexto |
+| `c873bd1` | 13:11 | Troca do banner Cãominhada na página dos blogs |
+
+### ✅ O que foi feito nesta sessão:
+
+**Navbar Global (commits `2e06304` e `87f376a`):**
+- Navbar implementada em todas as páginas do site: `index.html`, `blog/index.html`, `blog/artigo.html` e todos os artigos individuais
+- Novo botão **"Eventos"** adicionado na navbar (commit `adfcea0`)
+- Cor laranja do botão ativo ajustada no `js/main.js`
+- Novos estilos adicionados em `css/styles.css` (+229 linhas)
+- Lógica de navbar expandida em `js/main.js` (+106 linhas)
+
+**Página de Eventos (commit `e701aaf`):**
+- Criada nova página de listagem de eventos em `eventos/index.html` (+598 linhas)
+- Card do evento **Cãominhada 2026** adicionado na listagem
+- Página dedicada do evento em `eventos/cao-minhada-2026/index.html` (+348 linhas)
+- Adicionada imagem `assets/img/capa_evento_2.webp`
+- Redirects/rewrites configurados no `.htaccess`
+- Antiga página `cao-minhada-2026/index.html` simplificada (redirecionamento para nova estrutura)
+
+**Ajustes Finais:**
+- Descrição do card da Cãominhada corrigida em `eventos/index.html` (commit `e330262`)
+- Banner da Cãominhada atualizado na página de blog (commit `c873bd1`)
+- `assets/img/banner_caminhada.png` adicionado ao repositório
+
+### 📁 Arquivos Criados/Modificados:
+
+**Novos arquivos:**
+- `eventos/index.html` — Página de listagem de eventos
+- `eventos/cao-minhada-2026/index.html` — Página dedicada da Cãominhada 2026
+- `assets/img/capa_evento_2.webp` — Imagem de capa do evento
+- `assets/img/banner_caminhada.png` — Banner da Cãominhada
+
+**Arquivos modificados:**
+- `index.html` — Navbar atualizada com botão Eventos
+- `blog/index.html` — Navbar atualizada
+- `blog/artigo.html` — Navbar atualizada + banner
+- `blog/como-comecar-a-correr-do-zero/index.html` — Navbar
+- `blog/erros-comuns-corrida-iniciantes/index.html` — Navbar
+- `blog/plano-de-treino-para-correr-5km-em-8-semanas-iniciantes/index.html` — Navbar
+- `blog/run-avoa-2026-votuporanga/index.html` — Navbar
+- `css/styles.css` — Estilos da navbar global (+229 linhas)
+- `css/blog.css` — Ajuste no banner do blog
+- `js/main.js` — Lógica da navbar e cor do botão ativo (+106 linhas)
+- `.htaccess` — Configuração de rotas/redirects
+- `cao-minhada-2026/index.html` — Simplificado (redirecionamento)
+
+### 📌 Estado do Projeto após 03/03/2026:
+- ✅ Navbar global funcionando em **todas as páginas**
+- ✅ Seção de **Eventos** criada e funcional (`/eventos/`)
+- ✅ Evento **Cãominhada 2026** com página dedicada em `/eventos/cao-minhada-2026/`
+- ✅ Estrutura de rotas organizada com `.htaccess`
+
+---
+
+## 🏗️ ARQUITETURA DO SITE — DECISÕES DEFINITIVAS (04/03/2026)
+
+### Blog — Funcionamento Definitivo:
+- **Uma única página HTML** serve todos os artigos: `blog/artigo.html?slug=nome-do-artigo`
+- O JavaScript (`js/blog-article.js`) lê o `slug` da URL e busca o conteúdo no **Supabase**
+- As pastas estáticas `blog/nome-artigo/index.html` são **legado** e não são mais utilizadas
+- A listagem do blog (`blog/index.html`) também é dinâmica via `js/blog-list.js` + Supabase
+- Para criar um novo artigo: basta inserir no Supabase via painel admin (`/admin/`)
+
+### Navbar e Rodapé — Padrão Global:
+- A **navbar é idêntica** em todas as páginas do site (HTML copiado em cada arquivo)
+- O **rodapé é idêntico** em todas as páginas do site (HTML copiado em cada arquivo)
+- Qualquer alteração na navbar ou rodapé deve ser replicada em **todos os arquivos HTML**
+- Arquivos que contêm a navbar: `index.html`, `blog/index.html`, `blog/artigo.html`, `eventos/index.html`, `eventos/cao-minhada-2026/index.html`, e todos os artigos estáticos legado
+
+### Estrutura de Páginas Ativas:
+| Página | Arquivo | Tipo |
+|--------|---------|------|
+| Home | `index.html` | Estático |
+| Blog (listagem) | `blog/index.html` | Dinâmico (Supabase) |
+| Blog (artigo) | `blog/artigo.html?slug=...` | Dinâmico (Supabase) |
+| Eventos | `eventos/index.html` | Estático |
+| Cãominhada 2026 | `eventos/cao-minhada-2026/index.html` | Estático |
+| Admin | `admin/index.html` | CMS (Supabase) |
+
+### ⚠️ Importante para a IA:
+- Ao criar/modificar qualquer página, sempre incluir a **mesma navbar e rodapé** das outras páginas
+- Novos artigos do blog **não precisam de arquivo HTML** — apenas inserir no Supabase
+- Novos eventos precisam de: card em `eventos/index.html` + nova pasta `eventos/nome-evento/index.html`
