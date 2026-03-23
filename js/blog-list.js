@@ -91,7 +91,7 @@ function criarCardArtigo(artigo) {
     readingTime.textContent = `⏱️ ${formatarTempoLeitura(tempoLeitura)}`;
     
     // Link para artigo individual (página dinâmica) — card inteiro clicável
-    const url = `./artigo.html?slug=${artigo.slug}`;
+    const url = `/blog/artigo.html?slug=${artigo.slug}`;
     cardLink.href = url;
     
     return clone;
