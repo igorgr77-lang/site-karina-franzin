@@ -469,7 +469,7 @@
             -->
 
             <!-- Dia da Mulher - Lord Lion -->
-            <div class="evento-card-wrapper" data-status="proximo" data-tipo="corrida">
+            <div class="evento-card-wrapper" data-status="proximo" data-tipo="corrida" data-date="2026-03-08">
                 <a href="/eventos/dia-da-mulher-lord-lion/" class="evento-card">
                     <img src="../assets/img/lordcard.webp" alt="Dia da Mulher - Lord Lion Cervejaria" class="evento-card-img">
                     <div class="evento-card-body">
@@ -491,7 +491,7 @@
             </div>
 
             <!-- Cãominhada 2026 -->
-            <div class="evento-card-wrapper" data-status="proximo" data-tipo="caminhada">
+            <div class="evento-card-wrapper" data-status="proximo" data-tipo="caminhada" data-date="2026-03-14">
                 <a href="/eventos/cao-minhada-2026/" class="evento-card">
                     <img src="../assets/img/capa_evento_2.webp" alt="2ª Cãominhada Studio Ativo" class="evento-card-img">
                     <div class="evento-card-body">
@@ -608,6 +608,45 @@
             links.classList.contains('open') ? closeMenu() : openMenu();
         });
         if (overlay) overlay.addEventListener('click', closeMenu);
+    })();
+
+    // ── Classificação automática por data ──
+    (function () {
+        var hoje = new Date();
+        hoje.setHours(0, 0, 0, 0); // zera a hora para comparar só a data
+
+        var gridProximos = document.getElementById('gridProximos');
+        var gridPassados = document.getElementById('gridPassados');
+        var cards = document.querySelectorAll('.evento-card-wrapper[data-date]');
+
+        var temPassado = false;
+
+        cards.forEach(function (card) {
+            var dataEvento = new Date(card.getAttribute('data-date') + 'T00:00:00');
+
+            if (dataEvento < hoje) {
+                // Evento já passou — move para seção de passados
+                card.setAttribute('data-status', 'passado');
+                gridPassados.insertBefore(card, gridPassados.firstChild);
+                temPassado = true;
+            }
+            // Se não passou, permanece em próximos (data-status="proximo")
+        });
+
+        // Remove o placeholder "Nenhum evento passado" se tiver eventos passados reais
+        if (temPassado) {
+            var empty = gridPassados.querySelector('.eventos-empty');
+            if (empty) empty.remove();
+        }
+
+        // Se não sobrou nenhum evento próximo, mostra mensagem
+        var proximosRestantes = gridProximos.querySelectorAll('.evento-card-wrapper[data-status="proximo"]');
+        if (proximosRestantes.length === 0) {
+            var emptyProx = document.createElement('div');
+            emptyProx.className = 'eventos-empty';
+            emptyProx.innerHTML = '<div style="font-size:3rem;">📅</div><p>Nenhum evento próximo no momento.<br><span style="font-size:0.9rem;">Fique ligado nas novidades!</span></p>';
+            gridProximos.appendChild(emptyProx);
+        }
     })();
 
     // ── Filtros ──
