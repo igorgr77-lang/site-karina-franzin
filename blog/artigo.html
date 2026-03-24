@@ -216,29 +216,45 @@
     <!-- Navbar JS -->
     <script>
     (function () {
-        var navbar  = document.getElementById('navbar');
-        var toggle  = document.getElementById('navbarToggle');
-        var links   = document.getElementById('navbarLinks');
-        var overlay = document.getElementById('navbarOverlay');
-        if (!navbar || !toggle || !links) return;
-        function openMenu() {
-            links.classList.add('open');
-            toggle.classList.add('open');
-            if (overlay) overlay.classList.add('open');
-            toggle.setAttribute('aria-expanded', 'true');
-            document.body.style.overflow = 'hidden';
+        function initNavbar() {
+            var navbar  = document.getElementById('navbar');
+            var toggle  = document.getElementById('navbarToggle');
+            var links   = document.getElementById('navbarLinks');
+            var overlay = document.getElementById('navbarOverlay');
+            if (!navbar || !toggle || !links) return;
+
+            // Detecta WebView do Instagram/Facebook e força navbar escura
+            var ua = navigator.userAgent || '';
+            var isWebView = /Instagram|FBAN|FBAV|FB_IAB|LinkedInApp|Twitter|TikTok/i.test(ua);
+            if (isWebView) {
+                navbar.classList.add('navbar-webview');
+            }
+
+            function openMenu() {
+                links.classList.add('open');
+                toggle.classList.add('open');
+                if (overlay) overlay.classList.add('open');
+                toggle.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeMenu() {
+                links.classList.remove('open');
+                toggle.classList.remove('open');
+                if (overlay) overlay.classList.remove('open');
+                toggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+            toggle.addEventListener('click', function () {
+                links.classList.contains('open') ? closeMenu() : openMenu();
+            });
+            if (overlay) overlay.addEventListener('click', closeMenu);
         }
-        function closeMenu() {
-            links.classList.remove('open');
-            toggle.classList.remove('open');
-            if (overlay) overlay.classList.remove('open');
-            toggle.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initNavbar);
+        } else {
+            initNavbar();
         }
-        toggle.addEventListener('click', function () {
-            links.classList.contains('open') ? closeMenu() : openMenu();
-        });
-        if (overlay) overlay.addEventListener('click', closeMenu);
     })();
     </script>
 </body>
