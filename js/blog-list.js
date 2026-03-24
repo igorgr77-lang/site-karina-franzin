@@ -94,6 +94,11 @@ function criarCardArtigo(artigo) {
     const baseUrl = window.location.origin || 'https://karinafranzin.com.br';
     const url = `${baseUrl}/blog/artigo.html?slug=${artigo.slug}`;
     cardLink.href = url;
+    cardLink.setAttribute('data-url', url);
+    cardLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.location.assign(url);
+    });
     
     return clone;
 }
