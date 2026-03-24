@@ -90,8 +90,9 @@ function criarCardArtigo(artigo) {
     const tempoLeitura = calcularTempoLeitura(artigo.conteudo || '');
     readingTime.textContent = `⏱️ ${formatarTempoLeitura(tempoLeitura)}`;
     
-    // Link para artigo individual (página dinâmica) — card inteiro clicável
-    const url = `/blog/artigo.html?slug=${artigo.slug}`;
+    // Link para artigo individual — usa URL completa para compatibilidade com WebViews (Instagram, etc.)
+    const baseUrl = window.location.origin || 'https://karinafranzin.com.br';
+    const url = `${baseUrl}/blog/artigo.html?slug=${artigo.slug}`;
     cardLink.href = url;
     
     return clone;

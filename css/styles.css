@@ -14,6 +14,15 @@
     transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.35s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
 }
 
+/* WebView do Instagram/Facebook: navbar sempre com fundo escuro (via classe adicionada pelo JS) */
+.navbar-webview {
+    background: rgba(20, 20, 20, 0.96) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255, 107, 53, 0.2) !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
 .navbar.navbar-hidden {
     transform: translateY(-100%);
 }

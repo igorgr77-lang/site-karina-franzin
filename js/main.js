@@ -11,6 +11,13 @@
 
         if (!navbar || !toggle || !links) return;
 
+        // ── Detecta WebView do Instagram/Facebook e força navbar escura ──
+        var ua = navigator.userAgent || '';
+        var isWebView = /Instagram|FBAN|FBAV|FB_IAB|LinkedInApp|Twitter|TikTok/i.test(ua);
+        if (isWebView) {
+            navbar.classList.add('navbar-webview');
+        }
+
         // ── Abrir / Fechar menu mobile ──
         function openMenu() {
             links.classList.add('open');
@@ -41,14 +48,21 @@
         });
 
         // ── Escurecer navbar ao rolar (nunca some) ──
+        function getScrollY() {
+            // Fallback para WebViews (Instagram, Facebook, etc.)
+            return window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+        }
+
         function updateNavbar() {
-            if (window.scrollY > 40) {
+            if (getScrollY() > 40) {
                 navbar.classList.add('navbar-scrolled');
             } else {
                 navbar.classList.remove('navbar-scrolled');
             }
         }
         window.addEventListener('scroll', updateNavbar, { passive: true });
+        // Fallback: alguns WebViews disparam 'touchmove' mas não 'scroll'
+        document.addEventListener('touchmove', updateNavbar, { passive: true });
         updateNavbar(); // Verifica posição imediatamente ao carregar
 
         // ── Highlight do link ativo conforme seção visível ──
