@@ -126,10 +126,6 @@
     touch-action: manipulation;
 }
 
-/* Garante que elementos filhos não interceptam o toque no WebView mobile */
-.article-card-link * {
-    pointer-events: none;
-}
 
 .article-card-link:hover .article-card {
     transform: translateY(-4px);
