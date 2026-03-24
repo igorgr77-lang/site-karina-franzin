@@ -122,6 +122,13 @@
     text-decoration: none;
     color: inherit;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* Garante que elementos filhos não interceptam o toque no WebView mobile */
+.article-card-link * {
+    pointer-events: none;
 }
 
 .article-card-link:hover .article-card {

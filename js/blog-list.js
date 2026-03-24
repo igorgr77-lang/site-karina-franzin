@@ -90,14 +90,10 @@ function criarCardArtigo(artigo) {
     const tempoLeitura = calcularTempoLeitura(artigo.conteudo || '');
     readingTime.textContent = `⏱️ ${formatarTempoLeitura(tempoLeitura)}`;
     
-    // Link para artigo individual — usa URL completa + onclick para compatibilidade com WebViews (Instagram, etc.)
+    // Link para artigo individual — usa URL completa
     const baseUrl = window.location.origin || 'https://karinafranzin.com.br';
     const url = `${baseUrl}/blog/artigo.html?slug=${artigo.slug}`;
     cardLink.href = url;
-    cardLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.location.href = url;
-    });
     
     return clone;
 }
