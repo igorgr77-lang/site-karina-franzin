@@ -60,7 +60,6 @@ function criarCardArtigo(artigo) {
     const excerpt = clone.querySelector('.article-excerpt');
     const date = clone.querySelector('.article-date');
     const readingTime = clone.querySelector('.article-reading-time');
-    const cardLink = clone.querySelector('.article-card-link');
     const link = clone.querySelector('.article-link');
     
     // Imagem do card
@@ -90,9 +89,9 @@ function criarCardArtigo(artigo) {
     const tempoLeitura = calcularTempoLeitura(artigo.conteudo || '');
     readingTime.textContent = `⏱️ ${formatarTempoLeitura(tempoLeitura)}`;
     
-    // Link para artigo individual — href direto para máxima compatibilidade com WebViews
+    // Link para artigo individual
     const url = `https://karinafranzin.com.br/blog/artigo.html?slug=${artigo.slug}`;
-    cardLink.href = url;
+    link.href = url;
     
     return clone;
 }
