@@ -395,6 +395,12 @@ a {
     will-change: transform; /* Optimize for animations */
 }
 
+/* Quando a navbar está sempre escura (WebView/Instagram), empurra o hero para não cortar a foto */
+body.is-webview .hero {
+    padding-top: 64px;
+    background-position: center 64px;
+}
+
 .hero-overlay {
     position: absolute;
     top: 0;

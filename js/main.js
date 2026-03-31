@@ -14,8 +14,19 @@
         // ── Detecta WebView do Instagram/Facebook e força navbar escura ──
         var ua = navigator.userAgent || '';
         var isWebView = /Instagram|FBAN|FBAV|FB_IAB|LinkedInApp|Twitter|TikTok/i.test(ua);
-        if (isWebView) {
+
+        // Fallback: detecta também pelo referrer (quando abre no browser externo vindo do Instagram)
+        var ref = document.referrer || '';
+        var isFromInstagram = /instagram\.com|facebook\.com|fb\.com/i.test(ref);
+
+        // Fallback extra: parâmetros de URL comuns do Instagram (utm_source, igshid, etc.)
+        var urlParams = window.location.search || '';
+        var hasInstaParams = /igshid|utm_source=ig_web|utm_medium=copy_link/i.test(urlParams);
+
+        if (isWebView || isFromInstagram || hasInstaParams) {
             navbar.classList.add('navbar-webview');
+            navbar.classList.add('navbar-scrolled'); // força escuro sempre no WebView
+            document.body.classList.add('is-webview'); // ajusta hero para não cortar a foto
         }
 
         // ── Abrir / Fechar menu mobile ──
@@ -35,16 +46,29 @@
             document.body.style.overflow = '';
         }
 
+        // Suporte a click E touchstart para máxima compatibilidade com WebViews
+        var menuToggled = false;
+        toggle.addEventListener('touchstart', function (e) {
+            e.preventDefault(); // evita o delay de 300ms do WebView
+            menuToggled = true;
+            var isOpen = links.classList.contains('open');
+            isOpen ? closeMenu() : openMenu();
+        }, { passive: false });
         toggle.addEventListener('click', function () {
+            if (menuToggled) { menuToggled = false; return; } // evita duplo disparo
             var isOpen = links.classList.contains('open');
             isOpen ? closeMenu() : openMenu();
         });
 
-        if (overlay) overlay.addEventListener('click', closeMenu);
+        if (overlay) {
+            overlay.addEventListener('touchstart', function(e) { e.preventDefault(); closeMenu(); }, { passive: false });
+            overlay.addEventListener('click', closeMenu);
+        }
 
         // Fechar ao clicar em link interno
         links.querySelectorAll('a[href^="#"]').forEach(function (a) {
             a.addEventListener('click', closeMenu);
+            a.addEventListener('touchstart', function() { closeMenu(); }, { passive: true });
         });
 
         // ── Escurecer navbar ao rolar (nunca some) ──
@@ -54,6 +78,11 @@
         }
 
         function updateNavbar() {
+            // No WebView/Instagram, a navbar já está sempre escura — não remove a classe
+            if (isWebView || isFromInstagram || hasInstaParams) {
+                navbar.classList.add('navbar-scrolled');
+                return;
+            }
             if (getScrollY() > 40) {
                 navbar.classList.add('navbar-scrolled');
             } else {
@@ -300,9 +329,19 @@ document.head.appendChild(style);
                 var dot = document.createElement('button');
                 dot.className = 'indicator';
                 dot.setAttribute('data-page', i);
-                dot.onclick = (function(page) {
-                    return function() { goToPage(page); };
-                })(i);
+                // Suporte a touchstart para WebViews (Instagram/Facebook) — evita delay de 300ms
+                (function(page, btn) {
+                    var dotTouched = false;
+                    btn.addEventListener('touchstart', function(e) {
+                        e.stopPropagation(); // não deixa o track capturar
+                        dotTouched = true;
+                        goToPage(page);
+                    }, { passive: true });
+                    btn.addEventListener('click', function(e) {
+                        if (dotTouched) { dotTouched = false; return; } // evita duplo disparo
+                        goToPage(page);
+                    });
+                })(i, dot);
                 indicators.appendChild(dot);
             }
             console.log('[CAROUSEL] Criados ' + total + ' dots');
