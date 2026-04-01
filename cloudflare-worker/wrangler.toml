@@ -1,0 +1,16 @@
+name = "karina-franzin-seo"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# Rota: intercepta APENAS as páginas de blog do domínio
+[[routes]]
+pattern = "karinafranzin.com.br/blog*"
+zone_name = "karinafranzin.com.br"
+
+# Variáveis de ambiente (os valores secretos são configurados via: wrangler secret put)
+[vars]
+ENVIRONMENT = "production"
+
+# Não usar: os secrets SUPABASE_URL e SUPABASE_KEY são definidos via CLI:
+# wrangler secret put SUPABASE_URL
+# wrangler secret put SUPABASE_KEY
