@@ -923,6 +923,14 @@
         let dragMoved = false;
         let isTouchEvent = false; // evita duplo disparo touch+mouse no mobile
 
+        // Força animação mesmo em WebView (Instagram, etc.) que tem reduced-motion
+        // Aplica via style inline com !important usando cssText
+        const isWebView = document.body.classList.contains('is-webview') ||
+            /instagram|fban|fbav|twitter|linkedin/i.test(navigator.userAgent);
+        if (isWebView || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            track.style.cssText += `animation: parceiros-marquee ${DURATION}s linear 0s infinite !important;`;
+        }
+
         function getCurrentTranslate() {
             const matrix = window.getComputedStyle(track).transform;
             if (!matrix || matrix === 'none') return 0;
@@ -954,6 +962,16 @@
             track.style.transform = `translateX(${newX}px)`;
         }
 
+        function resumeAnimation(delay) {
+            track.style.transform = '';
+            track.classList.remove('is-dragging');
+            if (isWebView || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                track.style.cssText += `animation: parceiros-marquee ${DURATION}s linear ${delay}s infinite !important;`;
+            } else {
+                track.style.setProperty('--marquee-delay', `${delay}s`);
+            }
+        }
+
         function onEnd() {
             if (!isDragging) return;
             isDragging = false;
@@ -965,9 +983,7 @@
             if (x > 0) x -= halfWidth;
             const progress = Math.abs(x) / halfWidth;
             const delay = -(progress * DURATION);
-            track.style.setProperty('--marquee-delay', `${delay}s`);
-            track.style.transform = '';
-            track.classList.remove('is-dragging');
+            resumeAnimation(delay);
         }
 
         // Previne clique nos links apenas se houve drag real

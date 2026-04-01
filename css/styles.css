@@ -900,8 +900,11 @@ body.is-webview .hero {
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
+    flex-wrap: nowrap;
     animation: parceiros-marquee 50s linear var(--marquee-delay, 0s) infinite;
     will-change: transform;
+    /* Garante que nunca quebra linha mesmo sem animação */
+    min-width: max-content;
 }
 
 .parceiros-track:hover {
@@ -958,13 +961,6 @@ body.is-webview .hero {
     100% { transform: translateX(-50%); }
 }
 
-/* Respeita preferência de movimento reduzido - apenas para parceiros */
-@media (prefers-reduced-motion: reduce) {
-    .parceiros-track {
-        /* mantém animação mesmo com reduced motion para o marquee funcionar */
-        animation: parceiros-marquee 30s linear infinite !important;
-    }
-}
 
 @media (max-width: 768px) {
     .parceiros {
@@ -1137,15 +1133,15 @@ body.is-webview .hero {
 
 /* Performance optimizations */
 @media (prefers-reduced-motion: reduce) {
-    *:not(.parceiros-track) {
+    /* Exclui elementos do marquee de parceiros */
+    *:not(.parceiros-track):not(.parceiros-track *) {
         animation: none !important;
         transition: none !important;
     }
-    /* Marquee sempre ativo, mesmo com reduced-motion */
+    /* Marquee de parceiros sempre ativo */
     .parceiros-track {
         animation: parceiros-marquee 50s linear var(--marquee-delay, 0s) infinite !important;
     }
-    /* Durante o drag, pausa a animação */
     .parceiros-track.is-dragging {
         animation: none !important;
     }
