@@ -1,6 +1,6 @@
 # 🏃‍♀️ PROJETO SITE KARINA FRANZIN — CONTEXTO PARA IA
 
-> **Última atualização:** 04/03/2026  
+> **Última atualização:** 31/03/2026 (parte 4)  
 > **Branch ativa:** `develop`  
 > **Projeto online:** https://karinafranzin.com.br  
 > **Repositório:** https://github.com/igorgr77-lang/site-karina-franzin  
@@ -230,10 +230,11 @@ Pode me explicar como funciona?
 - **Solução:** Reescrito com lógica própria em `js/main.js`. Usa `translateX` para animação, controle de índice manual e listeners de touch para mobile.
 - **⚠️ CUIDADO:** Não alterar a estrutura HTML do carrossel sem revisar o JS correspondente em `main.js`. O carrossel é sensível a mudanças na estrutura de classes e atributos `data-`.
 
-### 3. Artigos dinâmicos não indexados pelo Google (PENDENTE 🔴)
+### 3. Artigos dinâmicos não indexados pelo Google (RESOLVIDO ✅)
 - **Problema:** Como o conteúdo dos artigos é carregado via JavaScript, o Google demora ou não consegue indexar o texto dos artigos (o bot vê a página antes do JS executar).
-- **Solução planejada:** Cloudflare Workers para pre-rendering para bots (SSR no edge).
-- **Status:** Ainda não implementado.
+- **Solução:** Cloudflare Worker `karina-franzin-seo` intercepta requisições de bots na rota `/blog*`, busca o artigo no Supabase e injeta os meta tags (título, descrição, OG tags, conteúdo) no HTML antes de entregar ao Google. Usuários normais recebem a página original sem interferência.
+- **Commit:** 31/03/2026 (parte 3)
+- **Teste confirmado:** `curl -A "Googlebot/2.1"` retornou `X-Rendered-By: Cloudflare-Worker` ✅
 
 ### 4. Background-attachment fixed (RESOLVIDO ✅)
 - **Problema:** `background-attachment: fixed` causa problemas de performance e visual no mobile.
@@ -246,6 +247,31 @@ Pode me explicar como funciona?
 ### 6. Cloudflare DNS travado (RESOLVIDO ✅)
 - **Problema:** GitHub Pages travado em "DNS Check in Progress".
 - **Solução:** Cloudflare SSL/TLS em modo "Full" (não Flexible, não Full Strict) + remover e re-adicionar o domínio no GitHub Pages.
+
+### 7. Navbar transparente ao acessar pelo Instagram (RESOLVIDO ✅)
+- **Problema:** Ao acessar o site pelo link do Instagram, a navbar ficava transparente no topo. Ao rolar, ficava preta — mas bloqueava o clique nos dots do carrossel.
+- **Causa:** O Instagram às vezes abre links num browser interno onde o `userAgent` **não contém "Instagram"**, então a detecção por `userAgent` falhava. Além disso, a função `updateNavbar()` só usava `isWebView` para manter a navbar escura, ignorando as outras condições.
+- **Solução em `js/main.js`:** Três camadas de detecção:
+  1. `userAgent` → detecção original (WebView nativo)
+  2. `document.referrer` → detecta quando vem de `instagram.com` / `facebook.com`
+  3. Parâmetros de URL → detecta `igshid`, `utm_source=ig_web`, `utm_medium=copy_link`
+  - A função `updateNavbar()` corrigida para usar as 3 condições
+  - Classe `is-webview` adicionada no `document.body` para uso no CSS
+- **Commit:** 31/03/2026
+
+### 8. Foto hero cortada no mobile quando navbar está preta (RESOLVIDO ✅)
+- **Problema:** Com a navbar sempre escura (WebView/Instagram), ela cobre o topo da foto da Karina na seção hero no mobile.
+- **Causa:** A navbar tem `position: fixed` e `height: 64px`. Quando fica preta ela se torna visível e sobrepõe o topo da hero, cortando a cabeça da Karina na foto.
+- **Solução:**
+  - `js/main.js` → adiciona `document.body.classList.add('is-webview')` quando detecta Instagram/WebView
+  - `css/styles.css` → regra `body.is-webview .hero { padding-top: 64px; background-position: center 64px; }` empurra o hero e ajusta a posição da foto
+- **Commit:** 31/03/2026
+
+### 9. Dots (bolinhas) do carrossel não clicáveis no WebView (RESOLVIDO ✅)
+- **Problema:** No WebView do Instagram, clicar nos dots de navegação do carrossel de feedbacks não funcionava.
+- **Causa:** O evento `click` tem delay de 300ms no WebView e pode ser engolido pelo sistema. Os dots só tinham `onclick`.
+- **Solução em `js/main.js`:** Adicionado `touchstart` com `e.stopPropagation()` em cada dot (evita o track capturar o evento) com proteção contra duplo disparo (flag `dotTouched`).
+- **Commit:** 31/03/2026
 
 ---
 
@@ -336,6 +362,7 @@ python -m http.server 8080
 
 | Data | Hash | Descrição |
 |------|------|-----------|
+| 31/03/2026 | —  | Fix navbar transparente no Instagram + foto hero cortada + dots carrossel no WebView |
 | 04/03/2026 | `91294a2` | Alteração da imagem do logo da navbar (logo.jpg → KarinaFranzin80.webp) |
 | 04/03/2026 | `3da34d2` | Resolvido bug FOUC da navbar em todos os dispositivos |
 | 04/03/2026 | `c675a36` | Página e card do evento Lord Lion (Dia da Mulher) |
@@ -347,7 +374,7 @@ python -m http.server 8080
 
 ---
 
-## ✅ ESTADO ATUAL DO PROJETO (04/03/2026)
+## ✅ ESTADO ATUAL DO PROJETO (31/03/2026)
 
 - ✅ Landing page completa e otimizada
 - ✅ Blog dinâmico via Supabase (listagem + artigos por slug)
@@ -355,11 +382,112 @@ python -m http.server 8080
 - ✅ Painel admin (CMS) funcional
 - ✅ Seção de Eventos com 2 eventos ativos
 - ✅ Navbar global em todas as páginas (com CSS crítico inline — sem FOUC)
+- ✅ Navbar sempre escura ao acessar pelo Instagram/WebView (3 camadas de detecção)
+- ✅ Foto hero não cortada no mobile quando navbar está preta
+- ✅ Dots do carrossel clicáveis no WebView do Instagram
 - ✅ Logo otimizado na navbar (WebP 80x80px)
 - ✅ Google Analytics 4 ativo
 - ✅ SEO com Schema Markup implementado
 - ✅ Domínio `karinafranzin.com.br` com Cloudflare + GitHub Pages
-- 🔴 **Pendente:** Indexação dos artigos dinâmicos pelo Google (aguarda Cloudflare Workers)
+- ✅ Cloudflare Worker `karina-franzin-seo` deployado — blog indexável pelo Google (SSR no edge)
+- ✅ Preview de links no WhatsApp/Telegram/redes sociais mostra título e imagem real do artigo
+- ✅ URL inspecionada no Google Search Console — aguardando indexação (1–7 dias)
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 31/03/2026 (parte 4) — FIX PREVIEW WHATSAPP ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivo:** Corrigir o preview de links dos artigos do blog ao compartilhar no WhatsApp (e outros apps sociais). Antes aparecia *"Carregando... | Blog Karina Franzin"* em vez do título real do artigo.
+
+**Causa raiz (dois problemas simultâneos):**
+1. A regex de remoção do `<title>` no Worker não cobria o atributo `id` → `<title id="pageTitle">Carregando...</title>` não era removido e permanecia no HTML
+2. Os secrets do Supabase no Worker (`SUPABASE_URL` e `SUPABASE_KEY`) estavam desatualizados → artigo retornava `not-found` e o Worker usava apenas o slug convertido como fallback do título
+
+**O que foi feito:**
+- ✅ Regex corrigida: `/<title>[^<]*<\/title>/gi` → `/<title[^>]*>[^<]*<\/title>/gi` (cobre atributos no `<title>`)
+- ✅ Secrets `SUPABASE_URL` e `SUPABASE_KEY` re-configurados via `wrangler secret put`
+- ✅ Lista de bots sociais expandida: adicionados `facebot`, `slackbot`, `discordbot`, `skype`, `iframely`, `embedly`, `outbrain`, `pinterest`
+- ✅ Busca no Supabase agora acontece **antes** de buscar o HTML (evita race condition/timeout)
+- ✅ Cache reativado: `Cache-Control: public, max-age=3600`
+- ✅ Header de debug adicionado: `X-Debug-UA` (primeiros 80 chars do User-Agent)
+- ✅ Deploy realizado — Version ID: `7692cad1-551a-4fd4-b4b3-f79a64935de7`
+
+**Teste confirmado (PowerShell):**
+```
+X-Debug-Article: found
+X-Debug-Slug: como-comecar-a-correr-do-zero
+<title>Como Começar a Correr do Zero: Guia Completo para Iniciantes</title>
+og:title: "Como Começar a Correr do Zero: Guia Completo para Iniciantes"
+og:image: (imagem real do artigo do Supabase)
+```
+
+### 📁 Arquivos Modificados:
+- `cloudflare-worker/src/index.js` — Fix regex title, lista bots expandida, busca Supabase antecipada, cache reativado
+
+### ⚠️ Observações:
+- O WhatsApp cacheia previews de links. Se testar com um link já enviado antes, pode aparecer o preview antigo. Testar com link novo ou aguardar expiração do cache.
+- Secrets do Supabase no Worker: sempre usar `wrangler secret put NOME` via CMD (não PowerShell)
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 31/03/2026 (parte 3) — CLOUDFLARE WORKER CONCLUÍDO ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivo:** Configurar Cloudflare Worker para que o Googlebot consiga indexar os artigos dinâmicos do blog (carregados via Supabase/JavaScript).
+
+**O que foi feito:**
+- ✅ Secrets configurados no Worker via CMD:
+  - `wrangler secret put SUPABASE_URL`
+  - `wrangler secret put SUPABASE_KEY`
+- ✅ Deploy realizado com `wrangler deploy`
+- ✅ Rota ativa: `karinafranzin.com.br/blog*` → Worker `karina-franzin-seo`
+- ✅ Teste confirmado: `curl -A "Googlebot/2.1"` retornou `X-Rendered-By: Cloudflare-Worker`
+- ✅ URL inspecionada no Google Search Console (aguardando indexação: 1–7 dias)
+
+**Como funciona o Worker:**
+- Usuários normais → passa direto para o GitHub Pages (sem interferência)
+- Googlebot/crawlers → busca o artigo no Supabase, injeta título, descrição, OG tags e conteúdo no HTML antes de entregar ao Google
+- Intercepta apenas rotas `/blog*` (o resto do site não é afetado)
+- Cache de 1 hora (`Cache-Control: public, max-age=3600`)
+
+**Version ID do deploy:** `9eded03c-ff5d-4021-b5a3-209dc9666270`
+
+### 📁 Arquivos do Worker:
+- `cloudflare-worker/src/index.js` — lógica principal do Worker
+- `cloudflare-worker/wrangler.toml` — configuração (nome, rota, zona)
+- `cloudflare-worker/package.json` — scripts de deploy
+
+### ⚠️ Observações para próximas sessões:
+- Para redeploy após editar o Worker: `cd cloudflare-worker && wrangler deploy` (usar CMD, não PowerShell — política de execução de scripts)
+- Para atualizar secrets: `wrangler secret put NOME_DO_SECRET` (também via CMD)
+- Verificar indexação no Google Search Console após 7–14 dias
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 31/03/2026
+
+### ✅ O que foi feito:
+
+**Fix: Navbar transparente ao acessar pelo Instagram:**
+- Problema reportado: navbar ficava transparente ao abrir o site pelo link do Instagram
+- Adicionadas 3 camadas de detecção no `js/main.js`: `userAgent`, `document.referrer` e parâmetros de URL (`igshid`, `utm_source=ig_web`, `utm_medium=copy_link`)
+- Função `updateNavbar()` corrigida para usar todas as 3 condições
+
+**Fix: Foto da Karina cortada no mobile:**
+- Com a navbar sempre escura no WebView, ela cobria o topo da foto hero
+- Solução: `document.body.classList.add('is-webview')` no JS + CSS `body.is-webview .hero { padding-top: 64px; background-position: center 64px; }`
+
+**Fix: Dots (bolinhas) do carrossel não clicáveis no WebView:**
+- Adicionado evento `touchstart` com `e.stopPropagation()` em cada dot
+- Proteção contra duplo disparo com flag `dotTouched`
+
+### 📁 Arquivos Modificados:
+- `js/main.js` — Detecção Instagram, updateNavbar, is-webview no body, touchstart nos dots
+- `css/styles.css` — Regra `body.is-webview .hero` adicionada
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` — Atualizado
 
 ---
 
@@ -378,7 +506,7 @@ python -m http.server 8080
 **Reestruturação do arquivo de contexto:**
 - Arquivo `PROJETO-SITE-KARINA-CONTEXTO-IA.md` reescrito do zero
 - Removidas informações obsoletas, histórico antigo e documentação duplicada
-- Arquivo enxuto (~200 linhas) com foco no estado atual do projeto
+- Arquivo enxuto com foco no estado atual do projeto
 
 ### 📁 Arquivos Modificados:
 - `blog/index.html` — Template do card atualizado
