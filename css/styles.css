@@ -859,6 +859,128 @@ body.is-webview .hero {
 /* ===========================
    Footer
    =========================== */
+/* ===========================
+   PARCEIROS
+=========================== */
+.parceiros {
+    background: #f8f8f8;
+    padding: 40px 0;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    overflow: hidden;
+    position: relative;
+}
+
+.parceiros-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.parceiros-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: #aaa;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.parceiros-track-wrapper {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    /* garante que eventos de mouse chegam ao wrapper */
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.parceiros-track {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: parceiros-marquee 50s linear var(--marquee-delay, 0s) infinite;
+    will-change: transform;
+}
+
+.parceiros-track:hover {
+    animation-play-state: paused;
+}
+
+.parceiros-track.is-dragging {
+    animation-play-state: paused;
+    cursor: grabbing !important;
+}
+
+.parceiros-track-wrapper {
+    cursor: grab;
+}
+
+.parceiros-track-wrapper:active {
+    cursor: grabbing;
+}
+
+.parceiro-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 170px;
+    height: 90px;
+    border-radius: 12px;
+    background: #fff;
+    padding: 14px 18px;
+    margin: 0 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+    filter: grayscale(60%) opacity(0.8);
+    vertical-align: middle;
+}
+
+.parceiro-item:hover {
+    filter: grayscale(0%) opacity(1);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+}
+
+.parceiro-item img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+@keyframes parceiros-marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Respeita preferência de movimento reduzido - apenas para parceiros */
+@media (prefers-reduced-motion: reduce) {
+    .parceiros-track {
+        /* mantém animação mesmo com reduced motion para o marquee funcionar */
+        animation: parceiros-marquee 30s linear infinite !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .parceiros {
+        padding: 32px 0;
+    }
+    .parceiro-item {
+        width: 130px;
+        height: 70px;
+        padding: 10px 12px;
+        margin: 0 16px;
+    }
+}
+
+/* ===========================
+   FOOTER
+=========================== */
 .footer {
     background: var(--primary-black);
     color: var(--white);
@@ -1015,9 +1137,17 @@ body.is-webview .hero {
 
 /* Performance optimizations */
 @media (prefers-reduced-motion: reduce) {
-    * {
+    *:not(.parceiros-track) {
         animation: none !important;
         transition: none !important;
+    }
+    /* Marquee sempre ativo, mesmo com reduced-motion */
+    .parceiros-track {
+        animation: parceiros-marquee 50s linear var(--marquee-delay, 0s) infinite !important;
+    }
+    /* Durante o drag, pausa a animação */
+    .parceiros-track.is-dragging {
+        animation: none !important;
     }
 }
 
