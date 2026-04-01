@@ -1,6 +1,6 @@
 # 🏃‍♀️ PROJETO SITE KARINA FRANZIN — CONTEXTO PARA IA
 
-> **Última atualização:** 31/03/2026 (parte 4)  
+> **Última atualização:** 01/04/2026  
 > **Branch ativa:** `develop`  
 > **Projeto online:** https://karinafranzin.com.br  
 > **Repositório:** https://github.com/igorgr77-lang/site-karina-franzin  
@@ -374,7 +374,7 @@ python -m http.server 8080
 
 ---
 
-## ✅ ESTADO ATUAL DO PROJETO (31/03/2026)
+## ✅ ESTADO ATUAL DO PROJETO (01/04/2026)
 
 - ✅ Landing page completa e otimizada
 - ✅ Blog dinâmico via Supabase (listagem + artigos por slug)
@@ -392,6 +392,54 @@ python -m http.server 8080
 - ✅ Cloudflare Worker `karina-franzin-seo` deployado — blog indexável pelo Google (SSR no edge)
 - ✅ Preview de links no WhatsApp/Telegram/redes sociais mostra título e imagem real do artigo
 - ✅ URL inspecionada no Google Search Console — aguardando indexação (1–7 dias)
+- ✅ Seção de Parceiros Oficiais com marquee infinito (9 parceiros) — acima do CTA final
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 01/04/2026 — SEÇÃO PARCEIROS OFICIAIS ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivo:** Criar seção de Parceiros Oficiais no site principal com marquee infinito, drag para arrastar e links para cada parceiro.
+
+**O que foi feito:**
+- ✅ Criada seção `#parceiros` no `index.html` — posicionada acima do CTA "Pronto para transformar sua corrida?"
+- ✅ Marquee infinito CSS puro (dois grupos de 9 logos = loop contínuo)
+- ✅ Logos em cards brancos com sombra suave, fundo claro `#f8f8f8`
+- ✅ Efeito fade nas bordas (mask-image)
+- ✅ Logos em escala de cinza (60%) → coloridas no hover
+- ✅ Drag para arrastar (mouse e touch) com retomada suave da animação
+- ✅ Clique simples abre link do parceiro em nova aba
+- ✅ Fix duplo clique no mobile (touch + mouse simulado) com flag `isTouchEvent`
+- ✅ Fix logos empilhadas no Instagram/WebView — forçar animação via `cssText` com `!important`
+- ✅ Fix conflito `prefers-reduced-motion` — removido bloco duplicado, seletor expandido para `*:not(.parceiros-track):not(.parceiros-track *)`
+- ✅ Variável CSS `--marquee-delay` para retomar animação no ponto correto após drag
+- ✅ Responsivo: desktop 170×90px, mobile 130×70px
+
+**9 Parceiros (em ordem):**
+1. Lord Lion Cervejaria → https://www.instagram.com/lordlioncervejaria/
+2. Jorrovi Calçados → https://www.instagram.com/jorrovicalcadosoficial/
+3. Studio Ativo → https://www.instagram.com/studioativo/
+4. Equilíbrio Esportes → https://equilibrio.esp.br/
+5. Essencial Votu → https://loja.essencialvotu.com.br/
+6. Thallys Freitas Fisio → https://www.instagram.com/fisiothallysfreitas/
+7. Renan Rodrigues Nutri → https://www.instagram.com/renanrodriguesnutri/
+8. Protege Cuidados → https://www.instagram.com/protegecuidadosoficial/
+9. Pizzaria Veneza → https://pizzariavenezavotuporanga.saipos.com/home
+
+**Logos em:** `assets/img/parceiros/` (PNG, WebP, JPEG — fundo claro cobre todos os formatos)
+
+**Velocidade do marquee:** 50s (variável `DURATION = 50` no JS e `50s` no CSS)
+
+### 📁 Arquivos Modificados:
+- `index.html` — seção parceiros + script de drag
+- `css/styles.css` — estilos da seção parceiros + fix prefers-reduced-motion
+- `assets/img/parceiros/` — 9 logos dos parceiros
+
+### ⚠️ Observações para próximas sessões:
+- Para adicionar novo parceiro: adicionar dois blocos `<a class="parceiro-item">` no HTML (um no grupo 1 e um no grupo 2 — cópia)
+- Para mudar velocidade: alterar `50s` no CSS (2 lugares: `.parceiros-track` e `@media prefers-reduced-motion`) e `DURATION = 50` no JS
+- O Instagram/WebView força animação via `cssText` com `!important` — não remover essa lógica
 
 ---
 
