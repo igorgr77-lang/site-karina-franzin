@@ -289,6 +289,7 @@ Pode me explicar como funciona?
 |--------|---------|------|--------|
 | 2ª Cãominhada Studio Ativo | `eventos/cao-minhada-2026/` | 2026 | ✅ Online |
 | A Noite É Delas! (Lord Lion) | `eventos/dia-da-mulher-lord-lion/` | 08/03/2026 | ✅ Online |
+| Treinao Lord Lion e Karina Franzin | `eventos/treinao-lord-lion/` | 11/04/2026 | ✅ Online |
 
 ### Parceiro — Lord Lion Cervejaria
 
@@ -374,7 +375,40 @@ python -m http.server 8080
 
 ---
 
-## ✅ ESTADO ATUAL DO PROJETO (01/04/2026)
+## 📅 SESSÃO DE DESENVOLVIMENTO — 02/04/2026 — EVENTO TREINÃO LORD LION ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivo:** Criar página do evento "Treinão Lord Lion & Karina Franzin" e adicioná-lo à listagem de eventos do site.
+
+**O que foi feito:**
+- ✅ Criada pasta `eventos/treinao-lord-lion/`
+- ✅ Criado `eventos/treinao-lord-lion/index.html` — página completa do evento, adaptada da versão standalone em `C:\Users\oigor\PROJETOS\TreinaoLordeKarina\index.html`
+- ✅ Navbar e rodapé padrão do site integrados (com CSS crítico inline anti-FOUC)
+- ✅ Logos usando `../../assets/img/logoKarinaFranzin.png` e `../../assets/img/logoLordLion.png` (já existentes)
+- ✅ Card do evento adicionado em `eventos/index.html` — aparece como 1º card em "Próximos Eventos"
+
+**Detalhes do evento:**
+- **Data:** 11 de Abril de 2026
+- **Local:** Em frente à Lord Lion Cervejaria — Votuporanga-SP
+- **Concentração:** 17h30 | **Largada:** 18h00
+- **Percurso:** 5km
+- **After:** Pagode A+ na Lord Lion (entrada free + mesa gratuita para participantes)
+- **Contato (reserva de mesa):** (17) 99723-6693
+
+**Tecnologias usadas na página do evento:**
+- Tailwind CSS (CDN)
+- Lucide Icons
+- Fontes: Montserrat + Oswald + Inter
+- Mesmo padrão do evento Dia da Mulher Lord Lion
+
+### 📁 Arquivos criados/modificados:
+- `eventos/treinao-lord-lion/index.html` — página do evento (NOVO)
+- `eventos/index.html` — card do Treinão adicionado (1º na seção "Próximos Eventos")
+
+---
+
+## ✅ ESTADO ATUAL DO PROJETO (02/04/2026)
 
 - ✅ Landing page completa e otimizada
 - ✅ Blog dinâmico via Supabase (listagem + artigos por slug)
@@ -393,6 +427,7 @@ python -m http.server 8080
 - ✅ Preview de links no WhatsApp/Telegram/redes sociais mostra título e imagem real do artigo
 - ✅ URL inspecionada no Google Search Console — aguardando indexação (1–7 dias)
 - ✅ Seção de Parceiros Oficiais com marquee infinito (9 parceiros) — acima do CTA final
+- ✅ Evento "Treinão Lord Lion & Karina Franzin" — 11/04/2026 — página criada e card na listagem
 
 ---
 
@@ -400,46 +435,46 @@ python -m http.server 8080
 
 ### ✅ Status: CONCLUÍDO
 
-**Objetivo:** Criar seção de Parceiros Oficiais no site principal com marquee infinito, drag para arrastar e links para cada parceiro.
+**Objetivo:** Criar seção de Parceiros Oficiais no site principal com grid fixa de logos e links para cada parceiro.
+
+**Decisões de arquitetura:**
+- Tentativa inicial com marquee infinito CSS + drag JS foi abandonada por instabilidade no Instagram/WebView
+- Solução final: **grid fixa com flexbox** — zero JavaScript, 100% estável em qualquer ambiente
 
 **O que foi feito:**
 - ✅ Criada seção `#parceiros` no `index.html` — posicionada acima do CTA "Pronto para transformar sua corrida?"
-- ✅ Marquee infinito CSS puro (dois grupos de 9 logos = loop contínuo)
-- ✅ Logos em cards brancos com sombra suave, fundo claro `#f8f8f8`
-- ✅ Efeito fade nas bordas (mask-image)
-- ✅ Logos em escala de cinza (60%) → coloridas no hover
-- ✅ Drag para arrastar (mouse e touch) com retomada suave da animação
-- ✅ Clique simples abre link do parceiro em nova aba
-- ✅ Fix duplo clique no mobile (touch + mouse simulado) com flag `isTouchEvent`
-- ✅ Fix logos empilhadas no Instagram/WebView — forçar animação via `cssText` com `!important`
-- ✅ Fix conflito `prefers-reduced-motion` — removido bloco duplicado, seletor expandido para `*:not(.parceiros-track):not(.parceiros-track *)`
-- ✅ Variável CSS `--marquee-delay` para retomar animação no ponto correto após drag
-- ✅ Responsivo: desktop 170×90px, mobile 130×70px
+- ✅ Grid flexbox com 9 logos — `flex-wrap: wrap` organiza automaticamente em linhas
+- ✅ Logos em cards brancos (200×110px desktop, 140×80px mobile, 120×68px small mobile)
+- ✅ Fundo claro `#f8f8f8` — funciona com logos de qualquer formato (PNG, WebP, JPEG)
+- ✅ Logos em escala de cinza (50%) → coloridas no hover com transição suave
+- ✅ CSS crítico inline no HTML — garante layout correto mesmo com cache antigo do CSS externo (mesmo padrão da navbar)
+- ✅ `display: flex !important` e dimensões com `!important` — previne sobrescrita pelo WebView do Instagram
+- ✅ Responsivo para mobile e telas pequenas
+- ✅ Cada logo com link abrindo em nova aba
 
 **9 Parceiros (em ordem):**
-1. Lord Lion Cervejaria → https://www.instagram.com/lordlioncervejaria/
-2. Jorrovi Calçados → https://www.instagram.com/jorrovicalcadosoficial/
-3. Studio Ativo → https://www.instagram.com/studioativo/
-4. Equilíbrio Esportes → https://equilibrio.esp.br/
-5. Essencial Votu → https://loja.essencialvotu.com.br/
-6. Thallys Freitas Fisio → https://www.instagram.com/fisiothallysfreitas/
-7. Renan Rodrigues Nutri → https://www.instagram.com/renanrodriguesnutri/
-8. Protege Cuidados → https://www.instagram.com/protegecuidadosoficial/
-9. Pizzaria Veneza → https://pizzariavenezavotuporanga.saipos.com/home
+1. Lord Lion Cervejaria → https://www.instagram.com/lordlioncervejaria/ (1-LordLion.png)
+2. Jorrovi Calçados → https://www.instagram.com/jorrovicalcadosoficial/ (2-JORROVICALCADOS.webp)
+3. Studio Ativo → https://www.instagram.com/studioativo/ (3-studio ativo.png)
+4. Equilíbrio Esportes → https://equilibrio.esp.br/ (4-EQUILIBRIO ESPORTES.png)
+5. Essencial Votu → https://loja.essencialvotu.com.br/ (5-ESSENCIAL VOTU.png)
+6. Thallys Freitas Fisio → https://www.instagram.com/fisiothallysfreitas/ (6-THALLYS FREITAS.png)
+7. Renan Rodrigues Nutri → https://www.instagram.com/renanrodriguesnutri/ (7-RENAN RODRIGUES.jpeg)
+8. Protege Cuidados → https://www.instagram.com/protegecuidadosoficial/ (8-Protege Cuidados.png)
+9. Pizzaria Veneza → https://pizzariavenezavotuporanga.saipos.com/home (9-Pizzaria Veneza.png)
 
-**Logos em:** `assets/img/parceiros/` (PNG, WebP, JPEG — fundo claro cobre todos os formatos)
-
-**Velocidade do marquee:** 50s (variável `DURATION = 50` no JS e `50s` no CSS)
+**Logos em:** `assets/img/parceiros/`
 
 ### 📁 Arquivos Modificados:
-- `index.html` — seção parceiros + script de drag
-- `css/styles.css` — estilos da seção parceiros + fix prefers-reduced-motion
+- `index.html` — seção parceiros com CSS crítico inline
+- `css/styles.css` — estilos da seção parceiros
 - `assets/img/parceiros/` — 9 logos dos parceiros
 
 ### ⚠️ Observações para próximas sessões:
-- Para adicionar novo parceiro: adicionar dois blocos `<a class="parceiro-item">` no HTML (um no grupo 1 e um no grupo 2 — cópia)
-- Para mudar velocidade: alterar `50s` no CSS (2 lugares: `.parceiros-track` e `@media prefers-reduced-motion`) e `DURATION = 50` no JS
-- O Instagram/WebView força animação via `cssText` com `!important` — não remover essa lógica
+- Para adicionar novo parceiro: adicionar um bloco `<a class="parceiro-item">` dentro de `.parceiros-grid` no HTML e atualizar o CSS inline no `<style>` acima da seção
+- O CSS crítico inline está logo antes da `<section class="parceiros">` — SEMPRE manter em sincronia com o `styles.css`
+- Logos com espaço no nome (ex: `3-studio ativo.png`) funcionam normalmente no HTML
+- O `!important` no flexbox é necessário para o WebView do Instagram não sobrescrever o layout
 
 ---
 
