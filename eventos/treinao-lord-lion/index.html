@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Treinão Lord Lion & Karina Franzin | 11 de Abril 2026 — Votuporanga</title>
-    <meta name="description" content="Treino aberto de 5km seguido de Pagode A+ na Lord Lion Cervejaria. Evento gratuito em Votuporanga-SP no dia 11 de abril de 2026. É só chegar e correr!">
+    <meta name="description"
+        content="Treino aberto de 5km seguido de Pagode A+ na Lord Lion Cervejaria. Evento gratuito em Votuporanga-SP no dia 11 de abril de 2026. É só chegar e correr!">
     <link rel="canonical" href="https://karinafranzin.com.br/eventos/treinao-lord-lion/">
 
     <!-- Open Graph / WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://karinafranzin.com.br/eventos/treinao-lord-lion/">
     <meta property="og:title" content="Treinão Lord Lion & Karina Franzin — 11 de Abril 2026">
-    <meta property="og:description" content="Treino aberto de 5km + Pagode A+ na Lord Lion. Gratuito! Concentração 17h30 • Largada 18h00 • Votuporanga-SP">
-    <meta property="og:image" content="https://karinafranzin.com.br/assets/img/lordcard.webp">
+    <meta property="og:description"
+        content="Treino aberto de 5km + Pagode A+ na Lord Lion. Gratuito! Concentração 17h30 • Largada 18h00 • Votuporanga-SP">
+    <meta property="og:image" content="https://karinafranzin.com.br/assets/img/treinaolordkarina/CapaCard.png">
     <meta name="twitter:card" content="summary_large_image">
 
     <!-- Tailwind CSS -->
@@ -21,7 +24,9 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Oswald:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Oswald:wght@500;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -33,15 +38,17 @@
     <style>
         .navbar {
             position: fixed;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             z-index: 1000;
             background: rgba(20, 20, 20, 0.96);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(255, 107, 53, 0.2);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
         }
+
         .navbar-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -52,6 +59,7 @@
             justify-content: space-between;
             gap: 16px;
         }
+
         .navbar-brand {
             display: flex;
             align-items: center;
@@ -59,34 +67,41 @@
             text-decoration: none;
             flex-shrink: 0;
         }
+
         .navbar-logo {
-            width: 38px; height: 38px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #ff6b35;
         }
+
         .navbar-name {
             font-size: 1rem;
             font-weight: 700;
             color: #fff;
         }
+
         .navbar-links {
             display: flex;
             align-items: center;
             gap: 2px;
             list-style: none;
-            margin: 0; padding: 0;
+            margin: 0;
+            padding: 0;
         }
+
         .nav-link {
             display: inline-block;
             padding: 8px 13px;
-            color: rgba(255,255,255,0.85);
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
             font-size: 0.88rem;
             font-weight: 500;
             border-radius: 6px;
             white-space: nowrap;
         }
+
         .nav-cta {
             background: #ff6b35;
             color: #fff !important;
@@ -95,14 +110,22 @@
             padding: 9px 15px !important;
             margin-left: 6px;
         }
+
         .nav-portal {
-            border: 1px solid rgba(255,255,255,0.35);
+            border: 1px solid rgba(255, 255, 255, 0.35);
             border-radius: 8px;
             padding: 8px 13px;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
         }
-        .navbar-toggle { display: none; }
-        .navbar-overlay { display: none; }
+
+        .navbar-toggle {
+            display: none;
+        }
+
+        .navbar-overlay {
+            display: none;
+        }
+
         @media (max-width: 860px) {
             .navbar-toggle {
                 display: flex;
@@ -110,21 +133,26 @@
                 justify-content: center;
                 align-items: center;
                 gap: 5px;
-                width: 40px; height: 40px;
+                width: 40px;
+                height: 40px;
                 background: none;
                 border: none;
                 cursor: pointer;
                 flex-shrink: 0;
             }
+
             .hamburger-line {
                 display: block;
-                width: 24px; height: 2px;
+                width: 24px;
+                height: 2px;
                 background: #fff;
                 border-radius: 2px;
             }
+
             .navbar-links {
                 position: fixed;
-                top: 0; right: -280px;
+                top: 0;
+                right: -280px;
                 width: 270px;
                 height: 100dvh;
                 background: #141414;
@@ -135,7 +163,10 @@
                 z-index: 1001;
                 transition: right 0.3s ease;
             }
-            .navbar-links.open { right: 0; }
+
+            .navbar-links.open {
+                right: 0;
+            }
         }
     </style>
 
@@ -163,17 +194,22 @@
         :root {
             --primary-orange: #FF6B00;
         }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: #0f0f0f;
             color: white;
             overflow-x: hidden;
-            padding-top: 64px; /* Compensa a navbar fixa */
+            padding-top: 64px;
+            /* Compensa a navbar fixa */
         }
-        .font-oswald { font-family: 'Oswald', sans-serif; }
+
+        .font-oswald {
+            font-family: 'Oswald', sans-serif;
+        }
 
         .hero-gradient {
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&q=80&w=1920');
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&q=80&w=1920');
             background-size: cover;
             background-position: center;
         }
@@ -192,7 +228,7 @@
         }
 
         .parallax-text {
-            -webkit-text-stroke: 1px rgba(255,255,255,0.05);
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
             color: transparent;
             font-size: 15vw;
             line-height: 0.8;
@@ -207,13 +243,23 @@
         .pulse-btn {
             animation: pulse-shadow 2s infinite;
         }
+
         @keyframes pulse-shadow {
-            0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-            70%  { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- ===== NAVBAR ===== -->
@@ -230,10 +276,8 @@
                 <li><a href="/blog/" class="nav-link">Blog</a></li>
                 <li><a href="/eventos/" class="nav-link active">Eventos</a></li>
                 <li>
-                    <a href="https://karinafranzin.treinus.com.br/"
-                       class="nav-link nav-portal"
-                       target="_blank"
-                       rel="noopener noreferrer">
+                    <a href="https://karinafranzin.treinus.com.br/" class="nav-link nav-portal" target="_blank"
+                        rel="noopener noreferrer">
                         Portal do Atleta
                     </a>
                 </li>
@@ -241,7 +285,8 @@
                     <a href="/#contato" class="nav-link nav-cta">Começar Agora</a>
                 </li>
             </ul>
-            <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbarLinks">
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menu" aria-expanded="false"
+                aria-controls="navbarLinks">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
@@ -251,29 +296,32 @@
     <div class="navbar-overlay" id="navbarOverlay"></div>
 
     <!-- ===== HERO ===== -->
-    <section class="relative flex items-center justify-center hero-gradient px-4 overflow-hidden text-center" style="min-height: calc(100vh - 64px);">
-        <div class="absolute top-10 flex items-center justify-center w-full gap-8 logo-container px-6">
-            <img src="../../assets/img/logoKarinaFranzin.png" alt="Karina Franzin" class="brightness-0 invert opacity-90">
-            <div class="h-12 w-px bg-white opacity-20 hidden md:block"></div>
-            <img src="../../assets/img/logoLordLion.png" alt="Lord Lion Cervejaria" class="opacity-90">
-        </div>
-
-        <div class="z-10 max-w-5xl">
-            <h2 class="text-orange-500 font-bold tracking-[0.3em] mb-4 uppercase text-sm md:text-base">11 de Abril • 2026 • Votuporanga - SP</h2>
+    <section class="relative flex items-center justify-center hero-gradient px-4 py-20 overflow-hidden text-center"
+        style="min-height: calc(100vh - 64px);">
+        <div class="z-10 max-w-5xl w-full">
+            <div class="flex items-center justify-center gap-6 md:gap-8 logo-container mb-12">
+                <img src="../../assets/img/logoLordLion.png" alt="Lord Lion Cervejaria"
+                    class="opacity-90 h-16 md:h-20 object-contain">
+                <div class="h-10 md:h-12 w-px bg-white opacity-20 hidden md:block"></div>
+                <img src="../../assets/img/logoKarinaFranzin.png" alt="Karina Franzin"
+                    class="opacity-90 h-16 md:h-20 object-contain">
+            </div>
+            <h2 class="text-orange-500 font-bold tracking-[0.3em] mb-4 uppercase text-sm md:text-base">11 de Abril •
+                2026 • Votuporanga - SP</h2>
 
             <h1 class="text-4xl md:text-7xl font-oswald font-black leading-tight mb-6 italic uppercase">
                 TREINÃO <br>
-                <span class="text-orange-500">Lord Lion</span> <span class="text-white">&</span> <span class="text-orange-500">Karina Franzin</span>
+                <span class="text-orange-500">Lord Lion</span> <span class="text-white">&</span> <span
+                    class="text-orange-500">Karina Franzin</span>
             </h1>
 
             <p class="text-xl md:text-2xl mb-10 opacity-80 max-w-2xl mx-auto">
                 Onde o asfalto encontra a celebração. Um treino aberto de 5km seguido pelo Pagode A+ na Lord Lion. <br>
-                <span class="text-orange-500 font-bold uppercase tracking-widest text-sm mt-4 block">Evento Gratuito • É só chegar e correr</span>
+                <span class="text-orange-500 font-bold uppercase tracking-widest text-sm mt-4 block">Evento Gratuito • É
+                    só chegar e correr</span>
             </p>
 
-            <a href="#contato" class="inline-flex items-center gap-3 bg-orange-500 hover:bg-orange-600 text-white font-black py-4 px-10 rounded-2xl text-lg transition-all shadow-xl shadow-orange-900/40 uppercase tracking-tight">
-                Garantir minha mesa →
-            </a>
+
         </div>
 
         <div class="absolute bottom-10 animate-bounce opacity-30">
@@ -288,27 +336,35 @@
             <div class="grid md:grid-cols-3 gap-8">
 
                 <div class="card-glass p-10 rounded-3xl text-center">
-                    <div class="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-3">
+                    <div
+                        class="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-3">
                         <i data-lucide="map-pin" class="text-orange-500" size="32"></i>
                     </div>
                     <h3 class="text-2xl font-oswald font-bold mb-4 uppercase tracking-wider">Ponto de Encontro</h3>
-                    <p class="opacity-70 leading-relaxed text-lg">Em frente à Lord Lion<br><span class="text-sm text-orange-500/80 font-bold uppercase tracking-widest">Votuporanga - SP</span></p>
+                    <p class="opacity-70 leading-relaxed text-lg">Em frente à Lord Lion<br><span
+                            class="text-sm text-orange-500/80 font-bold uppercase tracking-widest">Votuporanga -
+                            SP</span></p>
                 </div>
 
                 <div class="card-glass p-10 rounded-3xl text-center border-orange-500/40 bg-orange-500/5">
-                    <div class="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6 -rotate-3">
+                    <div
+                        class="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6 -rotate-3">
                         <i data-lucide="clock" class="text-orange-500" size="32"></i>
                     </div>
                     <h3 class="text-2xl font-oswald font-bold mb-4 uppercase tracking-wider">Cronograma</h3>
-                    <p class="opacity-70 leading-relaxed text-lg">Concentração: 17h30<br><strong>Largada: 18h00</strong></p>
+                    <p class="opacity-70 leading-relaxed text-lg">Concentração: 17h30<br><strong>Largada: 18h00</strong>
+                    </p>
                 </div>
 
                 <div class="card-glass p-10 rounded-3xl text-center">
-                    <div class="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-6">
+                    <div
+                        class="w-16 h-16 bg-orange-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-6">
                         <i data-lucide="zap" class="text-orange-500" size="32"></i>
                     </div>
                     <h3 class="text-2xl font-oswald font-bold mb-4 uppercase tracking-wider">O Percurso</h3>
-                    <p class="opacity-70 leading-relaxed text-lg">5km de pura energia</p>
+                    <p class="opacity-70 leading-relaxed text-lg">5km de pura energia<br><span
+                            class="text-sm text-orange-500/80 font-bold uppercase tracking-widest">da Lord Ultra
+                            Run</span></p>
                 </div>
 
             </div>
@@ -320,20 +376,25 @@
         <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center gap-16">
             <div class="md:w-1/2 relative">
                 <div class="absolute -top-10 -left-10 w-32 h-32 bg-orange-500 rounded-full blur-3xl opacity-20"></div>
-                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=800" alt="Show Pagode" class="rounded-3xl shadow-2xl relative z-10">
-                <div class="absolute -bottom-6 -right-6 bg-orange-500 text-white p-6 rounded-2xl z-20 font-oswald font-bold text-center shadow-xl">
+                <img src="../../assets/img/treinaolordkarina/GrupoA.png" alt="Grupo A+"
+                    class="rounded-3xl shadow-2xl relative z-10">
+                <div
+                    class="absolute -bottom-6 -right-6 bg-orange-500 text-white p-6 rounded-2xl z-20 font-oswald font-bold text-center shadow-xl">
                     <span class="text-3xl uppercase tracking-tighter">Pagode A+</span><br>
                     <span class="text-sm opacity-80 uppercase tracking-widest">Show ao Vivo</span>
                 </div>
             </div>
             <div class="md:w-1/2">
-                <div class="inline-block px-4 py-1 bg-green-100 text-green-700 rounded-full text-xs font-black mb-6 uppercase tracking-widest">Vantagem Exclusiva</div>
+                <div
+                    class="inline-block px-4 py-1 bg-green-100 text-green-700 rounded-full text-xs font-black mb-6 uppercase tracking-widest">
+                    Vantagem Exclusiva</div>
                 <h2 class="text-5xl md:text-6xl font-oswald font-bold mb-8 leading-none uppercase">
                     CORREU? <br>
                     <span class="text-orange-600">MESA GARANTIDA.</span>
                 </h2>
                 <p class="text-xl opacity-80 mb-8 leading-relaxed">
-                    Participantes do <strong>Treinão</strong> não pagam entrada na Lord Lion para o Pagode A+ e ainda podem garantir uma mesa gratuita para a resenha pós-treino.
+                    Participantes do <strong>Treinão</strong> não pagam entrada na Lord Lion para o Pagode A+ e ainda
+                    podem garantir uma mesa gratuita para a resenha pós-treino.
                 </p>
                 <div class="space-y-6">
                     <div class="flex items-start gap-4">
@@ -361,7 +422,9 @@
 
     <!-- ===== CTA — GARANTIR MESA ===== -->
     <section id="contato" class="py-32 px-4 bg-orange-600 relative overflow-hidden">
-        <div class="parallax-text absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-0 font-black opacity-20 text-white">MESA FREE</div>
+        <div
+            class="parallax-text absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-0 font-black opacity-20 text-white">
+            MESA FREE</div>
 
         <div class="max-w-3xl mx-auto relative z-10 text-center">
             <div class="bg-black p-10 md:p-16 rounded-[3rem] shadow-2xl">
@@ -370,10 +433,13 @@
                 </div>
                 <h2 class="text-4xl md:text-5xl font-oswald font-black uppercase mb-6">Garanta sua Mesa</h2>
                 <p class="text-xl opacity-70 mb-10 leading-relaxed">
-                    Vai participar do Treinão e quer garantir seu lugar para o Pagode A+? Entre em contato agora pelo WhatsApp.
+                    Vai participar do Treinão e quer garantir seu lugar para o Pagode A+? Entre em contato agora pelo
+                    WhatsApp.
                 </p>
 
-                <a href="https://wa.me/5517997236693?text=Ol%C3%A1!%20Vou%20participar%20do%20Trein%C3%A3o%20Lord%20Lion%20e%20Karina%20Franzin%20e%20quero%20reservar%20minha%20mesa%20gratuita%20para%20o%20p%C3%B3s-treino." target="_blank" class="pulse-btn w-full md:w-auto inline-flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-black py-6 px-12 rounded-2xl text-xl transition-all shadow-xl shadow-black/40 uppercase tracking-tighter">
+                <a href="https://wa.me/5517997236693?text=Ol%C3%A1!%20Vou%20participar%20do%20Trein%C3%A3o%20Lord%20Lion%20e%20Karina%20Franzin%20e%20quero%20reservar%20minha%20mesa%20gratuita%20para%20o%20p%C3%B3s-treino."
+                    target="_blank"
+                    class="pulse-btn w-full md:w-auto inline-flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-black py-6 px-12 rounded-2xl text-xl transition-all shadow-xl shadow-black/40 uppercase tracking-tighter">
                     RESERVAR VIA WHATSAPP <i data-lucide="send"></i>
                 </a>
 
@@ -395,63 +461,67 @@
 
             <!-- Logos -->
             <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-10">
-                <a href="https://www.instagram.com/lordlioncervejaria/" target="_blank" class="opacity-80 hover:opacity-100 transition-opacity flex flex-col items-center gap-2">
+                <a href="https://www.instagram.com/lordlioncervejaria/" target="_blank"
+                    class="opacity-80 hover:opacity-100 transition-opacity flex flex-col items-center gap-2">
                     <img src="../../assets/img/logoLordLion.png" alt="Lord Lion Cervejaria" class="h-20 w-auto">
                     <span class="text-xs text-gray-500 font-medium">@lordlioncervejaria</span>
                 </a>
-                <a href="https://www.instagram.com/karina_franzin/" target="_blank" class="opacity-80 hover:opacity-100 transition-opacity flex flex-col items-center gap-2">
-                    <img src="../../assets/img/logoKarinaFranzin.png" alt="Karina Franzin Treinadora de Corrida" class="h-20 w-auto">
+                <a href="https://www.instagram.com/karina_franzin/" target="_blank"
+                    class="opacity-80 hover:opacity-100 transition-opacity flex flex-col items-center gap-2">
+                    <img src="../../assets/img/logoKarinaFranzin.png" alt="Karina Franzin Treinadora de Corrida"
+                        class="h-20 w-auto">
                     <span class="text-xs text-gray-500 font-medium">@karina_franzin</span>
                 </a>
             </div>
 
-            <p class="opacity-30 text-xs tracking-[0.2em] uppercase">&copy; 2026 Treinão Lord Lion & Karina Franzin • Votuporanga - SP</p>
+            <p class="opacity-30 text-xs tracking-[0.2em] uppercase">&copy; 2026 Treinão Lord Lion & Karina Franzin •
+                Votuporanga - SP</p>
         </div>
     </footer>
 
     <!-- ===== NAVBAR JS ===== -->
     <script>
-    (function () {
-        function initNavbar() {
-            var navbar  = document.getElementById('navbar');
-            var toggle  = document.getElementById('navbarToggle');
-            var links   = document.getElementById('navbarLinks');
-            var overlay = document.getElementById('navbarOverlay');
-            if (!navbar || !toggle || !links) return;
+            (function () {
+                function initNavbar() {
+                    var navbar = document.getElementById('navbar');
+                    var toggle = document.getElementById('navbarToggle');
+                    var links = document.getElementById('navbarLinks');
+                    var overlay = document.getElementById('navbarOverlay');
+                    if (!navbar || !toggle || !links) return;
 
-            // Detecta WebView do Instagram/Facebook e força navbar escura
-            var ua = navigator.userAgent || '';
-            var isWebView = /Instagram|FBAN|FBAV|FB_IAB|LinkedInApp|Twitter|TikTok/i.test(ua);
-            if (isWebView) {
-                navbar.classList.add('navbar-webview');
-            }
+                    // Detecta WebView do Instagram/Facebook e força navbar escura
+                    var ua = navigator.userAgent || '';
+                    var isWebView = /Instagram|FBAN|FBAV|FB_IAB|LinkedInApp|Twitter|TikTok/i.test(ua);
+                    if (isWebView) {
+                        navbar.classList.add('navbar-webview');
+                    }
 
-            function openMenu() {
-                links.classList.add('open');
-                toggle.classList.add('open');
-                if (overlay) overlay.classList.add('open');
-                toggle.setAttribute('aria-expanded', 'true');
-                document.body.style.overflow = 'hidden';
-            }
-            function closeMenu() {
-                links.classList.remove('open');
-                toggle.classList.remove('open');
-                if (overlay) overlay.classList.remove('open');
-                toggle.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            }
-            toggle.addEventListener('click', function () {
-                links.classList.contains('open') ? closeMenu() : openMenu();
-            });
-            if (overlay) overlay.addEventListener('click', closeMenu);
-        }
+                    function openMenu() {
+                        links.classList.add('open');
+                        toggle.classList.add('open');
+                        if (overlay) overlay.classList.add('open');
+                        toggle.setAttribute('aria-expanded', 'true');
+                        document.body.style.overflow = 'hidden';
+                    }
+                    function closeMenu() {
+                        links.classList.remove('open');
+                        toggle.classList.remove('open');
+                        if (overlay) overlay.classList.remove('open');
+                        toggle.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = '';
+                    }
+                    toggle.addEventListener('click', function () {
+                        links.classList.contains('open') ? closeMenu() : openMenu();
+                    });
+                    if (overlay) overlay.addEventListener('click', closeMenu);
+                }
 
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initNavbar);
-        } else {
-            initNavbar();
-        }
-    })();
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initNavbar);
+                } else {
+                    initNavbar();
+                }
+            })();
     </script>
 
     <script>
@@ -459,4 +529,5 @@
     </script>
 
 </body>
+
 </html>

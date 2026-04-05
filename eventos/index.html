@@ -1,10 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eventos | Karina Franzin - Assessoria de Corrida</title>
-    <meta name="description" content="Confira os eventos de corrida e caminhada com a assessoria da Karina Franzin em Votuporanga e região.">
+    <meta name="description"
+        content="Confira os eventos de corrida e caminhada com a assessoria da Karina Franzin em Votuporanga e região.">
 
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +40,7 @@
             right: -60px;
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -49,14 +51,14 @@
             left: -40px;
             width: 220px;
             height: 220px;
-            background: radial-gradient(circle, rgba(247,147,30,0.12) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(247, 147, 30, 0.12) 0%, transparent 70%);
             pointer-events: none;
         }
 
         .eventos-hero-label {
             display: inline-block;
-            background: rgba(255,107,53,0.15);
-            border: 1px solid rgba(255,107,53,0.4);
+            background: rgba(255, 107, 53, 0.15);
+            border: 1px solid rgba(255, 107, 53, 0.4);
             color: #ff6b35;
             font-size: 0.8rem;
             font-weight: 700;
@@ -81,15 +83,20 @@
 
         .eventos-hero p {
             font-size: 1.1rem;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255, 255, 255, 0.7);
             max-width: 560px;
             margin: 0 auto;
             line-height: 1.7;
         }
 
         @media (max-width: 600px) {
-            .eventos-hero h1 { font-size: 2rem; }
-            .eventos-hero p  { font-size: 1rem; }
+            .eventos-hero h1 {
+                font-size: 2rem;
+            }
+
+            .eventos-hero p {
+                font-size: 1rem;
+            }
         }
 
         /* ── Filtros / Abas ── */
@@ -125,8 +132,14 @@
             white-space: nowrap;
         }
 
-        .filtro-btn:hover  { color: #ff6b35; }
-        .filtro-btn.active { color: #ff6b35; border-bottom-color: #ff6b35; }
+        .filtro-btn:hover {
+            color: #ff6b35;
+        }
+
+        .filtro-btn.active {
+            color: #ff6b35;
+            border-bottom-color: #ff6b35;
+        }
 
         /* ── Grid de Eventos ── */
         .eventos-section {
@@ -165,7 +178,7 @@
             background: #fff;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
             text-decoration: none;
             color: inherit;
@@ -175,7 +188,7 @@
 
         .evento-card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.13);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.13);
         }
 
         .evento-card-img {
@@ -218,11 +231,30 @@
             border-radius: 20px;
         }
 
-        .evento-tag.corrida    { background: #fff0ea; color: #ff6b35; }
-        .evento-tag.caminhada  { background: #eaf4ff; color: #0077cc; }
-        .evento-tag.social     { background: #f0fff4; color: #22a05a; }
-        .evento-tag.proximo    { background: #fff8e1; color: #e6a800; }
-        .evento-tag.passado    { background: #f0f0f0; color: #888; }
+        .evento-tag.corrida {
+            background: #fff0ea;
+            color: #ff6b35;
+        }
+
+        .evento-tag.caminhada {
+            background: #eaf4ff;
+            color: #0077cc;
+        }
+
+        .evento-tag.social {
+            background: #f0fff4;
+            color: #22a05a;
+        }
+
+        .evento-tag.proximo {
+            background: #fff8e1;
+            color: #e6a800;
+        }
+
+        .evento-tag.passado {
+            background: #f0f0f0;
+            color: #888;
+        }
 
         .evento-card-title {
             font-size: 1.25rem;
@@ -315,7 +347,10 @@
             color: #999;
         }
 
-        .eventos-empty p { font-size: 1.1rem; margin-top: 12px; }
+        .eventos-empty p {
+            font-size: 1.1rem;
+            margin-top: 12px;
+        }
 
         /* ── CTA final ── */
         .eventos-cta {
@@ -332,7 +367,7 @@
         }
 
         .eventos-cta p {
-            color: rgba(255,255,255,0.7);
+            color: rgba(255, 255, 255, 0.7);
             font-size: 1.05rem;
             margin-bottom: 28px;
             max-width: 480px;
@@ -358,30 +393,148 @@
         }
 
         @media (max-width: 600px) {
-            .eventos-grid { grid-template-columns: 1fr; }
-            .eventos-cta h2 { font-size: 1.5rem; }
+            .eventos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .eventos-cta h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
     <!-- CSS Crítico Inline: evita FOUC na navbar -->
     <style>
-        .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(20,20,20,0.96); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,107,53,0.2); box-shadow: 0 2px 20px rgba(0,0,0,0.5); }
-        .navbar-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-        .navbar-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-        .navbar-logo { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid #ff6b35; }
-        .navbar-name { font-size: 1rem; font-weight: 700; color: #fff; }
-        .navbar-links { display: flex; align-items: center; gap: 2px; list-style: none; margin: 0; padding: 0; }
-        .nav-link { display: inline-block; padding: 8px 13px; color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.88rem; font-weight: 500; border-radius: 6px; white-space: nowrap; }
-        .nav-cta { background: #ff6b35; color: #fff !important; font-weight: 700 !important; border-radius: 8px !important; padding: 9px 15px !important; margin-left: 6px; }
-        .nav-portal { border: 1px solid rgba(255,255,255,0.35); border-radius: 8px; padding: 8px 13px; color: rgba(255,255,255,0.9); }
-        .navbar-toggle { display: none; }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(20, 20, 20, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .navbar-logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff6b35;
+        }
+
+        .navbar-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 8px 13px;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .nav-cta {
+            background: #ff6b35;
+            color: #fff !important;
+            font-weight: 700 !important;
+            border-radius: 8px !important;
+            padding: 9px 15px !important;
+            margin-left: 6px;
+        }
+
+        .nav-portal {
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 8px;
+            padding: 8px 13px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .navbar-toggle {
+            display: none;
+        }
+
         @media (max-width: 860px) {
-            .navbar-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 40px; height: 40px; background: none; border: none; cursor: pointer; flex-shrink: 0; }
-            .hamburger-line { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; }
-            .navbar-links { position: fixed; top: 0; right: -280px; width: 270px; height: 100dvh; background: #141414; border-left: 2px solid #ff6b35; flex-direction: column; align-items: stretch; padding: 80px 0 24px; z-index: 1001; transition: right 0.3s ease; }
-            .navbar-links.open { right: 0; }
+            .navbar-toggle {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                width: 40px;
+                height: 40px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                flex-shrink: 0;
+            }
+
+            .hamburger-line {
+                display: block;
+                width: 24px;
+                height: 2px;
+                background: #fff;
+                border-radius: 2px;
+            }
+
+            .navbar-links {
+                position: fixed;
+                top: 0;
+                right: -280px;
+                width: 270px;
+                height: 100dvh;
+                background: #141414;
+                border-left: 2px solid #ff6b35;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 80px 0 24px;
+                z-index: 1001;
+                transition: right 0.3s ease;
+            }
+
+            .navbar-links.open {
+                right: 0;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- ===== NAVBAR ===== -->
@@ -398,10 +551,8 @@
                 <li><a href="/blog/" class="nav-link">Blog</a></li>
                 <li><a href="/eventos/" class="nav-link active">Eventos</a></li>
                 <li>
-                    <a href="https://karinafranzin.treinus.com.br/"
-                       class="nav-link nav-portal"
-                       target="_blank"
-                       rel="noopener noreferrer">
+                    <a href="https://karinafranzin.treinus.com.br/" class="nav-link nav-portal" target="_blank"
+                        rel="noopener noreferrer">
                         Portal do Atleta
                     </a>
                 </li>
@@ -409,7 +560,8 @@
                     <a href="/#contato" class="nav-link nav-cta">Começar Agora</a>
                 </li>
             </ul>
-            <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbarLinks">
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menu" aria-expanded="false"
+                aria-controls="navbarLinks">
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
@@ -471,17 +623,28 @@
             <!-- Treinao Lord Lion e Karina Franzin -->
             <div class="evento-card-wrapper" data-status="proximo" data-tipo="corrida" data-date="2026-04-11">
                 <a href="/eventos/treinao-lord-lion/" class="evento-card">
-                    <img src="../assets/img/lordcard.webp" alt="Treinao Lord Lion e Karina Franzin" class="evento-card-img">
+                    <img src="../assets/img/treinaolordkarina/CapaCard.png" alt="Treinao Lord Lion e Karina Franzin"
+                        class="evento-card-img">
                     <div class="evento-card-body">
-                        <h2 class="evento-card-title">Treinao Lord Lion &amp; Karina Franzin</h2>
-                        <p class="evento-card-desc">Treino aberto de 5km seguido de Pagode A+ na Lord Lion Cervejaria. Participantes nao pagam entrada e ainda podem garantir mesa gratuita para a resenha pos-treino!</p>
+                        <h2 class="evento-card-title">Treinão Lord Lion &amp; Karina Franzin</h2>
+                        <p class="evento-card-desc">Treino aberto de 5km seguido de Pagode A+ na Lord Lion Cervejaria.
+                            Participantes nao pagam entrada e ainda podem garantir mesa gratuita para a resenha
+                            pos-treino!</p>
                         <div class="evento-card-meta">
                             <div class="evento-meta-item">
-                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                                    <path d="M16 2v4M8 2v4M3 10h18" />
+                                </svg>
                                 11 de Abril de 2026
                             </div>
                             <div class="evento-meta-item">
-                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                                    <circle cx="12" cy="9" r="2.5" />
+                                </svg>
                                 Votuporanga - SP
                             </div>
                         </div>
@@ -493,17 +656,28 @@
             <!-- Dia da Mulher - Lord Lion -->
             <div class="evento-card-wrapper" data-status="proximo" data-tipo="corrida" data-date="2026-03-08">
                 <a href="/eventos/dia-da-mulher-lord-lion/" class="evento-card">
-                    <img src="../assets/img/lordcard.webp" alt="Dia da Mulher - Lord Lion Cervejaria" class="evento-card-img">
+                    <img src="../assets/img/lordcard.webp" alt="Dia da Mulher - Lord Lion Cervejaria"
+                        class="evento-card-img">
                     <div class="evento-card-body">
                         <h2 class="evento-card-title">Dia da Mulher - Lord Lion Cervejaria</h2>
-                        <p class="evento-card-desc">Uma noite especial para celebrar as mulheres com corrida, cerveja artesanal e muito estilo. Parceria exclusiva entre Karina Franzin e a Cervejaria Lord Lion!</p>
+                        <p class="evento-card-desc">Uma noite especial para celebrar as mulheres com corrida, cerveja
+                            artesanal e muito estilo. Parceria exclusiva entre Karina Franzin e a Cervejaria Lord Lion!
+                        </p>
                         <div class="evento-card-meta">
                             <div class="evento-meta-item">
-                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                                    <path d="M16 2v4M8 2v4M3 10h18" />
+                                </svg>
                                 08 de Março de 2026
                             </div>
                             <div class="evento-meta-item">
-                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                                    <circle cx="12" cy="9" r="2.5" />
+                                </svg>
                                 Votuporanga - SP
                             </div>
                         </div>
@@ -515,17 +689,27 @@
             <!-- Cãominhada 2026 -->
             <div class="evento-card-wrapper" data-status="proximo" data-tipo="caminhada" data-date="2026-03-14">
                 <a href="/eventos/cao-minhada-2026/" class="evento-card">
-                    <img src="../assets/img/capa_evento_2.webp" alt="2ª Cãominhada Studio Ativo" class="evento-card-img">
+                    <img src="../assets/img/capa_evento_2.webp" alt="2ª Cãominhada Studio Ativo"
+                        class="evento-card-img">
                     <div class="evento-card-body">
                         <h2 class="evento-card-title">2ª Cãominhada Studio Ativo</h2>
-                        <p class="evento-card-desc">Uma caminhada solidária com pets, arrecadando ração para animais que esperam por um lar. Passos que alimentam, patinhas que agradecem!</p>
+                        <p class="evento-card-desc">Uma caminhada solidária com pets, arrecadando ração para animais que
+                            esperam por um lar. Passos que alimentam, patinhas que agradecem!</p>
                         <div class="evento-card-meta">
                             <div class="evento-meta-item">
-                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" />
+                                    <path d="M16 2v4M8 2v4M3 10h18" />
+                                </svg>
                                 14 de Março de 2026
                             </div>
                             <div class="evento-meta-item">
-                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                                    viewBox="0 0 24 24">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                                    <circle cx="12" cy="9" r="2.5" />
+                                </svg>
                                 Votuporanga - SP
                             </div>
                         </div>
@@ -562,36 +746,42 @@
             <div class="footer-content">
                 <div class="footer-links">
                     <a href="/blog/" rel="noopener">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
                         </svg>
                         Blog
                     </a>
                     <a href="https://www.instagram.com/karina_franzin/" target="_blank" rel="noopener noreferrer">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                         </svg>
                         Instagram
                     </a>
                     <a href="https://www.strava.com/athletes/158868084" target="_blank" rel="noopener noreferrer">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169" />
                         </svg>
                         Strava
                     </a>
                     <a href="https://wa.me/5517996566908?text=Ol%C3%A1%2C%20Karina%21%20Vim%20pelo%20seu%20site%20e%20quero%20come%C3%A7ar%20uma%20assessoria%20de%20corrida.%20Pode%20me%20explicar%20como%20funciona%3F"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        target="_blank" rel="noopener noreferrer">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                         </svg>
                         WhatsApp
                     </a>
-                    <a href="https://karinafranzin.treinus.com.br/"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="treinus-link">
-                        <img src="../assets/icons/treinus.png" alt="Treinus" width="24" height="24" class="treinus-icon">
+                    <a href="https://karinafranzin.treinus.com.br/" target="_blank" rel="noopener noreferrer"
+                        class="treinus-link">
+                        <img src="../assets/icons/treinus.png" alt="Treinus" width="24" height="24"
+                            class="treinus-icon">
                         Treinus
                     </a>
                 </div>
@@ -605,112 +795,112 @@
 
     <!-- Navbar JS -->
     <script>
-    (function () {
-        function initNavbar() {
-            var navbar  = document.getElementById('navbar');
-            var toggle  = document.getElementById('navbarToggle');
-            var links   = document.getElementById('navbarLinks');
-            var overlay = document.getElementById('navbarOverlay');
-            if (!navbar || !toggle || !links) return;
+        (function () {
+            function initNavbar() {
+                var navbar = document.getElementById('navbar');
+                var toggle = document.getElementById('navbarToggle');
+                var links = document.getElementById('navbarLinks');
+                var overlay = document.getElementById('navbarOverlay');
+                if (!navbar || !toggle || !links) return;
 
-            // Detecta WebView do Instagram/Facebook e força navbar escura
-            var ua = navigator.userAgent || '';
-            var isWebView = /Instagram|FBAN|FBAV|FB_IAB|LinkedInApp|Twitter|TikTok/i.test(ua);
-            if (isWebView) {
-                navbar.classList.add('navbar-webview');
+                // Detecta WebView do Instagram/Facebook e força navbar escura
+                var ua = navigator.userAgent || '';
+                var isWebView = /Instagram|FBAN|FBAV|FB_IAB|LinkedInApp|Twitter|TikTok/i.test(ua);
+                if (isWebView) {
+                    navbar.classList.add('navbar-webview');
+                }
+
+                function openMenu() {
+                    links.classList.add('open');
+                    toggle.classList.add('open');
+                    if (overlay) overlay.classList.add('open');
+                    toggle.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+                }
+                function closeMenu() {
+                    links.classList.remove('open');
+                    toggle.classList.remove('open');
+                    if (overlay) overlay.classList.remove('open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+                toggle.addEventListener('click', function () {
+                    links.classList.contains('open') ? closeMenu() : openMenu();
+                });
+                if (overlay) overlay.addEventListener('click', closeMenu);
             }
 
-            function openMenu() {
-                links.classList.add('open');
-                toggle.classList.add('open');
-                if (overlay) overlay.classList.add('open');
-                toggle.setAttribute('aria-expanded', 'true');
-                document.body.style.overflow = 'hidden';
-            }
-            function closeMenu() {
-                links.classList.remove('open');
-                toggle.classList.remove('open');
-                if (overlay) overlay.classList.remove('open');
-                toggle.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            }
-            toggle.addEventListener('click', function () {
-                links.classList.contains('open') ? closeMenu() : openMenu();
-            });
-            if (overlay) overlay.addEventListener('click', closeMenu);
-        }
-
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initNavbar);
-        } else {
-            initNavbar();
-        }
-    })();
-
-    // ── Classificação automática por data ──
-    (function () {
-        var hoje = new Date();
-        hoje.setHours(0, 0, 0, 0); // zera a hora para comparar só a data
-
-        var gridProximos = document.getElementById('gridProximos');
-        var gridPassados = document.getElementById('gridPassados');
-        var cards = document.querySelectorAll('.evento-card-wrapper[data-date]');
-
-        var temPassado = false;
-
-        cards.forEach(function (card) {
-            var dataEvento = new Date(card.getAttribute('data-date') + 'T00:00:00');
-
-            if (dataEvento < hoje) {
-                // Evento já passou — move para seção de passados
-                card.setAttribute('data-status', 'passado');
-                gridPassados.insertBefore(card, gridPassados.firstChild);
-                temPassado = true;
-            }
-            // Se não passou, permanece em próximos (data-status="proximo")
-        });
-
-        // Remove o placeholder "Nenhum evento passado" se tiver eventos passados reais
-        if (temPassado) {
-            var empty = gridPassados.querySelector('.eventos-empty');
-            if (empty) empty.remove();
-        }
-
-        // Se não sobrou nenhum evento próximo, mostra mensagem
-        var proximosRestantes = gridProximos.querySelectorAll('.evento-card-wrapper[data-status="proximo"]');
-        if (proximosRestantes.length === 0) {
-            var emptyProx = document.createElement('div');
-            emptyProx.className = 'eventos-empty';
-            emptyProx.innerHTML = '<div style="font-size:3rem;">📅</div><p>Nenhum evento próximo no momento.<br><span style="font-size:0.9rem;">Fique ligado nas novidades!</span></p>';
-            gridProximos.appendChild(emptyProx);
-        }
-    })();
-
-    // ── Filtros ──
-    var filtros  = document.querySelectorAll('.filtro-btn');
-    var proximos = document.getElementById('proximos');
-    var passados = document.getElementById('passados');
-
-    filtros.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            filtros.forEach(function (b) { b.classList.remove('active'); });
-            btn.classList.add('active');
-            var f = btn.getAttribute('data-filtro');
-            if (f === 'todos') {
-                proximos.style.display = '';
-                passados.style.display = '';
-            } else if (f === 'proximo') {
-                proximos.style.display = '';
-                passados.style.display = 'none';
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initNavbar);
             } else {
-                proximos.style.display = 'none';
-                passados.style.display = '';
+                initNavbar();
             }
+        })();
+
+        // ── Classificação automática por data ──
+        (function () {
+            var hoje = new Date();
+            hoje.setHours(0, 0, 0, 0); // zera a hora para comparar só a data
+
+            var gridProximos = document.getElementById('gridProximos');
+            var gridPassados = document.getElementById('gridPassados');
+            var cards = document.querySelectorAll('.evento-card-wrapper[data-date]');
+
+            var temPassado = false;
+
+            cards.forEach(function (card) {
+                var dataEvento = new Date(card.getAttribute('data-date') + 'T00:00:00');
+
+                if (dataEvento < hoje) {
+                    // Evento já passou — move para seção de passados
+                    card.setAttribute('data-status', 'passado');
+                    gridPassados.insertBefore(card, gridPassados.firstChild);
+                    temPassado = true;
+                }
+                // Se não passou, permanece em próximos (data-status="proximo")
+            });
+
+            // Remove o placeholder "Nenhum evento passado" se tiver eventos passados reais
+            if (temPassado) {
+                var empty = gridPassados.querySelector('.eventos-empty');
+                if (empty) empty.remove();
+            }
+
+            // Se não sobrou nenhum evento próximo, mostra mensagem
+            var proximosRestantes = gridProximos.querySelectorAll('.evento-card-wrapper[data-status="proximo"]');
+            if (proximosRestantes.length === 0) {
+                var emptyProx = document.createElement('div');
+                emptyProx.className = 'eventos-empty';
+                emptyProx.innerHTML = '<div style="font-size:3rem;">📅</div><p>Nenhum evento próximo no momento.<br><span style="font-size:0.9rem;">Fique ligado nas novidades!</span></p>';
+                gridProximos.appendChild(emptyProx);
+            }
+        })();
+
+        // ── Filtros ──
+        var filtros = document.querySelectorAll('.filtro-btn');
+        var proximos = document.getElementById('proximos');
+        var passados = document.getElementById('passados');
+
+        filtros.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                filtros.forEach(function (b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+                var f = btn.getAttribute('data-filtro');
+                if (f === 'todos') {
+                    proximos.style.display = '';
+                    passados.style.display = '';
+                } else if (f === 'proximo') {
+                    proximos.style.display = '';
+                    passados.style.display = 'none';
+                } else {
+                    proximos.style.display = 'none';
+                    passados.style.display = '';
+                }
+            });
         });
-    });
 
     </script>
 
 </body>
-</html>
 
+</html>
