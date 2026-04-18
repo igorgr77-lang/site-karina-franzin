@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinão Lord Ultra Run | 09 de Maio 2026 — Votuporanga-SP | Karina Franzin</title>
+    <meta name="description"
+        content="Desafie seus limites em um percurso raiz na terra. Treinão Lord Ultra Run com Karina Franzin — 09 de Maio de 2026, em frente à Lord Lion Cervejaria, Votuporanga-SP. Entrada gratuita para os atletas!">
+    <link rel="canonical" href="https://karinafranzin.com.br/eventos/treinao-ultra-lord-maio/">
+
+    <!-- Open Graph / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://karinafranzin.com.br/eventos/treinao-ultra-lord-maio/">
+    <meta property="og:title" content="Treinão Lord Ultra Run — 09 de Maio 2026 | Karina Franzin">
+    <meta property="og:description"
+        content="Percurso raiz na terra + pós-treino elite na Lord Lion. Entrada gratuita! Concentração 17h30 • Votuporanga-SP">
+    <meta property="og:image" content="https://karinafranzin.com.br/assets/img/treinao-ultra-lord-maio/capa-card.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- CSS Global do site (navbar padrão) -->
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <!-- CSS Crítico Inline: evita FOUC (Flash of Unstyled Content) na navbar -->
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(20, 20, 20, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .navbar-logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff6b35;
+        }
+
+        .navbar-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 8px 13px;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .nav-cta {
+            background: #ff6b35;
+            color: #fff !important;
+            font-weight: 700 !important;
+            border-radius: 8px !important;
+            padding: 9px 15px !important;
+            margin-left: 6px;
+        }
+
+        .nav-portal {
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 8px;
+            padding: 8px 13px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .navbar-toggle {
+            display: none;
+        }
+
+        .navbar-overlay {
+            display: none;
+        }
+
+        @media (max-width: 860px) {
+            .navbar-toggle {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                width: 40px;
+                height: 40px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                flex-shrink: 0;
+            }
+
+            .hamburger-line {
+                display: block;
+                width: 24px;
+                height: 2px;
+                background: #fff;
+                border-radius: 2px;
+            }
+
+            .navbar-links {
+                position: fixed;
+                top: 0;
+                right: -280px;
+                width: 270px;
+                height: 100dvh;
+                background: #141414;
+                border-left: 2px solid #ff6b35;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 80px 0 24px;
+                z-index: 1001;
+                transition: right 0.3s ease;
+            }
+
+            .navbar-links.open {
+                right: 0;
+            }
+        }
+    </style>
+
+    <!-- Tailwind config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        peach: '#FFB3A7',
+                        strava: '#FC4C02',
+                        wpp: '#25D366',
+                        dark: '#111111',
+                        darker: '#0a0a0a',
+                        card: '#1a1a1a'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #111111;
+            color: white;
+            overflow-x: hidden;
+            padding-top: 64px;
+            /* Compensa a navbar fixa */
+            font-family: 'Inter', sans-serif;
+        }
+
+        .text-shadow {
+            text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-100 {
+            animation-delay: 100ms;
+        }
+
+        .delay-200 {
+            animation-delay: 200ms;
+        }
+
+        .delay-300 {
+            animation-delay: 300ms;
+        }
+
+        .card-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card-glass:hover {
+            transform: translateY(-8px);
+            border-color: #FFB3A7;
+            background: rgba(255, 179, 167, 0.08);
+        }
+
+        .parallax-text {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
+            color: transparent;
+            font-size: 15vw;
+            line-height: 0.8;
+            user-select: none;
+        }
+
+        .logo-container img {
+            max-height: 80px;
+            width: auto;
+        }
+
+        .pulse-btn {
+            animation: pulse-shadow 2s infinite;
+        }
+
+        @keyframes pulse-shadow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+
+        .btn-pulse {
+            animation: strava-pulse-anim 2s infinite;
+        }
+
+        @keyframes strava-pulse-anim {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(252, 76, 2, 0.7);
+            }
+
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 15px rgba(252, 76, 2, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(252, 76, 2, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar navbar-scrolled" id="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-brand" aria-label="Ir ao site principal">
+                <img src="../../assets/img/KarinaFranzin80.webp" alt="Karina Franzin" class="navbar-logo">
+                <span class="navbar-name">Karina Franzin</span>
+            </a>
+            <ul class="navbar-links" id="navbarLinks">
+                <li><a href="/#como-funciona" class="nav-link">Como Funciona</a></li>
+                <li><a href="/#prova-social" class="nav-link">Resultados</a></li>
+                <li><a href="/#sobre" class="nav-link">Minha História</a></li>
+                <li><a href="/blog/" class="nav-link">Blog</a></li>
+                <li><a href="/eventos/" class="nav-link active">Eventos</a></li>
+                <li>
+                    <a href="https://karinafranzin.treinus.com.br/" class="nav-link nav-portal" target="_blank"
+                        rel="noopener noreferrer">
+                        Portal do Atleta
+                    </a>
+                </li>
+                <li>
+                    <a href="/#contato" class="nav-link nav-cta">Começar Agora</a>
+                </li>
+            </ul>
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menu" aria-expanded="false"
+                aria-controls="navbarLinks">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+    <div class="navbar-overlay" id="navbarOverlay"></div>
+
+    <!-- ===== HERO ===== -->
+    <header class="relative min-h-[90vh] flex items-center justify-center pt-10 pb-12 overflow-hidden">
+        <!-- Background com overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbAIXjeRVsIXWtJP3J8zoym5MajEHscRaXSs730HrW6tH3LSLhSuAceRztpkAvX3vDhUBNjdiaanKBdolg_iscSQLtO7kChEz5BOKxArP1R4gLQbS9rr-UpV0MtNlQELJgzHnfxczD4voBHcHGAkMmpsZCMdEfDxpIr2nyO5kANz46ACUSB9RkmjvWxu6gCT2U7fVFgQ6C1VnXvY2490WeVd8kjSvyY9F4f4d0ufPnOl8rD51wmotvRZkYnPQy90NsKLwIGXmTwxyB"
+                alt="Fundo Treinão Terra" class="w-full h-full object-cover object-center filter brightness-[0.35]">
+            <div class="absolute inset-0 bg-gradient-to-t from-darker via-transparent to-darker/80"></div>
+        </div>
+
+        <div class="relative z-10 container mx-auto px-6 text-center flex flex-col items-center">
+
+            <!-- Logos -->
+            <div class="flex items-center justify-center gap-6 md:gap-10 logo-container mb-8 fade-in-up">
+                <img src="../../assets/img/logoLordLion.png" alt="Lord Lion Cervejaria"
+                    class="opacity-90 h-16 md:h-20 object-contain">
+                <div class="h-10 md:h-12 w-px bg-white opacity-20 hidden md:block"></div>
+                <img src="../../assets/img/logoKarinaFranzin.png" alt="Karina Franzin"
+                    class="opacity-90 h-16 md:h-20 object-contain">
+            </div>
+
+            <span
+                class="inline-block py-1 px-4 rounded-full bg-peach/20 text-peach text-sm font-semibold tracking-wider mb-5 fade-in-up border border-peach/30">
+                ASSESSORIA KARINA FRANZIN APRESENTA
+            </span>
+
+            <h1
+                class="font-heading font-black text-5xl md:text-7xl lg:text-8xl text-white uppercase leading-none tracking-tight mb-4 text-shadow fade-in-up delay-100">
+                TREINÃO LORD<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-peach to-orange-400">ULTRA RUN</span>
+            </h1>
+
+            <p class="text-lg md:text-2xl font-light text-gray-300 mb-3 fade-in-up delay-200">
+                Desafie seus limites em um percurso raiz na terra.
+            </p>
+            <p class="text-peach font-bold tracking-[0.25em] uppercase text-sm md:text-base mb-8 fade-in-up delay-200">
+                09 de Maio • 2026 • Votuporanga - SP
+            </p>
+
+            <!-- Quick Info Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl mb-10 fade-in-up delay-300">
+                <div class="bg-card/60 backdrop-blur-md border border-white/10 rounded-2xl p-4 flex items-center gap-4">
+                    <div class="bg-peach/20 p-3 rounded-full text-peach">
+                        <i class="fa-regular fa-calendar-check text-xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-sm text-gray-400 font-medium uppercase">Data &amp; Hora</p>
+                        <p class="font-bold text-white">Sáb, 09 de Maio de 2026 • 17:30</p>
+                    </div>
+                </div>
+                <div class="bg-card/60 backdrop-blur-md border border-white/10 rounded-2xl p-4 flex items-center gap-4">
+                    <div class="bg-peach/20 p-3 rounded-full text-peach">
+                        <i class="fa-solid fa-map-location-dot text-xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <p class="text-sm text-gray-400 font-medium uppercase">Ponto de Encontro</p>
+                        <p class="font-bold text-white">Em frente à Lord Lion</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row gap-4 w-full justify-center px-4 fade-in-up delay-300">
+                <a href="https://www.strava.com/clubs/1910687/group_events/3478185943917504818" target="_blank"
+                    class="bg-strava hover:bg-[#E34402] text-white font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(252,76,2,0.4)] btn-pulse">
+                    <i class="fa-brands fa-strava text-2xl"></i>
+                    INSCREVA-SE NO EVENTO
+                </a>
+                <a href="#detalhes-lord"
+                    class="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-semibold py-4 px-8 rounded-full transition-all duration-300 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-beer-mug-empty"></i>
+                    Vantagens Exclusivas
+                </a>
+            </div>
+
+            <div class="absolute bottom-10 animate-bounce opacity-30">
+                <i data-lucide="chevrons-down" size="32"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== POR QUE TREINAR NA TERRA ===== -->
+    <section class="py-20 md:py-32 bg-darker relative" id="treino-terra">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+                <!-- Texto -->
+                <div class="order-2 lg:order-1">
+                    <h2
+                        class="font-heading font-black text-4xl md:text-5xl lg:text-6xl text-white uppercase leading-tight mb-10">
+                        Por que<br>treinar<br><span class="text-peach">na terra?</span>
+                    </h2>
+
+                    <div class="space-y-10">
+                        <div class="flex gap-6 group cursor-default">
+                            <div
+                                class="font-heading font-black text-3xl text-peach group-hover:scale-110 transition-transform">
+                                A</div>
+                            <div>
+                                <h3 class="font-heading font-bold text-xl text-white mb-2 uppercase tracking-wide">Menor
+                                    Impacto</h3>
+                                <p class="text-gray-400 leading-relaxed text-lg">A superfície macia da terra reduz o
+                                    estresse nas articulações, permitindo treinos mais longos e recuperação acelerada.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 group cursor-default">
+                            <div
+                                class="font-heading font-black text-3xl text-peach group-hover:scale-110 transition-transform">
+                                B</div>
+                            <div>
+                                <h3 class="font-heading font-bold text-xl text-white mb-2 uppercase tracking-wide">
+                                    Propriocepção</h3>
+                                <p class="text-gray-400 leading-relaxed text-lg">Desenvolva equilíbrio e consciência
+                                    corporal superior correndo em terrenos irregulares e dinâmicos.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 group cursor-default">
+                            <div
+                                class="font-heading font-black text-3xl text-peach group-hover:scale-110 transition-transform">
+                                C</div>
+                            <div>
+                                <h3 class="font-heading font-bold text-xl text-white mb-2 uppercase tracking-wide">Força
+                                    Natural</h3>
+                                <p class="text-gray-400 leading-relaxed text-lg">Ative grupos musculares estabilizadores
+                                    que o asfalto ignora, construindo uma base de força inabalável.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imagem -->
+                <div class="order-1 lg:order-2 relative">
+                    <div
+                        class="absolute inset-0 bg-peach/20 blur-3xl rounded-full transform translate-x-10 translate-y-10">
+                    </div>
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7MIZ7Npd9JAelgysJyLnn0jxlagDHzYrR9cFt8LLRv0F5VFLGc-gbs0eF5P6Cvvth9nG6RZm8PWPTjp5u9pYnEh1FBuFlMVVwLhUq4sCx_5oUlgi76W5twQ6F49h3uz6S3WuVZtiyV13rldQmcgx3laxsNpLXft7NWcm0rGpoMfYRmRJkiYKoHhAg4w7y7Wz8Nq2uLjuC301aNBSzQkQfcQ4aBNy87UvAlNn0h4Ej-NHZQH8FgKYqQ18tZrWzWooR545MLnb6CQbe"
+                        alt="Corredor em percurso de terra"
+                        class="relative z-10 w-full rounded-[2rem] shadow-2xl transform md:rotate-2 hover:rotate-0 transition-transform duration-500 border border-white/5">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== INFO CARDS ===== -->
+    <section class="py-24 px-4 bg-[#0a0a0a] relative">
+        <div class="parallax-text absolute -top-10 left-0 -z-0 font-black font-heading">TREINÃO</div>
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <div class="card-glass p-10 rounded-3xl text-center">
+                    <div
+                        class="w-16 h-16 bg-peach/10 rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-3">
+                        <i data-lucide="map-pin" class="text-peach" style="color:#FFB3A7;" size="32"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 uppercase tracking-wider">Ponto de Encontro</h3>
+                    <p class="opacity-70 leading-relaxed text-lg">Em frente à Lord Lion<br>
+                        <span class="text-sm font-bold uppercase tracking-widest" style="color:#FFB3A7;">Votuporanga -
+                            SP</span>
+                    </p>
+                </div>
+
+                <div class="card-glass p-10 rounded-3xl text-center"
+                    style="border-color:rgba(255,179,167,0.4);background:rgba(255,179,167,0.05);">
+                    <div
+                        class="w-16 h-16 bg-peach/10 rounded-2xl flex items-center justify-center mx-auto mb-6 -rotate-3">
+                        <i data-lucide="clock" style="color:#FFB3A7;" size="32"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 uppercase tracking-wider">Cronograma</h3>
+                    <p class="opacity-70 leading-relaxed text-lg">Concentração: 17h30<br><strong>Largada: 18h00</strong>
+                    </p>
+                </div>
+
+                <div class="card-glass p-10 rounded-3xl text-center">
+                    <div
+                        class="w-16 h-16 bg-peach/10 rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-6">
+                        <i data-lucide="zap" style="color:#FFB3A7;" size="32"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold mb-4 uppercase tracking-wider">O Percurso</h3>
+                    <p class="opacity-70 leading-relaxed text-lg">Trilha na terra raiz<br>
+                        <span class="text-sm font-bold uppercase tracking-widest" style="color:#FFB3A7;">Lord Ultra
+                            Run</span>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COM KARINA FRANZIN ===== -->
+    <section class="py-20 md:py-32 bg-dark">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div
+                class="grid grid-cols-1 lg:grid-cols-2 gap-0 items-stretch bg-card rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl min-h-[600px]">
+
+                <!-- Texto -->
+                <div class="p-10 md:p-16 flex flex-col justify-center order-2 lg:order-1 relative overflow-hidden">
+                    <div class="absolute -left-10 -top-10 w-40 h-40 blur-2xl rounded-full"
+                        style="background:rgba(255,179,167,0.05);"></div>
+
+                    <h2
+                        class="font-heading font-black italic text-4xl md:text-5xl lg:text-6xl text-white uppercase leading-none mb-10 z-10">
+                        Com<br><span style="color:#FFB3A7;">Karina Franzin</span>
+                    </h2>
+
+                    <div class="relative pl-6 py-2 border-l-4 z-10 rounded-r-xl p-4"
+                        style="border-color:#FFB3A7;background:rgba(17,17,17,0.5);">
+                        <i class="fa-solid fa-quote-left text-3xl absolute -top-2 -left-3 px-1"
+                            style="color:rgba(255,179,167,0.3);background:#1a1a1a;"></i>
+                        <p class="text-gray-300 italic text-xl md:text-2xl leading-relaxed font-light">
+                            "A corrida na terra não é apenas sobre velocidade, é sobre resiliência mental e conexão com
+                            cada passo."
+                        </p>
+                    </div>
+
+                    <div class="mt-12 z-10">
+                        <p class="text-gray-400 mb-6">A assessoria Karina Franzin é focada em extrair o seu melhor,
+                            unindo técnica, força e comunidade. Venha sentir essa energia no nosso treinão.</p>
+                        <a href="https://www.strava.com/clubs/1910687" target="_blank"
+                            class="inline-flex items-center gap-2 font-bold transition-colors group"
+                            style="color:#FFB3A7;">
+                            Entre para o Clube Movimento Ultra Lord no Strava
+                            <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Imagem -->
+                <div class="order-1 lg:order-2 min-h-[600px] lg:min-h-full relative">
+                    <img src="../../assets/img/treinao-ultra-lord-maio/karinaterra.png" alt="Karina Franzin correndo"
+                        class="absolute inset-0 w-full h-full object-contain object-center grayscale opacity-90 mix-blend-luminosity">
+                    <div class="absolute inset-0 bg-gradient-to-r from-card via-card/50 to-transparent lg:block hidden">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-card to-transparent lg:hidden block"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PÓS-TREINO — LORD LION ===== -->
+    <section class="py-20 bg-darker relative border-t border-white/5" id="detalhes-lord">
+        <div class="absolute inset-0 opacity-[0.03]"
+            style="background-image:url('https://www.transparenttextures.com/patterns/cubes.png');"></div>
+
+        <div class="container mx-auto px-6 max-w-6xl relative z-10">
+            <div
+                class="flex flex-col lg:flex-row bg-[#222222] rounded-[2rem] overflow-hidden shadow-2xl border border-white/10 transition-all hover:scale-[1.01] duration-500">
+
+                <!-- Imagem -->
+                <div class="w-full lg:w-1/2 min-h-[300px] lg:min-h-[450px] relative">
+                    <img src="https://i.postimg.cc/9fyc9R7k/lordlion.webp" alt="Ambiente da cervejaria Lord Lion"
+                        class="absolute inset-0 w-full h-full object-cover">
+                </div>
+
+                <!-- Conteúdo -->
+                <div class="w-full lg:w-1/2 p-10 md:p-14 lg:p-16 flex flex-col justify-center">
+                    <span class="text-sm font-bold tracking-widest uppercase mb-4" style="color:#FFB3A7;">
+                        The Recovery Phase
+                    </span>
+
+                    <h2
+                        class="font-heading font-black text-4xl md:text-5xl text-white uppercase mb-6 tracking-tight leading-none">
+                        Pós-Treino <br />Elite
+                    </h2>
+
+                    <p class="text-gray-300 text-lg leading-relaxed mb-10 font-light">
+                        A recompensa para quem dominou a trilha. Confraternização e o ambiente perfeito para celebrar
+                        sua conquista na Lord Lion. Entrada <strong class="text-white font-bold">gratuita</strong> para
+                        os atletas.
+                    </p>
+
+                    <a href="https://wa.me/5517997236693?text=Olá!%20Vou%20participar%20do%20Treinão%20Ultra%20Run%20com%20Karina%20Franzin%20e%20gostaria%20de%20reservar%20uma%20mesa."
+                        target="_blank"
+                        class="inline-flex items-center justify-center gap-3 border-2 font-bold py-4 px-8 rounded-lg transition-all duration-300 w-full sm:w-max uppercase tracking-wider"
+                        style="border-color:#FFB3A7;color:#FFB3A7;"
+                        onmouseover="this.style.background='#FFB3A7';this.style.color='#111';"
+                        onmouseout="this.style.background='transparent';this.style.color='#FFB3A7';">
+                        Reserve via WhatsApp
+                        <i class="fa-regular fa-comment-dots text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMUNIDADE STRAVA ===== -->
+    <section class="py-24 px-4 text-white overflow-hidden relative text-center" style="background:#FC4C02;">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <h2 class="text-4xl md:text-6xl font-heading font-black uppercase mb-6 leading-tight italic">Comunidade
+                Ultra Lord</h2>
+            <p class="text-xl mb-10 opacity-90 leading-relaxed max-w-2xl mx-auto">
+                Confirme seu "Vou" no Strava e entre para o clube oficial para acompanhar percursos e desafios.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-6">
+                <a href="https://www.strava.com/clubs/1910687/group_events/3478185943917504818" target="_blank"
+                    class="bg-black text-white hover:bg-zinc-950 font-black py-6 px-10 rounded-2xl text-lg transition-all shadow-2xl inline-flex items-center justify-center gap-4 uppercase tracking-tighter">
+                    <i data-lucide="map"></i> Evento no Strava
+                </a>
+                <a href="https://www.strava.com/clubs/1910687" target="_blank"
+                    class="bg-white font-black py-6 px-10 rounded-2xl text-lg transition-all shadow-2xl inline-flex items-center justify-center gap-4 uppercase tracking-tighter hover:bg-zinc-50"
+                    style="color:#FC4C02;">
+                    <i data-lucide="users"></i> Entrar no Clube
+                </a>
+            </div>
+        </div>
+        <div
+            class="parallax-text absolute bottom-0 right-0 -z-0 opacity-10 text-white font-heading font-black uppercase">
+            STRAVA</div>
+    </section>
+
+    <!-- ===== CTA — GARANTIR MESA ===== -->
+    <section id="contato-mesa" class="py-32 px-4 bg-zinc-950 relative overflow-hidden">
+        <div
+            class="parallax-text absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-0 font-black opacity-10 text-white font-heading">
+            MESA FREE
+        </div>
+
+        <div class="max-w-3xl mx-auto relative z-10 text-center">
+            <div class="bg-zinc-100 p-10 md:p-16 rounded-[3rem] shadow-2xl">
+                <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8"
+                    style="background:rgba(255,107,53,0.1);">
+                    <i data-lucide="armchair" style="color:#ff6b35;" size="40"></i>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-heading font-black uppercase mb-6 text-zinc-900">Garanta sua Mesa
+                </h2>
+                <p class="text-xl text-zinc-600 mb-10 leading-relaxed font-medium">
+                    Vai participar do Treinão e quer garantir seu lugar para o pós-treino na Lord Lion? Entre em contato
+                    agora pelo WhatsApp.
+                </p>
+
+                <a href="https://wa.me/5517997236693?text=Olá!%20Vou%20participar%20do%20Treinão%20Lord%20Ultra%20Run%20com%20Karina%20Franzin%20e%20quero%20reservar%20minha%20mesa%20gratuita%20para%20o%20pós-treino."
+                    target="_blank"
+                    class="pulse-btn w-full md:w-auto inline-flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 text-white font-black py-6 px-12 rounded-2xl text-xl transition-all shadow-xl uppercase tracking-tighter">
+                    RESERVAR VIA WHATSAPP <i data-lucide="send"></i>
+                </a>
+
+                <p class="mt-8 text-sm text-zinc-400 font-bold uppercase tracking-widest italic">
+                    Contato: (17) 99723-6693
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RODAPÉ ===== -->
+    <footer class="bg-black py-16 px-4 border-t border-white/10 text-center relative">
+        <div class="max-w-3xl mx-auto flex flex-col items-center">
+
+            <p class="text-gray-400 mb-10 text-base">Não fique de fora! O evento é gratuito — é só chegar e correr.</p>
+
+            <div class="w-full h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent mb-10"></div>
+
+            <!-- Logos parceiros -->
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-10">
+                <a href="https://www.instagram.com/lordlioncervejaria/" target="_blank"
+                    class="opacity-80 hover:opacity-100 transition-opacity flex flex-col items-center gap-2">
+                    <img src="../../assets/img/logoLordLion.png" alt="Lord Lion Cervejaria" class="h-20 w-auto">
+                    <span class="text-xs text-gray-500 font-medium">@lordlioncervejaria</span>
+                </a>
+                <a href="https://www.instagram.com/karina_franzin/" target="_blank"
+                    class="opacity-80 hover:opacity-100 transition-opacity flex flex-col items-center gap-2">
+                    <img src="../../assets/img/logoKarinaFranzin.png" alt="Karina Franzin Treinadora de Corrida"
+                        class="h-20 w-auto">
+                    <span class="text-xs text-gray-500 font-medium">@karina_franzin</span>
+                </a>
+            </div>
+
+            <p class="opacity-30 text-xs tracking-[0.2em] uppercase">
+                &copy; 2026 Treinão Lord Ultra Run &bull; Assessoria Karina Franzin &bull; Votuporanga - SP
+            </p>
+        </div>
+    </footer>
+
+    <!-- ===== NAVBAR JS ===== -->
+    <script>
+            (function () {
+                function initNavbar() {
+                    var navbar = document.getElementById('navbar');
+                    var toggle = document.getElementById('navbarToggle');
+                    var links = document.getElementById('navbarLinks');
+                    var overlay = document.getElementById('navbarOverlay');
+                    if (!navbar || !toggle || !links) return;
+
+                    // Detecta WebView do Instagram/Facebook e força navbar escura
+                    var ua = navigator.userAgent || '';
+                    var isWebView = /Instagram|FBAN|FBAV|FB_IAB|LinkedInApp|Twitter|TikTok/i.test(ua);
+                    if (isWebView) {
+                        navbar.classList.add('navbar-webview');
+                    }
+
+                    function openMenu() {
+                        links.classList.add('open');
+                        toggle.classList.add('open');
+                        if (overlay) overlay.classList.add('open');
+                        toggle.setAttribute('aria-expanded', 'true');
+                        document.body.style.overflow = 'hidden';
+                    }
+                    function closeMenu() {
+                        links.classList.remove('open');
+                        toggle.classList.remove('open');
+                        if (overlay) overlay.classList.remove('open');
+                        toggle.setAttribute('aria-expanded', 'false');
+                        document.body.style.overflow = '';
+                    }
+                    toggle.addEventListener('click', function () {
+                        links.classList.contains('open') ? closeMenu() : openMenu();
+                    });
+                    if (overlay) overlay.addEventListener('click', closeMenu);
+                }
+
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initNavbar);
+                } else {
+                    initNavbar();
+                }
+            })();
+    </script>
+
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+
+</html>

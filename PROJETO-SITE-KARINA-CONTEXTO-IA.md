@@ -408,7 +408,70 @@ python -m http.server 8080
 
 ---
 
-## ✅ ESTADO ATUAL DO PROJETO (02/04/2026)
+## ✅ ESTADO ATUAL DO PROJETO (17/04/2026)
+
+- ✅ Landing page completa e otimizada
+- ✅ Blog dinâmico via Supabase (listagem + artigos por slug)
+- ✅ Cards do blog inteiramente clicáveis (card inteiro leva ao artigo)
+- ✅ Painel admin (CMS) funcional
+- ✅ Seção de Eventos com 3 eventos ativos
+- ✅ Navbar global em todas as páginas (com CSS crítico inline — sem FOUC)
+- ✅ Navbar sempre escura ao acessar pelo Instagram/WebView (3 camadas de detecção)
+- ✅ Foto hero não cortada no mobile quando navbar está preta
+- ✅ Dots do carrossel clicáveis no WebView do Instagram
+- ✅ Logo otimizado na navbar (WebP 80x80px)
+- ✅ Google Analytics 4 ativo
+- ✅ SEO com Schema Markup implementado
+- ✅ Domínio `karinafranzin.com.br` com Cloudflare + GitHub Pages
+- ✅ Cloudflare Worker `karina-franzin-seo` deployado — blog indexável pelo Google (SSR no edge)
+- ✅ Preview de links no WhatsApp/Telegram/redes sociais mostra título e imagem real do artigo
+- ✅ Seção de Parceiros Oficiais (9 parceiros) — acima do CTA final
+- ✅ Evento "Treinão Lord Lion & Karina Franzin" — 11/04/2026 — página criada e card na listagem
+- ✅ Evento "Treinão Lord Ultra Run" — 09/05/2026 — página criada e card na listagem
+- ✅ Classificação automática de eventos por data (Próximos → Passados) via JavaScript
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 17/04/2026 — EVENTO TREINÃO ULTRA LORD MAIO ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivo:** Criar página do evento "Treinão Lord Ultra Run" (09/05/2026) e implementar classificação automática de eventos por data.
+
+**O que foi feito:**
+- ✅ Criada pasta `eventos/treinao-ultra-lord-maio/`
+- ✅ Criado `eventos/treinao-ultra-lord-maio/index.html` — adaptado do standalone `C:\Users\oigor\PROJETOS\TreinaoUltraLord_Maio\index.html`
+- ✅ Navbar e rodapé padrão do site integrados (CSS crítico inline anti-FOUC)
+- ✅ Logos usando `../../assets/img/logoKarinaFranzin.png` e `../../assets/img/logoLordLion.png`
+- ✅ Card adicionado em `eventos/index.html` com `data-date="2026-05-09"` — aparece como 1º em "Próximos Eventos"
+
+**Como funciona a classificação automática:**
+- Cada card tem `data-date="YYYY-MM-DD"` com a data do evento
+- O JS em `eventos/index.html` (~linha 840) compara cada data com a data atual
+- Se `dataEvento < hoje` → move o card para `#gridPassados` automaticamente ao carregar
+- Zero edição manual necessária — funciona para todos os eventos futuros também
+
+**Detalhes do evento:**
+- **Data:** 09 de Maio de 2026 | **Concentração:** 17h30 | **Largada:** 18h00
+- **Local:** Em frente à Lord Lion Cervejaria — Votuporanga-SP
+- **Percurso:** Trilha na terra (Ultra Run)
+- **After:** Pós-treino elite na Lord Lion (entrada free para atletas)
+- **Contato:** (17) 99723-6693 (WhatsApp)
+
+### 📁 Arquivos criados/modificados:
+- `eventos/treinao-ultra-lord-maio/index.html` — página do evento (NOVO)
+- `eventos/index.html` — card do Treinão Ultra Run adicionado
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` — atualizado
+
+### ⚠️ Observações:
+- Card usa placeholder emoji — quando houver capa real, salvar em `assets/img/treinao-ultra-lord-maio/` e trocar `div.evento-card-img-placeholder` por `<img class="evento-card-img">`
+- Link do Strava no botão é provisório — atualizar quando o evento real for criado no Strava
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 01/04/2026 — SEÇÃO PARCEIROS OFICIAIS ✅
+
+
 
 - ✅ Landing page completa e otimizada
 - ✅ Blog dinâmico via Supabase (listagem + artigos por slug)
