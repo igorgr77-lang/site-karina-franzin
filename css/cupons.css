@@ -1,0 +1,228 @@
+/* ===========================
+   CUPONS & BENEFÍCIOS
+   =========================== */
+
+/* ── Hero Custom ── */
+.cupons-hero {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 60%, #3a1a0a 100%);
+    padding: 80px 20px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cupons-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.cupons-hero h1 span {
+    color: #ff6b35;
+}
+
+.cupons-hero p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ── Seções ── */
+.cupons-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.cupons-section-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cupons-section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+/* ── Grid ── */
+.cupons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* ── Card Base ── */
+.cupon-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    border: 1px solid #f0f0f0;
+}
+
+.cupon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255,107,53,0.1);
+}
+
+.cupon-logo {
+    width: 100%;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.cupon-discount {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #ff6b35;
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.cupon-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.cupon-description {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.5;
+    flex: 1;
+}
+
+/* ── Botões e Ação ── */
+.cupon-code-box {
+    width: 100%;
+    background: #fff8f5;
+    border: 2px dashed #ff6b35;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s ease;
+}
+
+.cupon-code-box:hover {
+    background: #ffede5;
+}
+
+.cupon-code {
+    font-family: 'Inter', monospace;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #ff6b35;
+    letter-spacing: 2px;
+}
+
+.cupon-copy-hint {
+    display: block;
+    font-size: 0.7rem;
+    color: #ff6b35;
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+.btn-cupon {
+    width: 100%;
+    padding: 14px;
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.btn-cupon:hover {
+    background: #333;
+}
+
+/* ── Estilo Aluno (Premium) ── */
+.cupon-card.premium {
+    border: 2px solid #FFD700;
+    background: linear-gradient(to bottom, #ffffff, #fffdf0);
+}
+
+.cupon-card.premium .cupon-discount {
+    color: #b8860b;
+}
+
+.cupon-card.premium .cupon-code-box {
+    border-color: #b8860b;
+    background: #fffdf0;
+    cursor: default;
+}
+
+.cupon-card.premium .cupon-code {
+    color: #b8860b;
+    font-size: 1rem;
+    letter-spacing: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.cupon-badge-exclusive {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #b8860b, #FFD700);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 5px 15px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(184,134,11,0.3);
+    white-space: nowrap;
+}
+
+/* ── Feedback de Cópia ── */
+.copy-feedback {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.copy-feedback.show {
+    opacity: 1;
+}
+
+/* ── Responsivo ── */
+@media (max-width: 600px) {
+    .cupons-hero h1 { font-size: 2.2rem; }
+    .cupons-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cupons e Benefícios | Karina Franzin - Assessoria de Corrida</title>
+    <meta name="description"
+        content="Acesse cupons de desconto exclusivos em parceiros, provas de corrida e benefícios especiais para alunos da assessoria Karina Franzin.">
+
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/cupons.css">
+
+    <style>
+        /* CSS Crítico Inline para Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(20, 20, 20, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+        }
+
+        body {
+            padding-top: 64px;
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Configuração Google Analytics (Replicada da Home) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J488T0R72B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-J488T0R72B');
+    </script>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-scrolled" id="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-brand">
+                <img src="../assets/img/KarinaFranzin80.webp" alt="Logo Karina Franzin" class="navbar-logo">
+                <span class="navbar-name">Karina Franzin</span>
+            </a>
+
+            <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <ul class="navbar-links" id="navbarLinks">
+                <li><a href="/#como-funciona" class="nav-link">Como Funciona</a></li>
+                <li><a href="/#prova-social" class="nav-link">Resultados</a></li>
+                <li><a href="/#sobre" class="nav-link">Minha História</a></li>
+                <li><a href="/blog/" class="nav-link">Blog</a></li>
+                <li><a href="/eventos/" class="nav-link">Eventos</a></li>
+                <li><a href="/cupons/" class="nav-link active">Cupons</a></li>
+                <li>
+                    <a href="https://karinafranzin.treinus.com.br/" class="nav-link nav-portal" target="_blank"
+                        rel="noopener noreferrer">
+                        Portal do Atleta
+                    </a>
+                </li>
+                <li>
+                    <a href="/#contato" class="nav-link nav-cta">Começar Agora</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="navbar-overlay" id="navbarOverlay"></div>
+
+    <!-- Hero -->
+    <header class="cupons-hero">
+        <div class="container">
+            <h1>Cupons <span>& Benefícios</span></h1>
+            <p>Aproveite vantagens exclusivas preparadas especialmente para quem ama correr e quer os melhores parceiros
+                ao seu lado.</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- SEÇÃO 1: PARCEIROS (Público Geral) -->
+        <section class="cupons-section" id="parceiros">
+            <h2 class="cupons-section-title">Parceiros</h2>
+            <div class="cupons-grid">
+
+                <!-- Jorrovi -->
+                <div class="cupon-card">
+                    <img src="../assets/img/parceiros/2-JORROVICALCADOS.webp" alt="Jorrovi Calçados" class="cupon-logo">
+                    <div class="cupon-discount">20% OFF</div>
+                    <div class="cupon-label">CUPOM: KARINA20</div>
+                    <p class="cupon-description">Válido para todo o site da Jorrovi. Aproveite os melhores calçados
+                        esportivos com desconto.</p>
+                    <div class="cupon-code-box" onclick="copyCoupon(this, 'KARINA20')">
+                        <span class="cupon-code">KARINA20</span>
+                        <span class="cupon-copy-hint">Toque para copiar</span>
+                    </div>
+                    <a href="https://www.jorrovi.com.br/?srsltid=AfmBOooxl77aIlbnEbDsm9BgYM-YRBQW1hTmOkhFzbJF8bi8FRj3roub"
+                        target="_blank" class="btn-cupon">Ir para o site</a>
+                </div>
+
+                <!-- Essencial Votu -->
+                <div class="cupon-card">
+                    <img src="../assets/img/parceiros/5-ESSENCIAL VOTU.png" alt="Essencial Votu" class="cupon-logo">
+                    <div class="cupon-discount">10% OFF</div>
+                    <div class="cupon-label">CUPOM: KARINA10</div>
+                    <p class="cupon-description">Produtos de farmácia e cuidados pessoais na Essencial Votu.</p>
+                    <div class="cupon-code-box" onclick="copyCoupon(this, 'KARINA10')">
+                        <span class="cupon-code">KARINA10</span>
+                        <span class="cupon-copy-hint">Toque para copiar</span>
+                    </div>
+                    <a href="https://essencialvotu.com.br/" target="_blank" class="btn-cupon">Ir para o site</a>
+                </div>
+
+                <!-- Pizzaria Veneza -->
+                <div class="cupon-card">
+                    <img src="../assets/img/parceiros/9-Pizzaria Veneza.png" alt="Pizzaria Veneza" class="cupon-logo">
+                    <div class="cupon-discount">5% OFF</div>
+                    <div class="cupon-label">CUPOM: KARINA</div>
+                    <p class="cupon-description">Desconto especial no seu pedido na Pizzaria Veneza de Votuporanga.</p>
+                    <div class="cupon-code-box" onclick="copyCoupon(this, 'KARINA')">
+                        <span class="cupon-code">KARINA</span>
+                        <span class="cupon-copy-hint">Toque para copiar</span>
+                    </div>
+                    <a href="https://www.instagram.com/pizzariavenezavotu/" target="_blank" class="btn-cupon">Ver no
+                        Instagram</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2: PROVAS DE CORRIDA (Automática) -->
+        <section class="cupons-section" id="provas-section" style="display: none;">
+            <h2 class="cupons-section-title">Descontos em Provas</h2>
+            <div class="cupons-grid" id="provas-grid">
+
+                <!-- Run Beer -->
+                <div class="cupon-card" data-expire="2026-05-30">
+                    <img src="../assets/img/parceiros/10 - RunBeer.png" alt="Run Beer Rio Preto" class="cupon-logo">
+                    <div class="cupon-discount">5% OFF</div>
+                    <div class="cupon-label">CUPOM: Franzin5</div>
+                    <p class="cupon-description">Cerveja e Corrida na Run Beer Rio Preto. Etapa imperdível!</p>
+                    <div class="cupon-code-box" onclick="copyCoupon(this, 'Franzin5')">
+                        <span class="cupon-code">Franzin5</span>
+                        <span class="cupon-copy-hint">Toque para copiar</span>
+                    </div>
+                    <a href="https://runbeerbrasil.com.br/run-beer-etapa-rio-preto" target="_blank"
+                        class="btn-cupon">Inscrições Aqui</a>
+                </div>
+
+                <!-- Rotary Run -->
+                <div class="cupon-card" data-expire="2026-08-16">
+                    <img src="../assets/img/parceiros/11 - Rotary Run.png" alt="Rotary Run Track & Field"
+                        class="cupon-logo">
+                    <div class="cupon-discount">10% OFF</div>
+                    <div class="cupon-label">CUPOM: Karina10</div>
+                    <p class="cupon-description">Inscrição com desconto para a Rotary Run Track & Field Votuporanga.</p>
+                    <div class="cupon-code-box" onclick="copyCoupon(this, 'Karina10')">
+                        <span class="cupon-code">Karina10</span>
+                        <span class="cupon-copy-hint">Toque para copiar</span>
+                    </div>
+                    <a href="https://www.alcer.esp.br/rotary-run-trackfield" target="_blank"
+                        class="btn-cupon">Inscrições Aqui</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SEÇÃO 3: EXCLUSIVO ALUNOS (Premium) -->
+        <section class="cupons-section" id="alunos">
+            <h2 class="cupons-section-title">Exclusivo para Alunos</h2>
+            <div class="cupons-grid">
+
+                <!-- Lord Lion -->
+                <div class="cupon-card premium">
+                    <span class="cupon-badge-exclusive">Exclusivo Aluno</span>
+                    <img src="../assets/img/parceiros/1-LordLion.png" alt="Lord Lion Cervejaria" class="cupon-logo">
+                    <div class="cupon-discount">ENTRADA FREE</div>
+                    <div class="cupon-label">COMO USAR</div>
+                    <p class="cupon-description">Apresente a página inicial do seu <strong>App Treinus</strong> na
+                        entrada da cervejaria e garanta seu acesso gratuito.</p>
+                    <div class="cupon-code-box">
+                        <span class="cupon-code">📱 MOSTRAR APP TREINUS</span>
+                    </div>
+                    <a href="https://lordlioncervejaria.com.br/" target="_blank" class="btn-cupon">Ver Site</a>
+                </div>
+
+                <!-- Thallys Freitas -->
+                <div class="cupon-card premium">
+                    <span class="cupon-badge-exclusive">Exclusivo Aluno</span>
+                    <img src="../assets/img/parceiros/6-THALLYS FREITAS.png" alt="Fisio Thallys Freitas"
+                        class="cupon-logo">
+                    <div class="cupon-discount">10% OFF</div>
+                    <div class="cupon-label">COMO USAR</div>
+                    <p class="cupon-description">10% de desconto em cada sessão de Recovery com o Dr. Thallys Freitas.
+                    </p>
+                    <div class="cupon-code-box">
+                        <span class="cupon-code">📢 INFORMAR QUE É ALUNO</span>
+                    </div>
+                    <a href="https://www.instagram.com/fisiothallysfreitas/" target="_blank" class="btn-cupon">Agendar
+                        no Insta</a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer (Simulando o padrão do site) -->
+    <footer style="background: #1a1a1a; color: #fff; padding: 60px 20px; margin-top: 80px; text-align: center;">
+        <div class="container">
+            <p>&copy; 2026 Karina Franzin - Assessoria de Corrida. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script>
+        // Função para Copiar Cupom
+        function copyCoupon(element, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const badge = document.createElement('div');
+                badge.className = 'copy-feedback show';
+                badge.textContent = 'Copiado!';
+                element.appendChild(badge);
+
+                const hint = element.querySelector('.cupon-copy-hint');
+                const originalHint = hint ? hint.textContent : 'Toque para copiar';
+                if (hint) hint.textContent = 'Copiado! ✅';
+
+                setTimeout(() => {
+                    badge.classList.remove('show');
+                    setTimeout(() => badge.remove(), 300);
+                    if (hint) hint.textContent = originalHint;
+                }, 2000);
+            });
+        }
+
+        // Lógica de Automação por Data
+        document.addEventListener('DOMContentLoaded', () => {
+            const now = new Date();
+            const cards = document.querySelectorAll('[data-expire]');
+            let activeCount = 0;
+
+            cards.forEach(card => {
+                const expireDate = new Date(card.getAttribute('data-expire') + 'T23:59:59');
+                if (now > expireDate) {
+                    card.style.display = 'none';
+                } else {
+                    activeCount++;
+                }
+            });
+
+            // Mostra a seção de provas apenas se houver cupons ativos
+            if (activeCount > 0) {
+                document.getElementById('provas-section').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+</html>
