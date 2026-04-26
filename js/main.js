@@ -109,15 +109,26 @@
                 if (!link) return;
 
                 if (scrollY >= top && scrollY < top + height) {
-                    navLinks.forEach(function (l) { l.classList.remove('active'); });
+                    // Remove active apenas de links internos (âncoras)
+                    navLinks.forEach(function (l) { 
+                        var href = l.getAttribute('href') || '';
+                        if (href.startsWith('#')) {
+                            l.classList.remove('active'); 
+                        }
+                    });
                     link.classList.add('active');
                     found = true;
                 }
             });
 
-            // Se não está dentro de nenhuma seção (ex: topo da página), remove todos
+            // Se não está dentro de nenhuma seção (ex: topo da página), remove de todos os links internos
             if (!found) {
-                navLinks.forEach(function (l) { l.classList.remove('active'); });
+                navLinks.forEach(function (l) { 
+                    var href = l.getAttribute('href') || '';
+                    if (href.startsWith('#')) {
+                        l.classList.remove('active'); 
+                    }
+                });
             }
         }
 
