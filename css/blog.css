@@ -440,12 +440,22 @@
 
 /* Article CTA Box */
 .article-cta {
-    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+    background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
     color: white;
     padding: 3rem;
     border-radius: 12px;
     text-align: center;
     margin: 3rem 0;
+}
+
+/* Reset para botões dentro do corpo do artigo não herdarem estilos de link */
+.article-body .btn {
+    color: white;
+    text-decoration: none;
+}
+
+.article-body .btn:hover {
+    color: white;
 }
 
 .article-cta h3 {
@@ -511,23 +521,6 @@
     display: inline-block;
 }
 
-.btn-secondary {
-    background: white;
-    color: #4CAF50;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-    font-weight: 800;
-    font-size: 1.1rem;
-    border: 2px solid white;
-}
-
-.btn-secondary:hover {
-    background: #4CAF50;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-    color: white;
-    border-color: white;
-}
-
 /* Article Footer */
 .article-footer {
     max-width: 800px;
@@ -547,36 +540,6 @@
 
 .back-to-blog:hover {
     color: #f7931e;
-}
-
-/* Buttons */
-.btn {
-    display: inline-block;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: none;
-    font-size: 1rem;
-}
-
-.btn-primary {
-    background: white;
-    color: #ff6b35;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-    font-weight: 800;
-    font-size: 1.1rem;
-    border: 2px solid white;
-}
-
-.btn-primary:hover {
-    background: #ff6b35;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-    color: white;
-    border-color: white;
 }
 
 /* Responsive */
