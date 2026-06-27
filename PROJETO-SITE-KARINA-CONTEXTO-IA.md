@@ -1,6 +1,6 @@
 # 🏃‍♀️ PROJETO SITE KARINA FRANZIN — CONTEXTO PARA IA
 
-> **Última atualização:** 01/04/2026  
+> **Última atualização:** 27/06/2026  
 > **Branch ativa:** `develop`  
 > **Projeto online:** https://karinafranzin.com.br  
 > **Repositório:** https://github.com/igorgr77-lang/site-karina-franzin  
@@ -51,41 +51,53 @@ Gerar leads qualificados via **WhatsApp** para assessoria de corrida online.
 
 ---
 
-## 🏗️ ARQUITETURA DO SITE — ESTADO ATUAL (04/03/2026)
+## 🏗️ ARQUITETURA DO SITE — ESTADO ATUAL (27/06/2026)
 
-### Páginas Ativas
+### Páginas Ativas e Compilação
+O site migrou de um modelo de replicação manual para um sistema de templates estáticos compilados em tempo de build local. As páginas finais são geradas a partir de arquivos `.template.html` que injetam os componentes unificados da navbar e do rodapé.
 
-| Página | Arquivo | Tipo |
-|--------|---------|------|
-| Home (landing page) | `index.html` | Estático |
-| Blog — listagem | `blog/index.html` | Dinâmico (Supabase) |
-| Blog — artigo | `blog/artigo.html?slug=...` | Dinâmico (Supabase) |
-| Eventos — listagem | `eventos/index.html` | Estático |
-| Cãominhada 2026 | `eventos/cao-minhada-2026/index.html` | Estático |
-| Dia da Mulher — Lord Lion | `eventos/dia-da-mulher-lord-lion/index.html` | Estático |
-| Admin (CMS) | `admin/index.html` | CMS (Supabase) |
+| Página | Template de Origem | Arquivo Final Compilado | Tipo |
+|--------|---------------------|-------------------------|------|
+| Home (landing page) | `index.template.html` | `index.html` | Estático (navbar transparente no topo) |
+| Blog — listagem | `blog/index.template.html` | `blog/index.html` | Estático compilado |
+| Blog — artigo | `blog/artigo.template.html` | `blog/[slug]/index.html` | Estático compilado (por post) |
+| Eventos — listagem | `eventos/index.template.html` | `eventos/index.html` | Estático compilado |
+| Cupons | `cupons/index.template.html` | `cupons/index.html` | Estático compilado |
+| Cãominhada 2026 | — | `eventos/cao-minhada-2026/index.html` | Estático legado |
+| Dia da Mulher — Lord Lion | — | `eventos/dia-da-mulher-lord-lion/index.html` | Estático legado |
+| Admin (CMS) | — | `admin/index.html` | CMS (Supabase) |
 
 ### Estrutura de Pastas
-
 ```
 site-karina-franzin/
-├── index.html                        ← Landing page principal
+├── index.template.html               ← Template da Landing page principal
+├── index.html                        ← Homepage final compilada
+├── components/                       ← Componentes globais injetados no build
+│   ├── navbar.html                   ← Estrutura unificada da Navbar
+│   └── footer.html                   ← Estrutura unificada do Rodapé
 ├── css/
 │   ├── styles.css                    ← Estilos globais (navbar, footer, home)
 │   └── blog.css                      ← Estilos específicos do blog
 ├── js/
-│   ├── main.js                       ← Lógica da navbar, carrossel, formulário
+│   ├── main.js                       ← Lógica da home (carrossel, FAQ, lightbox)
+│   ├── navbar.js                     ← Controle unificado da navbar (scroll, mobile, webview)
 │   ├── blog-list.js                  ← Lista artigos do Supabase no blog
 │   ├── blog-article.js               ← Carrega artigo individual do Supabase
 │   ├── supabase-config.js            ← Credenciais do Supabase (não commitar!)
 │   └── utils.js                      ← Funções utilitárias
 ├── blog/
-│   ├── index.html                    ← Listagem de artigos (dinâmica)
-│   └── artigo.html                   ← ÚNICO template de artigo (dinâmico)
+│   ├── index.template.html           ← Template da listagem de artigos
+│   ├── index.html                    ← Listagem final compilada
+│   ├── artigo.template.html          ← Template de artigos individuais
+│   └── [slug]/index.html             ← Artigos finais estáticos (gerados via build)
 ├── eventos/
-│   ├── index.html                    ← Listagem de eventos
+│   ├── index.template.html           ← Template da listagem de eventos
+│   ├── index.html                    ← Listagem de eventos final compilada
 │   ├── cao-minhada-2026/index.html   ← Página do evento Cãominhada
 │   └── dia-da-mulher-lord-lion/index.html ← Página do evento Dia da Mulher
+├── cupons/
+│   ├── index.template.html           ← Template de cupons e descontos
+│   └── index.html                    ← Página de cupons final compilada
 ├── admin/
 │   ├── index.html                    ← Painel de gestão de artigos
 │   ├── login.html
@@ -99,6 +111,7 @@ site-karina-franzin/
 │       ├── capa_evento_2.webp        ← Card do evento Cãominhada
 │       ├── logoLordLion.png          ← Logo Lord Lion (parceiro)
 │       └── logoKarinaFranzin.png     ← Logo Karina (rodapé eventos)
+├── build-blog.js                     ← Script de build local (compila templates + posts)
 └── .htaccess                         ← Configuração de rotas/redirects
 ```
 
@@ -146,26 +159,31 @@ Campos principais:
 
 ---
 
-## 🧭 NAVBAR E RODAPÉ — REGRAS IMPORTANTES
+## 🧭 NAVBAR E RODAPÉ — CENTRALIZAÇÃO E COMPILAÇÃO AUTOMÁTICA
 
-- A **navbar é idêntica** em todas as páginas (HTML copiado manualmente em cada arquivo)
-- O **rodapé é idêntico** em todas as páginas (HTML copiado manualmente em cada arquivo)
-- Qualquer alteração em navbar ou rodapé **deve ser replicada em todos os arquivos HTML**
-- A navbar usa o logo `assets/img/KarinaFranzin80.webp` (38x38px exibido, 80x80px real)
+A navbar e o rodapé foram centralizados em arquivos de componentes globais (DRY - Don't Repeat Yourself), eliminando a replicação de HTML.
+
+- **Componentes Físicos:**
+  - `components/navbar.html`: Estrutura HTML única da navbar. Usa caminhos relativos à raiz `/`. Possui a classe flexível `{{NAVBAR_CLASS}}`.
+  - `components/footer.html`: Estrutura HTML do rodapé unificado.
+  - `js/navbar.js`: Lógica dinâmica da navbar (scroll, menu mobile/overlay e segurança contra WebView do Instagram). Carregado de forma assíncrona com `defer` no `<head>` de todas as páginas.
+- **Placeholders de Compilação:** 
+  - Os templates `.template.html` contêm placeholders `<!-- NAVBAR_PLACEHOLDER -->` e `<!-- FOOTER_PLACEHOLDER -->` nos pontos de injeção.
+- **Processo de Build (`node build-blog.js`):**
+  - O script lê os componentes globais e realiza a compilação gerando as páginas estáticas finais (`index.html`, `/blog/index.html`, artigos individuais, `/eventos/index.html`, `/cupons/index.html`).
+  - **Diferenciação automática de cor:** O build injeta a classe `navbar-transparent` na Homepage e `navbar-scrolled` (escura) em todas as outras páginas.
+  - **⚠️ IMPORTANTE:** Nunca altere diretamente arquivos `.html` estáticos gerados na raiz ou subpastas (como `index.html`, `blog/index.html` ou `eventos/index.html`). Faça as alterações nos arquivos `.template.html` correspondentes e rode `node build-blog.js` para compilar.
 
 ### Comportamento da Navbar por tipo de página
 
-| Tipo de página | Comportamento |
-|----------------|---------------|
-| **Home** (`index.html`) | Transparente no topo → escurece ao rolar |
-| **Páginas secundárias** | Sempre escura (`navbar-scrolled` já aplicado no HTML) |
+| Tipo de página | Estado Inicial no Carregamento | Comportamento Dinâmico |
+|----------------|--------------------------------|------------------------|
+| **Home** (`index.html`) | Transparente (`navbar-transparent`) | Escurece ao rolar a tela (`navbar-scrolled` é adicionado via JS) |
+| **Demais Páginas** | Escura (`navbar-scrolled`) | Mantém-se escura permanentemente |
 
 ### CSS Crítico Inline (fix FOUC)
 
-**Todas as páginas** possuem um bloco `<style>` inline no `<head>` com os estilos mínimos da navbar. Isso evita o FOUC (Flash of Unstyled Content) — o problema onde a navbar aparecia com logo e links em coluna, sem estilo, antes do CSS externo carregar.
-
-- **Home:** CSS crítico com `background: transparent` (navbar começa transparente)
-- **Páginas secundárias:** CSS crítico com `background: rgba(20,20,20,0.96)` (navbar sempre escura)
+Os estilos mínimos da navbar estão mantidos como CSS crítico no `<head>` dos templates para evitar o FOUC (Flash of Unstyled Content). O build injeta os componentes mantendo essa proteção ativa e consistente.
 
 ---
 
@@ -363,6 +381,8 @@ python -m http.server 8080
 
 | Data | Hash | Descrição |
 |------|------|-----------|
+| 27/06/2026 | `d212448` | docs: melhora copy do card da planilha semanal citando Treinus e sincronização |
+| 27/06/2026 | `cdb1630` | feat: centraliza navbar e rodapé em componentes de arquivo único e automatiza compilação |
 | 31/03/2026 | —  | Fix navbar transparente no Instagram + foto hero cortada + dots carrossel no WebView |
 | 04/03/2026 | `91294a2` | Alteração da imagem do logo da navbar (logo.jpg → KarinaFranzin80.webp) |
 | 04/03/2026 | `3da34d2` | Resolvido bug FOUC da navbar em todos os dispositivos |
@@ -659,3 +679,33 @@ og:image: (imagem real do artigo do Supabase)
 - `js/blog-list.js` — Link atribuído ao card inteiro
 - `css/blog.css` — Estilos do card clicável adicionados
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` — Reestruturado
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 27/06/2026 — UNIFICAÇÃO DE NAVBAR E RODAPÉ E MELHORIA DE COPY ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivo:** Centralizar a Navbar e o Rodapé em componentes de arquivos únicos para evitar duplicação de código e simplificar futuras manutenções (DRY), além de melhorar a copy do card "Planilha Semanal" na Home.
+
+**O que foi feito:**
+- ✅ Criado `components/navbar.html` contendo o HTML unificado da barra de navegação com links relativos à raiz.
+- ✅ Criado `components/footer.html` contendo o HTML unificado do rodapé (redes sociais, direitos autorais e parceiros).
+- ✅ Criado `js/navbar.js` contendo a lógica centralizada de controle (scroll, toggle de menu móvel e WebView/Instagram).
+- ✅ Atualizado o script `build-blog.js` para compilar e injetar a navbar e o rodapé em todas as páginas estáticas durante o build, incluindo a injeção da classe adequada (`navbar-transparent` na Home, e `navbar-scrolled` nas demais páginas).
+- ✅ Modificados arquivos `.html` originais para virarem templates `.template.html` (`index.template.html`, `blog/index.template.html`, `blog/artigo.template.html`, `eventos/index.template.html`, `cupons/index.template.html`) usando placeholders `<!-- NAVBAR_PLACEHOLDER -->` e `<!-- FOOTER_PLACEHOLDER -->`.
+- ✅ Removido o JS de navbar redundante do `js/main.js` e scripts inline de eventos.
+- ✅ Atualizada a copy do card "Planilha Semanal" na Home para citar o app **Treinus** e a sincronização automática com relógios GPS.
+- ✅ Validação em browser e deploy concluídos com sucesso em ambas as branches (`develop` e `main`).
+
+### 📁 Arquivos criados/modificados:
+- `components/navbar.html` (NOVO)
+- `components/footer.html` (NOVO)
+- `js/navbar.js` (NOVO)
+- `index.template.html` (NOVO)
+- `blog/index.template.html` (NOVO)
+- `cupons/index.template.html` (NOVO)
+- `eventos/index.template.html` (NOVO)
+- `build-blog.js` (MODIFICADO)
+- `js/main.js` (MODIFICADO)
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
