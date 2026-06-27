@@ -2,55 +2,109 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://karinafranzin.com.br/</loc>
-        <lastmod>2026-02-18</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://karinafranzin.com.br/#performance</loc>
-        <lastmod>2026-02-18</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://karinafranzin.com.br/#como-funciona</loc>
-        <lastmod>2026-02-18</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://karinafranzin.com.br/#sobre</loc>
-        <lastmod>2026-02-18</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://karinafranzin.com.br/blog/</loc>
-        <lastmod>2026-02-18</lastmod>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://karinafranzin.com.br/blog/run-avoa-2026-votuporanga/</loc>
-        <lastmod>2026-02-18</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
+        <loc>https://karinafranzin.com.br/eventos/</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://karinafranzin.com.br/blog/como-comecar-a-correr-do-zero/</loc>
-        <lastmod>2026-02-18</lastmod>
+        <loc>https://karinafranzin.com.br/cupons/</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/eventos/cao-minhada-2026/</loc>
+        <lastmod>2026-06-27</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://karinafranzin.com.br/blog/plano-de-treino-5km-para-iniciantes/</loc>
-        <lastmod>2026-02-18</lastmod>
+        <loc>https://karinafranzin.com.br/eventos/dia-da-mulher-lord-lion/</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/eventos/treinao-lord-lion/</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/eventos/treinao-ultra-lord-maio/</loc>
+        <lastmod>2026-06-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/blog/11-run-avoa-o-desafio-de-vencer-a-dor-e-manter-uma-hegemonia-de-8-anos/</loc>
+        <lastmod>2026-03-19</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/blog/lesao-na-posterior-da-coxa-a-dor-vai-embora-mas-e-o-movimento-o-que-a-ciencia-e-a-biomecanica-nos-ensinam/</loc>
+        <lastmod>2026-03-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/blog/29-corrida-pedestre-cidade-de-lourdes-sp-2026-75-km/</loc>
+        <lastmod>2026-03-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/blog/run-avoa-2026-votuporanga/</loc>
+        <lastmod>2026-02-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/blog/plano-de-treino-para-correr-5km-em-8-semanas-iniciantes/</loc>
+        <lastmod>2026-02-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://karinafranzin.com.br/blog/erros-comuns-corrida-iniciantes/</loc>
-        <lastmod>2026-02-18</lastmod>
+        <lastmod>2026-02-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/blog/como-comecar-a-correr-do-zero/</loc>
+        <lastmod>2026-02-21</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
