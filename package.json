@@ -1,0 +1,21 @@
+{
+  "name": "site-karina-franzin",
+  "version": "1.0.0",
+  "description": "Site institucional e blog estático da Karina Franzin",
+  "main": "build-blog.js",
+  "scripts": {
+    "dev": "python -m http.server 8080",
+    "build": "node build-blog.js"
+  },
+  "keywords": [
+    "corrida",
+    "assessoria",
+    "blog",
+    "static"
+  ],
+  "author": "Karina Franzin",
+  "license": "ISC",
+  "dependencies": {
+    "sharp": "^0.33.2"
+  }
+}

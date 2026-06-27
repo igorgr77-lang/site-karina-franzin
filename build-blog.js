@@ -2,6 +2,14 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
+// Tenta carregar a biblioteca Sharp de forma opcional (fallback amigável se não estiver instalado)
+let sharp;
+try {
+    sharp = require('sharp');
+} catch (e) {
+    console.warn('   ⚠️ Aviso: Biblioteca "sharp" não encontrada. As imagens do blog serão salvas no formato original sem conversão para WebP. (Rode "npm install" para habilitar a otimização)');
+}
+
 // ============================================
 // CONFIGURAÇÕES E CREDENCIAIS
 // ============================================
@@ -105,23 +113,51 @@ async function processarImagem(urlOriginal, slug, prefixo) {
             // Extrai o nome do arquivo da URL original
             const urlParts = urlOriginal.split('/');
             const originalFileName = urlParts[urlParts.length - 1];
+            const ext = path.extname(originalFileName);
+            const isWebp = ext.toLowerCase() === '.webp';
             
-            // Define o nome de salvamento local
-            const localFileName = originalFileName;
-            const destPath = path.join(IMAGES_DIR, localFileName);
-            const relativePath = `/assets/img/blog/${localFileName}`;
-            
-            if (!fs.existsSync(destPath)) {
-                console.log(`   📥 Baixando imagem: ${originalFileName}...`);
-                await downloadFile(urlOriginal, destPath);
-                console.log(`   ✅ Salva em assets/img/blog/${localFileName}`);
+            if (!sharp || isWebp) {
+                // Sem sharp ou já é WebP original -> fluxo normal sem conversão
+                const destPath = path.join(IMAGES_DIR, originalFileName);
+                const relativePath = `/assets/img/blog/${originalFileName}`;
+                
+                if (!fs.existsSync(destPath)) {
+                    console.log(`   📥 Baixando imagem: ${originalFileName}...`);
+                    await downloadFile(urlOriginal, destPath);
+                    console.log(`   ✅ Salva em assets/img/blog/${originalFileName}`);
+                } else {
+                    console.log(`   ✔️ Imagem já existe localmente: ${originalFileName}`);
+                }
+                
+                return relativePath;
             } else {
-                console.log(`   ✔️ Imagem já existe localmente: ${localFileName}`);
+                // Com sharp e não é WebP -> converte para WebP para economizar espaço
+                const webpFileName = originalFileName.substring(0, originalFileName.length - ext.length) + '.webp';
+                const webpPath = path.join(IMAGES_DIR, webpFileName);
+                const relativePath = `/assets/img/blog/${webpFileName}`;
+                
+                if (!fs.existsSync(webpPath)) {
+                    const tempPath = path.join(IMAGES_DIR, `temp-${originalFileName}`);
+                    console.log(`   📥 Baixando imagem original: ${originalFileName}...`);
+                    await downloadFile(urlOriginal, tempPath);
+                    
+                    console.log(`   🖼️ Convertendo para WebP: ${webpFileName}...`);
+                    await sharp(tempPath)
+                        .webp({ quality: 85 })
+                        .toFile(webpPath);
+                    
+                    try {
+                        fs.unlinkSync(tempPath);
+                    } catch (e) {}
+                    console.log(`   ✅ Salva e otimizada em WebP: assets/img/blog/${webpFileName}`);
+                } else {
+                    console.log(`   ✔️ Imagem WebP já existe localmente: ${webpFileName}`);
+                }
+                
+                return relativePath;
             }
-            
-            return relativePath;
         } catch (err) {
-            console.error(`   ⚠️ Falha ao baixar imagem do Supabase (${urlOriginal}):`, err.message);
+            console.error(`   ⚠️ Falha ao processar imagem do Supabase (${urlOriginal}):`, err.message);
             return urlOriginal; // Mantém a URL original se falhar
         }
     }
