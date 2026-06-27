@@ -56,6 +56,69 @@ function setupEventListeners() {
     document.getElementById('content').addEventListener('input', () => {
         updateReadingTime();
     });
+
+    // Inserir imagem no corpo do texto
+    const insertBtn = document.getElementById('insertBodyImageBtn');
+    const bodyImageInput = document.getElementById('bodyImageInput');
+    
+    if (insertBtn && bodyImageInput) {
+        insertBtn.addEventListener('click', () => {
+            bodyImageInput.click();
+        });
+        
+        bodyImageInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            // Validar tamanho (max 5MB para fotos internas)
+            if (file.size > 5 * 1024 * 1024) {
+                alert('A imagem é muito grande. Por favor, escolha uma imagem menor que 5MB.');
+                return;
+            }
+            
+            // Validar tipo
+            if (!file.type.match(/image\/(jpeg|jpg|png|webp)/)) {
+                alert('Por favor, escolha uma imagem JPG, PNG ou WebP.');
+                return;
+            }
+            
+            try {
+                showLoading('Enviando foto para o servidor...');
+                // Limpar caracteres estranhos do nome do arquivo
+                const sanitizedName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+                const fileName = `body-${Date.now()}-${sanitizedName}`;
+                const publicUrl = await uploadImage(file, fileName);
+                
+                // Inserir tag HTML de imagem no cursor do textarea
+                const textarea = document.getElementById('content');
+                const imgTag = `<img src="${publicUrl}" alt="Foto do treino" class="body-image">`;
+                
+                const startPos = textarea.selectionStart;
+                const endPos = textarea.selectionEnd;
+                const text = textarea.value;
+                
+                textarea.value = text.substring(0, startPos) + imgTag + text.substring(endPos);
+                
+                // Reposicionar o cursor após a tag inserida
+                textarea.focus();
+                textarea.selectionStart = startPos + imgTag.length;
+                textarea.selectionEnd = startPos + imgTag.length;
+                
+                // Resetar input
+                bodyImageInput.value = '';
+                
+                // Atualizar tempo de leitura
+                updateReadingTime();
+                
+                hideLoading();
+                alert('📷 Imagem inserida com sucesso!');
+            } catch (error) {
+                console.error(error);
+                hideLoading();
+                alert('Erro ao enviar imagem. Tente novamente.');
+            }
+        });
+    }
 }
 
 // Contadores de Caracteres

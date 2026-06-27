@@ -696,6 +696,8 @@ og:image: (imagem real do artigo do Supabase)
 - ✅ Modificados arquivos `.html` originais para virarem templates `.template.html` (`index.template.html`, `blog/index.template.html`, `blog/artigo.template.html`, `eventos/index.template.html`, `cupons/index.template.html`) usando placeholders `<!-- NAVBAR_PLACEHOLDER -->` e `<!-- FOOTER_PLACEHOLDER -->`.
 - ✅ Removido o JS de navbar redundante do `js/main.js` e scripts inline de eventos.
 - ✅ Atualizada a copy do card "Planilha Semanal" na Home para citar o app **Treinus** e a sincronização automática com relógios GPS.
+- ✅ Criado o botão **"📷 Inserir Foto no Texto"** no painel de administração (`admin/editor.html`) com upload automático de imagens selecionadas para o Supabase Storage (`blog-images`) e injeção da tag `<img>` na posição atual do cursor no editor de texto.
+- ✅ Adicionado o estilo do botão secundário `.btn-secondary` no CSS do editor (`admin/css/editor.css`).
 - ✅ Validação em browser e deploy concluídos com sucesso em ambas as branches (`develop` e `main`).
 
 ### 📁 Arquivos criados/modificados:
@@ -708,4 +710,7 @@ og:image: (imagem real do artigo do Supabase)
 - `eventos/index.template.html` (NOVO)
 - `build-blog.js` (MODIFICADO)
 - `js/main.js` (MODIFICADO)
+- `admin/editor.html` (MODIFICADO)
+- `admin/js/editor.js` (MODIFICADO)
+- `admin/css/editor.css` (MODIFICADO)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
