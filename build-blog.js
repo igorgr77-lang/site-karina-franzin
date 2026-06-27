@@ -51,6 +51,7 @@ console.log(`✅ Conectando à URL: ${SUPABASE_URL}`);
 function fetchGet(url, headers = {}) {
     return new Promise((resolve, reject) => {
         https.get(url, { headers }, (res) => {
+            res.setEncoding('utf8');
             let data = '';
             res.on('data', (chunk) => { data += chunk; });
             res.on('end', () => {
@@ -170,6 +171,20 @@ async function processarImagem(urlOriginal, slug, prefixo) {
 // ============================================
 async function build() {
     try {
+        // Ler componentes globais para injeção automática nas páginas
+        console.log('📂 Lendo componentes unificados (navbar e rodapé)...');
+        const navbarHtml = fs.readFileSync(path.join(__dirname, 'components', 'navbar.html'), 'utf8');
+        const footerHtml = fs.readFileSync(path.join(__dirname, 'components', 'footer.html'), 'utf8');
+
+        function compilePageComponents(htmlContent, isHomepage = false) {
+            let compiled = htmlContent;
+            const navbarClass = isHomepage ? 'navbar-transparent' : 'navbar-scrolled';
+            const compiledNavbar = navbarHtml.replace('{{NAVBAR_CLASS}}', navbarClass);
+            compiled = compiled.replace('<!-- NAVBAR_PLACEHOLDER -->', compiledNavbar);
+            compiled = compiled.replace('<!-- FOOTER_PLACEHOLDER -->', footerHtml);
+            return compiled;
+        }
+
         console.log('\n🚀 Iniciando carregamento de artigos do Supabase...');
         const apiHeaders = {
             'apikey': SUPABASE_ANON_KEY,
@@ -279,7 +294,8 @@ async function build() {
                     .replace(/{{SUBTITLE_STYLE}}/g, 'display: none;');
             }
             
-            // 5. Salvar arquivo estático do artigo
+            // 5. Compilar componentes globais e salvar arquivo estático do artigo
+            htmlArtigo = compilePageComponents(htmlArtigo, false);
             const artigoPasta = path.join(BLOG_DIR, artigo.slug);
             if (!fs.existsSync(artigoPasta)) {
                 fs.mkdirSync(artigoPasta, { recursive: true });
@@ -328,8 +344,41 @@ async function build() {
             htmlIndex = htmlIndex.replace('<!-- ARTICLES_NO_ARTICLES_PLACEHOLDER -->', '');
         }
         
+        htmlIndex = compilePageComponents(htmlIndex, false);
         fs.writeFileSync(path.join(BLOG_DIR, 'index.html'), htmlIndex, 'utf8');
         console.log('💾 Listagem estática atualizada em: blog/index.html');
+        
+        // ============================================
+        // COMPILAR OUTRAS PÁGINAS DO SITE
+        // ============================================
+        console.log('\n🏠 Compilando demais páginas do site...');
+        
+        // 1. Homepage (index.html) - transparente
+        const rootIndexTemplatePath = path.join(__dirname, 'index.template.html');
+        if (fs.existsSync(rootIndexTemplatePath)) {
+            let htmlRootIndex = fs.readFileSync(rootIndexTemplatePath, 'utf8');
+            htmlRootIndex = compilePageComponents(htmlRootIndex, true);
+            fs.writeFileSync(path.join(__dirname, 'index.html'), htmlRootIndex, 'utf8');
+            console.log('💾 Homepage compilada com sucesso em: index.html');
+        }
+        
+        // 2. Eventos (eventos/index.html) - escura
+        const eventosTemplatePath = path.join(__dirname, 'eventos', 'index.template.html');
+        if (fs.existsSync(eventosTemplatePath)) {
+            let htmlEventos = fs.readFileSync(eventosTemplatePath, 'utf8');
+            htmlEventos = compilePageComponents(htmlEventos, false);
+            fs.writeFileSync(path.join(__dirname, 'eventos', 'index.html'), htmlEventos, 'utf8');
+            console.log('💾 Página de Eventos compilada com sucesso em: eventos/index.html');
+        }
+        
+        // 3. Cupons (cupons/index.html) - escura
+        const cuponsTemplatePath = path.join(__dirname, 'cupons', 'index.template.html');
+        if (fs.existsSync(cuponsTemplatePath)) {
+            let htmlCupons = fs.readFileSync(cuponsTemplatePath, 'utf8');
+            htmlCupons = compilePageComponents(htmlCupons, false);
+            fs.writeFileSync(path.join(__dirname, 'cupons', 'index.html'), htmlCupons, 'utf8');
+            console.log('💾 Página de Cupons compilada com sucesso em: cupons/index.html');
+        }
         
         // ============================================
         // GERAR SITEMAP.XML
