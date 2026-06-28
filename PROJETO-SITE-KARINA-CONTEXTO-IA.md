@@ -698,6 +698,7 @@ og:image: (imagem real do artigo do Supabase)
 - ✅ Atualizada a copy do card "Planilha Semanal" na Home para citar o app **Treinus** e a sincronização automática com relógios GPS.
 - ✅ Criado o botão **"📷 Inserir Foto no Texto"** no painel de administração (`admin/editor.html`) com upload automático de imagens selecionadas para o Supabase Storage (`blog-images`) e injeção da tag `<img>` na posição atual do cursor no editor de texto.
 - ✅ Adicionado o estilo do botão secundário `.btn-secondary` no CSS do editor (`admin/css/editor.css`).
+- ✅ Corrigido o erro de acessibilidade apontado no PageSpeed Insights adicionando o atributo `aria-label` dinamicamente nos botões de navegação (dots) do carrossel em `js/main.js`.
 - ✅ Validação em browser e deploy concluídos com sucesso em ambas as branches (`develop` e `main`).
 
 ### 📁 Arquivos criados/modificados:

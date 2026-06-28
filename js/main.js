@@ -181,6 +181,7 @@ document.head.appendChild(style);
                 var dot = document.createElement('button');
                 dot.className = 'indicator';
                 dot.setAttribute('data-page', i);
+                dot.setAttribute('aria-label', 'Ir para o slide ' + (i + 1));
                 // Suporte a touchstart para WebViews (Instagram/Facebook) — evita delay de 300ms
                 (function(page, btn) {
                     var dotTouched = false;
