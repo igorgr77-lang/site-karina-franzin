@@ -810,6 +810,13 @@
                     card.setAttribute('data-status', 'passado');
                     gridPassados.insertBefore(card, gridPassados.firstChild);
                     temPassado = true;
+
+                    // Atualiza a tag "Em breve" para "Realizado" dinamicamente
+                    var tagProximo = card.querySelector('.evento-tag.proximo');
+                    if (tagProximo) {
+                        tagProximo.className = 'evento-tag passado';
+                        tagProximo.innerText = 'Realizado';
+                    }
                 }
                 // Se não passou, permanece em próximos (data-status="proximo")
             });
