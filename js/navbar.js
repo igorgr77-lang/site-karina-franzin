@@ -60,9 +60,20 @@
             });
         }
 
-        // Fechar ao clicar em link interno (âncoras)
+        // Fechar ao clicar em link interno (âncoras na mesma página ou com delay para externos)
         links.querySelectorAll('a[href*="#"]').forEach(function (a) {
-            a.addEventListener('click', closeMenu);
+            a.addEventListener('click', function (e) {
+                var href = this.getAttribute('href') || '';
+                var isCurrentPageAnchor = href.startsWith('#');
+                var isHomeAnchor = href.startsWith('/#') && (window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname === '');
+                
+                if (isCurrentPageAnchor || isHomeAnchor) {
+                    closeMenu();
+                } else {
+                    // Para links externos/outras páginas, fecha o menu com um pequeno delay para não abortar a navegação no Chrome/Safari mobile
+                    setTimeout(closeMenu, 150);
+                }
+            });
         });
 
         // ── Escurecer navbar ao rolar (somente na Home) ──
@@ -95,6 +106,25 @@
         window.addEventListener('scroll', updateNavbar, { passive: true });
         document.addEventListener('touchmove', updateNavbar, { passive: true });
         updateNavbar(); // Roda imediatamente
+
+        // ── Highlight do link ativo da página atual (Blog, Eventos, Cupons) ──
+        function normalizePath(p) {
+            return p.replace(/\/+$/, '') || '/';
+        }
+        var normPath = normalizePath(window.location.pathname);
+        navLinks.forEach(function (link) {
+            var href = link.getAttribute('href') || '';
+            var normHref = normalizePath(href.split('#')[0]); // ignora partes de âncora/hash
+            
+            if (!isHomepage) {
+                link.classList.remove('active');
+            }
+            if (href !== '/' && href !== '/index.html' && !href.startsWith('/#')) {
+                if (normPath === normHref || (normHref !== '/' && normPath.startsWith(normHref))) {
+                    link.classList.add('active');
+                }
+            }
+        });
 
         // ── Highlight do link ativo conforme seção visível (apenas na Home) ──
         if (isHomepage) {

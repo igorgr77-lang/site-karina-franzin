@@ -1,5 +1,5 @@
 // Service Worker para cache estratégico
-const CACHE_NAME = 'karina-franzin-v1';
+const CACHE_NAME = 'karina-franzin-v2';
 const CRITICAL_ASSETS = [
     '/',
     '/index.html',
