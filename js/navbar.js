@@ -46,30 +46,23 @@
             document.body.style.overflow = '';
         }
 
-        // Touch e Click triggers para máxima responsividade
-        var menuToggled = false;
-        toggle.addEventListener('touchstart', function (e) {
+        // Click listener unificado (sem conflitos de touchstart/click em navegadores móveis)
+        toggle.addEventListener('click', function (e) {
             e.preventDefault();
-            menuToggled = true;
-            var isOpen = links.classList.contains('open');
-            isOpen ? closeMenu() : openMenu();
-        }, { passive: false });
-        
-        toggle.addEventListener('click', function () {
-            if (menuToggled) { menuToggled = false; return; }
             var isOpen = links.classList.contains('open');
             isOpen ? closeMenu() : openMenu();
         });
 
         if (overlay) {
-            overlay.addEventListener('touchstart', function(e) { e.preventDefault(); closeMenu(); }, { passive: false });
-            overlay.addEventListener('click', closeMenu);
+            overlay.addEventListener('click', function (e) {
+                e.preventDefault();
+                closeMenu();
+            });
         }
 
         // Fechar ao clicar em link interno (âncoras)
         links.querySelectorAll('a[href*="#"]').forEach(function (a) {
             a.addEventListener('click', closeMenu);
-            a.addEventListener('touchstart', function() { closeMenu(); }, { passive: true });
         });
 
         // ── Escurecer navbar ao rolar (somente na Home) ──
