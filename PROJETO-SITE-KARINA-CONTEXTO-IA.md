@@ -307,7 +307,9 @@ Pode me explicar como funciona?
 |--------|---------|------|--------|
 | 2ª Cãominhada Studio Ativo | `eventos/cao-minhada-2026/` | 2026 | ✅ Online |
 | A Noite É Delas! (Lord Lion) | `eventos/dia-da-mulher-lord-lion/` | 08/03/2026 | ✅ Online |
-| Treinao Lord Lion e Karina Franzin | `eventos/treinao-lord-lion/` | 11/04/2026 | ✅ Online |
+| Treinão Lord Lion e Karina Franzin | `eventos/treinao-lord-lion/` | 11/04/2026 | ✅ Online |
+| Treinão Lord Ultra Run (Maio) | `eventos/treinao-ultra-lord-maio/` | 09/05/2026 | ✅ Online |
+| Treinão Lord Ultra (Julho) | `eventos/treinao-ultra-lord-julho/` | 09/07/2026 | ✅ Online |
 
 ### Parceiro — Lord Lion Cervejaria
 
@@ -428,13 +430,13 @@ python -m http.server 8080
 
 ---
 
-## ✅ ESTADO ATUAL DO PROJETO (17/04/2026)
+## ✅ ESTADO ATUAL DO PROJETO (29/06/2026)
 
 - ✅ Landing page completa e otimizada
 - ✅ Blog dinâmico via Supabase (listagem + artigos por slug)
 - ✅ Cards do blog inteiramente clicáveis (card inteiro leva ao artigo)
 - ✅ Painel admin (CMS) funcional
-- ✅ Seção de Eventos com 3 eventos ativos
+- ✅ Seção de Eventos com 4 eventos ativos (sendo 1 futuro e 3 passados)
 - ✅ Navbar global em todas as páginas (com CSS crítico inline — sem FOUC)
 - ✅ Navbar sempre escura ao acessar pelo Instagram/WebView (3 camadas de detecção)
 - ✅ Foto hero não cortada no mobile quando navbar está preta
@@ -448,6 +450,7 @@ python -m http.server 8080
 - ✅ Seção de Parceiros Oficiais (9 parceiros) — acima do CTA final
 - ✅ Evento "Treinão Lord Lion & Karina Franzin" — 11/04/2026 — página criada e card na listagem
 - ✅ Evento "Treinão Lord Ultra Run" — 09/05/2026 — página criada e card na listagem
+- ✅ Evento "Treinão Lord Ultra" (Julho) — 09/07/2026 — página criada e card na listagem
 - ✅ Classificação automática de eventos por data (Próximos → Passados) via JavaScript
 
 ---
@@ -715,3 +718,29 @@ og:image: (imagem real do artigo do Supabase)
 - `admin/js/editor.js` (MODIFICADO)
 - `admin/css/editor.css` (MODIFICADO)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 29/06/2026 — EVENTO TREINÃO LORD ULTRA JULHO ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivo:** Criar página do evento "Treinão Lord Ultra" (09/07/2026) e adicioná-lo à listagem de eventos do site.
+
+**O que foi feito:**
+- ✅ Criada pasta `eventos/treinao-ultra-lord-julho/` e copiadas as imagens de referência (`cardtreinoterra.png` e `karinaterra.png`) para `assets/img/treinao-ultra-lord-julho/`
+- ✅ Criado `eventos/treinao-ultra-lord-julho/index.html` contendo a página detalhada do evento
+  - Configurado para Quinta-feira (Feriado Estadual SP), dia 09 de Julho de 2026 às 17h30 (Concentração às 17h15, Largada às 17h30)
+  - Modificado o percurso para "5km de pura energia da Lord Ultra Run"
+  - Link de inscrição atualizado para o evento específico do Strava
+  - Link do ponto de encontro atualizado para o Google Maps diretamente (com visual interativo no mobile)
+  - Vantagem do pós-treino com entrada gratuita na Lord Lion integrada
+- ✅ Card de listagem inserido em `eventos/index.template.html` com a data `2026-07-09`
+- ✅ Rodado `node build-blog.js` para compilar os templates e atualizar `sitemap.xml`
+
+### 📁 Arquivos criados/modificados:
+- `eventos/treinao-ultra-lord-julho/index.html` (NOVO)
+- `eventos/index.template.html` (MODIFICADO)
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+- `assets/img/treinao-ultra-lord-julho/` (NOVO)
+

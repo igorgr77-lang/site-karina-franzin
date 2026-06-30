@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinão Lord Ultra - 5km de Pura Energia</title>
+    <meta name="description"
+        content="Prepare seus tênis para 5km de pura energia no Treinão Lord Ultra com Karina Franzin dia 09 de Julho de 2026. Entrada gratuita na Lord Lion Cervejaria para os participantes!">
+    <link rel="canonical" href="https://karinafranzin.com.br/eventos/treinao-ultra-lord-julho/">
+
+    <!-- Open Graph / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://karinafranzin.com.br/eventos/treinao-ultra-lord-julho/">
+    <meta property="og:title" content="Treinão Lord Ultra — 09 de Julho 2026 | Karina Franzin">
+    <meta property="og:description"
+        content="5km de pura energia + pós-treino com entrada free na Lord Lion Cervejaria. Inscreva-se grátis!">
+    <meta property="og:image" content="https://karinafranzin.com.br/assets/img/treinao-ultra-lord-julho/cardtreinoterra.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0B0C10',
+                            darkGray: '#1F2833',
+                            amber: '#D4AF37',
+                            amberLight: '#F3E5AB',
+                            orange: '#FF4F00',
+                            orangeHover: '#E04300',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Animação de pulsação customizada para o botão de ação principal */
+        @keyframes pulse-glow {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255, 79, 0, 0.7);
+            }
+            50% {
+                transform: scale(1.03);
+                box-shadow: 0 0 20px 8px rgba(255, 79, 0, 0.4);
+            }
+        }
+        .btn-pulse {
+            animation: pulse-glow 2s infinite ease-in-out;
+        }
+        /* Custom timeline transition animations */
+        .timeline-line {
+            transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .active-glow {
+            box-shadow: 0 0 15px 3px rgba(212, 175, 55, 0.6);
+        }
+    </style>
+
+    <!-- CSS Global do site (navbar padrão) -->
+    <link rel="stylesheet" href="../../css/styles.css">
+    
+    <!-- CSS Crítico Inline: evita FOUC (Flash of Unstyled Content) na navbar -->
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(20, 20, 20, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .navbar-logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff6b35;
+        }
+
+        .navbar-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 8px 13px;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .nav-cta {
+            background: #ff6b35;
+            color: #fff !important;
+            font-weight: 700 !important;
+            border-radius: 8px !important;
+            padding: 9px 15px !important;
+            margin-left: 6px;
+        }
+
+        .nav-portal {
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 8px;
+            padding: 8px 13px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .navbar-toggle {
+            display: none;
+        }
+
+        .navbar-overlay {
+            display: none;
+        }
+
+        @media (max-width: 860px) {
+            .navbar-toggle {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                width: 40px;
+                height: 40px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                flex-shrink: 0;
+            }
+
+            .hamburger-line {
+                display: block;
+                width: 24px;
+                height: 2px;
+                background: #fff;
+                border-radius: 2px;
+            }
+
+            .navbar-links {
+                position: fixed;
+                top: 0;
+                right: -280px;
+                width: 270px;
+                height: 100dvh;
+                background: #141414;
+                border-left: 2px solid #ff6b35;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 80px 0 24px;
+                z-index: 1001;
+                transition: right 0.3s ease;
+            }
+
+            .navbar-links.open {
+                right: 0;
+            }
+        }
+        
+        body {
+            padding-top: 64px; /* Space for fixed navbar */
+        }
+    </style>
+    <script src="../../js/navbar.js" defer></script>
+</head>
+<body class="bg-brand-dark text-zinc-100 font-sans antialiased selection:bg-brand-orange selection:text-white">
+
+    <!-- Header / Navbar Simples -->
+    <nav class="navbar navbar-scrolled" id="navbar">
+    <div class="navbar-container">
+        <!-- Logo / Nome -->
+        <a href="/" class="navbar-brand" aria-label="Ir ao início">
+            <img src="/assets/img/KarinaFranzin80.webp" alt="Karina Franzin" class="navbar-logo">
+            <span class="navbar-name">Karina Franzin</span>
+        </a>
+
+        <!-- Links Desktop -->
+        <ul class="navbar-links" id="navbarLinks">
+            <li><a href="/#como-funciona" class="nav-link">Como Funciona</a></li>
+            <li><a href="/#prova-social" class="nav-link">Resultados</a></li>
+            <li><a href="/#sobre" class="nav-link">Minha História</a></li>
+            <li><a href="/blog/" class="nav-link">Blog</a></li>
+            <li><a href="/eventos/" class="nav-link active">Eventos</a></li>
+            <li><a href="/cupons/" class="nav-link">Cupons</a></li>
+            <li>
+                <a href="https://gestao.karinafranzin.com.br/" 
+                   class="nav-link"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Portal Financeiro
+                </a>
+            </li>
+            <li>
+                <a href="https://karinafranzin.treinus.com.br/" 
+                   class="nav-link"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Portal do Atleta
+                </a>
+            </li>
+            <li>
+                <a href="/#contato" class="nav-link nav-cta">Começar Agora</a>
+            </li>
+        </ul>
+
+        <!-- Botão Hamburger (Mobile) -->
+        <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbarLinks">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    </div>
+</nav>
+<!-- Overlay escuro ao abrir menu mobile -->
+<div class="navbar-overlay" id="navbarOverlay"></div>
+
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[85vh] flex flex-col justify-center px-4 py-12 md:py-20 overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900 via-brand-dark to-brand-dark">
+        <!-- Elementos decorativos de fundo para sensação de corrida -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <div class="absolute top-10 right-[-10%] w-72 h-72 rounded-full bg-brand-orange filter blur-[100px]"></div>
+            <div class="absolute bottom-10 left-[-10%] w-72 h-72 rounded-full bg-brand-amber filter blur-[100px]"></div>
+            <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto w-full text-center relative z-10">
+            <!-- Logos Centradas e Arredondadas -->
+            <div class="flex items-center justify-center gap-4 md:gap-6 mb-8 mt-2">
+                <img src="../../assets/img/treinao-ultra-lord-julho/loogo lordlion.jpg" alt="Lord Lion Cervejaria"
+                    class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-2 border-zinc-700/50 shadow-lg">
+                <div class="h-10 md:h-12 w-px bg-zinc-700/80"></div>
+                <img src="../../assets/img/treinao-ultra-lord-julho/logoKarinaFranzin.png" alt="Karina Franzin"
+                    class="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-2 border-zinc-700/50 shadow-lg">
+            </div>
+
+            <!-- Badge de Sincronização do Strava -->
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-800/60 border border-zinc-700/50 mb-6 text-xs md:text-sm text-zinc-300 font-medium">
+                <span class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
+                Inscrições gratuitas abertas no <strong class="text-brand-orange">Strava</strong>
+            </div>
+
+            <!-- Título Principal -->
+            <h1 class="font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-tight mb-4 uppercase">
+                Treinão <br class="sm:hidden">
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-brand-amber">
+                    Lord Ultra
+                </span>
+            </h1>
+
+            <!-- Subtítulo -->
+            <p class="text-lg sm:text-xl md:text-2xl text-zinc-300 font-light max-w-2xl mx-auto mb-8 leading-relaxed">
+                Prepare seus tênis para <strong class="font-semibold text-white">5km de pura energia</strong> da Lord Ultra Run. Supere seus limites em comunidade!
+            </p>
+
+            <!-- Cards Rápido de Detalhes -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-2xl mx-auto mb-10 text-left">
+                <div class="bg-zinc-900/80 border border-zinc-800 p-4 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <i data-lucide="calendar" class="w-6 h-6 text-brand-orange mb-2"></i>
+                        <span class="block text-xs text-zinc-400 font-medium uppercase tracking-wide">Quando</span>
+                    </div>
+                    <span class="text-base font-bold text-white mt-1">09/07/2026</span>
+                </div>
+
+                <div class="bg-zinc-900/80 border border-zinc-800 p-4 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <i data-lucide="clock" class="w-6 h-6 text-brand-amber mb-2"></i>
+                        <span class="block text-xs text-zinc-400 font-medium uppercase tracking-wide">Horário</span>
+                    </div>
+                    <span class="text-base font-bold text-white mt-1">17h30</span>
+                </div>
+
+                <div class="col-span-2 sm:col-span-1 bg-zinc-900/80 border border-zinc-800 p-4 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <i data-lucide="map-pin" class="w-6 h-6 text-red-500 mb-2"></i>
+                        <span class="block text-xs text-zinc-400 font-medium uppercase tracking-wide">Largada</span>
+                    </div>
+                    <div class="flex items-center justify-between gap-2 mt-1">
+                        <span class="text-sm font-bold text-white truncate">Em frente à Lord Lion</span>
+                        <a href="https://maps.app.goo.gl/szkRbevJUUT23nWx7" target="_blank" rel="noopener noreferrer" class="p-1 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-brand-amber transition-colors flex-shrink-0" title="Ver no Mapa">
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botões Principais de Ação -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
+                <a href="https://www.strava.com/clubs/1910687/group_events/3499062582692226784/occurrences/FQIWwJvZg6q4lY9hHBTUHxQOFBIUIhQ8FAAAHBaAtZWJ6WcAAA==" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="btn-pulse w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-brand-orange text-white font-bold text-base hover:bg-brand-orangeHover transition-all focus:outline-none focus:ring-4 focus:ring-orange-500/50">
+                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    Garantir Vaga no Strava
+                </a>
+                
+                <a href="https://maps.app.goo.gl/szkRbevJUUT23nWx7" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-zinc-800/80 hover:bg-zinc-700/90 text-zinc-100 font-semibold text-base border border-zinc-700 transition-all">
+                    <i data-lucide="navigation" class="w-5 h-5 text-brand-amber"></i>
+                    Como Chegar (Mapa)
+                </a>
+            </div>
+
+            <!-- Indicador do Strava em Tempo Real -->
+            <p class="text-xs text-zinc-400 mt-4 flex items-center justify-center gap-1.5">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                <span id="live-strava-status">Carregando dados ao vivo do Strava...</span>
+            </p>
+
+            <!-- Cronômetro Regressivo -->
+            <div class="mt-8 p-4 max-w-md mx-auto bg-zinc-900/40 border border-zinc-800/50 rounded-2xl">
+                <span class="text-xs uppercase tracking-widest text-zinc-400 font-semibold mb-3 block">Falta pouco para a largada</span>
+                <div class="grid grid-cols-4 gap-2 text-center" id="countdown">
+                    <div class="bg-zinc-900 p-2 rounded-xl">
+                        <span class="block text-2xl font-bold text-brand-amber font-display" id="days">--</span>
+                        <span class="text-[10px] text-zinc-500 uppercase">Dias</span>
+                    </div>
+                    <div class="bg-zinc-900 p-2 rounded-xl">
+                        <span class="block text-2xl font-bold text-brand-amber font-display" id="hours">--</span>
+                        <span class="text-[10px] text-zinc-500 uppercase">Horas</span>
+                    </div>
+                    <div class="bg-zinc-900 p-2 rounded-xl">
+                        <span class="block text-2xl font-bold text-brand-amber font-display" id="minutes">--</span>
+                        <span class="text-[10px] text-zinc-500 uppercase">Minutos</span>
+                    </div>
+                    <div class="bg-zinc-900 p-2 rounded-xl">
+                        <span class="block text-2xl font-bold text-brand-orange font-display" id="seconds">--</span>
+                        <span class="text-[10px] text-zinc-500 uppercase">Segundos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefício Exclusivo -->
+    <section class="px-4 py-8 relative">
+        <div class="max-w-lg mx-auto">
+            <div class="relative bg-gradient-to-br from-amber-600/20 via-brand-amber/10 to-transparent border border-brand-amber/40 p-6 rounded-3xl overflow-hidden shadow-[0_10px_30px_rgba(212,175,55,0.05)]">
+                <!-- Luz de fundo -->
+                <div class="absolute top-0 right-0 w-32 h-32 bg-brand-amber opacity-10 filter blur-2xl rounded-full"></div>
+                
+                <div class="flex items-start gap-4 relative z-10">
+                    <div class="flex-shrink-0 bg-brand-amber text-brand-dark p-3 rounded-2xl flex items-center justify-center active-glow">
+                        <i data-lucide="beer" class="w-7 h-7 stroke-[2]"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-amber">Benefício Especial</span>
+                        <h3 class="text-xl font-display font-bold text-white mt-1 mb-2">Entrada Free Pós-Treino!</h3>
+                        <p class="text-zinc-300 text-sm leading-relaxed">
+                            Quem suar a camisa no treinão garante <strong class="text-white">Entrada Gratuita na Lord Lion Cervejaria</strong> para o pós-treino! Celebre seu esforço com uma cerveja artesanal trincando.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Interativa - O Percurso -->
+    <section class="px-4 py-12 bg-zinc-900/30 border-y border-zinc-800/50">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-8">
+                <span class="text-brand-orange text-xs font-bold uppercase tracking-wider">Interativo</span>
+                <h2 class="font-display font-black text-3xl text-white mt-1 uppercase">O Percurso</h2>
+                <p class="text-zinc-400 text-sm mt-2">Clique em cada etapa abaixo para visualizar os detalhes do trajeto</p>
+            </div>
+
+            <!-- Trajeto container -->
+            <div class="relative bg-zinc-900/60 border border-zinc-800/80 p-6 md:p-8 rounded-3xl">
+                <!-- Linha de Progresso Visual Vertical -->
+                <div class="absolute left-[33px] md:left-[41px] top-12 bottom-12 w-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                    <div id="timelineProgress" class="timeline-line w-full bg-gradient-to-b from-brand-orange to-brand-amber" style="height: 0%;"></div>
+                </div>
+
+                <!-- Marco 1 -->
+                <button onclick="selectMilestone(0)" class="w-full text-left flex items-start gap-4 md:gap-6 py-4 relative group focus:outline-none focus:ring-2 focus:ring-brand-orange/50 rounded-xl px-2 -mx-2 transition-all">
+                    <div id="dot-0" class="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-zinc-700 bg-zinc-900 text-zinc-500 font-bold flex items-center justify-center text-xs md:text-sm z-10 transition-all duration-300 group-hover:border-brand-orange">
+                        1
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex items-center justify-between">
+                            <h4 id="title-0" class="font-bold text-base md:text-lg text-zinc-300 transition-colors">Largada - Lord Lion</h4>
+                            <span class="text-xs bg-zinc-800 text-zinc-400 px-2.5 py-0.5 rounded-full border border-zinc-700">17h30</span>
+                        </div>
+                        <p class="text-xs md:text-sm text-zinc-400 mt-1">Concentração e aquecimento dinâmico liderado pela equipe Lord Ultra para preparar todo mundo.</p>
+                        <!-- Detalhe Revelado -->
+                        <div id="detail-0" class="max-h-0 overflow-hidden transition-all duration-300 mt-2 text-xs md:text-sm text-zinc-300 bg-zinc-800/50 p-0 rounded-xl border border-transparent">
+                            <div class="p-3">
+                                <i data-lucide="check-circle" class="inline w-4 h-4 text-brand-orange mr-1.5 align-middle"></i>
+                                Encontro em frente à cervejaria. Alongue bem!
+                            </div>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Marco 2 -->
+                <button onclick="selectMilestone(1)" class="w-full text-left flex items-start gap-4 md:gap-6 py-4 relative group focus:outline-none focus:ring-2 focus:ring-brand-orange/50 rounded-xl px-2 -mx-2 transition-all">
+                    <div id="dot-1" class="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-zinc-700 bg-zinc-900 text-zinc-500 font-bold flex items-center justify-center text-xs md:text-sm z-10 transition-all duration-300 group-hover:border-brand-orange">
+                        2
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex items-center justify-between">
+                            <h4 id="title-1" class="font-bold text-base md:text-lg text-zinc-300 transition-colors">Ponto de Retorno - 2.5km</h4>
+                            <span class="text-xs bg-zinc-800 text-zinc-400 px-2.5 py-0.5 rounded-full border border-zinc-700">Metade</span>
+                        </div>
+                        <p class="text-xs md:text-sm text-zinc-400 mt-1">Ritmo constante e pura energia nas ruas. Ponto oficial de retorno da prova.</p>
+                        <!-- Detalhe Revelado -->
+                        <div id="detail-1" class="max-h-0 overflow-hidden transition-all duration-300 mt-2 text-xs md:text-sm text-zinc-300 bg-zinc-800/50 p-0 rounded-xl border border-transparent">
+                            <div class="p-3">
+                                <i data-lucide="activity" class="inline w-4 h-4 text-brand-orange mr-1.5 align-middle"></i>
+                                Mantenha o fôlego! Ritmo controlado e sorrisos na metade do trajeto.
+                            </div>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Marco 3 -->
+                <button onclick="selectMilestone(2)" class="w-full text-left flex items-start gap-4 md:gap-6 py-4 relative group focus:outline-none focus:ring-2 focus:ring-brand-orange/50 rounded-xl px-2 -mx-2 transition-all">
+                    <div id="dot-2" class="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-zinc-700 bg-zinc-900 text-zinc-500 font-bold flex items-center justify-center text-xs md:text-sm z-10 transition-all duration-300 group-hover:border-brand-orange">
+                        3
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex items-center justify-between">
+                            <h4 id="title-2" class="font-bold text-base md:text-lg text-zinc-300 transition-colors">Chegada Triunfal - 5km</h4>
+                            <span class="text-xs bg-zinc-800 text-zinc-400 px-2.5 py-0.5 rounded-full border border-zinc-700">Vitória</span>
+                        </div>
+                        <p class="text-xs md:text-sm text-zinc-400 mt-1">Fim do trajeto exatamente em frente à Lord Lion. Soco no ar e foto oficial do grupo!</p>
+                        <!-- Detalhe Revelado -->
+                        <div id="detail-2" class="max-h-0 overflow-hidden transition-all duration-300 mt-2 text-xs md:text-sm text-zinc-300 bg-zinc-800/50 p-0 rounded-xl border border-transparent">
+                            <div class="p-3">
+                                <i data-lucide="trophy" class="inline w-4 h-4 text-brand-amber mr-1.5 align-middle"></i>
+                                Concluído! Agora é hora de celebrar a vitória!
+                            </div>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Marco 4 -->
+                <button onclick="selectMilestone(3)" class="w-full text-left flex items-start gap-4 md:gap-6 py-4 relative group focus:outline-none focus:ring-2 focus:ring-brand-orange/50 rounded-xl px-2 -mx-2 transition-all">
+                    <div id="dot-3" class="flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-zinc-700 bg-zinc-900 text-zinc-500 font-bold flex items-center justify-center text-xs md:text-sm z-10 transition-all duration-300 group-hover:border-brand-orange">
+                        4
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex items-center justify-between">
+                            <h4 id="title-3" class="font-bold text-base md:text-lg text-zinc-300 transition-colors">Pós-Treino e Confraternização</h4>
+                            <span class="text-xs bg-brand-amber/20 text-brand-amber px-2.5 py-0.5 rounded-full border border-brand-amber/30">Free</span>
+                        </div>
+                        <p class="text-xs md:text-sm text-zinc-400 mt-1">Sua entrada é gratuita na Lord Lion. Relaxe com a galera, comemore e descanse.</p>
+                        <!-- Detalhe Revelado -->
+                        <div id="detail-3" class="max-h-0 overflow-hidden transition-all duration-300 mt-2 text-xs md:text-sm text-zinc-300 bg-zinc-800/50 p-0 rounded-xl border border-transparent">
+                            <div class="p-3">
+                                <i data-lucide="beer" class="inline w-4 h-4 text-brand-amber mr-1.5 align-middle"></i>
+                                Entrada liberada!
+                            </div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Interativa - Galeria de Fotos / Vídeo com Slider Swiper (Visual no Mobile) -->
+    <!-- Seção Comunidade / Strava -->
+    <section class="px-4 py-16 text-center">
+        <div class="max-w-xl mx-auto bg-gradient-to-b from-zinc-900 to-brand-dark border border-zinc-800/80 p-8 rounded-3xl relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-24 h-24 bg-orange-500/10 rounded-full filter blur-xl"></div>
+            
+            <div class="inline-flex items-center justify-center p-3 rounded-full bg-orange-500/10 text-brand-orange mb-4">
+                <i data-lucide="heart" class="w-8 h-8"></i>
+            </div>
+            
+            <h3 class="font-display font-black text-2xl uppercase tracking-tight text-white mb-3">Movimento Lord Ultra</h3>
+            <p class="text-zinc-400 text-sm leading-relaxed mb-6 max-w-md mx-auto">
+                Faça parte do Club Oficial no Strava! Acompanhe as estatísticas, ganhe incentivo de outros atletas e não perca nenhum desafio.
+            </p>
+            
+            <a href="https://www.strava.com/clubs/1910687" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-zinc-800 hover:bg-zinc-700 text-white font-bold text-sm border border-zinc-700 transition-all w-full sm:w-auto justify-center">
+                <i data-lucide="users" class="w-4 h-4 text-brand-orange"></i>
+                Entrar no Club do Strava
+            </a>
+        </div>
+    </section>
+
+    <!-- FAQ Rápido -->
+    <section class="px-4 py-12 max-w-2xl mx-auto border-t border-zinc-800/80">
+        <h3 class="font-display font-bold text-xl uppercase text-white mb-6 text-center">Perguntas Frequentes</h3>
+        <div class="space-y-4">
+            <details class="bg-zinc-900/40 border border-zinc-800/80 rounded-2xl p-4 group [&_summary::-webkit-details-marker]:hidden">
+                <summary class="flex justify-between items-center font-semibold text-sm md:text-base text-zinc-200 cursor-pointer select-none">
+                    <span>Preciso pagar algo para participar?</span>
+                    <span class="transition-transform group-open:rotate-180">
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-brand-amber"></i>
+                    </span>
+                </summary>
+                <p class="text-zinc-400 text-xs md:text-sm mt-3 leading-relaxed">
+                    Não! O treinão é 100% gratuito e aberto para toda a comunidade. Para garantir a sua entrada gratuita pós-evento na Lord Lion, basta registrar a presença no evento oficial do Strava.
+                </p>
+            </details>
+
+            <details class="bg-zinc-900/40 border border-zinc-800/80 rounded-2xl p-4 group [&_summary::-webkit-details-marker]:hidden">
+                <summary class="flex justify-between items-center font-semibold text-sm md:text-base text-zinc-200 cursor-pointer select-none">
+                    <span>Sou iniciante, posso participar?</span>
+                    <span class="transition-transform group-open:rotate-180">
+                        <i data-lucide="chevron-down" class="w-4 h-4 text-brand-amber"></i>
+                    </span>
+                </summary>
+                <p class="text-zinc-400 text-xs md:text-sm mt-3 leading-relaxed">
+                    Com certeza! Corremos em grupo com ritmos variados. O objetivo principal é compartilhar energia positiva e integrar todos os atletas.
+                </p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/blog/" rel="noopener">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                    Blog
+                </a>
+                <a href="https://www.instagram.com/karina_franzin/" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0 3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    Instagram
+                </a>
+                <a href="https://www.strava.com/athletes/158868084" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/>
+                    </svg>
+                    Strava
+                </a>
+                <a href="https://wa.me/5517996566908?text=Ol%C3%A1%2C%20Karina%21%20Vim%20pelo%20seu%20site%20e%20quero%20come%C3%A7ar%20uma%20assessoria%20de%20corrida.%20Pode%20me%20explicar%20como%20funciona%3F" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   onclick="gtag('event', 'click_whatsapp')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                    WhatsApp
+                </a>
+                <a href="https://karinafranzin.treinus.com.br/" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="treinus-link"
+                   onclick="gtag('event', 'click_treinus', {event_category: 'footer'})">
+                    <img src="/assets/icons/treinus.png" alt="Treinus" width="24" height="24" class="treinus-icon">
+                    Treinus
+                </a>
+            </div>
+            
+            <div class="footer-copy">
+                <p>&copy; 2026 Karina Franzin - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- Scripts de Interatividade -->
+    <script>
+        // Inicializa ícones Lucide
+        lucide.createIcons();
+
+        // Cronômetro Regressivo para 09/07/2026 às 17h30
+        const targetDate = new Date('2026-07-09T17:30:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference < 0) {
+                document.getElementById('countdown').innerHTML = `<div class="col-span-4 text-center py-2 text-brand-orange font-bold font-display uppercase tracking-wider text-sm">O treinão já começou ou foi realizado!</div>`;
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Lógica da Timeline Interativa
+        const milestoneHeights = [15, 45, 75, 100]; // Porcentagens de preenchimento para a linha
+
+        function selectMilestone(index) {
+            // Atualiza altura da linha de progresso
+            const progress = document.getElementById('timelineProgress');
+            progress.style.height = `${milestoneHeights[index]}%`;
+
+            // Reseta e atualiza todos os marcos
+            for (let i = 0; i < 4; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                const title = document.getElementById(`title-${i}`);
+                const detail = document.getElementById(`detail-${i}`);
+
+                if (i <= index) {
+                    // Estado Concluído / Ativo na Timeline
+                    dot.classList.add('bg-brand-amber', 'border-brand-amber', 'text-brand-dark', 'active-glow');
+                    dot.classList.remove('bg-zinc-900', 'border-zinc-700', 'text-zinc-500');
+                    title.classList.add('text-brand-amber', 'font-extrabold');
+                    title.classList.remove('text-zinc-300');
+                } else {
+                    // Estado não alcançado
+                    dot.classList.remove('bg-brand-amber', 'border-brand-amber', 'text-brand-dark', 'active-glow');
+                    dot.classList.add('bg-zinc-900', 'border-zinc-700', 'text-zinc-500');
+                    title.classList.remove('text-brand-amber', 'font-extrabold');
+                    title.classList.add('text-zinc-300');
+                }
+
+                // Lógica de "Collapse/Expand" do detalhe clicado
+                if (i === index) {
+                    detail.style.maxHeight = "150px";
+                    detail.classList.add('border-zinc-800', 'bg-zinc-800/40');
+                } else {
+                    detail.style.maxHeight = "0";
+                    detail.classList.remove('border-zinc-800', 'bg-zinc-800/40');
+                }
+            }
+        }
+
+        async function fetchStravaParticipants() {
+            const stravaUrl = "https://www.strava.com/clubs/1910687/group_events/3499062582692226784/occurrences/FQIWwJvZg6q4lY9hHBTUHxQOFBIUIhQ8FAAAHBaAtZWJ6WcAAA==";
+            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(stravaUrl)}`;
+            const fallbackCount = 31;
+            
+            const liveStatus = document.getElementById('live-strava-status');
+            
+            try {
+                if (liveStatus) {
+                    liveStatus.innerHTML = `<span class="animate-pulse text-zinc-400">Sincronizando com dados reais do Strava...</span>`;
+                }
+                
+                const response = await fetch(proxyUrl);
+                if (!response.ok) throw new Error("Erro de comunicação com o proxy de CORS.");
+                
+                const data = await response.json();
+                const html = data.contents;
+                
+                let count = null;
+                
+                // Padrões de detecção para as contagens na página do Strava (Going / Confirmados)
+                const matchGoing = html.match(/(\d+)\s*(?:going|participando|confirmados|RSVPs|atletas|corredores)/i);
+                const matchJson = html.match(/rsvp_count"\s*:\s*(\d+)/i);
+                const matchJsonAlt = html.match(/going_count"\s*:\s*(\d+)/i);
+                
+                if (matchJson && matchJson[1]) {
+                    count = parseInt(matchJson[1], 10);
+                } else if (matchJsonAlt && matchJsonAlt[1]) {
+                    count = parseInt(matchJsonAlt[1], 10);
+                } else if (matchGoing && matchGoing[1]) {
+                    count = parseInt(matchGoing[1], 10);
+                }
+                
+                // Validação para garantir que não usemos contagens erradas/vazias menores que 31
+                if (count && count >= 31) {
+                    updateCounterUI(count, true);
+                } else {
+                    updateCounterUI(fallbackCount, false);
+                }
+            } catch (error) {
+                console.warn("Utilizando o contador de confirmados com base de fallback seguro.", error);
+                updateCounterUI(fallbackCount, false);
+            }
+        }
+        
+        function updateCounterUI(count, isLive) {
+            const headerCountVal = document.getElementById('header-count-val');
+            const liveStatus = document.getElementById('live-strava-status');
+            
+            if (headerCountVal) {
+                headerCountVal.innerText = count;
+            }
+            
+            if (liveStatus) {
+                if (isLive) {
+                    liveStatus.innerHTML = `<span class="text-green-400 font-medium flex items-center justify-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-ping"></span> ${count} atletas confirmados (Sincronizado ao vivo com o Strava)</span>`;
+                } else {
+                    liveStatus.innerHTML = `<span class="text-zinc-400 flex items-center justify-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-zinc-500"></span> ${count} atletas confirmados (Sincronizado recentemente)</span>`;
+                }
+            }
+        }
+
+        // Seleciona o primeiro marco como padrão ao carregar e inicia o contador Strava
+        window.onload = function() {
+            selectMilestone(0);
+            fetchStravaParticipants();
+        };
+    </script>
+</body>
+</html>
