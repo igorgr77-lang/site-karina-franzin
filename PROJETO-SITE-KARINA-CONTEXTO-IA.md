@@ -81,8 +81,6 @@ site-karina-franzin/
 ├── js/
 │   ├── main.js                       ← Lógica da home (carrossel, FAQ, lightbox)
 │   ├── navbar.js                     ← Controle unificado da navbar (scroll, mobile, webview)
-│   ├── blog-list.js                  ← Lista artigos do Supabase no blog
-│   ├── blog-article.js               ← Carrega artigo individual do Supabase
 │   ├── supabase-config.js            ← Credenciais do Supabase (não commitar!)
 │   └── utils.js                      ← Funções utilitárias
 ├── blog/
@@ -121,29 +119,19 @@ site-karina-franzin/
 
 ### Como funciona (IMPORTANTE)
 
-O blog é **100% dinâmico** — todos os artigos são renderizados por **um único arquivo HTML**:
+O blog funciona através de um modelo de **Geração de Sites Estáticos (SSG)** com banco de dados Supabase:
 
-```
-blog/artigo.html?slug=nome-do-artigo
-```
+1. Para criar um novo artigo, basta inserir os dados (slug, título, conteúdo HTML, etc.) na tabela `artigos` do Supabase via painel de administração (`/admin/`).
+2. Para publicar as alterações e novos artigos no site, executa-se o script de build:
+   ```bash
+   node build-blog.js
+   ```
+3. O script baixa o conteúdo do banco, converte imagens para WebP, monta a página de listagem (`blog/index.html`) e gera arquivos `.html` estáticos e otimizados para cada post em `blog/[slug]/index.html`.
 
-**Fluxo:**
-1. Usuário acessa `karinafranzin.com.br/blog/artigo.html?slug=como-comecar-a-correr`
-2. O JavaScript (`blog-article.js`) lê o `slug` da URL
-3. Busca os dados do artigo no **Supabase** (banco de dados)
-4. Renderiza o conteúdo dinamicamente na página
+**Redirecionamentos de Compatibilidade:**
+O arquivo `blog/artigo.html` serve apenas para compatibilidade de links antigos no formato dinâmico (`blog/artigo.html?slug=meu-artigo`), redirecionando automaticamente robôs e usuários para a nova URL amigável e estática (`/blog/meu-artigo/`).
 
-**Para criar um novo artigo:** Acesse o painel admin em `/admin/` ou insira direto no Supabase (tabela `artigos`). **Não é necessário criar nenhum arquivo HTML.**
-
-**Para alterar o layout/design dos artigos:** Edite `blog/artigo.html` ou `css/blog.css`. A mudança afeta **todos os artigos automaticamente**.
-
-### ⚠️ Pastas legado no blog (NÃO USAR)
-
-As pastas abaixo existem mas **não são mais utilizadas**. O sistema atual é o dinâmico via Supabase:
-- `blog/como-comecar-a-correr-do-zero/`
-- `blog/erros-comuns-corrida-iniciantes/`
-- `blog/plano-de-treino-para-correr-5km-em-8-semanas-iniciantes/`
-- `blog/run-avoa-2026-votuporanga/`
+**Para alterar o layout/design dos artigos:** Edite `blog/artigo.template.html` ou `css/blog.css` e rode o build novamente. As pastas de artigos (ex: `blog/como-comecar-a-correr-do-zero/`) são geradas automaticamente pelo build; **nunca edite os arquivos estáticos diretamente nelas**, pois serão sobrescritos no próximo build.
 
 ### Supabase — Tabela `artigos`
 

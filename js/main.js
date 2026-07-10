@@ -60,6 +60,18 @@ Pode me explicar como funciona?`;
         
         const whatsappURL = `https://wa.me/5517996566908?text=${encodeURIComponent(message)}`;
         
+        // Envia evento de lead para o Google Analytics
+        if (typeof gtag === 'function') {
+            gtag('event', 'conversion', {
+                'send_to': 'G-J488T0R72B',
+                'event_category': 'lead',
+                'event_label': 'whatsapp_form',
+                'value': 1.0,
+                'custom_level': level,
+                'custom_goal': goal
+            });
+        }
+        
         window.open(whatsappURL, '_blank');
     });
 }

@@ -166,6 +166,49 @@ async function processarImagem(urlOriginal, slug, prefixo) {
     return urlOriginal; // Retorna normal se não for do Supabase
 }
 
+// Limpar invólucros HTML legados e tags órfãs do banco de dados
+function limparConteudoArtigo(html) {
+    if (!html) return '';
+    let limpo = html.trim();
+
+    // 1. Remover invólucro legado do início se existir
+    // Esse invólucro geralmente se parece com:
+    // <article class="article-single"><div class="container"><div class="article-body">
+    const regexInicio = /^\s*<article[^>]*>\s*<div[^>]*container[^>]*>\s*(?:<div[^>]*article-head[^>]*>[\s\S]*?<\/div>\s*)?<div[^>]*article-body[^>]*>/i;
+    if (regexInicio.test(limpo)) {
+        limpo = limpo.replace(regexInicio, '');
+        // Se removeu o wrapper de início, removemos também o wrapper de fechamento correspondente do fim
+        limpo = limpo.replace(/<\/div>\s*<\/div>\s*<\/article>\s*<\/div>\s*$/i, '');
+        limpo = limpo.replace(/<\/div>\s*<\/div>\s*<\/article>\s*$/i, '');
+    }
+
+    // 2. Remover quaisquer tags de fechamento órfãs residuais no final do HTML
+    // (comum quando o conteúdo do banco tem </div> extra que fecha a div do template)
+    // Vamos remover repetidamente </div> ou </article> do final se eles não tiverem correspondentes abertos no conteúdo restante
+    while (true) {
+        limpo = limpo.trim();
+        if (limpo.endsWith('</div>')) {
+            const divsAbertas = (limpo.match(/<div[^>]*>/ig) || []).length;
+            const divsFechadas = (limpo.match(/<\/div>/ig) || []).length;
+            if (divsFechadas > divsAbertas) {
+                limpo = limpo.substring(0, limpo.lastIndexOf('</div>')).trim();
+                continue;
+            }
+        }
+        if (limpo.endsWith('</article>')) {
+            const artAbertos = (limpo.match(/<article[^>]*>/ig) || []).length;
+            const artFechados = (limpo.match(/<\/article>/ig) || []).length;
+            if (artFechados > artAbertos) {
+                limpo = limpo.substring(0, limpo.lastIndexOf('</article>')).trim();
+                continue;
+            }
+        }
+        break;
+    }
+
+    return limpo;
+}
+
 // ============================================
 // CORE BUILD PIPELINE
 // ============================================
@@ -220,7 +263,7 @@ async function build() {
             const localHeaderImg = await processarImagem(artigo.imagem_cabecalho, artigo.slug, 'header');
             
             // 2. Processar imagens no corpo do conteúdo
-            let conteudoProcessado = artigo.conteudo || '';
+            let conteudoProcessado = limparConteudoArtigo(artigo.conteudo || '');
             const imgRegex = /https:\/\/[a-z0-9.]+\/storage\/v1\/object\/public\/blog-images\/[a-zA-Z0-9._%-]+/g;
             const matches = conteudoProcessado.match(imgRegex) || [];
             
@@ -234,7 +277,7 @@ async function build() {
             
             // 3. Informações de Data e Leitura
             const dataFormatada = formatarData(artigo.data_publicacao);
-            const tempoLeitura = calcularTempoLeitura(artigo.conteudo);
+            const tempoLeitura = calcularTempoLeitura(conteudoProcessado);
             const categoria = (artigo.palavras_chave && artigo.palavras_chave[0]) 
                 ? artigo.palavras_chave[0].toUpperCase() 
                 : 'CORRIDA';

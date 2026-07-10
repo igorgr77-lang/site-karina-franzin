@@ -2,11 +2,27 @@
 <html lang="pt-BR">
 
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J488T0R72B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-J488T0R72B');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eventos | Karina Franzin - Assessoria de Corrida</title>
     <meta name="description"
         content="Confira os eventos de corrida e caminhada com a assessoria da Karina Franzin em Votuporanga e região.">
+    <link rel="canonical" href="https://karinafranzin.com.br/eventos/">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#FF6B35">
 
     <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -919,6 +935,17 @@
             if (temPassado) {
                 var empty = gridPassados.querySelector('.eventos-empty');
                 if (empty) empty.remove();
+
+                // Ordenar eventos passados por data decrescente (mais novos primeiro, mais antigos por último)
+                var cardsPassados = Array.prototype.slice.call(gridPassados.querySelectorAll('.evento-card-wrapper'));
+                cardsPassados.sort(function (a, b) {
+                    var dateA = new Date(a.getAttribute('data-date') + 'T00:00:00');
+                    var dateB = new Date(b.getAttribute('data-date') + 'T00:00:00');
+                    return dateB - dateA;
+                });
+                cardsPassados.forEach(function (card) {
+                    gridPassados.appendChild(card);
+                });
             }
 
             // Se não sobrou nenhum evento próximo, mostra mensagem
