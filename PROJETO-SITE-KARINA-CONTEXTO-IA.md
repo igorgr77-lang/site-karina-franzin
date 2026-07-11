@@ -129,7 +129,7 @@ O blog funciona através de um modelo de **Geração de Sites Estáticos (SSG)**
 3. O script baixa o conteúdo do banco, converte imagens para WebP, monta a página de listagem (`blog/index.html`) e gera arquivos `.html` estáticos e otimizados para cada post em `blog/[slug]/index.html`.
 
 **Redirecionamentos de Compatibilidade:**
-O arquivo `blog/artigo.html` serve apenas para compatibilidade de links antigos no formato dinâmico (`blog/artigo.html?slug=meu-artigo`), redirecionando automaticamente robôs e usuários para a nova URL amigável e estática (`/blog/meu-artigo/`).
+Redirecionamentos definitivos HTTP 301 de links antigos no formato dinâmico (`blog/artigo.html?slug=meu-artigo`) são gerenciados diretamente na borda pela CDN no **Cloudflare Worker** (e opcionalmente no `.htaccess` em servidores Apache), direcionando robôs e usuários para a nova URL amigável e estática (`/blog/meu-artigo/`). O arquivo físico legado `blog/artigo.html` foi removido do repositório.
 
 **Para alterar o layout/design dos artigos:** Edite `blog/artigo.template.html` ou `css/blog.css` e rode o build novamente. As pastas de artigos (ex: `blog/como-comecar-a-correr-do-zero/`) são geradas automaticamente pelo build; **nunca edite os arquivos estáticos diretamente nelas**, pois serão sobrescritos no próximo build.
 
@@ -784,4 +784,33 @@ og:image: (imagem real do artigo do Supabase)
 - `eventos/treinao-lord-lion/index.template.html` (NOVO/RENOMEADO)
 - `eventos/treinao-ultra-lord-maio/index.template.html` (NOVO/RENOMEADO)
 - `eventos/treinao-ultra-lord-julho/index.template.html` (NOVO/RENOMEADO)
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 11/07/2026 — SEGURANÇA DE CREDENCIAIS, CLOUDFLARE WORKER E CLEANUP ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Proteger as credenciais do Supabase no repositório, tirando o `js/supabase-config.js` do controle de versão e habilitando variáveis de ambiente.
+2. Otimizar e simplificar o Cloudflare Worker para rodar redirecionamento 301 de URLs legadas na CDN sem realizar chamadas desnecessárias de API ao Supabase.
+3. Limpar arquivos mortos e códigos legados órfãos do repositório.
+
+**O que foi feito:**
+- ✅ Removido `js/supabase-config.js` do cache de rastreamento do Git (`git rm --cached`) e ativada sua exclusão definitiva no `.gitignore`.
+- ✅ Adaptado o script `build-blog.js` para priorizar a leitura de `process.env.SUPABASE_URL` e `process.env.SUPABASE_KEY` / `process.env.SUPABASE_ANON_KEY`, mantendo fallback para o arquivo local não rastreado.
+- ✅ Simplificada a lógica do Cloudflare Worker (`cloudflare-worker/src/index.js`) para bypassar acessos comuns diretamente para o GitHub Pages (SSG) e realizar o redirecionamento 301 de compatibilidade para URLs antigas no nível de CDN (Cloudflare).
+- ✅ Adicionado `"type": "module"` no `cloudflare-worker/package.json` do Worker.
+- ✅ Criado e executado um script de testes unitários para validar todo o comportamento de redirecionamento e pass-through do Worker sem warnings.
+- ✅ Removidos os arquivos mortos reais do projeto: `blog/artigo.html` e a pasta duplicada `/cao-minhada-2026` da raiz.
+- ✅ Executado o build final para verificar a integridade da compilação de todas as páginas do site.
+
+### 📁 Arquivos criados/modificados:
+- `.gitignore` (MODIFICADO)
+- `build-blog.js` (MODIFICADO)
+- `cloudflare-worker/src/index.js` (MODIFICADO)
+- `cloudflare-worker/package.json` (MODIFICADO)
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+- `blog/artigo.html` (DELETADO)
+- `cao-minhada-2026/index.html` (DELETADO)
 
