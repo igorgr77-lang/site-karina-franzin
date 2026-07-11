@@ -795,7 +795,7 @@ og:image: (imagem real do artigo do Supabase)
 1. Proteger as credenciais do Supabase no repositório, tirando o `js/supabase-config.js` do controle de versão e habilitando variáveis de ambiente.
 2. Otimizar e simplificar o Cloudflare Worker para rodar redirecionamento 301 de URLs legadas na CDN sem realizar chamadas desnecessárias de API ao Supabase.
 3. Limpar arquivos mortos e códigos legados órfãos do repositório.
-4. Otimizar SEO para o Google Search (limpeza de âncoras `#` no `sitemap.xml` e injeção de dados estruturados JSON-LD do tipo `SportsClub` na homepage).
+4. Otimizar SEO para o Google Search (limpeza de âncoras `#` no `sitemap.xml`, injeção de dados estruturados JSON-LD do tipo `SportsClub` na homepage, `BreadcrumbList` em todas as páginas internas de blog/eventos e Schema `Event` para os 5 eventos).
 
 **O que foi feito:**
 - ✅ Removido `js/supabase-config.js` do cache de rastreamento do Git (`git rm --cached`) e ativada sua exclusão definitiva no `.gitignore`.
@@ -805,7 +805,9 @@ og:image: (imagem real do artigo do Supabase)
 - ✅ Criado e executado um script de testes unitários para validar todo o comportamento de redirecionamento e pass-through do Worker sem warnings.
 - ✅ Removidos os arquivos mortos reais do projeto: `blog/artigo.html` e a pasta duplicada `/cao-minhada-2026` da raiz.
 - ✅ Removidas as URLs com âncora/hash (`#performance`, `#como-funciona`, `#sobre`) da geração do sitemap em `build-blog.js` para otimizar crawl budget de busca.
-- ✅ Injetados dados estruturados JSON-LD (`@type: SportsClub`) no `<head>` da homepage `index.template.html` para qualificação em buscas locais do Google.
+- ✅ Injetados dados estruturados JSON-LD (`@type: SportsClub`) no `<head>` da homepage `index.template.html`.
+- ✅ Adicionado Schema `BreadcrumbList` na listagem de posts (`blog/index.template.html`), listagem de eventos (`eventos/index.template.html`), artigos do blog (`blog/artigo.template.html`) e páginas de eventos.
+- ✅ Adicionado Schema `Event` contendo datas, locais (Cervejaria Lord Lion / Studio Ativo) e dados dos parceiros para os 5 eventos estáticos.
 - ✅ Executado o build final para verificar a integridade da compilação de todas as páginas do site.
 
 ### 📁 Arquivos criados/modificados:
@@ -815,6 +817,21 @@ og:image: (imagem real do artigo do Supabase)
 - `cloudflare-worker/package.json` (MODIFICADO)
 - `index.template.html` (MODIFICADO)
 - `index.html` (MODIFICADO)
+- `blog/index.template.html` (MODIFICADO)
+- `blog/index.html` (MODIFICADO)
+- `blog/artigo.template.html` (MODIFICADO)
+- `eventos/index.template.html` (MODIFICADO)
+- `eventos/index.html` (MODIFICADO)
+- `eventos/cao-minhada-2026/index.template.html` (MODIFICADO)
+- `eventos/cao-minhada-2026/index.html` (MODIFICADO)
+- `eventos/dia-da-mulher-lord-lion/index.template.html` (MODIFICADO)
+- `eventos/dia-da-mulher-lord-lion/index.html` (MODIFICADO)
+- `eventos/treinao-lord-lion/index.template.html` (MODIFICADO)
+- `eventos/treinao-lord-lion/index.html` (MODIFICADO)
+- `eventos/treinao-ultra-lord-maio/index.template.html` (MODIFICADO)
+- `eventos/treinao-ultra-lord-maio/index.html` (MODIFICADO)
+- `eventos/treinao-ultra-lord-julho/index.template.html` (MODIFICADO)
+- `eventos/treinao-ultra-lord-julho/index.html` (MODIFICADO)
 - `sitemap.xml` (MODIFICADO)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 - `blog/artigo.html` (DELETADO)
