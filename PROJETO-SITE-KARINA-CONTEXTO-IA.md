@@ -787,7 +787,7 @@ og:image: (imagem real do artigo do Supabase)
 
 ---
 
-## 📅 SESSÃO DE DESENVOLVIMENTO — 11/07/2026 — SEGURANÇA DE CREDENCIAIS, CLOUDFLARE WORKER E CLEANUP ✅
+## 📅 SESSÃO DE DESENVOLVIMENTO — 11/07/2026 — SEGURANÇA, CLEANUP E OTIMIZAÇÕES DE SEO (GOOGLE SEARCH) ✅
 
 ### ✅ Status: CONCLUÍDO
 
@@ -795,6 +795,7 @@ og:image: (imagem real do artigo do Supabase)
 1. Proteger as credenciais do Supabase no repositório, tirando o `js/supabase-config.js` do controle de versão e habilitando variáveis de ambiente.
 2. Otimizar e simplificar o Cloudflare Worker para rodar redirecionamento 301 de URLs legadas na CDN sem realizar chamadas desnecessárias de API ao Supabase.
 3. Limpar arquivos mortos e códigos legados órfãos do repositório.
+4. Otimizar SEO para o Google Search (limpeza de âncoras `#` no `sitemap.xml` e injeção de dados estruturados JSON-LD do tipo `SportsClub` na homepage).
 
 **O que foi feito:**
 - ✅ Removido `js/supabase-config.js` do cache de rastreamento do Git (`git rm --cached`) e ativada sua exclusão definitiva no `.gitignore`.
@@ -803,6 +804,8 @@ og:image: (imagem real do artigo do Supabase)
 - ✅ Adicionado `"type": "module"` no `cloudflare-worker/package.json` do Worker.
 - ✅ Criado e executado um script de testes unitários para validar todo o comportamento de redirecionamento e pass-through do Worker sem warnings.
 - ✅ Removidos os arquivos mortos reais do projeto: `blog/artigo.html` e a pasta duplicada `/cao-minhada-2026` da raiz.
+- ✅ Removidas as URLs com âncora/hash (`#performance`, `#como-funciona`, `#sobre`) da geração do sitemap em `build-blog.js` para otimizar crawl budget de busca.
+- ✅ Injetados dados estruturados JSON-LD (`@type: SportsClub`) no `<head>` da homepage `index.template.html` para qualificação em buscas locais do Google.
 - ✅ Executado o build final para verificar a integridade da compilação de todas as páginas do site.
 
 ### 📁 Arquivos criados/modificados:
@@ -810,6 +813,9 @@ og:image: (imagem real do artigo do Supabase)
 - `build-blog.js` (MODIFICADO)
 - `cloudflare-worker/src/index.js` (MODIFICADO)
 - `cloudflare-worker/package.json` (MODIFICADO)
+- `index.template.html` (MODIFICADO)
+- `index.html` (MODIFICADO)
+- `sitemap.xml` (MODIFICADO)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 - `blog/artigo.html` (DELETADO)
 - `cao-minhada-2026/index.html` (DELETADO)
