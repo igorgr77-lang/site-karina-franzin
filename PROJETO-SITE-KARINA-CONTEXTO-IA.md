@@ -785,7 +785,7 @@ og:image: (imagem real do artigo do Supabase)
 
 ---
 
-## 📅 SESSÃO DE DESENVOLVIMENTO — 11/07/2026 — SEGURANÇA, CLEANUP E OTIMIZAÇÕES DE SEO E GOOGLE ANALYTICS ✅
+## 📅 SESSÃO DE DESENVOLVIMENTO — 11/07/2026 — SEGURANÇA, CLEANUP E OTIMIZAÇÕES DE SEO, GOOGLE ANALYTICS E SERVICE WORKER ✅
 
 ### ✅ Status: CONCLUÍDO
 
@@ -795,6 +795,7 @@ og:image: (imagem real do artigo do Supabase)
 3. Limpar arquivos mortos e códigos legados órfãos do repositório.
 4. Otimizar SEO para o Google Search (limpeza de sitemap, injeção de schemas `SportsClub`, `BreadcrumbList` e `Event`).
 5. Melhorar a medição de leads no Google Analytics 4 (GA4), automatizando o rastreamento de cliques em links de conversão do WhatsApp.
+6. Otimizar o cache do Service Worker (`sw.js`) para evitar cacheamento de requisições de outras origens (como chamadas de banco do Supabase e telemetria do GA4).
 
 **O que foi feito:**
 - ✅ Removido `js/supabase-config.js` do cache de rastreamento do Git (`git rm --cached`) e ativada sua exclusão definitiva no `.gitignore`.
@@ -808,6 +809,7 @@ og:image: (imagem real do artigo do Supabase)
 - ✅ Adicionado Schema `BreadcrumbList` na listagem de posts (`blog/index.template.html`), listagem de eventos (`eventos/index.template.html`), artigos do blog (`blog/artigo.template.html`) e páginas de eventos.
 - ✅ Adicionado Schema `Event` contendo datas, locais (Cervejaria Lord Lion / Studio Ativo) e dados dos parceiros para os 5 eventos estáticos.
 - ✅ Adicionado um interceptador global de cliques em `js/navbar.js` para rastrear cliques em links do WhatsApp (`wa.me`, `api.whatsapp.com`) e enviá-los de forma estruturada para o Google Analytics 4 com o nome de evento `click_whatsapp` contendo parâmetros da seção do site e texto do botão.
+- ✅ Modificado o interceptador `fetch` do `sw.js` para ignorar e não cachear requisições que não correspondam à mesma origem do site (`self.location.origin`), prevenindo bugs de inconsistência de dados em painéis administrativos que utilizam APIs REST externas e economizando espaço no navegador do usuário.
 - ✅ Executado o build final para verificar a integridade da compilação de todas as páginas do site.
 
 ### 📁 Arquivos criados/modificados:
@@ -833,6 +835,7 @@ og:image: (imagem real do artigo do Supabase)
 - `eventos/treinao-ultra-lord-julho/index.template.html` (MODIFICADO)
 - `eventos/treinao-ultra-lord-julho/index.html` (MODIFICADO)
 - `js/navbar.js` (MODIFICADO)
+- `sw.js` (MODIFICADO)
 - `sitemap.xml` (MODIFICADO)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 - `blog/artigo.html` (DELETADO)
