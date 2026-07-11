@@ -210,3 +210,43 @@ if (typeof window.gtag !== 'function') {
         initNavbar();
     }
 })();
+
+// ============================================
+// AUTO-TRACKING DE LEADS WHATSAPP (GA4)
+// ============================================
+document.addEventListener('click', function(e) {
+    var targetLink = e.target.closest('a');
+    if (!targetLink) return;
+    
+    var href = targetLink.getAttribute('href') || '';
+    if (href.includes('wa.me') || href.includes('api.whatsapp.com') || href.includes('whatsapp.com/send')) {
+        var label = targetLink.innerText.trim() || targetLink.getAttribute('aria-label') || 'Botão WhatsApp';
+        
+        // Identificar o contexto/seção do clique
+        var section = 'Outros/Flutuante';
+        if (targetLink.closest('nav')) {
+            section = 'Navbar';
+        } else if (targetLink.closest('footer')) {
+            section = 'Footer';
+        } else if (targetLink.closest('#hero') || targetLink.closest('.hero')) {
+            section = 'Hero';
+        } else if (targetLink.closest('#planos') || targetLink.closest('.planos') || targetLink.closest('.pricing')) {
+            section = 'Planos';
+        } else if (targetLink.closest('.article-single') || targetLink.closest('article')) {
+            section = 'Blog Post';
+        } else if (targetLink.closest('.event-detail') || targetLink.closest('.evento-specs')) {
+            section = 'Pagina do Evento';
+        } else if (targetLink.closest('.cupons-container') || targetLink.closest('#cupons')) {
+            section = 'Cupons';
+        }
+        
+        if (typeof window.gtag === 'function') {
+            window.gtag('event', 'click_whatsapp', {
+                'whatsapp_type': section,
+                'button_text': label,
+                'page_url': window.location.href
+            });
+            console.log('[GA4] Evento click_whatsapp enviado:', section, '-', label);
+        }
+    }
+});
