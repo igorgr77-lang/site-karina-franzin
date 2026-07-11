@@ -785,7 +785,7 @@ og:image: (imagem real do artigo do Supabase)
 
 ---
 
-## 📅 SESSÃO DE DESENVOLVIMENTO — 11/07/2026 — SEGURANÇA, CLEANUP E OTIMIZAÇÕES DE SEO, GOOGLE ANALYTICS E SERVICE WORKER ✅
+## 📅 SESSÃO DE DESENVOLVIMENTO — 11/07/2026 — SEGURANÇA, CLEANUP E OTIMIZAÇÕES DE SEO, GOOGLE ANALYTICS, SERVICE WORKER E TAILWIND CSS ✅
 
 ### ✅ Status: CONCLUÍDO
 
@@ -797,6 +797,7 @@ og:image: (imagem real do artigo do Supabase)
 5. Melhorar a medição de leads no Google Analytics 4 (GA4), automatizando o rastreamento de cliques em links de conversão do WhatsApp.
 6. Otimizar o cache do Service Worker (`sw.js`) para evitar cacheamento de requisições de outras origens (como chamadas de banco do Supabase e telemetria do GA4).
 7. Corrigir o link de imagem do Open Graph (`og:image`) do evento de Maio, que apontava para um arquivo inexistente.
+8. Substituir o script Play CDN do Tailwind CSS nos templates de eventos por uma compilação de produção automatizada local para ganhos brutais de performance e rendering mobile.
 
 **O que foi feito:**
 - ✅ Removido `js/supabase-config.js` do cache de rastreamento do Git (`git rm --cached`) e ativada sua exclusão definitiva no `.gitignore`.
@@ -812,10 +813,16 @@ og:image: (imagem real do artigo do Supabase)
 - ✅ Adicionado um interceptador global de cliques em `js/navbar.js` para rastrear cliques em links do WhatsApp (`wa.me`, `api.whatsapp.com`) e enviá-los de forma estruturada para o Google Analytics 4 com o nome de evento `click_whatsapp` contendo parâmetros da seção do site e texto do botão.
 - ✅ Modificado o interceptador `fetch` do `sw.js` para ignorar e não cachear requisições que não correspondam à mesma origem do site (`self.location.origin`), prevenindo bugs de inconsistência de dados em painéis administrativos que utilizam APIs REST externas e economizando espaço no navegador do usuário.
 - ✅ Corrigido o metadado `og:image` no template do evento de Maio (`treinao-ultra-lord-maio`) para apontar para a imagem existente `cardtreinoterra.webp`, restaurando o preview visual de compartilhamento nas redes sociais e WhatsApp.
+- ✅ Instalada a ferramenta `@tailwindcss/cli` de desenvolvimento e criada a configuração de estilos de entrada em `css/tailwind-input.css` usando a diretiva `@theme` do Tailwind v4 para mapear as cores e fontes de marca dos 5 eventos.
+- ✅ Integrada a compilação local de produção do Tailwind CSS CLI (`tailwindcss`) no script `build-blog.js` (gerando o CSS unificado leve de apenas 63 KB em `css/eventos-compiled.css`) e substituída a CDN de desenvolvimento (`https://cdn.tailwindcss.com`) pelo link estático da folha de estilo compilada nos 5 templates de eventos.
 - ✅ Executado o build final para verificar a integridade da compilação de todas as páginas do site.
 
 ### 📁 Arquivos criados/modificados:
 - `.gitignore` (MODIFICADO)
+- `package.json` (MODIFICADO)
+- `tailwind.config.js` (NOVO)
+- `css/tailwind-input.css` (NOVO)
+- `css/eventos-compiled.css` (NOVO)
 - `build-blog.js` (MODIFICADO)
 - `cloudflare-worker/src/index.js` (MODIFICADO)
 - `cloudflare-worker/package.json` (MODIFICADO)
