@@ -238,9 +238,7 @@ Pode me explicar como funciona?
 
 ### 3. Artigos dinâmicos não indexados pelo Google (RESOLVIDO ✅)
 - **Problema:** Como o conteúdo dos artigos é carregado via JavaScript, o Google demora ou não consegue indexar o texto dos artigos (o bot vê a página antes do JS executar).
-- **Solução:** Cloudflare Worker `karina-franzin-seo` intercepta requisições de bots na rota `/blog*`, busca o artigo no Supabase e injeta os meta tags (título, descrição, OG tags, conteúdo) no HTML antes de entregar ao Google. Usuários normais recebem a página original sem interferência.
-- **Commit:** 31/03/2026 (parte 3)
-- **Teste confirmado:** `curl -A "Googlebot/2.1"` retornou `X-Rendered-By: Cloudflare-Worker` ✅
+- **Solução (Evolução SSG):** O site migrou para um modelo de Geração de Site Estático (SSG), compilando os artigos dinâmicos do Supabase em páginas físicas estáticas reais (`blog/[slug]/index.html`) em tempo de build local. O Cloudflare Worker foi simplificado para tratar apenas de redirecionamentos 301 de URLs legadas na CDN, deixando a entrega de conteúdo 100% para o GitHub Pages (garantindo indexação imediata e nativa pelo Googlebot).
 
 ### 4. Background-attachment fixed (RESOLVIDO ✅)
 - **Problema:** `background-attachment: fixed` causa problemas de performance e visual no mobile.
