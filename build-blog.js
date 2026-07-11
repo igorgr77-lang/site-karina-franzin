@@ -22,24 +22,31 @@ if (!fs.existsSync(IMAGES_DIR)) {
     fs.mkdirSync(IMAGES_DIR, { recursive: true });
 }
 
-// 1. Ler credenciais do Supabase
-console.log('🔍 Lendo credenciais do Supabase de supabase-config.js...');
-if (!fs.existsSync(CONFIG_PATH)) {
-    console.error('❌ Erro: js/supabase-config.js não encontrado.');
-    process.exit(1);
+// 1. Ler credenciais do Supabase (priorizando variáveis de ambiente)
+let SUPABASE_URL = process.env.SUPABASE_URL;
+let SUPABASE_ANON_KEY = process.env.SUPABASE_KEY || process.env.SUPABASE_ANON_KEY;
+
+if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+    console.log('✅ Credenciais do Supabase carregadas com sucesso a partir de variáveis de ambiente.');
+} else {
+    console.log('🔍 Lendo credenciais do Supabase de supabase-config.js...');
+    if (!fs.existsSync(CONFIG_PATH)) {
+        console.error('❌ Erro: Credenciais do Supabase não encontradas em variáveis de ambiente nem em js/supabase-config.js.');
+        process.exit(1);
+    }
+    
+    const configContent = fs.readFileSync(CONFIG_PATH, 'utf8');
+    const urlMatch = configContent.match(/SUPABASE_URL\s*=\s*['"]([^'"]+)['"]/);
+    const keyMatch = configContent.match(/SUPABASE_ANON_KEY\s*=\s*['"]([^'"]+)['"]/);
+    
+    if (!urlMatch || !keyMatch) {
+        console.error('❌ Erro: Não foi possível extrair as credenciais do arquivo supabase-config.js.');
+        process.exit(1);
+    }
+    
+    SUPABASE_URL = urlMatch[1];
+    SUPABASE_ANON_KEY = keyMatch[1];
 }
-
-const configContent = fs.readFileSync(CONFIG_PATH, 'utf8');
-const urlMatch = configContent.match(/SUPABASE_URL\s*=\s*['"]([^'"]+)['"]/);
-const keyMatch = configContent.match(/SUPABASE_ANON_KEY\s*=\s*['"]([^'"]+)['"]/);
-
-if (!urlMatch || !keyMatch) {
-    console.error('❌ Erro: Não foi possível extrair as credenciais do arquivo supabase-config.js.');
-    process.exit(1);
-}
-
-const SUPABASE_URL = urlMatch[1];
-const SUPABASE_ANON_KEY = keyMatch[1];
 
 console.log(`✅ Conectando à URL: ${SUPABASE_URL}`);
 
@@ -421,6 +428,25 @@ async function build() {
             htmlCupons = compilePageComponents(htmlCupons, false);
             fs.writeFileSync(path.join(__dirname, 'cupons', 'index.html'), htmlCupons, 'utf8');
             console.log('💾 Página de Cupons compilada com sucesso em: cupons/index.html');
+        }
+
+        // 4. Compilar subpáginas de eventos individuais dinamicamente
+        console.log('\n📅 Compilando subpáginas de eventos...');
+        const subEventosDir = path.join(__dirname, 'eventos');
+        if (fs.existsSync(subEventosDir)) {
+            const itensEventos = fs.readdirSync(subEventosDir);
+            for (const item of itensEventos) {
+                const itemPath = path.join(subEventosDir, item);
+                if (fs.statSync(itemPath).isDirectory()) {
+                    const templatePath = path.join(itemPath, 'index.template.html');
+                    if (fs.existsSync(templatePath)) {
+                        let htmlSubEvento = fs.readFileSync(templatePath, 'utf8');
+                        htmlSubEvento = compilePageComponents(htmlSubEvento, false); // escura
+                        fs.writeFileSync(path.join(itemPath, 'index.html'), htmlSubEvento, 'utf8');
+                        console.log(`   💾 Subpágina de Evento compilada com sucesso: eventos/${item}/index.html`);
+                    }
+                }
+            }
         }
         
         // ============================================

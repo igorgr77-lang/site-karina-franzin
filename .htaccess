@@ -107,6 +107,13 @@ FileETag None
     RewriteEngine On
     # Cãominhada: URL antiga → nova URL dentro de /eventos/
     RewriteRule ^cao-minhada-2026/?$ /eventos/cao-minhada-2026/ [R=301,L]
+
+    # Redirecionamento 301 de URLs antigas do blog com parâmetro query '?slug=...'
+    RewriteCond %{QUERY_STRING} ^slug=([^&]+)$
+    RewriteRule ^blog/artigo\.html$ /blog/%1/? [R=301,L]
+
+    # Se acessar artigo.html sem o parâmetro slug, vai para a listagem do blog
+    RewriteRule ^blog/artigo\.html$ /blog/ [R=301,L]
 </IfModule>
 
 # ===========================================

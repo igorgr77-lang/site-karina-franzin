@@ -1,6 +1,6 @@
 # 🏃‍♀️ PROJETO SITE KARINA FRANZIN — CONTEXTO PARA IA
 
-> **Última atualização:** 27/06/2026  
+> **Última atualização:** 10/07/2026  
 > **Branch ativa:** `develop`  
 > **Projeto online:** https://karinafranzin.com.br  
 > **Repositório:** https://github.com/igorgr77-lang/site-karina-franzin  
@@ -51,7 +51,7 @@ Gerar leads qualificados via **WhatsApp** para assessoria de corrida online.
 
 ---
 
-## 🏗️ ARQUITETURA DO SITE — ESTADO ATUAL (27/06/2026)
+## 🏗️ ARQUITETURA DO SITE — ESTADO ATUAL (10/07/2026)
 
 ### Páginas Ativas e Compilação
 O site migrou de um modelo de replicação manual para um sistema de templates estáticos compilados em tempo de build local. As páginas finais são geradas a partir de arquivos `.template.html` que injetam os componentes unificados da navbar e do rodapé.
@@ -63,8 +63,7 @@ O site migrou de um modelo de replicação manual para um sistema de templates e
 | Blog — artigo | `blog/artigo.template.html` | `blog/[slug]/index.html` | Estático compilado (por post) |
 | Eventos — listagem | `eventos/index.template.html` | `eventos/index.html` | Estático compilado |
 | Cupons | `cupons/index.template.html` | `cupons/index.html` | Estático compilado |
-| Cãominhada 2026 | — | `eventos/cao-minhada-2026/index.html` | Estático legado |
-| Dia da Mulher — Lord Lion | — | `eventos/dia-da-mulher-lord-lion/index.html` | Estático legado |
+| Eventos Individuais (5 páginas) | `eventos/[pasta-evento]/index.template.html` | `eventos/[pasta-evento]/index.html` | Estáticos compilados dinamicamente |
 | Admin (CMS) | — | `admin/index.html` | CMS (Supabase) |
 
 ### Estrutura de Pastas
@@ -91,8 +90,9 @@ site-karina-franzin/
 ├── eventos/
 │   ├── index.template.html           ← Template da listagem de eventos
 │   ├── index.html                    ← Listagem de eventos final compilada
-│   ├── cao-minhada-2026/index.html   ← Página do evento Cãominhada
-│   └── dia-da-mulher-lord-lion/index.html ← Página do evento Dia da Mulher
+│   └── [nome-do-evento]/             ← Subpasta de evento (ex: cao-minhada-2026)
+│       ├── index.template.html       ← Template da subpágina (com <!-- NAVBAR_PLACEHOLDER -->)
+│       └── index.html                ← Página compilada gerada pelo build
 ├── cupons/
 │   ├── index.template.html           ← Template de cupons e descontos
 │   └── index.html                    ← Página de cupons final compilada
@@ -283,11 +283,35 @@ Pode me explicar como funciona?
 
 ## 🗂️ EVENTOS
 
-### Como adicionar um novo evento
+### Como adicionar e publicar um novo evento (IMPORTANTE)
 
-1. Criar o card em `eventos/index.html` (seguir o padrão dos cards existentes)
-2. Criar a pasta `eventos/nome-do-evento/`
-3. Criar `eventos/nome-do-evento/index.html` com navbar e rodapé padrão do site
+O gerenciamento de eventos segue o modelo de Geração de Site Estático (SSG). Para publicar um novo evento:
+
+1. **Adicionar o Card de Listagem:**
+   * Edite o arquivo [eventos/index.template.html](file:///c:/Users/oigor/PROJETOS/site-karina-franzin/eventos/index.template.html).
+   * Insira o card do novo evento na seção adequada. Certifique-se de adicionar o atributo `data-date="YYYY-MM-DD"` com a data do evento para que o JavaScript o classifique automaticamente entre "Próximos" ou "Passados" ao carregar a página.
+   * **⚠️ IMPORTANTE:** Nunca edite `eventos/index.html` diretamente, pois ele é gerado no build.
+
+2. **Criar a Subpágina do Evento:**
+   * Crie uma nova pasta em `eventos/` com o nome amigável do evento (ex: `eventos/meu-novo-treinao/`).
+   * Crie o arquivo `index.template.html` dentro dessa nova pasta.
+   * Escreva o HTML da página do evento. Certifique-se de incluir as tags canônicas, favicons absolutos e o script global da navbar no `<head>`:
+     ```html
+     <script src="/js/navbar.js" defer></script>
+     ```
+   * **Injetar a Navbar:** Substitua toda a estrutura de estilos inline da navbar antiga e o bloco HTML `<nav class="navbar" ...> ... </nav>` de menu pelo placeholder:
+     ```html
+     <!-- NAVBAR_PLACEHOLDER -->
+     ```
+   * Se a página usar o rodapé do site, insira `<!-- FOOTER_PLACEHOLDER -->` (opcional).
+   * Remova qualquer script inline de menu mobile do rodapé, pois o `/js/navbar.js` gerencia o clique de forma global.
+
+3. **Executar o Build:**
+   * Execute o script de compilação local:
+     ```bash
+     node build-blog.js
+     ```
+   * O build detectará a pasta de forma dinâmica, compilará o `index.template.html` gerando o `index.html` final e atualizará automaticamente o arquivo `sitemap.xml` para incluir a nova página.
 
 ### Eventos ativos
 
@@ -731,4 +755,33 @@ og:image: (imagem real do artigo do Supabase)
 - `eventos/index.template.html` (MODIFICADO)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 - `assets/img/treinao-ultra-lord-julho/` (NOVO)
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 10/07/2026 — SEO, REDIRECIONAMENTO 301 E SSG DE EVENTOS ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Configurar redirecionamento 301 no `.htaccess` para as URLs legadas do blog (com parâmetro `slug`).
+2. Eliminar duplicação e unificar navbar nos 5 eventos estáticos legados, movendo-os para o pipeline SSG do script `build-blog.js`.
+3. Atualizar e corrigir meta tags de SEO, Google Analytics e favicons em todas as páginas de eventos.
+
+**O que foi feito:**
+- ✅ Adicionado redirecionamento permanente HTTP 301 no arquivo `.htaccess` para tratar requisições de `/blog/artigo.html?slug=meu-artigo` e enviá-las para `/blog/meu-artigo/` diretamente no servidor.
+- ✅ Renomeados todos os arquivos estáticos de eventos de `index.html` para `index.template.html`.
+- ✅ Removidas as definições de estilos inline e scripts de toggle móvel da navbar repetidos nos 5 eventos, unificando-os no carregamento do `/js/navbar.js`.
+- ✅ Inserido o placeholder `<!-- NAVBAR_PLACEHOLDER -->` nos 5 templates de eventos.
+- ✅ Adaptado o script `build-blog.js` para escanear recursivamente o diretório `/eventos`, compilar todos os arquivos `index.template.html` encontrados e gerar seus respectivos `index.html` finais.
+- ✅ Verificação e build geral realizados com sucesso localmente.
+
+### 📁 Arquivos criados/modificados:
+- `.htaccess` (MODIFICADO)
+- `build-blog.js` (MODIFICADO)
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+- `eventos/cao-minhada-2026/index.template.html` (NOVO/RENOMEADO)
+- `eventos/dia-da-mulher-lord-lion/index.template.html` (NOVO/RENOMEADO)
+- `eventos/treinao-lord-lion/index.template.html` (NOVO/RENOMEADO)
+- `eventos/treinao-ultra-lord-maio/index.template.html` (NOVO/RENOMEADO)
+- `eventos/treinao-ultra-lord-julho/index.template.html` (NOVO/RENOMEADO)
 
