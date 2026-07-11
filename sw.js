@@ -40,6 +40,9 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
     if (event.request.method !== 'GET') return;
     
+    // Ignora requisições de outras origens (Supabase, Google Analytics, etc.)
+    if (!event.request.url.startsWith(self.location.origin)) return;
+    
     // Cache first para assets estáticos
     if (event.request.url.includes('.css') || 
         event.request.url.includes('.js') ||
