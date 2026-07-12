@@ -399,21 +399,6 @@ async function build() {
         console.log('💾 Listagem estática atualizada em: blog/index.html');
         
         // ============================================
-        // COMPILAR TAILWIND CSS PARA OS EVENTOS
-        // ============================================
-        console.log('\n🎨 Compilando Tailwind CSS para subpáginas de eventos...');
-        const { execSync } = require('child_process');
-        try {
-            const cmd = process.platform === 'win32'
-                ? 'cmd /c npm run build:css'
-                : 'npm run build:css';
-            execSync(cmd, { stdio: 'inherit' });
-            console.log('✅ Tailwind CSS compilado com sucesso em: css/eventos-compiled.css');
-        } catch (tailwindErr) {
-            console.warn('⚠️ Erro ao compilar Tailwind CSS:', tailwindErr.message);
-        }
-
-        // ============================================
         // COMPILAR OUTRAS PÁGINAS DO SITE
         // ============================================
         console.log('\n🏠 Compilando demais páginas do site...');
