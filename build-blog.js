@@ -241,11 +241,14 @@ async function build() {
             'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
         };
         
-        // Buscar artigos ordenados por data
-        const queryUrl = `${SUPABASE_URL}/rest/v1/artigos?publicado=eq.true&order=data_publicacao.desc`;
-        const artigos = await fetchGet(queryUrl, apiHeaders);
-        
-        console.log(`✅ Carregados ${artigos.length} artigos publicados.`);
+        let artigos = [];
+        try {
+            const queryUrl = `${SUPABASE_URL}/rest/v1/artigos?publicado=eq.true&order=data_publicacao.desc`;
+            artigos = await fetchGet(queryUrl, apiHeaders);
+            console.log(`✅ Carregados ${artigos.length} artigos publicados.`);
+        } catch (err) {
+            console.warn(`⚠️ Não foi possível conectar ao Supabase (${err.message}). Continuando compilação das páginas estáticas e eventos...`);
+        }
         
         // Ler templates
         const artigoTemplatePath = path.join(BLOG_DIR, 'artigo.template.html');
@@ -375,28 +378,19 @@ async function build() {
             cardsHtmlArray.push(cardHtml);
         }
         
-        // ============================================
         // GERAR PÁGINA DE LISTAGEM (blog/index.html)
-        // ============================================
-        console.log('\n🗂️ Gerando página principal do blog...');
-        
-        let htmlIndex = indexTemplate
-            .replace('<!-- ARTICLES_GRID_PLACEHOLDER -->', cardsHtmlArray.join('\n'));
+        if (artigos.length > 0) {
+            console.log('\n🗂️ Atualizando página principal do blog a partir do Supabase...');
+            let htmlIndex = indexTemplate
+                .replace('<!-- ARTICLES_GRID_PLACEHOLDER -->', cardsHtmlArray.join('\n'))
+                .replace('<!-- ARTICLES_NO_ARTICLES_PLACEHOLDER -->', '');
             
-        if (artigos.length === 0) {
-            htmlIndex = htmlIndex.replace(
-                '<!-- ARTICLES_NO_ARTICLES_PLACEHOLDER -->',
-                `<div id="noArticles" class="no-articles">
-                    <p>Nenhum artigo publicado no momento. Volte em breve!</p>
-                </div>`
-            );
+            htmlIndex = compilePageComponents(htmlIndex, false);
+            fs.writeFileSync(path.join(BLOG_DIR, 'index.html'), htmlIndex, 'utf8');
+            console.log('💾 Listagem estática atualizada em: blog/index.html');
         } else {
-            htmlIndex = htmlIndex.replace('<!-- ARTICLES_NO_ARTICLES_PLACEHOLDER -->', '');
+            console.log('\n🗂️ Modo Offline: Mantendo blog/index.html existente sem alterações.');
         }
-        
-        htmlIndex = compilePageComponents(htmlIndex, false);
-        fs.writeFileSync(path.join(BLOG_DIR, 'index.html'), htmlIndex, 'utf8');
-        console.log('💾 Listagem estática atualizada em: blog/index.html');
         
         // ============================================
         // COMPILAR OUTRAS PÁGINAS DO SITE
