@@ -54,6 +54,18 @@
     "endDate": "2026-08-08T09:30:00-03:00",
     "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
     "eventStatus": "https://schema.org/EventScheduled",
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BRL",
+      "availability": "https://schema.org/InStock",
+      "url": "https://karinafranzin.com.br/eventos/treinao-percurso-rotary/"
+    },
+    "performer": {
+      "@type": "Person",
+      "name": "Karina Franzin"
+    },
     "location": {
       "@type": "Place",
       "name": "Unifev Campus Cidade Universitária",
@@ -85,11 +97,14 @@
 
   <!-- Open Graph / WhatsApp -->
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Karina Franzin Assessoria de Corrida">
   <meta property="og:url" content="https://karinafranzin.com.br/eventos/treinao-percurso-rotary/">
   <meta property="og:title" content="Bora Treinar? Treino no Percurso da Rotary Run | Karina Franzin">
   <meta property="og:description"
     content="Reconhecimento presencial gratuito no percurso de 6km da Corrida do Rotary com Karina Franzin. Concentração às 07h na Unifev!">
   <meta property="og:image" content="https://karinafranzin.com.br/assets/img/treinao-percurso-rotary/foto_card_red.webp">
+  <meta property="og:image:alt" content="Treino no Percurso da Rotary Run com Karina Franzin">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Tailwind CSS CDN -->
@@ -237,7 +252,7 @@
               </div>
             </div>
             
-            <a href="https://maps.app.goo.gl/3qwMcdfMzrqzq7BDA" target="_blank" rel="noopener" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 px-4 py-2 rounded-xl text-xs font-bold transition-all text-center flex items-center justify-center gap-2">
+            <a href="https://maps.app.goo.gl/3qwMcdfMzrqzq7BDA" target="_blank" rel="noopener" onclick="if (typeof gtag === 'function') gtag('event', 'click_google_maps_rotary');" class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-600 px-4 py-2 rounded-xl text-xs font-bold transition-all text-center flex items-center justify-center gap-2">
               <i class="fa-solid fa-map-location-dot text-brand-blue"></i>
               <span>Abrir no Google Maps</span>
             </a>
@@ -266,7 +281,7 @@
 
           <!-- Botões de Ação do Hero -->
           <div class="flex flex-col sm:flex-row gap-4 pt-2 justify-center lg:justify-start">
-            <a href="https://www.alcer.esp.br/rotary-run-trackfield" target="_blank" rel="noopener" class="bg-brand-blue text-white font-extrabold px-8 py-4 rounded-2xl text-base uppercase tracking-wider hover:bg-brand-blueHover transition-all shadow-xl hover:shadow-brand-blue/30 text-center flex items-center justify-center gap-3">
+            <a href="https://www.alcer.esp.br/rotary-run-trackfield" target="_blank" rel="noopener" onclick="if (typeof gtag === 'function') gtag('event', 'click_inscricao_rotary');" class="bg-brand-blue text-white font-extrabold px-8 py-4 rounded-2xl text-base uppercase tracking-wider hover:bg-brand-blueHover transition-all shadow-xl hover:shadow-brand-blue/30 text-center flex items-center justify-center gap-3">
               <i class="fa-solid fa-cart-shopping text-xl"></i>
               <span>Inscrever na Prova (10% OFF)</span>
             </a>
@@ -707,6 +722,7 @@
 
     // --- 3. COPIAR CUPOM DE DESCONTO ---
     function copyCoupon(code) {
+      if (typeof gtag === 'function') gtag('event', 'copy_coupon_karina10');
       const tempInput = document.createElement('input');
       tempInput.value = code;
       document.body.appendChild(tempInput);
@@ -728,6 +744,7 @@
 
     // --- 4. ADICIONAR AO GOOGLE CALENDAR ---
     function addToCalendar() {
+      if (typeof gtag === 'function') gtag('event', 'add_to_calendar_rotary');
       const title = encodeURIComponent("Treinão no Percurso da Rotary Run - Karina Franzin");
       const details = encodeURIComponent("Reconhecimento oficial do percurso de 6km da Corrida do Rotary com a Treinadora Karina Franzin.");
       const location = encodeURIComponent("Unifev Campus Cidade Universitária, Votuporanga - SP");
