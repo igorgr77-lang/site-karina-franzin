@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J488T0R72B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-J488T0R72B');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ação Solidária - Missão Médica no Amazonas | Maria Eduarda & Karina Franzin</title>
+    <meta name="description"
+        content="Ajude a nossa atleta Maria Eduarda a levar saúde e esperança para povos indígenas e comunidades ribeirinhas do Amazonas doando medicamentos novos ou em bom estado. Coleta em Votuporanga e região.">
+    <link rel="canonical" href="https://karinafranzin.com.br/eventos/missao-amazonas/">
+    
+    <!-- Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://karinafranzin.com.br/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Eventos",
+          "item": "https://karinafranzin.com.br/eventos/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Missão Amazonas",
+          "item": "https://karinafranzin.com.br/eventos/missao-amazonas/"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Event Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "Ação Solidária - Missão Médica no Amazonas",
+      "startDate": "2026-07-28T12:00:00-03:00",
+      "endDate": "2026-08-03T12:00:00-03:00",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "location": {
+        "@type": "Place",
+        "name": "Votuporanga e Região",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Votuporanga",
+          "addressRegion": "SP",
+          "addressCountry": "BR"
+        }
+      },
+      "image": [
+        "https://karinafranzin.com.br/assets/img/missao-amazonas/card_amazonas.webp"
+      ],
+      "description": "Campanha de arrecadação de medicamentos para povos indígenas e comunidades ribeirinhas do Amazonas, liderada pela atleta Maria Eduarda.",
+      "organizer": {
+        "@type": "Organization",
+        "name": "Karina Franzin Assessoria de Corrida",
+        "url": "https://karinafranzin.com.br"
+      }
+    }
+    </script>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#FF6B35">
+
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://karinafranzin.com.br/eventos/missao-amazonas/">
+    <meta property="og:title" content="Ação Solidária - Missão Médica no Amazonas | Maria Eduarda">
+    <meta property="og:description" content="Ajude a nossa atleta Maria Eduarda a levar saúde para povos indígenas e ribeirinhos do Amazonas. Veja a lista e doe medicamentos.">
+    <meta property="og:image" content="https://karinafranzin.com.br/assets/img/missao-amazonas/card_amazonas.webp">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Karina Franzin - Assessoria de Corrida">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ação Solidária - Missão Médica no Amazonas | Maria Eduarda">
+    <meta name="twitter:description" content="Ajude a nossa atleta Maria Eduarda a levar saúde para povos indígenas e ribeirinhos do Amazonas. Veja a lista e doe medicamentos.">
+    <meta name="twitter:image" content="https://karinafranzin.com.br/assets/img/missao-amazonas/card_amazonas.webp">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Global do site (navbar padrão) -->
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="/js/navbar.js" defer></script>
+
+    <!-- Configuração de Cores Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amazon: {
+                            50: '#f2f8f4',
+                            100: '#e1efe5',
+                            600: '#2d6a4f',
+                            800: '#1b4332',
+                            900: '#081c15',
+                        },
+                        warmBg: '#fbf9f5',
+                        warmCard: '#ffffff'
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- CSS Crítico Inline: evita FOUC na navbar -->
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(20, 20, 20, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .navbar-logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ff6b35;
+        }
+
+        .navbar-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            display: inline-block;
+            padding: 8px 13px;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            border-radius: 6px;
+            white-space: nowrap;
+        }
+
+        .nav-cta {
+            background: #ff6b35;
+            color: #fff !important;
+            font-weight: 700 !important;
+            border-radius: 8px !important;
+            padding: 9px 15px !important;
+            margin-left: 6px;
+        }
+
+        .nav-portal {
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 8px;
+            padding: 8px 13px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .navbar-toggle {
+            display: none;
+        }
+
+        @media (max-width: 860px) {
+            .navbar-toggle {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                width: 40px;
+                height: 40px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                flex-shrink: 0;
+            }
+
+            .hamburger-line {
+                display: block;
+                width: 24px;
+                height: 2px;
+                background: #fff;
+                border-radius: 2px;
+            }
+
+            .navbar-links {
+                position: fixed;
+                top: 0;
+                right: -280px;
+                width: 270px;
+                height: 100dvh;
+                background: #141414;
+                border-left: 2px solid #ff6b35;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 80px 0 24px;
+                z-index: 1001;
+                transition: right 0.3s ease;
+            }
+
+            .navbar-links.open {
+                right: 0;
+            }
+        }
+    </style>
+
+    <style>
+        body {
+            background-color: #f7f4ee;
+            color: #2c3531;
+            padding-top: 64px; /* Compensa a navbar fixa */
+        }
+        .amazon-gradient {
+            background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%);
+        }
+        .custom-checkbox:checked + label {
+            border-color: #2d6a4f;
+            background-color: #f0fdf4;
+        }
+        .custom-checkbox:checked + label .check-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col font-sans antialiased selection:bg-amazon-600 selection:text-white">
+
+    <nav class="navbar navbar-scrolled" id="navbar">
+    <div class="navbar-container">
+        <!-- Logo / Nome -->
+        <a href="/" class="navbar-brand" aria-label="Ir ao início">
+            <img src="/assets/img/KarinaFranzin80.webp" alt="Karina Franzin" class="navbar-logo">
+            <span class="navbar-name">Karina Franzin</span>
+        </a>
+
+        <!-- Links Desktop -->
+        <ul class="navbar-links" id="navbarLinks">
+            <li><a href="/#como-funciona" class="nav-link">Como Funciona</a></li>
+            <li><a href="/#prova-social" class="nav-link">Resultados</a></li>
+            <li><a href="/#sobre" class="nav-link">Minha História</a></li>
+            <li><a href="/blog/" class="nav-link">Blog</a></li>
+            <li><a href="/eventos/" class="nav-link">Eventos</a></li>
+            <li><a href="/cupons/" class="nav-link">Cupons</a></li>
+            <li>
+                <a href="https://gestao.karinafranzin.com.br/" 
+                   class="nav-link"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Portal Financeiro
+                </a>
+            </li>
+            <li>
+                <a href="https://karinafranzin.treinus.com.br/" 
+                   class="nav-link"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Portal do Atleta
+                </a>
+            </li>
+            <li>
+                <a href="/#contato" class="nav-link nav-cta">Começar Agora</a>
+            </li>
+        </ul>
+
+        <!-- Botão Hamburger (Mobile) -->
+        <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbarLinks">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    </div>
+</nav>
+<!-- Overlay escuro ao abrir menu mobile -->
+<div class="navbar-overlay" id="navbarOverlay"></div>
+
+
+    <!-- Top Banner / Header -->
+    <header class="amazon-gradient text-white pt-10 pb-16 px-4 sm:px-6 relative overflow-hidden shadow-lg">
+        <!-- Background Leaf Overlay Effect -->
+        <div class="absolute -right-10 -bottom-10 text-white/5 text-9xl pointer-events-none select-none">
+            <i class="fa-solid fa-tree"></i>
+        </div>
+        <div class="absolute -left-10 -top-10 text-white/5 text-9xl pointer-events-none select-none">
+            <i class="fa-solid fa-heart-pulse"></i>
+        </div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-emerald-200 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full border border-white/20 mb-4 uppercase tracking-wider">
+                <i class="fa-solid fa-heart text-red-400 animate-pulse"></i> Ação Solidária & Arrecadação
+            </div>
+            
+            <h1 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-white mb-3 leading-tight">
+                MISSÃO MÉDICA NO AMAZONAS
+            </h1>
+            
+            <p class="text-emerald-100 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed mb-6">
+                Ajude a nossa atleta <strong class="font-semibold text-white">Maria Eduarda</strong> a levar saúde e esperança para povos indígenas e comunidades ribeirinhas do Amazonas.
+            </p>
+
+            <!-- Quick Action Badges -->
+            <div class="flex flex-wrap justify-center items-center gap-3 text-xs sm:text-sm font-medium">
+                <span class="bg-emerald-900/60 text-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-700/50 flex items-center gap-2">
+                    <i class="fa-solid fa-truck-ramp-box text-emerald-400"></i> Buscamos no seu endereço
+                </span>
+                <span class="bg-emerald-900/60 text-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-700/50 flex items-center gap-2">
+                    <i class="fa-solid fa-pills text-emerald-400"></i> Remédios novos ou em bom estado
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 -mt-8 flex-grow w-full z-20 mb-28">
+
+        <!-- Carta de Apresentação -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 mb-8 border border-emerald-100 relative">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-gray-100">
+                <div class="flex items-center gap-4">
+                    <div class="w-14 h-14 rounded-full bg-amazon-100 text-amazon-800 flex items-center justify-center font-bold text-xl border-2 border-amazon-600 shadow-inner shrink-0">
+                        ME
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-bold text-gray-900">Maria Eduarda</h2>
+                        <p class="text-sm text-gray-500 flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-amazon-600"></i> Votuporanga e Região
+                        </p>
+                    </div>
+                </div>
+
+                <a href="https://wa.me/5517997940021?text=Ol%C3%A1%20Maria%20Eduarda!%20Gostaria%20de%20ajudar%20com%20doa%C3%A7%C3%B5es%20para%20Miss%C3%A3o%20M%C3%A9dica%20no%20Amazonas." 
+                   target="_blank" 
+                   class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-5 py-2.5 rounded-xl transition-all shadow-md hover:shadow-lg text-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> (17) 99794-0021
+                </a>
+            </div>
+
+            <div class="pt-6 text-gray-700 text-sm sm:text-base leading-relaxed space-y-4">
+                <p>
+                    <span class="font-semibold text-amazon-800">Pessoal, em breve embarco para uma missão médica no Amazonas</span>, onde vou atender povos indígenas e comunidades ribeirinhas que possuem acesso extremamente limitado a cuidados básicos de saúde.
+                </p>
+                <p class="bg-emerald-50/70 p-4 rounded-xl border-l-4 border-amazon-600 text-gray-800 italic">
+                    "Se você tiver algum desses medicamentos para doação (dentro do prazo de validade e em boas condições), eles serão de enorme ajuda e poderão fazer toda a diferença na vida de muitas famílias. Eu mesma busco as doações onde for necessário!" 💙
+                </p>
+            </div>
+        </div>
+
+        <!-- Barra de Busca de Medicamentos -->
+        <div class="mb-6">
+            <div class="relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
+                <input type="text" id="searchInput" onkeyup="filterMedications()" 
+                       placeholder="Pesquise o remédio que você tem (ex: Dipirona, Loratadina, Soro...)" 
+                       class="w-full pl-12 pr-4 py-3.5 bg-white border border-gray-200 rounded-2xl shadow-sm text-sm sm:text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-amazon-600 focus:border-transparent transition-all">
+            </div>
+        </div>
+
+        <!-- Instruções do Checklist -->
+        <div class="flex items-center justify-between mb-4 px-1">
+            <h3 class="text-base sm:text-lg font-bold text-gray-900 flex items-center gap-2">
+                <i class="fa-solid fa-list-check text-amazon-600"></i> Selecione o que você pode doar:
+            </h3>
+            <span id="counterBadge" class="text-xs font-semibold bg-amazon-100 text-amazon-800 px-3 py-1 rounded-full">
+                0 selecionados
+            </span>
+        </div>
+
+        <!-- Categorias de Medicamentos -->
+        <div class="space-y-4" id="categoriesContainer">
+
+            <!-- 1. Analgésicos -->
+            <div class="med-category bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center gap-3 mb-3 pb-2 border-b border-gray-100">
+                    <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-pills text-lg"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm sm:text-base">Analgésicos</h4>
+                        <p class="text-xs text-gray-500">Alívio de dor e febre</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div class="med-item">
+                        <input type="checkbox" id="med-dipirona" value="Dipirona (Gotas/Comprimidos)" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-dipirona" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Dipirona <span class="text-gray-400 font-normal">(Gotas/Comp.)</span></span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-paracetamol" value="Paracetamol (Gotas/Comprimidos)" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-paracetamol" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Paracetamol <span class="text-gray-400 font-normal">(Gotas/Comp.)</span></span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-ibuprofeno" value="Ibuprofeno (Gotas/Comprimidos)" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-ibuprofeno" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Ibuprofeno <span class="text-gray-400 font-normal">(Gotas/Comp.)</span></span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Anti-histamínicos -->
+            <div class="med-category bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center gap-3 mb-3 pb-2 border-b border-gray-100">
+                    <div class="w-9 h-9 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-allergies text-lg"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm sm:text-base">Anti-histamínicos</h4>
+                        <p class="text-xs text-gray-500">Antialérgicos diversos</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div class="med-item">
+                        <input type="checkbox" id="med-loratadina" value="Loratadina" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-loratadina" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Loratadina</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-hidroxizina" value="Hidroxizina" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-hidroxizina" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Hidroxizina</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-prometazina" value="Prometazina" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-prometazina" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Prometazina</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-ebastina" value="Ebastina" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-ebastina" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Ebastina</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Antibióticos -->
+            <div class="med-category bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center gap-3 mb-3 pb-2 border-b border-gray-100">
+                    <div class="w-9 h-9 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-shield-halved text-lg"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm sm:text-base">Antibióticos</h4>
+                        <p class="text-xs text-gray-500">Combate a infecções</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div class="med-item">
+                        <input type="checkbox" id="med-azitromicina" value="Azitromicina" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-azitromicina" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Azitromicina</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-amoxicilina" value="Amoxicilina" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-amoxicilina" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Amoxicilina</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-amoxiclav" value="Amoxilina + Clavulanato" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-amoxiclav" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Amoxiclavulanato</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-cefalexina" value="Cefalexina" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-cefalexina" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Cefalexina</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-sulfa" value="Sulfa + Trimethoprim" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-sulfa" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Sulfa + Trimetropim</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-cipro" value="Ciprofloxacino" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-cipro" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Ciprofloxacino</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-normflo" value="Normfloxacino" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-normflo" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Normfloxacino</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Anti-inflamatórios -->
+            <div class="med-category bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center gap-3 mb-3 pb-2 border-b border-gray-100">
+                    <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-seedling text-lg"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm sm:text-base">Anti-inflamatórios</h4>
+                        <p class="text-xs text-gray-500">Dores articulares e inflamações</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div class="med-item">
+                        <input type="checkbox" id="med-nimesulida" value="Nimesulida" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-nimesulida" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Nimesulida</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-meloxican" value="Meloxican" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-meloxican" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Meloxican</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-diclofenaco" value="Diclofenaco" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-diclofenaco" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Diclofenaco</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-tenoxican" value="Tenoxican" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-tenoxican" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Tenoxican</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Tópicos & Pomadas -->
+            <div class="med-category bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center gap-3 mb-3 pb-2 border-b border-gray-100">
+                    <div class="w-9 h-9 rounded-xl bg-pink-50 text-pink-600 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-pump-medical text-lg"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm sm:text-base">Medicamentos Tópicos / Pomadas</h4>
+                        <p class="text-xs text-gray-500">Uso na pele e dermatológicos</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div class="med-item">
+                        <input type="checkbox" id="med-dexametasona" value="Dexametasona (Pomada)" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-dexametasona" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Dexametasona</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-neomicina" value="Neomicina" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-neomicina" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Neomicina</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-trok" value="TroK" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-trok" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">TroK</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Antieméticos, Antidiarreicos & Outros -->
+            <div class="med-category bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+                <div class="flex items-center gap-3 mb-3 pb-2 border-b border-gray-100">
+                    <div class="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-droplet text-lg"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm sm:text-base">Gastro, Digestivos & Hidratação</h4>
+                        <p class="text-xs text-gray-500">Especial para náuseas, diarreia e desidratação</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div class="med-item">
+                        <input type="checkbox" id="med-bromoprida" value="Bromoprida" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-bromoprida" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Bromoprida</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-dramin" value="Dramin" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-dramin" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Dramin</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-ondansetrona" value="Ondansetrona" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-ondansetrona" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Ondansetrona</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-flora" value="Flora Intestinal (Floratil/Florax/Enterogermina/Repoflor)" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-flora" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Repositor de Flora <span class="text-gray-400 font-normal">(Floratil, Florax, Enterogermina)</span></span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-soro" value="Soro de Hidratação Oral" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-soro" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Soro de Hidratação Oral</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-zinco" value="Zinco (Biozinc/Unizinco)" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-zinco" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Zinco <span class="text-gray-400 font-normal">(Biozinc, Unizinco)</span></span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                    <div class="med-item">
+                        <input type="checkbox" id="med-buscopan" value="Buscopan Composto" class="custom-checkbox hidden" onchange="updateSelection()">
+                        <label for="med-buscopan" class="flex items-center justify-between p-3 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-50 transition-all select-none">
+                            <span class="text-xs sm:text-sm font-medium text-gray-700">Buscopan Composto</span>
+                            <i class="fa-solid fa-circle-check check-icon text-amazon-600 opacity-0 transform scale-75 transition-all"></i>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Outro medicamento não listado -->
+            <div class="bg-emerald-50/60 rounded-2xl p-5 border border-emerald-100 text-center">
+                <p class="text-xs sm:text-sm text-gray-700 mb-2 font-medium">Tem outro medicamento em bom estado que não está na lista?</p>
+                <button onclick="openCustomWhatsapp()" class="text-xs sm:text-sm text-amazon-800 underline font-bold hover:text-amazon-600 transition-colors">
+                    <i class="fa-brands fa-whatsapp text-emerald-600 mr-1"></i> Falar direto no WhatsApp com a Maria Eduarda
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Card de Recomendações Importantes -->
+        <div class="mt-8 bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+            <h4 class="font-bold text-gray-900 text-sm sm:text-base mb-3 flex items-center gap-2">
+                <i class="fa-solid fa-circle-info text-amber-500"></i> Recomendações para Doação:
+            </h4>
+            <ul class="text-xs sm:text-sm text-gray-600 space-y-2">
+                <li class="flex items-start gap-2">
+                    <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                    <span><strong>Validade:</strong> Os medicamentos devem estar dentro do prazo de validade.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                    <span><strong>Condições:</strong> Embalagens preservadas, caixas seladas ou cartelas de comprimidos intactas.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <i class="fa-solid fa-check text-emerald-600 mt-1"></i>
+                    <span><strong>Coleta Fácil:</strong> A Maria Eduarda combina o dia e busca diretamente com você no seu endereço.</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Botões de Compartilhamento da Causa -->
+        <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <button onclick="shareOnWhatsapp()" class="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 px-4 rounded-xl text-xs sm:text-sm transition-all shadow-sm">
+                <i class="fa-brands fa-whatsapp text-lg"></i> Compartilhar no WhatsApp
+            </button>
+            <button onclick="copyCampaignText()" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 px-5 rounded-xl text-xs sm:text-sm transition-all">
+                <i class="fa-regular fa-copy"></i> <span id="copyBtnText">Copiar Mensagem</span>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Barra Flutuante de Envio de Doação no WhatsApp -->
+    <div id="stickyBar" class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 shadow-2xl transition-all duration-300 transform translate-y-0 z-50">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="text-center sm:text-left">
+                <span id="selectedCountText" class="font-bold text-gray-900 text-sm sm:text-base block">
+                    Nenhum item selecionado
+                </span>
+                <span class="text-xs text-gray-500">Marque acima os remédios que você possui para doar</span>
+            </div>
+            
+            <button id="sendWhatsappBtn" onclick="sendSelectedToWhatsapp()" disabled
+                    class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-300 text-gray-500 font-bold px-6 py-3.5 rounded-xl text-sm transition-all cursor-not-allowed">
+                <i class="fa-brands fa-whatsapp text-xl"></i> 
+                <span>Combinar Doação no WhatsApp</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-5 right-5 bg-gray-900 text-white text-xs sm:text-sm px-4 py-3 rounded-xl shadow-2xl opacity-0 pointer-events-none transition-all duration-300 z-50 flex items-center gap-2">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toastMsg">Mensagem copiada com sucesso!</span>
+    </div>
+
+    <footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/blog/" rel="noopener">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                    Blog
+                </a>
+                <a href="https://www.instagram.com/karina_franzin/" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0 3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    Instagram
+                </a>
+                <a href="https://www.strava.com/athletes/158868084" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/>
+                    </svg>
+                    Strava
+                </a>
+                <a href="https://wa.me/5517996566908?text=Ol%C3%A1%2C%20Karina%21%20Vim%20pelo%20seu%20site%20e%20quero%20come%C3%A7ar%20uma%20assessoria%20de%20corrida.%20Pode%20me%20explicar%20como%20funciona%3F" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   onclick="gtag('event', 'click_whatsapp')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                    WhatsApp
+                </a>
+                <a href="https://karinafranzin.treinus.com.br/" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="treinus-link"
+                   onclick="gtag('event', 'click_treinus', {event_category: 'footer'})">
+                    <img src="/assets/icons/treinus.png" alt="Treinus" width="24" height="24" class="treinus-icon">
+                    Treinus
+                </a>
+            </div>
+            
+            <div class="footer-copy">
+                <p>&copy; 2026 Karina Franzin - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- JavaScript Logic -->
+    <script>
+        const whatsappNumber = "5517997940021";
+        let selectedMeds = [];
+
+        function updateSelection() {
+            const checkboxes = document.querySelectorAll('.custom-checkbox:checked');
+            selectedMeds = Array.from(checkboxes).map(cb => cb.value);
+
+            const count = selectedMeds.length;
+            const counterBadge = document.getElementById('counterBadge');
+            const selectedCountText = document.getElementById('selectedCountText');
+            const sendBtn = document.getElementById('sendWhatsappBtn');
+
+            counterBadge.innerText = `${count} selecionado${count !== 1 ? 's' : ''}`;
+
+            if (count > 0) {
+                selectedCountText.innerHTML = `<span class="text-emerald-700 font-bold">${count} ${count === 1 ? 'item' : 'itens'} pronto${count !== 1 ? 's' : ''} para doação!</span>`;
+                sendBtn.disabled = false;
+                sendBtn.className = "w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3.5 rounded-xl text-sm shadow-lg hover:shadow-xl transition-all cursor-pointer transform hover:-translate-y-0.5";
+            } else {
+                selectedCountText.innerText = "Nenhum item selecionado";
+                sendBtn.disabled = true;
+                sendBtn.className = "w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gray-300 text-gray-500 font-bold px-6 py-3.5 rounded-xl text-sm transition-all cursor-not-allowed";
+            }
+        }
+
+        function sendSelectedToWhatsapp() {
+            if (selectedMeds.length === 0) return;
+
+            let message = `Olá, Maria Eduarda! Tudo bem? Vi a sua Ação Solidária para a Missão Médica no Amazonas e gostaria de doar os seguintes medicamentos:\n\n`;
+            selectedMeds.forEach(med => {
+                message += `• ${med}\n`;
+            });
+            message += `\nComo podemos combinar a entrega/retirada?`;
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+        }
+
+        function openCustomWhatsapp() {
+            const text = encodeURIComponent("Olá, Maria Eduarda! Gostaria de doar medicamentos para a Missão Médica no Amazonas.");
+            window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
+        }
+
+        function shareOnWhatsapp() {
+            const text = encodeURIComponent("🤝 *AÇÃO SOLIDÁRIA - MISSÃO MÉDICA NO AMAZONAS*\n\nA atleta Maria Eduarda está arrecadando medicamentos para atender povos indígenas e comunidades ribeirinhas no Amazonas.\n\nVeja a lista de remédios e ajude com doações no link:\n" + window.location.href);
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+
+        function copyCampaignText() {
+            const campaignText = `AÇÃO SOLIDÁRIA - MISSÃO MÉDICA NO AMAZONAS 💙\n\n` +
+                `A nossa atleta Maria Eduarda está embarcando para uma missão médica para atender povos indígenas e ribeirinhos.\n\n` +
+                `Ela está arrecadando medicamentos (dentro do prazo de validade): Analgésicos, Anti-histamínicos, Antibióticos, Anti-inflamatórios, Soro, Zinco, etc.\n\n` +
+                `Ela mesma busca a doação com você!\n` +
+                `Contato WhatsApp: (17) 99794-0021`;
+
+            // Canvas iFrame safe fallback copy
+            const textarea = document.createElement('textarea');
+            textarea.value = campaignText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                showToast("Texto da campanha copiado com sucesso!");
+                document.getElementById('copyBtnText').innerText = "Copiado!";
+                setTimeout(() => {
+                    document.getElementById('copyBtnText').innerText = "Copiar Mensagem";
+                }, 3000);
+            } catch (err) {
+                showToast("Erro ao copiar. Tente novamente.");
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function filterMedications() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const categories = document.querySelectorAll('.med-category');
+
+            categories.forEach(category => {
+                const items = category.querySelectorAll('.med-item');
+                let hasVisible = false;
+
+                items.forEach(item => {
+                    const text = item.innerText.toLowerCase();
+                    if (text.includes(input)) {
+                        item.style.display = "block";
+                        hasVisible = true;
+                    } else {
+                        item.style.display = "none";
+                    }
+                });
+
+                if (hasVisible) {
+                    category.style.display = "block";
+                } else {
+                    category.style.display = "none";
+                }
+            });
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
