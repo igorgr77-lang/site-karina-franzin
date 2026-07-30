@@ -1,0 +1,304 @@
+/* ==========================================================================
+   CAMPANHA EXCLUSIVA: LORD RUN FESTIVAL VIP
+   ========================================================================== */
+
+/* --- VARIÁVEIS DO TEMA --- */
+:root {
+    --color-bg-dark: #0a0a0a;
+    --color-card-dark: #121212;
+    --color-lord-gold: #ffb703;
+    --color-lord-amber: #ff8f00;
+    --color-karina-orange: #ff6b35;
+    --color-text-white: #ffffff;
+    --color-text-muted: rgba(255, 255, 255, 0.65);
+    --font-primary: 'Inter', sans-serif;
+    --font-display: 'Montserrat', sans-serif;
+    --font-oswald: 'Oswald', sans-serif;
+}
+
+/* --- ESTILOS DE BASE --- */
+body.lord-run-vip-body {
+    background-color: var(--color-bg-dark) !important;
+    color: var(--color-text-white) !important;
+    font-family: var(--font-primary);
+    overflow-x: hidden;
+    padding-top: 64px; /* Compensa a navbar fixa */
+}
+
+/* --- PARALLAX / GRADIENTES --- */
+.hero-campaign {
+    position: relative;
+    background: linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.95)), 
+                url('/assets/img/lord-run-vip/banner.webp') no-repeat center center;
+    background-size: cover;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fallback caso não tenha banner */
+.hero-campaign-fallback {
+    background: radial-gradient(circle at top, #2b1f13 0%, #0a0a0a 100%);
+}
+
+.glow-amber {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255, 143, 0, 0.1) 0%, rgba(10, 10, 10, 0) 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* --- LOGO HEADER --- */
+.logo-container {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* --- GLASSMORPHIC CARDS --- */
+.card-glass-vip {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card-glass-vip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.card-glass-vip:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 107, 53, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 107, 53, 0.15);
+}
+
+.card-glass-vip:hover::before {
+    opacity: 1;
+}
+
+/* --- DESTAQUE PARA PLANO OURO --- */
+.card-gold-premium {
+    border: 1px solid rgba(255, 183, 3, 0.3);
+    background: linear-gradient(180deg, rgba(255, 183, 3, 0.02) 0%, rgba(255, 255, 255, 0.03) 100%);
+}
+
+.card-gold-premium:hover {
+    border-color: rgba(255, 183, 3, 0.7);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 183, 3, 0.25);
+}
+
+.gold-badge {
+    background: linear-gradient(135deg, var(--color-lord-gold), var(--color-lord-amber));
+    color: #000;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(255, 183, 3, 0.4);
+}
+
+/* --- PREÇOS --- */
+.original-price {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    text-decoration: line-through;
+}
+
+.discounted-price-box {
+    margin: 12px 0;
+}
+
+.price-currency {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-text-white);
+    vertical-align: super;
+}
+
+.price-value {
+    font-size: 3.5rem;
+    font-weight: 900;
+    font-family: var(--font-oswald);
+    line-height: 1;
+}
+
+.price-period {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+}
+
+.total-quarterly-info {
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    border-radius: 8px;
+    color: var(--color-text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* --- ANIMAÇÕES E PULSE --- */
+.pulse-gold {
+    animation: gold-pulse-shadow 2.5s infinite;
+}
+
+@keyframes gold-pulse-shadow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 183, 3, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 12px rgba(255, 183, 3, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 183, 3, 0);
+    }
+}
+
+.pulse-orange {
+    animation: orange-pulse-shadow 2.5s infinite;
+}
+
+@keyframes orange-pulse-shadow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 12px rgba(255, 107, 53, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 107, 53, 0);
+    }
+}
+
+/* --- FAQ ACCORDION FOR DARK THEME --- */
+.faq-vip-item {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+}
+
+.faq-vip-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 107, 53, 0.2);
+}
+
+.faq-vip-question {
+    font-weight: 700;
+    color: var(--color-text-white);
+    padding: 20px;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-vip-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 20px;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.faq-vip-item.active .faq-vip-answer {
+    max-height: 200px;
+    padding-bottom: 20px;
+}
+
+.faq-vip-item.active {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 107, 53, 0.3);
+}
+
+.faq-vip-item .faq-vip-question svg,
+.faq-vip-item .faq-vip-question i {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.faq-vip-item.active .faq-vip-question svg,
+.faq-vip-item.active .faq-vip-question i {
+    transform: rotate(45deg);
+    color: var(--color-karina-orange);
+}
+
+/* --- CARROSSEL --- */
+.feedbacks-campaign-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.feedback-camp-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.02);
+    transition: transform 0.3s ease;
+}
+
+.feedback-camp-card:hover {
+    transform: scale(1.03);
+}
+
+.feedback-camp-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- BOTÕES --- */
+.btn-lord-gold {
+    background: linear-gradient(135deg, var(--color-lord-gold) 0%, var(--color-lord-amber) 100%);
+    color: #0a0a0a !important;
+    font-weight: 800;
+    text-shadow: none;
+    transition: all 0.3s ease;
+}
+
+.btn-lord-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 183, 3, 0.3);
+    filter: brightness(1.1);
+}
+
+.btn-karina-orange {
+    background: linear-gradient(135deg, var(--color-karina-orange) 0%, #e0531f 100%);
+    color: #ffffff !important;
+    font-weight: 800;
+    transition: all 0.3s ease;
+}
+
+.btn-karina-orange:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 107, 53, 0.3);
+    filter: brightness(1.15);
+}
+
+/* --- COUNTDOWN DIRETIVA --- */
+.countdown-box {
+    background: rgba(255, 183, 3, 0.04);
+    border: 1px solid rgba(255, 183, 3, 0.15);
+}

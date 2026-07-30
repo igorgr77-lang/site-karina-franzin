@@ -424,6 +424,15 @@ async function build() {
             console.log('💾 Página de Cupons compilada com sucesso em: cupons/index.html');
         }
 
+        // 3.1 Campanha Lord Run VIP (lord-run-vip/index.html) - escura
+        const lordRunVipTemplatePath = path.join(__dirname, 'lord-run-vip', 'index.template.html');
+        if (fs.existsSync(lordRunVipTemplatePath)) {
+            let htmlLordRunVip = fs.readFileSync(lordRunVipTemplatePath, 'utf8');
+            htmlLordRunVip = compilePageComponents(htmlLordRunVip, false);
+            fs.writeFileSync(path.join(__dirname, 'lord-run-vip', 'index.html'), htmlLordRunVip, 'utf8');
+            console.log('💾 Página Lord Run VIP compilada com sucesso em: lord-run-vip/index.html');
+        }
+
         // 4. Compilar subpáginas de eventos individuais dinamicamente
         console.log('\n📅 Compilando subpáginas de eventos...');
         const subEventosDir = path.join(__dirname, 'eventos');
@@ -475,6 +484,12 @@ async function build() {
         <lastmod>${hoje}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/lord-run-vip/</loc>
+        <lastmod>${hoje}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
     </url>
 `;
 
