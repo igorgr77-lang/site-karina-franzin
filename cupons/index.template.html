@@ -288,6 +288,24 @@
                     if (activeCount > 0) {
                         document.getElementById('provas-section').style.display = 'block';
                     }
+
+                    // Rastreamento automático de cliques em botões de cupons (Google Analytics)
+                    document.querySelectorAll('.btn-cupon').forEach(button => {
+                        button.addEventListener('click', () => {
+                            const card = button.closest('.cupon-card');
+                            if (card) {
+                                const partnerName = card.querySelector('img')?.getAttribute('alt') || 'Parceiro';
+                                const discount = card.querySelector('.cupon-discount')?.textContent || '';
+                                const couponCode = card.querySelector('.cupon-code')?.textContent || '';
+                                
+                                gtag('event', 'click_cupom', {
+                                    'partner_name': partnerName,
+                                    'discount_value': discount,
+                                    'coupon_code': couponCode
+                                });
+                            }
+                        });
+                    });
                 });
             </script>
 </body>
