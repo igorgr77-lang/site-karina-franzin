@@ -35,3 +35,6 @@ SUPABASE-CREDENCIAIS.txt
 
 # Arquivos temporários de teste
 tmp_rovodev_*
+
+# Scratch scripts
+scratch/
