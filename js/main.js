@@ -7,19 +7,28 @@ document.addEventListener('DOMContentLoaded', function() {
     faqItems.forEach(item => {
         const question = item.querySelector('.faq-question');
         
-        question.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-            
-            // Close all other items
-            faqItems.forEach(otherItem => {
-                otherItem.classList.remove('active');
+        if (question) {
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                    const otherQuestion = otherItem.querySelector('.faq-question');
+                    if (otherQuestion) {
+                        otherQuestion.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    item.classList.add('active');
+                    question.setAttribute('aria-expanded', 'true');
+                } else {
+                    question.setAttribute('aria-expanded', 'false');
+                }
             });
-            
-            // Toggle current item
-            if (!isActive) {
-                item.classList.add('active');
-            }
-        });
+        }
     });
 });
 
