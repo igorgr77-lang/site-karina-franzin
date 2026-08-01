@@ -897,4 +897,35 @@ og:image: (imagem real do artigo do Supabase)
 - **Respostas:** Resposta exclusiva da treinadora Karina Franzin destacada com badge em laranja no front-end.
 - **Relatório Completo Gerado:** Arquivo [comments_system_analysis.md](file:///c:/Users/oigor/.gemini/antigravity-ide/brain/bedf2868-d750-4b60-a223-61aa73960383/comments_system_analysis.md) na pasta de artefatos.
 
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 01/08/2026 — NOVO ARTIGO DE HIDRATAÇÃO E BOTÕES DE COMPARTILHAMENTO NO BLOG ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Publicar o novo artigo "Hidratação na Corrida de Rua" a partir de rascunhos em DOCX/PDF fornecidos pelo usuário, limpando a pasta e mantendo apenas uma imagem de alta resolução para o card.
+2. Criar e estilizar uma seção de compartilhamento (`.article-share`) nos artigos do blog contendo links dinâmicos para WhatsApp, Facebook, Twitter/X e um botão para copiar o link com feedback visual instantâneo (tooltip "Link Copiado!").
+3. Otimizar os botões garantindo que os ícones fiquem brancos com excelente contraste, usando o SVG sólido oficial do FontAwesome para o WhatsApp.
+4. Regerar todas as páginas estáticas e os sitemaps de busca através do script de compilação `node build-blog.js`.
+5. Fazer commit e push das alterações para as branches `develop` e `main` após aprovação do cliente.
+
+**O que foi feito:**
+- ✅ Extraído o texto original do novo artigo e estruturado como conteúdo HTML limpo (tabelas, listas e links de CTA inclusos).
+- ✅ Limpa a pasta `blog/hidratacao-na-corrida-de-rua` mantendo apenas `hidratação para corrida de rua.webp` (imagem do card).
+- ✅ Modificado `blog/artigo.template.html` para incorporar os botões de compartilhamento com SVGs inline e a função JavaScript `copyArticleLink` autocontida de cópia.
+- ✅ Adicionados estilos para `.article-share` e `.share-btn` em `css/blog.css` com cores correspondentes a cada plataforma e correções de especificidade (`color: white !important`) para manter os ícones brancos em todos os estados.
+- ✅ Executado o pipeline de build para atualizar todos os 10 posts do blog, páginas estáticas gerais e o `sitemap.xml`.
+- ✅ Realizado commit e push das alterações concluídas nas branches `develop` e `main`.
+
+### 📁 Arquivos criados/modificados:
+- `blog/artigo.template.html` (MODIFICADO)
+- `css/blog.css` (MODIFICADO)
+- `sitemap.xml` (MODIFICADO)
+- `blog/index.html` (MODIFICADO)
+- Todos os arquivos HTML de posts compilados em `blog/[slug]/index.html` (MODIFICADOS/NOVOS)
+- `assets/img/blog/card-hidratacao-na-corrida-de-rua-1785596363299.webp` (NOVO)
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
+
 
