@@ -877,3 +877,24 @@ og:image: (imagem real do artigo do Supabase)
 - Todos os arquivos `.template.html` e suas respectivas versões compiladas `.html` (MODIFICADOS)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 01/08/2026 — ANÁLISE DE VIABILIDADE DO SISTEMA DE COMENTÁRIOS ⏳
+
+### ⏳ Status: PLANEJADO / EM ESPERA
+
+**Objetivo:** Analisar opções de sistemas de comentários para o blog e outras partes do site, definindo viabilidade, estrutura técnica e segurança (anti-spam).
+
+**Opções analisadas:**
+1. **Supabase (Nativa/Customizada) [RECOMENDADA]:** Carregamento e envio dinâmico via cliente JS integrado. O usuário comenta sem login (Nome, E-mail, Mensagem), os comentários entram como `aprovado = false` no banco e são moderados no painel admin local. É grátis, sem cookies invasivos e sem anúncios.
+2. **Cusdis:** Leve e sem anúncios, mas exige outra conta externa e não une o banco de dados.
+3. **Disqus:** Muito simples de implementar, mas carrega trackers pesados e exibe anúncios na versão gratuita.
+4. **Facebook Comments:** SDK pesado, incompatível com a identidade visual do site, depende de conta do Facebook ativa (não aceita Instagram) e traz questões complexas de LGPD/cookies.
+
+**Implementação Técnica Futura Proposta para Supabase:**
+- **Tabela `comentarios`:** `id`, `artigo_slug`, `nome`, `email`, `conteudo`, `aprovado` (boolean), `criado_em`.
+- **Moderação:** Aba "Comentários Pendentes" no painel `/admin/` para o administrador aprovar (`aprovado = true`) ou excluir.
+- **Respostas:** Resposta exclusiva da treinadora Karina Franzin destacada com badge em laranja no front-end.
+- **Relatório Completo Gerado:** Arquivo [comments_system_analysis.md](file:///c:/Users/oigor/.gemini/antigravity-ide/brain/bedf2868-d750-4b60-a223-61aa73960383/comments_system_analysis.md) na pasta de artefatos.
+
+
