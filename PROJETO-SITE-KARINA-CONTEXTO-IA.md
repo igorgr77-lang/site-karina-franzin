@@ -1,7 +1,7 @@
 # 🏃‍♀️ PROJETO SITE KARINA FRANZIN — CONTEXTO PARA IA
 
-> **Última atualização:** 10/07/2026  
-> **Branch ativa:** `develop`  
+> **Última atualização:** 31/07/2026  
+> **Branch activa:** `develop`  
 > **Projeto online:** https://karinafranzin.com.br  
 > **Repositório:** https://github.com/igorgr77-lang/site-karina-franzin  
 > **Hospedagem:** GitHub Pages + Cloudflare CDN
@@ -440,7 +440,7 @@ python -m http.server 8080
 
 ---
 
-## ✅ ESTADO ATUAL DO PROJETO (29/06/2026)
+## ✅ ESTADO ATUAL DO PROJETO (31/07/2026)
 
 - ✅ Landing page completa e otimizada
 - ✅ Blog dinâmico via Supabase (listagem + artigos por slug)
@@ -453,7 +453,7 @@ python -m http.server 8080
 - ✅ Dots do carrossel clicáveis no WebView do Instagram
 - ✅ Logo otimizado na navbar (WebP 80x80px)
 - ✅ Google Analytics 4 ativo
-- ✅ SEO com Schema Markup implementado
+- ✅ SEO com Schema Markup unificado (@graph) e sede oficial configurada em Votuporanga-SP
 - ✅ Domínio `karinafranzin.com.br` com Cloudflare + GitHub Pages
 - ✅ Cloudflare Worker `karina-franzin-seo` deployado — blog indexável pelo Google (SSR no edge)
 - ✅ Preview de links no WhatsApp/Telegram/redes sociais mostra título e imagem real do artigo
@@ -462,6 +462,10 @@ python -m http.server 8080
 - ✅ Evento "Treinão Lord Ultra Run" — 09/05/2026 — página criada e card na listagem
 - ✅ Evento "Treinão Lord Ultra" (Julho) — 09/07/2026 — página criada e card na listagem
 - ✅ Classificação automática de eventos por data (Próximos → Passados) via JavaScript
+- ✅ Cores do CSS global alinhadas ao Laranja/Coral oficial (#ff6b35)
+- ✅ Versionamento de arquivos (cache-busting ?v=1.0.1) implementado em todos os templates
+- ✅ Acessibilidade (A11y) aprimorada no FAQ com suporte completo a leitores de tela (ARIA)
+- ✅ Arquivo MANUAL_DE_MARCA.md criado com diretrizes e prompts para IAs de marketing
 
 ---
 
@@ -842,4 +846,34 @@ og:image: (imagem real do artigo do Supabase)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 - `blog/artigo.html` (DELETADO)
 - `cao-minhada-2026/index.html` (DELETADO)
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 31/07/2026 — BRANDING, SEO UNIFICATION, CACHE-BUSTING E ACESSIBILIDADE ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Alinhar a identidade visual do site com a cor de marca (Laranja/Coral `#ff6b35`), removendo a paleta vermelha (`#ff4444`) inconsistente em `styles.css`.
+2. Unificar os múltiplos metadados JSON-LD duplicados e conflitantes da Homepage, fixando a sede oficial da assessoria em Votuporanga-SP com as coordenadas geográficas corretas.
+3. Adicionar cache-busting (`?v=1.0.1`) nos links de recursos estáticos principais de todos os templates para evitar que navegadores antigos fiquem travados na versão do cache do Service Worker.
+4. Implementar suporte a acessibilidade semântica (A11y) na seção de FAQ (perguntas frequentes), com atributos `aria-expanded`/`aria-controls` e sincronização no `main.js`.
+5. Criar um manual de marca estruturado (`MANUAL_DE_MARCA.md`) contendo cores, tipografia, tom de voz e prompts prontos para contextualização rápida de outras IAs.
+
+**O que foi feito:**
+- ✅ Substituída a variável `--primary-red: #ff4444` por `#ff6b35` e alteradas as sombras/gradientes de vermelho para laranja no `styles.css`.
+- ✅ Removidos os dados estruturados SportsClub e Person/ProfessionalService duplicados no início e fim de `index.template.html`, integrando-os em um único bloco `@graph` unificado apontando para Votuporanga-SP.
+- ✅ Adicionado parâmetro `?v=1.0.1` aos links e scripts de `styles.css`, `blog.css`, `cupons.css`, `main.js` e `navbar.js` nos templates.
+- ✅ Configurado `aria-expanded="false"` e `aria-controls` nos botões do FAQ em `index.template.html`, com código correspondente em `js/main.js` atualizando as propriedades dinamicamente.
+- ✅ Criado o manual de identidade visual e tom de voz em `MANUAL_DE_MARCA.md`.
+- ✅ Compilação estática bem-sucedida executada via `node build-blog.js`.
+- ✅ Commit e push das mudanças realizados com sucesso nas branches `develop` e `main`.
+
+### 📁 Arquivos criados/modificados:
+- `css/styles.css` (MODIFICADO)
+- `index.template.html` (MODIFICADO)
+- `js/main.js` (MODIFICADO)
+- `MANUAL_DE_MARCA.md` (NOVO)
+- Todos os arquivos `.template.html` e suas respectivas versões compiladas `.html` (MODIFICADOS)
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 
