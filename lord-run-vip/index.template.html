@@ -250,13 +250,10 @@
                     </div>
 
                     <!-- Action Button -->
-                    <a href="https://wa.me/5517996566908?text=Olá,%20Karina!%20Sou%20do%20grupo%20VIP%20do%20Lord%20Run%20Festival%20e%20quero%20fechar%20a%20assessoria%20no%20Plano%20Bronze%20Trimestral,%20com%2030%25%20de%20desconto%20no%20primeiro%20mês." 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       class="w-full py-4 text-center bg-white/5 border border-white/10 text-white rounded-xl font-bold transition-all duration-300 hover:bg-white/10 hover:border-white/20"
-                       onclick="gtag('event', 'click_whatsapp_lordvip_bronze')">
+                    <button onclick="openCheckoutModal('95cfd0a3-649c-47f8-a072-4d26b4147cee', 'Plano Bronze')" 
+                       class="w-full py-4 text-center bg-white/5 border border-white/10 text-white rounded-xl font-bold transition-all duration-300 hover:bg-white/10 hover:border-white/20">
                         Quero o Plano Bronze
-                    </a>
+                    </button>
                 </div>
 
                 <!-- PRATA PLAN -->
@@ -305,13 +302,10 @@
                     </div>
 
                     <!-- Action Button -->
-                    <a href="https://wa.me/5517996566908?text=Olá,%20Karina!%20Sou%20do%20grupo%20VIP%20do%20Lord%20Run%20Festival%20e%20quero%20fechar%20a%20assessoria%20no%20Plano%20Prata%20Trimestral,%20com%2030%25%20de%20desconto%20no%20primeiro%20mês." 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       class="w-full py-4 text-center bg-white/5 border border-white/10 text-white rounded-xl font-bold transition-all duration-300 hover:bg-white/10 hover:border-white/20"
-                       onclick="gtag('event', 'click_whatsapp_lordvip_prata')">
+                    <button onclick="openCheckoutModal('ebaa5428-ac62-4c1c-805e-43140fdcd4ab', 'Plano Prata')" 
+                       class="w-full py-4 text-center bg-white/5 border border-white/10 text-white rounded-xl font-bold transition-all duration-300 hover:bg-white/10 hover:border-white/20">
                         Quero o Plano Prata
-                    </a>
+                    </button>
                 </div>
 
                 <!-- GOLD PLAN (PREMIUM / RECOMMENDED) -->
@@ -366,13 +360,10 @@
                     </div>
 
                     <!-- Action Button -->
-                    <a href="https://wa.me/5517996566908?text=Olá,%20Karina!%20Sou%20do%20grupo%20VIP%20do%20Lord%20Run%20Festival%20e%20quero%20fechar%20a%20assessoria%20no%20Plano%20Ouro%20Trimestral,%20com%2030%25%20de%20desconto%20no%20primeiro%20mês%20(Plano%20Recomendado)." 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       class="w-full py-4 text-center btn-lord-gold rounded-xl transition-all duration-300"
-                       onclick="gtag('event', 'click_whatsapp_lordvip_ouro')">
+                    <button onclick="openCheckoutModal('8f7035e2-6a79-46f8-ab02-06590fc2091d', 'Plano Ouro')" 
+                       class="w-full py-4 text-center btn-lord-gold rounded-xl transition-all duration-300">
                         Garantir Vaga no Plano Ouro
-                    </a>
+                    </button>
                 </div>
 
             </div>
@@ -677,6 +668,75 @@
         </div>
     </div>
 
+    <!-- MODAL DE CHECKOUT STRIPE -->
+    <div id="checkoutModal" class="fixed inset-0 z-[1500] hidden items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
+        <div class="bg-dark-card border border-white/10 p-6 md:p-8 rounded-3xl max-w-md w-full relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-karina-orange opacity-5 filter blur-2xl rounded-full"></div>
+            
+            <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors" aria-label="Fechar modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            
+            <div class="space-y-6">
+                <div class="text-center">
+                    <span class="text-lord-gold font-bold text-xs uppercase tracking-widest block mb-1">Matrícula Segura</span>
+                    <h3 class="text-2xl font-oswald font-black uppercase text-white" id="modalPlanTitle">Plano Bronze</h3>
+                    <p class="text-xs text-gray-400 mt-1">Preencha seus dados para prosseguir ao pagamento seguro via Stripe</p>
+                </div>
+                
+                <form id="stripeCheckoutForm" class="space-y-4" onsubmit="handleCheckoutFormSubmit(event)">
+                    <input type="hidden" id="modalPlanId" value="">
+                    
+                    <div class="space-y-1 text-left">
+                        <label for="studentName" class="text-xs text-gray-300 font-semibold block">Nome Completo</label>
+                        <input type="text" id="studentName" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-karina-orange transition-colors" placeholder="Ex: João Silva">
+                    </div>
+                    
+                    <div class="space-y-1 text-left">
+                        <label for="studentEmail" class="text-xs text-gray-300 font-semibold block">E-mail</label>
+                        <input type="email" id="studentEmail" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-karina-orange transition-colors" placeholder="Ex: joao@email.com">
+                    </div>
+                    
+                    <div class="space-y-1 text-left">
+                        <label for="studentPhone" class="text-xs text-gray-300 font-semibold block">WhatsApp (Celular)</label>
+                        <input type="tel" id="studentPhone" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-karina-orange transition-colors" placeholder="Ex: (17) 99999-9999">
+                    </div>
+                    
+                    <div class="space-y-1.5 pt-2 text-left">
+                        <label class="text-xs text-gray-300 font-semibold block mb-1">Formato do Pagamento</label>
+                        <div class="grid grid-cols-1 gap-2.5">
+                            <label class="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-xl cursor-pointer hover:border-white/20 transition-all select-none">
+                                <input type="radio" name="paymentMode" value="payment" checked class="text-karina-orange focus:ring-karina-orange border-white/10 bg-zinc-900 w-4 h-4">
+                                <div class="text-left">
+                                    <span class="block text-xs font-bold text-white">Plano Trimestral (Pagamento Único)</span>
+                                    <span class="block text-[10px] text-gray-400">Total garantido. Parcele em até 3x no cartão</span>
+                                </div>
+                            </label>
+                            
+                            <label class="flex items-center gap-3 p-3 bg-white/5 border border-white/10 rounded-xl cursor-pointer hover:border-white/20 transition-all select-none">
+                                <input type="radio" name="paymentMode" value="subscription" class="text-karina-orange focus:ring-karina-orange border-white/10 bg-zinc-900 w-4 h-4">
+                                <div class="text-left">
+                                    <span class="block text-xs font-bold text-white">Assinatura Mensal Recorrente</span>
+                                    <span class="block text-[10px] text-gray-400">Cobrança automática de 1 mensalidade por mês</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" id="btnSubmitCheckout" class="w-full mt-6 py-4 bg-karina-orange text-white font-extrabold rounded-xl text-sm transition-all duration-300 hover:bg-opacity-90 flex items-center justify-center gap-2">
+                        <span>Ir para Pagamento Seguro</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </button>
+                    
+                    <div id="checkoutErrorMsg" class="hidden text-rose-500 text-xs font-semibold text-center mt-2"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- FOOTER_PLACEHOLDER -->
 
     <!-- ===== SCRIPTS ===== -->
@@ -728,6 +788,89 @@
 
             if (!isActive) {
                 item.classList.add('active');
+            }
+        }
+
+        // LÓGICA DO MODAL E CHECKOUT DA STRIPE
+        const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+            ? 'http://localhost:3000' 
+            : 'https://gestao.karinafranzin.com.br';
+
+        function openCheckoutModal(planId, planName) {
+            document.getElementById('modalPlanId').value = planId;
+            document.getElementById('modalPlanTitle').innerText = planName;
+            
+            const modal = document.getElementById('checkoutModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Evento GA4
+            if (typeof gtag === 'function') {
+                gtag('event', 'open_checkout_modal', { plan_id: planId, plan_name: planName });
+            }
+        }
+
+        function closeCheckoutModal() {
+            const modal = document.getElementById('checkoutModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.getElementById('checkoutErrorMsg').classList.add('hidden');
+        }
+
+        async function handleCheckoutFormSubmit(event) {
+            event.preventDefault();
+            
+            const btnSubmit = document.getElementById('btnSubmitCheckout');
+            const errorMsg = document.getElementById('checkoutErrorMsg');
+            
+            const planId = document.getElementById('modalPlanId').value;
+            const studentName = document.getElementById('studentName').value;
+            const studentEmail = document.getElementById('studentEmail').value;
+            const studentPhone = document.getElementById('studentPhone').value;
+            const mode = document.querySelector('input[name="paymentMode"]:checked').value;
+            
+            errorMsg.classList.add('hidden');
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = `<span>Processando...</span><svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
+
+            try {
+                const response = await fetch(`${API_URL}/api/payments/stripe/checkout`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        studentName,
+                        studentEmail,
+                        studentPhone,
+                        planId,
+                        mode,
+                        successUrl: `${window.location.origin}/lord-run-vip/sucesso.html`,
+                        cancelUrl: `${window.location.origin}/lord-run-vip/cancelado.html`
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.status === 'success' && result.data?.url) {
+                    // Rastreamento no GA4
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'begin_checkout_stripe', {
+                            plan_id: planId,
+                            payment_mode: mode
+                        });
+                    }
+                    // Redireciona para o checkout da Stripe
+                    window.location.href = result.data.url;
+                } else {
+                    throw new Error(result.message || 'Erro ao criar sessão de checkout.');
+                }
+            } catch (err) {
+                console.error('[Checkout Error]', err);
+                errorMsg.innerText = err.message || 'Erro ao conectar ao servidor. Tente novamente.';
+                errorMsg.classList.remove('hidden');
+                btnSubmit.disabled = false;
+                btnSubmit.innerHTML = `<span>Ir para Pagamento Seguro</span><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
             }
         }
     </script>
