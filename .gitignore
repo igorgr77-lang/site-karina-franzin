@@ -41,4 +41,20 @@ scratch/
 
 # Certificados Efí
 *.p12
-*.pem
+*.pem
+
+# Pastas ocultas e caches de ferramentas/agentes
+.*
+!/.gitignore
+!/.htaccess
+!/CNAME
+!/site.webmanifest
+!/.agents/
+
+# Referências locais e rascunhos
+/modelofrontend/
+/agent/
+/data/
+/scratch/
+/skills/
+/skills-lock.json

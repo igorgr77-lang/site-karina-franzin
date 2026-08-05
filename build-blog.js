@@ -433,8 +433,8 @@ async function build() {
             console.log('💾 Página Lord Run VIP compilada com sucesso em: lord-run-vip/index.html');
         }
 
-        // 3.2 Planos Combo (planoscombo/*.html) - escura
-        const planosComboDir = path.join(__dirname, 'planoscombo');
+        // 3.2 Planos Combo (planos/*.html) - escura
+        const planosComboDir = path.join(__dirname, 'planos');
         if (fs.existsSync(planosComboDir)) {
             const files = fs.readdirSync(planosComboDir);
             for (const file of files) {
@@ -444,7 +444,7 @@ async function build() {
                     let htmlContent = fs.readFileSync(templatePath, 'utf8');
                     htmlContent = compilePageComponents(htmlContent, false);
                     fs.writeFileSync(path.join(planosComboDir, outputName), htmlContent, 'utf8');
-                    console.log(`💾 Página planoscombo/${outputName} compilada com sucesso.`);
+                    console.log(`💾 Página planos/${outputName} compilada com sucesso.`);
                 }
             }
         }
@@ -508,7 +508,7 @@ async function build() {
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://karinafranzin.com.br/planoscombo/</loc>
+        <loc>https://karinafranzin.com.br/planos/</loc>
         <lastmod>${hoje}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>

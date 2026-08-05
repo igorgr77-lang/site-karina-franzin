@@ -13,10 +13,10 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planos e Combos Promocionais | Karina Franzin Assessoria Esportiva</title>
+    <title>Treinamento de Corrida Personalizado | Karina Franzin Assessoria Esportiva</title>
     <meta name="description"
-        content="Escolha o melhor plano de corrida e caminhada. Combos trimestrais e semestrais com descontos exclusivos no cartão de crédito.">
-    <link rel="canonical" href="https://karinafranzin.com.br/planoscombo/">
+        content="Conquiste sua melhor performance na corrida com o treinamento personalizado de uma atleta de elite. Planilhas personalizadas via Treinus e suporte próximo.">
+    <link rel="canonical" href="https://karinafranzin.com.br/planos/">
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
@@ -85,39 +85,391 @@
             color: white;
             box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
+
+        .gradient-orange-text {
+            background: linear-gradient(135deg, #ff8f00 0%, #ff6b35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
     </style>
 </head>
 
 <body class="bg-dark-bg text-white font-sans antialiased">
 
-    <!-- NAVBAR_PLACEHOLDER -->
+    <nav class="navbar navbar-scrolled" id="navbar">
+    <div class="navbar-container">
+        <!-- Logo / Nome -->
+        <a href="/" class="navbar-brand" aria-label="Ir ao início">
+            <img src="/assets/img/KarinaFranzin80.webp" alt="Karina Franzin" class="navbar-logo">
+            <span class="navbar-name">Karina Franzin</span>
+        </a>
 
-    <!-- ===== HERO SECTION ===== -->
-    <header class="relative overflow-hidden py-20 border-b border-white/5 bg-gradient-to-b from-dark-bg to-[#0f0f0f]">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-karina-orange/10 rounded-full blur-[120px] pointer-events-none"></div>
-        <div class="container mx-auto px-4 z-10 text-center relative">
-            <h1 class="text-4xl md:text-6xl font-oswald font-black leading-tight mb-6 uppercase italic">
-                Evolua sua corrida com acompanhamento <br class="hidden md:inline"><span class="text-karina-orange">profissional</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
-                Treinos individuais, suporte próximo e a flexibilidade que você precisa para alcançar seus objetivos e planilhas personalizadas via aplicativo.
-            </p>
-            <div>
-                <a href="#planos" class="inline-flex items-center gap-2 px-8 py-4 bg-karina-orange text-white font-extrabold rounded-full transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(255,107,53,0.4)]">
-                    VER PLANOS E VALORES
-                    <i data-lucide="arrow-down" class="w-5 h-5"></i>
+        <!-- Links Desktop -->
+        <ul class="navbar-links" id="navbarLinks">
+            <li><a href="/#como-funciona" class="nav-link">Como Funciona</a></li>
+            <li><a href="/#prova-social" class="nav-link">Resultados</a></li>
+            <li><a href="/#sobre" class="nav-link">Minha História</a></li>
+            <li><a href="/blog/" class="nav-link">Blog</a></li>
+            <li><a href="/eventos/" class="nav-link">Eventos</a></li>
+            <li><a href="/cupons/" class="nav-link">Cupons</a></li>
+            <li>
+                <a href="https://gestao.karinafranzin.com.br/" 
+                   class="nav-link"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Portal Financeiro
                 </a>
+            </li>
+            <li>
+                <a href="https://karinafranzin.treinus.com.br/" 
+                   class="nav-link"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Portal do Atleta
+                </a>
+            </li>
+            <li>
+                <a href="/#contato" class="nav-link nav-cta">Começar Agora</a>
+            </li>
+        </ul>
+
+        <!-- Botão Hamburger (Mobile) -->
+        <button class="navbar-toggle" id="navbarToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbarLinks">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    </div>
+</nav>
+<!-- Overlay escuro ao abrir menu mobile -->
+<div class="navbar-overlay" id="navbarOverlay"></div>
+
+
+    <!-- ===== 1. HERO SALES SECTION ===== -->
+    <header class="relative overflow-hidden pt-16 pb-20 border-b border-white/5 bg-gradient-to-b from-dark-bg via-[#0f0f0f] to-dark-bg">
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-karina-orange/10 rounded-full blur-[130px] pointer-events-none"></div>
+        <div class="container mx-auto px-4 z-10 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Coluna Texto -->
+                <div class="lg:col-span-7 text-left">
+                    <h1 class="text-3xl md:text-5xl lg:text-6xl font-oswald font-black leading-tight mb-6 uppercase italic">
+                        Conquiste sua melhor performance na corrida com o <br class="hidden md:inline"><span class="text-karina-orange">treinamento personalizado</span> de uma atleta de elite
+                    </h1>
+                    <p class="text-base md:text-lg text-gray-300 mb-8 leading-relaxed font-light">
+                        Treine com quem vive o atletismo de alto nível. Planilhas sob medida e suporte individual direto para você evoluir com saúde, seja nos primeiros 5km ou na maratona.
+                    </p>
+
+                    <!-- Bullet points rápidos -->
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-karina-orange/15 text-karina-orange rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="check" class="w-4 h-4"></i>
+                            </div>
+                            <span class="text-sm md:text-base text-gray-200">Planilhas semanais personalizadas via App Treinus com sincronização no relógio</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-karina-orange/15 text-karina-orange rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="check" class="w-4 h-4"></i>
+                            </div>
+                            <span class="text-sm md:text-base text-gray-200">Acompanhamento individual direto com a Karina para ajustes técnicos</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-karina-orange/15 text-karina-orange rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="check" class="w-4 h-4"></i>
+                            </div>
+                            <span class="text-sm md:text-base text-gray-200">Metodologia validada por 14 anos de atletismo de alto nível</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-6 h-6 bg-karina-orange/15 text-karina-orange rounded-full flex items-center justify-center shrink-0">
+                                <i data-lucide="check" class="w-4 h-4"></i>
+                            </div>
+                            <span class="text-sm md:text-base text-gray-200">Foco em prevenção de lesões e fortalecimento mental</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna Timer e Ação -->
+                <div class="lg:col-span-5 bg-dark-card border border-white/10 p-6 md:p-8 rounded-3xl text-center shadow-2xl relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-karina-orange text-white text-[10px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider">
+                        Vagas Limitadas para esta Semana
+                    </div>
+                    
+                    <h3 class="text-gray-400 font-bold uppercase tracking-wider text-xs mb-6 mt-2">A oferta expira em:</h3>
+                    
+                    <!-- Countdown Timer -->
+                    <div class="grid grid-cols-4 gap-2 mb-8">
+                        <div class="bg-white/5 border border-white/5 p-3 rounded-2xl">
+                            <span id="timer-days" class="text-3xl md:text-4xl font-oswald font-black text-karina-orange block">02</span>
+                            <span class="text-[9px] uppercase font-bold text-gray-400">Dias</span>
+                        </div>
+                        <div class="bg-white/5 border border-white/5 p-3 rounded-2xl">
+                            <span id="timer-hours" class="text-3xl md:text-4xl font-oswald font-black text-white block">23</span>
+                            <span class="text-[9px] uppercase font-bold text-gray-400">Horas</span>
+                        </div>
+                        <div class="bg-white/5 border border-white/5 p-3 rounded-2xl">
+                            <span id="timer-minutes" class="text-3xl md:text-4xl font-oswald font-black text-white block">59</span>
+                            <span class="text-[9px] uppercase font-bold text-gray-400">Min</span>
+                        </div>
+                        <div class="bg-white/5 border border-white/5 p-3 rounded-2xl">
+                            <span id="timer-seconds" class="text-3xl md:text-4xl font-oswald font-black text-white block">58</span>
+                            <span class="text-[9px] uppercase font-bold text-gray-400">Seg</span>
+                        </div>
+                    </div>
+
+                    <a href="#planos" class="w-full block py-4 bg-karina-orange text-white text-center font-extrabold rounded-xl transition transform hover:-translate-y-0.5 hover:shadow-lg uppercase text-sm mb-4">
+                        QUERO COMEÇAR MINHA ASSESSORIA
+                    </a>
+                    
+                    <span class="text-[11px] text-gray-500 flex items-center justify-center gap-1.5">
+                        <i data-lucide="lock" class="w-3 h-3 text-green-500"></i> Matrícula segura e processamento transparente
+                    </span>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- ===== SEÇÃO DE PLANOS E PREÇOS ===== -->
-    <section id="planos" class="py-20 bg-dark-bg">
+    <!-- ===== 2. PAIN POINTS SECTION ===== -->
+    <section class="py-20 bg-dark-bg border-b border-white/5">
+        <div class="container mx-auto px-4 max-w-5xl text-center">
+            <h2 class="text-3xl md:text-5xl font-oswald font-bold uppercase italic mb-3">A barreira entre você e a sua melhor performance</h2>
+            <p class="text-gray-400 text-sm md:text-base mb-12">Você já se sentiu assim ao tentar treinar sozinho ou com assessorias genéricas?</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl flex gap-4">
+                    <div class="w-8 h-8 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shrink-0">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-base text-gray-200">Estagnado nos tempos</h4>
+                        <p class="text-gray-400 text-xs mt-1.5 leading-relaxed">Você sente que treina com frequência mas não consegue baixar seus recordes ou manter o ritmo.</p>
+                    </div>
+                </div>
+
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl flex gap-4">
+                    <div class="w-8 h-8 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shrink-0">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-base text-gray-200">Medo constante de lesões</h4>
+                        <p class="text-gray-400 text-xs mt-1.5 leading-relaxed">Vive sentindo dores ou fisgadas por não saber se o volume e a intensidade dos treinos estão adequados para o seu corpo.</p>
+                    </div>
+                </div>
+
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl flex gap-4">
+                    <div class="w-8 h-8 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shrink-0">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-base text-gray-200">Planilhas genéricas da internet</h4>
+                        <p class="text-gray-400 text-xs mt-1.5 leading-relaxed">Sente-se perdido seguindo receitas prontas da web que não respeitam sua rotina de trabalho, sua família e seu nível de condicionamento.</p>
+                    </div>
+                </div>
+
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl flex gap-4">
+                    <div class="w-8 h-8 rounded-full bg-red-500/10 text-red-500 flex items-center justify-center shrink-0">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-base text-gray-200">Falta de motivação e feedback</h4>
+                        <p class="text-gray-400 text-xs mt-1.5 leading-relaxed">Falta ânimo para treinar sozinho e você sente falta de uma resposta profissional para saber se está executando o movimento no caminho certo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-karina-orange/5 border border-karina-orange/20 p-6 rounded-2xl max-w-3xl mx-auto">
+                <p class="text-sm md:text-base text-gray-300 font-light italic">
+                    "Se você se identificou com pelo menos uma dessas situações, este treinamento foi desenhado especificamente para transformar a sua corrida e recuperar a sua consistência física."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 3. AUDIENCE PERSONA SECTION ===== -->
+    <section class="py-20 bg-[#0c0c0c] border-b border-white/5">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <h2 class="text-3xl md:text-5xl font-oswald font-bold uppercase italic text-center mb-12">Para quem é este treinamento?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl hover:border-karina-orange/20 transition-all duration-300">
+                    <span class="text-xs font-bold text-karina-orange uppercase tracking-wide">01</span>
+                    <h3 class="font-bold text-lg text-white mt-2">Iniciante Aspirante</h3>
+                    <p class="text-gray-400 text-xs mt-3 leading-relaxed">
+                        "Quero começar a correr do zero com segurança, evitando lesões e tendo o acompanhamento de quem realmente entende do assunto."
+                    </p>
+                </div>
+
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl hover:border-karina-orange/20 transition-all duration-300">
+                    <span class="text-xs font-bold text-karina-orange uppercase tracking-wide">02</span>
+                    <h3 class="font-bold text-lg text-white mt-2">Corredor Intermediário</h3>
+                    <p class="text-gray-400 text-xs mt-3 leading-relaxed">
+                        "Já corro com frequência, mas sinto que estagnei e preciso de uma planilha estruturada para ganhar consistência e baixar meus tempos."
+                    </p>
+                </div>
+
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl hover:border-karina-orange/20 transition-all duration-300">
+                    <span class="text-xs font-bold text-karina-orange uppercase tracking-wide">03</span>
+                    <h3 class="font-bold text-lg text-white mt-2">Atleta de Performance</h3>
+                    <p class="text-gray-400 text-xs mt-3 leading-relaxed">
+                        "Busco alta performance em provas específicas e preciso de uma periodização estratégica feita por uma treinadora da elite do atletismo."
+                    </p>
+                </div>
+
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl hover:border-karina-orange/20 transition-all duration-300">
+                    <span class="text-xs font-bold text-karina-orange uppercase tracking-wide">04</span>
+                    <h3 class="font-bold text-lg text-white mt-2">Focado em Saúde</h3>
+                    <p class="text-gray-400 text-xs mt-3 leading-relaxed">
+                        "Preciso de um treino personalizado que se adapte à minha rotina e me ajude a manter a disciplina com foco em qualidade de vida."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 4. TRAINER BIO SECTION ===== -->
+    <section class="py-20 bg-dark-bg border-b border-white/5">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                <!-- Avatar / Logo -->
+                <div class="md:col-span-4 text-center md:text-left">
+                    <div class="relative inline-block">
+                        <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-karina-orange bg-dark-card flex items-center justify-center mx-auto shadow-2xl">
+                            <!-- Logo da Karina ou Foto de Perfil se disponível -->
+                            <img src="../assets/img/karina-profile.jpg" alt="Karina Franzin" class="w-full h-full object-cover" onerror="this.src='/favicon.png'; this.style.padding='40px';">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Biografia -->
+                <div class="md:col-span-8">
+                    <span class="text-xs uppercase font-bold text-karina-orange tracking-widest bg-karina-orange/10 px-3.5 py-1 rounded-full">Sua Treinadora</span>
+                    <h2 class="text-3xl md:text-5xl font-oswald font-black uppercase italic mt-4 mb-6">Quem vai guiar seus treinos?</h2>
+                    
+                    <h3 class="text-xl font-bold text-white mb-4">Karina Franzin</h3>
+                    <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6 font-light">
+                        Com mais de 14 anos de dedicação ao atletismo, transformo a vida de corredores através de uma metodologia que une performance de elite e saúde. Minha missão é entregar o caminho mais seguro e eficiente para você alcançar seus recordes pessoais, seja começando do zero ou buscando o pódio.
+                    </p>
+
+                    <!-- Lista de Credenciais da Elite -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-semibold text-gray-300">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="star" class="w-4 h-4 text-lord-gold shrink-0"></i>
+                            <span>5ª melhor brasileira na SP City Marathon</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="star" class="w-4 h-4 text-lord-gold shrink-0"></i>
+                            <span>Atleta de Elite da São Silvestre (2 anos)</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="star" class="w-4 h-4 text-lord-gold shrink-0"></i>
+                            <span>Especialista em periodização esportiva</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="star" class="w-4 h-4 text-lord-gold shrink-0"></i>
+                            <span>Recorde pessoal: 21km em 1h20min45s</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 5. BENEFITS SECTION ===== -->
+    <section class="py-20 bg-[#0c0c0c] border-b border-white/5">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <h2 class="text-3xl md:text-5xl font-oswald font-bold uppercase italic text-center mb-12">O que você ganha com o treinamento personalizado</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl flex gap-4">
+                    <div class="w-8 h-8 rounded-full bg-green-500/10 text-green-400 flex items-center justify-center shrink-0 mt-0.5">
+                        <i data-lucide="check" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg text-white">Correção técnica constante</h4>
+                        <p class="text-gray-400 text-xs mt-2 leading-relaxed">Aprenda e ajuste sua técnica de corrida para ganhar eficiência biomecânica, correr mais rápido e gastar menos energia.</p>
+                    </div>
+                </div>
+
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl flex gap-4">
+                    <div class="w-8 h-8 rounded-full bg-green-500/10 text-green-400 flex items-center justify-center shrink-0 mt-0.5">
+                        <i data-lucide="check" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg text-white">Planilhas adaptadas à sua rotina</h4>
+                        <p class="text-gray-400 text-xs mt-2 leading-relaxed">Nada de planilhas engessadas. O seu cronograma de treino respeita seus dias de trabalho, viagens e cansaço físico.</p>
+                    </div>
+                </div>
+
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl flex gap-4">
+                    <div class="w-8 h-8 rounded-full bg-green-500/10 text-green-400 flex items-center justify-center shrink-0 mt-0.5">
+                        <i data-lucide="check" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg text-white">Sincronização no Relógio de Corrida</h4>
+                        <p class="text-gray-400 text-xs mt-2 leading-relaxed">Conecte seus treinos do aplicativo Treinus diretamente com relógios Garmin, Polar, Strava ou Apple Watch.</p>
+                    </div>
+                </div>
+
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl flex gap-4">
+                    <div class="w-8 h-8 rounded-full bg-green-500/10 text-green-400 flex items-center justify-center shrink-0 mt-0.5">
+                        <i data-lucide="check" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-lg text-white">Fortalecimento e Mentalidade</h4>
+                        <p class="text-gray-400 text-xs mt-2 leading-relaxed">Aprenda a lidar com barreiras mentais, ritmos de prova e treinos de exaustão com orientações diretas de uma corredora de elite.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 6. SOCIAL PROOF SECTION ===== -->
+    <section class="py-20 bg-dark-bg border-b border-white/5">
+        <div class="container mx-auto px-4 max-w-4xl text-center">
+            <h2 class="text-3xl md:text-5xl font-oswald font-bold uppercase italic mb-4">Resultados reais de quem treina com elite</h2>
+            <p class="text-gray-400 text-sm md:text-base mb-12">Veja a evolução e os recordes alcançados pelos nossos atletas sob a tutela da Karina.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                <!-- Depoimento 1 -->
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl relative">
+                    <span class="absolute -top-3 right-4 bg-lord-gold text-neutral-900 text-[8px] font-extrabold px-2 py-0.5 rounded-full uppercase">5km & 10km</span>
+                    <p class="text-gray-300 text-xs italic leading-relaxed">
+                        "Estava estagnada correndo 10km sempre no mesmo ritmo. Com a periodização e as dicas de postura da Karina, consegui baixar 4 minutos do meu tempo de recorde em menos de 8 semanas! E o melhor: sem sentir dores nas costas."
+                    </p>
+                    <div class="flex items-center gap-3 mt-4 pt-4 border-t border-white/5">
+                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-karina-orange">JC</div>
+                        <div>
+                            <h4 class="font-bold text-xs text-white">Juliana Camargo</h4>
+                            <p class="text-[9px] text-gray-500">Atleta Amadora · Votuporanga-SP</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Depoimento 2 -->
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl relative">
+                    <span class="absolute -top-3 right-4 bg-lord-gold text-neutral-900 text-[8px] font-extrabold px-2 py-0.5 rounded-full uppercase">Maratona</span>
+                    <p class="text-gray-300 text-xs italic leading-relaxed">
+                        "Minha primeira maratona parecia um sonho distante e perigoso. O suporte da Karina via WhatsApp foi incrível. Ela ajustava minha planilha de fortalecimento pós-treinos longos e me deu a confiança para completar a prova sem lesão."
+                    </p>
+                    <div class="flex items-center gap-3 mt-4 pt-4 border-t border-white/5">
+                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-karina-orange">MS</div>
+                        <div>
+                            <h4 class="font-bold text-xs text-white">Marcos Silva</h4>
+                            <p class="text-[9px] text-gray-500">Atleta de Longa Distância</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 7. PRICING PLANS SECTION (O MÓDULO PRINCIPAL) ===== -->
+    <section id="planos" class="py-20 bg-[#0c0c0c] border-b border-white/5">
         <div class="container mx-auto px-4">
             
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-5xl font-oswald font-bold uppercase italic mb-4">Escolha a melhor opção para você</h2>
-                <p class="text-gray-400 max-w-xl mx-auto">Selecione entre mensalidade flexível ou garanta descontos exclusivos com os combos de fidelidade.</p>
+                <span class="text-xs uppercase font-bold text-karina-orange tracking-widest bg-karina-orange/10 px-3.5 py-1 rounded-full">Tabela de Preços</span>
+                <h2 class="text-3xl md:text-5xl font-oswald font-bold uppercase italic mt-4 mb-4">Escolha o seu plano de treinamento</h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Selecione o plano ideal para o seu nível e objetivo na corrida. Acesso imediato via app Treinus.</p>
                 
                 <!-- Selector Toggle -->
                 <div class="inline-flex p-1 bg-white/5 rounded-full mt-8 border border-white/10">
@@ -364,32 +716,82 @@
         </div>
     </section>
 
-    <!-- ===== SEÇÃO PERGUNTAS FREQUENTES (FAQ) ===== -->
-    <section class="py-20 bg-[#0c0c0c] border-t border-white/5">
-        <div class="container mx-auto px-4 max-w-4xl">
+    <!-- ===== 8. PERGUNTAS FREQUENTES (FAQ) ACCORDION ===== -->
+    <section class="py-20 bg-dark-bg border-b border-white/5">
+        <div class="container mx-auto px-4 max-w-3xl">
             <h2 class="text-3xl font-oswald font-bold uppercase italic text-center mb-12">Dúvidas Frequentes</h2>
             
-            <div class="space-y-6">
-                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl">
-                    <h3 class="font-bold text-lg text-karina-orange mb-2">Como funciona o pagamento parcelado no cartão?</h3>
-                    <p class="text-gray-300 text-sm leading-relaxed">
-                        Ao adquirir o plano trimestral ou semestral, a operadora reserva o valor total do combo (ex: R$ 315,00 no trimestral Bronze) do limite do seu cartão de crédito e lança as parcelas mensais (ex: 3 parcelas de R$ 105,00) de forma automática e sem juros adicionais nas suas faturas.
-                    </p>
+            <div class="space-y-4">
+                <!-- Pergunta 1 -->
+                <div class="bg-dark-card border border-white/5 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(1)" class="w-full p-6 text-left flex justify-between items-center font-bold text-base hover:bg-white/5 transition">
+                        <span>Eu sou iniciante e nunca corri, a assessoria serve para mim?</span>
+                        <i id="faq-icon-1" data-lucide="plus" class="w-5 h-5 text-karina-orange transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-1" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
+                        <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
+                            Sim! A assessoria é perfeita para iniciantes. A treinadora Karina Franzin criará planilhas sob medida com volumes baixos, alternando caminhada e corrida leve, priorizando a segurança e a prevenção de lesões para que você crie o hábito de forma saudável.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl">
-                    <h3 class="font-bold text-lg text-karina-orange mb-2">O que é o desconto de pontualidade no Plano Mensal?</h3>
-                    <p class="text-gray-300 text-sm leading-relaxed">
-                        Para os planos de recorrência mensal sem fidelidade, o vencimento da mensalidade ocorre no dia 10. Efetuando o pagamento da mensalidade até esta data limite, você recebe um desconto automático (ex: R$ 114,00 no Plano Bronze).
-                    </p>
+                <!-- Pergunta 2 -->
+                <div class="bg-dark-card border border-white/5 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(2)" class="w-full p-6 text-left flex justify-between items-center font-bold text-base hover:bg-white/5 transition">
+                        <span>Como recebo os meus treinos?</span>
+                        <i id="faq-icon-2" data-lucide="plus" class="w-5 h-5 text-karina-orange transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-2" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
+                        <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
+                            Seus treinos são disponibilizados semanalmente dentro da plataforma **Treinus**. Você pode acessar a planilha detalhada pelo aplicativo e também sincronizar diretamente com seu relógio de corrida (Garmin, Polar, Apple Watch) ou Strava.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl">
-                    <h3 class="font-bold text-lg text-karina-orange mb-2">Posso mudar de plano depois?</h3>
-                    <p class="text-gray-300 text-sm leading-relaxed">
-                        Sim! A transição ou alteração de planos pode ser solicitada a qualquer momento entrando em contato direto com o suporte administrativo ou com a treinadora Karina via WhatsApp.
-                    </p>
+                <!-- Pergunta 3 -->
+                <div class="bg-dark-card border border-white/5 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(3)" class="w-full p-6 text-left flex justify-between items-center font-bold text-base hover:bg-white/5 transition">
+                        <span>Terei acompanhamento individual de verdade?</span>
+                        <i id="faq-icon-3" data-lucide="plus" class="w-5 h-5 text-karina-orange transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-3" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
+                        <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
+                            Sim! O suporte é contínuo e humanizado. A Karina analisa suas métricas de treino (frequência cardíaca, ritmo, distância) e você pode enviar dúvidas, feedbacks e vídeos da sua corrida diretamente pelo WhatsApp para receber orientações de postura e técnica.
+                        </p>
+                    </div>
                 </div>
+
+                <!-- Pergunta 4 -->
+                <div class="bg-dark-card border border-white/5 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(4)" class="w-full p-6 text-left flex justify-between items-center font-bold text-base hover:bg-white/5 transition">
+                        <span>As planilhas são iguais para todos os alunos?</span>
+                        <i id="faq-icon-4" data-lucide="plus" class="w-5 h-5 text-karina-orange transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-4" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
+                        <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
+                            Não. Cada planilha é desenhada do zero com base no seu formulário de anamnese, histórico de lesões, objetivos de curto/longo prazo e disponibilidade de tempo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 9. FINAL URGENCY CTA FOOTER ===== -->
+    <section class="py-20 bg-[#0c0c0c] border-t border-white/5 text-center relative overflow-hidden">
+        <div class="container mx-auto px-4 max-w-xl z-10 relative">
+            <h2 class="text-3xl md:text-5xl font-oswald font-black uppercase italic mb-4">Alcance sua melhor performance</h2>
+            <p class="text-gray-300 text-sm md:text-base mb-8 leading-relaxed font-light">
+                Junte-se ao time de atletas que evoluem com consistência e saúde todos os dias sob o acompanhamento individualizado da treinadora Karina Franzin.
+            </p>
+
+            <a href="#planos" class="inline-block px-8 py-4 bg-karina-orange text-white font-extrabold rounded-full transition transform hover:-translate-y-0.5 hover:shadow-lg uppercase text-sm mb-4">
+                QUERO COMEÇAR MEU TREINAMENTO AGORA
+            </a>
+
+            <div class="text-xs text-gray-400 font-bold flex flex-col gap-2 mt-4">
+                <span>⏰ Vagas limitadas para garantir a qualidade do acompanhamento individual.</span>
+                <span>Dúvidas? <a href="https://wa.me/5517996566908" target="_blank" class="text-karina-orange hover:underline">Fale diretamente comigo pelo WhatsApp.</a></span>
             </div>
         </div>
     </section>
@@ -473,9 +875,9 @@
                                 <label class="block text-xs text-gray-400 mb-1">Cidade</label>
                                 <input type="text" id="addr-city" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
                             </div>
-                            <div class="col-span-1">
+                            <div>
                                 <label class="block text-xs text-gray-400 mb-1">Estado (UF)</label>
-                                <input type="text" id="addr-state" required placeholder="SP" maxlength="2" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition text-center">
+                                <input type="text" id="addr-state" required placeholder="SP" maxlength="2" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition text-center text-white">
                             </div>
                         </div>
                     </div>
@@ -531,7 +933,54 @@
         <p class="text-white font-bold tracking-wide text-sm">Processando matrícula segura... Não feche esta página</p>
     </div>
 
-    <!-- FOOTER_PLACEHOLDER -->
+    <footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/blog/" rel="noopener">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                    Blog
+                </a>
+                <a href="https://www.instagram.com/karina_franzin/" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0 3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    Instagram
+                </a>
+                <a href="https://www.strava.com/athletes/158868084" target="_blank" rel="noopener noreferrer">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.387 17.944l-2.089-4.116h-3.065L15.387 24l5.15-10.172h-3.066m-7.008-5.599l2.836 5.598h4.172L10.463 0l-7 13.828h4.169"/>
+                    </svg>
+                    Strava
+                </a>
+                <a href="https://wa.me/5517996566908?text=Ol%C3%A1%2C%20Karina%21%20Vim%20pelo%20seu%20site%20e%20quero%20come%C3%A7ar%20uma%20assessoria%20de%20corrida.%20Pode%20me%20explicar%20como%20funciona%3F" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   onclick="gtag('event', 'click_whatsapp')">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                    </svg>
+                    WhatsApp
+                </a>
+                <a href="https://karinafranzin.treinus.com.br/" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="treinus-link"
+                   onclick="gtag('event', 'click_treinus', {event_category: 'footer'})">
+                    <img src="/assets/icons/treinus.png" alt="Treinus" width="24" height="24" class="treinus-icon">
+                    Treinus
+                </a>
+            </div>
+            
+            <div class="footer-copy">
+                <p>&copy; 2026 Karina Franzin - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
 
     <script>
         // Configurações e Preços dos Combos
@@ -558,21 +1007,33 @@
             }
         }
 
-        // Script de Inicialização da Efí via Endpoint de Configuração do Backend
-        let efiPayInstance = null;
+        // Configurações do Backend
+        let efiConfig = null;
         fetch('http://localhost:3000/api/payments/efi/config')
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
-                    const { accountId, sandbox } = data.config;
-                    efiPayInstance = new EfiPay({
-                        account_id: accountId,
-                        sandbox: sandbox
-                    });
-                    console.log('Efí SDK inicializada (sandbox:', sandbox, ')');
+                    efiConfig = data.config;
+                    console.log('Efí config carregada (sandbox:', efiConfig.sandbox, ')');
                 }
             })
             .catch(err => console.error('Erro ao ler configurações da Efí no backend:', err));
+
+        // Evento de input do cartão para atualizar bandeira dinamicamente
+        document.getElementById('card-number').addEventListener('input', (e) => {
+            const num = e.target.value.replace(/\D/g, '');
+            if (num.length >= 4 && typeof EfiPay !== 'undefined') {
+                const brand = EfiPay.CreditCard.verifyCardBrand(num);
+                const badge = document.getElementById('card-brand-badge');
+                if (brand && brand !== 'undefined' && brand !== 'unsupported') {
+                    badge.textContent = brand.toUpperCase();
+                } else {
+                    badge.textContent = '';
+                }
+            } else {
+                document.getElementById('card-brand-badge').textContent = '';
+            }
+        });
 
         // Abrir Modal de Checkout
         function openCheckout(comboKey) {
@@ -623,13 +1084,66 @@
                 .catch(err => console.warn('Falha ao buscar CEP via API:', err));
         }
 
+        // Accordion FAQ
+        function toggleFaq(id) {
+            const ans = document.getElementById(`faq-ans-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+            
+            if (ans.style.maxHeight && ans.style.maxHeight !== '0px') {
+                ans.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                ans.style.maxHeight = ans.scrollHeight + 'px';
+                icon.style.transform = 'rotate(45deg)';
+            }
+        }
+
+        // Countdown Timer Logic
+        function startCountdown() {
+            // Conta regressiva de 24h cíclica baseada no dia atual para sempre parecer ativa
+            const now = new Date();
+            const targetDate = new Date();
+            targetDate.setHours(23, 59, 59, 999);
+            
+            // Adiciona 1 ou 2 dias se faltarem poucas horas
+            const diffHours = (targetDate - now) / (1000 * 60 * 60);
+            if (diffHours < 6) {
+                targetDate.setDate(targetDate.getDate() + 2);
+            } else {
+                targetDate.setDate(targetDate.getDate() + 1);
+            }
+
+            function updateTimer() {
+                const currentTime = new Date();
+                const difference = targetDate - currentTime;
+
+                if (difference <= 0) {
+                    clearInterval(interval);
+                    return;
+                }
+
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('timer-days').textContent = String(days).padStart(2, '0');
+                document.getElementById('timer-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('timer-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('timer-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateTimer();
+            const interval = setInterval(updateTimer, 1000);
+        }
+
         // Submit do Form
         function handleFormSubmit(event) {
             event.preventDefault();
             const errorDiv = document.getElementById('checkout-error');
             errorDiv.classList.add('hidden');
 
-            if (!efiPayInstance) {
+            if (!efiConfig || typeof EfiPay === 'undefined') {
                 errorDiv.textContent = 'Erro de inicialização do gateway de pagamento. Recarregue a página.';
                 errorDiv.classList.remove('hidden');
                 return;
@@ -653,13 +1167,30 @@
             const expMonth = expiry.substring(0, 2);
             const expYear = expiry.substring(2);
 
-            // Gerar Token do Cartão com o SDK da Efí
-            efiPayInstance.getPaymentToken({
-                number: cardNumber,
-                cvv: cardCvv,
-                expiration_month: expMonth,
-                expiration_year: expYear
-            })
+            // Detectar bandeira usando o SDK
+            const brand = EfiPay.CreditCard.verifyCardBrand(cardNumber);
+            if (!brand || brand === 'undefined' || brand === 'unsupported') {
+                document.getElementById('loading-overlay').classList.add('hidden');
+                errorDiv.textContent = 'Bandeira do cartão não identificada ou não suportada.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            // Gerar Token do Cartão com o SDK da Efí (builder pattern)
+            EfiPay.CreditCard
+                .setAccount(efiConfig.accountId)
+                .setEnvironment(efiConfig.sandbox ? 'sandbox' : 'production')
+                .setCreditCardData({
+                    brand: brand,
+                    number: cardNumber,
+                    cvv: cardCvv,
+                    expirationMonth: expMonth,
+                    expirationYear: expYear,
+                    holderName: cardName,
+                    holderDocument: document.getElementById('cust-cpf').value.replace(/\D/g, ''),
+                    reuse: false
+                })
+                .getPaymentToken()
             .then(tokenResponse => {
                 const paymentToken = tokenResponse.payment_token;
                 
@@ -696,7 +1227,7 @@
                 document.getElementById('loading-overlay').classList.add('hidden');
                 if (data.success) {
                     // Sucesso! Redireciona
-                    window.location.href = '/planoscombo/sucesso.html';
+                    window.location.href = '/planos/sucesso.html';
                 } else {
                     // Erro retornado pelo controller
                     errorDiv.textContent = data.message || 'Houve um problema ao processar seu pagamento. Verifique seus dados.';
@@ -711,9 +1242,10 @@
             });
         }
 
-        // Inicializa ícones do Lucide
+        // Inicializa scripts ao carregar
         window.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
+            startCountdown();
         });
     </script>
 </body>
