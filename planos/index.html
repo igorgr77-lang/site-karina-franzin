@@ -1009,7 +1009,7 @@
 
         // Configurações do Backend
         let efiConfig = null;
-        fetch('http://localhost:3000/api/payments/efi/config')
+        fetch('https://api-contas-karina.onrender.com/api/payments/efi/config')
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
@@ -1216,7 +1216,7 @@
                     }
                 };
 
-                return fetch('http://localhost:3000/api/payments/efi/checkout', {
+                return fetch('https://api-contas-karina.onrender.com/api/payments/efi/checkout', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
