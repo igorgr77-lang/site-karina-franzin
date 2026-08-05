@@ -57,6 +57,7 @@
     <!-- CSS Global -->
     <link rel="stylesheet" href="../css/styles.css?v=1.0.2">
     <script src="/js/navbar.js?v=1.0.2" defer></script>
+    <script src="/js/main.js?v=1.0.2" defer></script>
 
     <!-- SDK Efí Bank Tokenização -->
     <script src="https://cdn.jsdelivr.net/npm/payment-token-efi/dist/payment-token-efi-umd.min.js"></script>
@@ -422,43 +423,124 @@
         </div>
     </section>
 
-    <!-- ===== 6. SOCIAL PROOF SECTION ===== -->
-    <section class="py-20 bg-dark-bg border-b border-white/5">
-        <div class="container mx-auto px-4 max-w-4xl text-center">
-            <h2 class="text-3xl md:text-5xl font-oswald font-bold uppercase italic mb-4">Resultados reais de quem treina com elite</h2>
-            <p class="text-gray-400 text-sm md:text-base mb-12">Veja a evolução e os recordes alcançados pelos nossos atletas sob a tutela da Karina.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                <!-- Depoimento 1 -->
-                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl relative">
-                    <span class="absolute -top-3 right-4 bg-lord-gold text-neutral-900 text-[8px] font-extrabold px-2 py-0.5 rounded-full uppercase">5km & 10km</span>
-                    <p class="text-gray-300 text-xs italic leading-relaxed">
-                        "Estava estagnada correndo 10km sempre no mesmo ritmo. Com a periodização e as dicas de postura da Karina, consegui baixar 4 minutos do meu tempo de recorde em menos de 8 semanas! E o melhor: sem sentir dores nas costas."
-                    </p>
-                    <div class="flex items-center gap-3 mt-4 pt-4 border-t border-white/5">
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-karina-orange">JC</div>
-                        <div>
-                            <h4 class="font-bold text-xs text-white">Juliana Camargo</h4>
-                            <p class="text-[9px] text-gray-500">Atleta Amadora · Votuporanga-SP</p>
-                        </div>
-                    </div>
+    <!-- ===== 6. PROVA SOCIAL & RESULTADOS REAIS ===== -->
+    <section class="py-20 bg-dark-bg border-b border-white/5" id="prova-social">
+        <div class="container mx-auto px-4 max-w-5xl text-center">
+            <span class="text-xs uppercase font-bold text-karina-orange tracking-widest bg-karina-orange/10 px-3.5 py-1 rounded-full">Histórias de Sucesso</span>
+            <h2 class="text-3xl md:text-5xl font-oswald font-bold uppercase italic mt-4 mb-3 text-white">Resultados Reais de Alunos da Assessoria</h2>
+            <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto mb-12">Corredores que transformaram seus resultados com treinamento personalizado e planilhas semanais</p>
+            
+            <!-- Pódios e Conquistas de Alunos -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 text-left">
+                <div class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl group bg-dark-card">
+                    <img src="/assets/img/alunos-podio-01.jpg" alt="Aluno da assessoria de corrida Karina Franzin no pódio de prova de corrida" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                 </div>
-
-                <!-- Depoimento 2 -->
-                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl relative">
-                    <span class="absolute -top-3 right-4 bg-lord-gold text-neutral-900 text-[8px] font-extrabold px-2 py-0.5 rounded-full uppercase">Maratona</span>
-                    <p class="text-gray-300 text-xs italic leading-relaxed">
-                        "Minha primeira maratona parecia um sonho distante e perigoso. O suporte da Karina via WhatsApp foi incrível. Ela ajustava minha planilha de fortalecimento pós-treinos longos e me deu a confiança para completar a prova sem lesão."
-                    </p>
-                    <div class="flex items-center gap-3 mt-4 pt-4 border-t border-white/5">
-                        <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-karina-orange">MS</div>
-                        <div>
-                            <h4 class="font-bold text-xs text-white">Marcos Silva</h4>
-                            <p class="text-[9px] text-gray-500">Atleta de Longa Distância</p>
-                        </div>
-                    </div>
+                <div class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl group bg-dark-card">
+                    <img src="/assets/img/alunos-podio-02.jpg" alt="Corredor treinado pela Karina Franzin celebrando vitória em competição" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                </div>
+                <div class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl group bg-dark-card">
+                    <img src="/assets/img/alunos-podio-03.jpg" alt="Atleta da assessoria esportiva conquistando pódio em prova de corrida" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                 </div>
             </div>
+
+            <!-- Carrossel de Feedbacks do WhatsApp -->
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-oswald font-bold uppercase italic text-white">O que nossos alunos dizem no WhatsApp</h3>
+                <p class="text-xs text-gray-400 mt-1">Clique ou deslize para ver depoimentos reais de quem evoluiu com a Karina</p>
+            </div>
+
+            <section class="feedbacks-carousel relative">
+                <div class="carousel-container">
+                    <button class="carousel-btn prev" aria-label="Feedback anterior">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    
+                    <div class="carousel-track-wrapper">
+                        <div class="carousel-track">
+                            <!-- Slide 1 -->
+                            <div class="carousel-slide active">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/1.jpg" alt="Feedback de aluno da assessoria de corrida Karina Franzin" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 2 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/2.jpg" alt="Depoimento de corredor treinado pela Karina Franzin" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 3 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/3.jpg" alt="Testemunho de aluno sobre assessoria esportiva de corrida" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 4 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/4.jpg" alt="Avaliação positiva de assessoria de corrida online" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 5 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/5.jpg" alt="Relato de transformação com treinamento personalizado de corrida" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 6 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/6.jpg" alt="Comentário de aluno sobre planilhas de treino personalizadas" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 7 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/7.jpg" alt="Opinião de corredor sobre acompanhamento individual da Karina" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 8 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/8.jpg" alt="Feedback sobre evolução na corrida com assessoria profissional" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 9 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/9.jpg" alt="Depoimento de aluno satisfeito com treinamento de corrida" loading="lazy">
+                                </div>
+                            </div>
+                            
+                            <!-- Slide 10 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/10.jpg" alt="Testemunho sobre resultados alcançados com assessoria esportiva" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="carousel-btn next" aria-label="Próximo feedback">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Indicadores (dots) -->
+                <div class="carousel-indicators"></div>
+            </section>
         </div>
     </section>
 
@@ -1248,6 +1330,12 @@
             startCountdown();
         });
     </script>
+
+    <!-- Lightbox para ampliar feedbacks -->
+    <div id="feedbackLightbox" class="lightbox" aria-hidden="true">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg" alt="Feedback ampliado">
+    </div>
 </body>
 
 </html>
