@@ -901,12 +901,6 @@ og:image: (imagem real do artigo do Supabase)
 3. **Disqus:** Muito simples de implementar, mas carrega trackers pesados e exibe anúncios na versão gratuita.
 4. **Facebook Comments:** SDK pesado, incompatível com a identidade visual do site, depende de conta do Facebook ativa (não aceita Instagram) e traz questões complexas de LGPD/cookies.
 
-**Implementação Técnica Futura Proposta para Supabase:**
-- **Tabela `comentarios`:** `id`, `artigo_slug`, `nome`, `email`, `conteudo`, `aprovado` (boolean), `criado_em`.
-- **Moderação:** Aba "Comentários Pendentes" no painel `/admin/` para o administrador aprovar (`aprovado = true`) ou excluir.
-- **Respostas:** Resposta exclusiva da treinadora Karina Franzin destacada com badge em laranja no front-end.
-- **Relatório Completo Gerado:** Arquivo [comments_system_analysis.md](file:///c:/Users/oigor/.gemini/antigravity-ide/brain/bedf2868-d750-4b60-a223-61aa73960383/comments_system_analysis.md) na pasta de artefatos.
-
 ---
 
 ## 📅 SESSÃO DE DESENVOLVIMENTO — 01/08/2026 — NOVO ARTIGO DE HIDRATAÇÃO E BOTÕES DE COMPARTILHAMENTO NO BLOG ✅
@@ -924,62 +918,55 @@ og:image: (imagem real do artigo do Supabase)
 - ✅ Extraído o texto original do novo artigo e estruturado como conteúdo HTML limpo (tabelas, listas e links de CTA inclusos).
 - ✅ Limpa a pasta `blog/hidratacao-na-corrida-de-rua` mantendo apenas `hidratação para corrida de rua.webp` (imagem do card).
 - ✅ Modificado `blog/artigo.template.html` para incorporar os botões de compartilhamento com SVGs inline e a função JavaScript `copyArticleLink` autocontida de cópia.
-- ✅ Adicionados estilos para `.article-share` e `.share-btn` em `css/blog.css` com cores correspondentes a cada plataforma e correções de especificidade (`color: white !important`) para man2. Criar a página de combos promocionais em `/planos` com toggle dinâmico entre Mensal (direcionando para WhatsApp) e Trimestral/Semestral (abrindo modal de cartão de crédito).
-3. Gerar 3 (trimestral) ou 6 (semestral) faturas consecutivas no banco Supabase com status `PAID` (prevenindo cobranças extras manuais de alunos ativos).
-4. Sincronizar criação de novos usuários no portal do aluno e disparar e-mail de onboarding com login, senha provisória e link para cadastro no aplicativo **Treinus** através da API Resend.
-5. Manter suporte a modo mock/sandbox para testes offline locais sem consumo de créditos.
+- ✅ Adicionados estilos para `.article-share` e `.share-btn` em `css/blog.css` com cores correspondentes a cada plataforma.
+- ✅ Regeradas todas as páginas estáticas e os sitemaps de busca através do script de compilação `node build-blog.js`.
+- ✅ Commit e push realizados com sucesso.
+
+### 📁 Arquivos criados/modificados:
+- `blog/artigo.template.html` (MODIFICADO)
+- `css/blog.css` (MODIFICADO)
+- `build-blog.js` (MODIFICADO)
+- `blog/index.html` e artigos estáticos (ATUALIZADOS)
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 05/08/2026 — ATIVAÇÃO E DEPLOY EM PRODUÇÃO (EFI, RESEND, RENDER E VERCEL) ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Ativar e configurar o Resend em produção com domínio verificado `karinafranzin.com.br` e remetente oficial.
+2. Redesenhar o e-mail de onboarding do aluno, adicionando política de cancelamento, link correto do portal e links de download do Treinus.
+3. Fazer deploy do servidor backend (`ContasReceberKarina`) no Render com variáveis de produção reais.
+4. Apontar o frontend do site (`site-karina-franzin`) para a API do Render no domínio final e fazer deploy na Vercel (`karinafranzin.com.br`).
 
 **O que foi feito:**
-- **Backend (`ContasReceberKarina`)**:
-  - ✅ **Configurações**: Adicionadas as variáveis de ambiente `EFI_MOCK`, `EFI_PRODUCTION`, `EFI_CLIENT_ID`, `EFI_CLIENT_SECRET`, `EFI_ACCOUNT_ID`, `EFI_CERT_BASE64`, `RESEND_API_KEY`, `EMAIL_MOCK` em `.env`.
-  - ✅ **Serviço de E-mail (`EmailService.ts`)**: Implementado envio via `@resend/node` com modo mock que imprime o HTML formatado no console de desenvolvimento.
-  - ✅ **Serviço Efí Bank (`EfiService.ts`)**: Adicionado o método `createCreditCardCharge` para cobrança de cartão.
-  - ✅ **Controlador Efí (`EfiController.ts`)**: Cria/atualiza cadastro de alunos por e-mail, gera faturas parceladas com status `PAID` e envia e-mail de onboarding.
-  - ✅ **Rotas (`payment.routes.ts`)**: Registradas as rotas `/efi/config` e `/efi/checkout`.
-- **Frontend (`site-karina-franzin`)**:
-  - ✅ **Landing Page de Planos/Combos (`/planos/index.template.html`)**: Página com toggle dinâmico e modal inline de cartão de crédito.
-  - ✅ **Integração do Tokenizador**: Tokeniza dados do cartão com a API Efí Bank.
-  - ✅ **Páginas de feedback**: Criadas `planos/sucesso.template.html` e `planos/cancelado.template.html`.
-  - ✅ **Compilador (`build-blog.js`)**: Compila os templates de planos auto-injetando navbar e footer globais.
+- ✅ **Resend Autenticado:** Domínio `karinafranzin.com.br` adicionado no Resend e verificado automaticamente integrando DNS na Cloudflare.
+- ✅ **Redesenho do E-mail de Boas-Vindas (`EmailService.ts`):** 
+  - Redireciona para o portal financeiro `https://gestao.karinafranzin.com.br/` (com senha provisória `kf` + 4 últimos dígitos do celular).
+  - Inclui botão de pré-cadastro direcionando para o formulário de novos atletas do Treinus.
+  - Explica o fluxo de aprovação do Treinus (onde o aluno recebe um segundo e-mail vindo do próprio aplicativo após aprovação da Karina).
+  - Adiciona botões para baixar o app Treinus para Android e iPhone.
+  - Insere termos de renovação recorrente e prazo de cancelamento até o dia 25 de cada mês.
+  - WhatsApp de suporte atualizado para `17 99782-7296`.
+- ✅ **Deploy Backend no Render:** 
+  - Backend hospedado com sucesso em `https://api-contas-karina.onrender.com`.
+  - Habilitadas as variáveis de ambiente em produção: chaves reais da Efí Bank (com certificado em base64 e produção ativa `EFI_MOCK=false`), chaves da Stripe, Resend e Supabase.
+- ✅ **Apontamento Frontend:** 
+  - Pasta `/planoscombo` alterada definitivamente para `/planos`.
+  - Requisições do checkout de cartão e configurações do tokenizador (`planos/index.template.html`) alteradas de `localhost:3000` para `https://api-contas-karina.onrender.com`.
+  - Executado build local e enviado para a branch `main`, ativando o deploy automático da Vercel no domínio `https://karinafranzin.com.br/planos/`.
+- ✅ **Validação Dinâmica:** O agente de testes validou que a chamada de configurações da Efí funciona no site live com `sandbox: false` no console, sem erros de CORS ou construtores.
 
 ### 📁 Arquivos criados/modificados:
 - **No repositório do site (`site-karina-franzin`)**:
-  - `planos/index.template.html` (NOVO)
-  - `planos/sucesso.template.html` (NOVO)
-  - `planos/cancelado.template.html` (NOVO)
-  - `build-blog.js` (MODIFICADO)
-  - `sitemap.xml` (MODIFICADO)mestral (abrindo modal de cartão de crédito).
-3. Gerar 3 (trimestral) ou 6 (semestral) faturas consecutivas no banco Supabase com status `PAID` (prevenindo cobranças extras manuais de alunos ativos).
-4. Sincronizar criação de novos usuários no portal do aluno e disparar e-mail de onboarding com login, senha provisória e link para cadastro no aplicativo **Treinus** através da API Resend.
-5. Manter suporte a modo mock/sandbox para testes offline locais sem consumo de créditos.
-
-**O que foi feito:**
-- **Backend (`ContasReceberKarina`)**:
-  - ✅ **Configurações**: Adicionadas as variáveis de ambiente `EFI_MOCK`, `EFI_PRODUCTION`, `EFI_CLIENT_ID`, `EFI_CLIENT_SECRET`, `EFI_ACCOUNT_ID`, `EFI_CERT_BASE64`, `RESEND_API_KEY`, `EMAIL_MOCK` em `.env`.
-  - ✅ **Serviço de E-mail (`EmailService.ts`)**: Implementado envio via `@resend/node` com modo mock que imprime o HTML formatado no console de desenvolvimento.
-  - ✅ **Serviço Efí Bank (`EfiService.ts`)**: Adicionado o método `createCreditCardCharge` para cobrança de cartão.
-  - ✅ **Controlador Efí (`EfiController.ts`)**: Cria/atualiza cadastro de alunos por e-mail, gera faturas parceladas com status `PAID` e envia e-mail de onboarding.
-  - ✅ **Rotas (`payment.routes.ts`)**: Registradas as rotas `/efi/config` e `/efi/checkout`.
-- **Frontend (`site-karina-franzin`)**:
-  - ✅ **Landing Page de Planos/Combos (`/planoscombo/index.template.html`)**: Página com toggle dinâmico e modal inline de cartão de crédito.
-  - ✅ **Integração do Tokenizador**: Tokeniza dados do cartão com a API Efí Bank.
-  - ✅ **Páginas de feedback**: Criadas `planoscombo/sucesso.template.html` e `planoscombo/cancelado.template.html`.
-  - ✅ **Compilador (`build-blog.js`)**: Compila os templates de planoscombo auto-injetando navbar e footer globais.
-
-### 📁 Arquivos criados/modificados:
-- **No repositório do site (`site-karina-franzin`)**:
-  - `planoscombo/index.template.html` (NOVO)
-  - `planoscombo/sucesso.template.html` (NOVO)
-  - `planoscombo/cancelado.template.html` (NOVO)
-  - `build-blog.js` (MODIFICADO)
+  - `planos/index.template.html` e `planos/index.html` (MODIFICADOS)
   - `sitemap.xml` (MODIFICADO)
-  - `walkthrough.md` (MODIFICADO)
-- **No repositório financeiro (`ContasReceberKarina`)**:
-  - `src/services/EmailService.ts` (NOVO)
-  - `src/controllers/EfiController.ts` (NOVO)
-  - `src/services/EfiService.ts` (MODIFICADO)
-  - `src/routes/payment.routes.ts` (MODIFICADO)
+  - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+- **No repositório do backend (`ContasReceberKarina`)**:
+  - `src/services/EmailService.ts` (MODIFICADO)
   - `.env` (MODIFICADO)
+
 
 
 
