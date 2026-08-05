@@ -37,4 +37,8 @@ SUPABASE-CREDENCIAIS.txt
 tmp_rovodev_*
 
 # Scratch scripts
-scratch/
+scratch/
+
+# Certificados Efí
+*.p12
+*.pem
