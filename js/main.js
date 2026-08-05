@@ -319,7 +319,7 @@ document.head.appendChild(style);
                 
                 // Abre o lightbox diretamente
                 var lightbox = document.getElementById('feedbackLightbox');
-                var lightboxImg = document.getElementById('lightboxImage');
+                var lightboxImg = document.getElementById('lightboxImage') || document.getElementById('lightboxImg');
                 
                 if (lightbox && lightboxImg && clickedImage) {
                     lightboxImg.src = clickedImage.src;
@@ -400,7 +400,7 @@ document.head.appendChild(style);
     
     function init() {
         var lightbox = document.getElementById('feedbackLightbox');
-        var lightboxImg = document.getElementById('lightboxImage');
+        var lightboxImg = document.getElementById('lightboxImage') || document.getElementById('lightboxImg');
         
         if (!lightbox || !lightboxImg) {
             console.log('[LIGHTBOX] Elementos nao encontrados');
@@ -410,18 +410,30 @@ document.head.appendChild(style);
         var images = document.querySelectorAll('.feedback-card img');
         console.log('[LIGHTBOX] Encontradas ' + images.length + ' imagens');
         
-        // Apenas adiciona cursor pointer e previne drag
+        function openLightbox(src) {
+            if (lightbox && lightboxImg && src) {
+                lightboxImg.src = src;
+                lightbox.className = 'lightbox active';
+                lightbox.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                console.log('[LIGHTBOX] Aberto:', src);
+            }
+        }
+
+        // Adiciona cursor pointer, previne drag e adiciona evento de clique direto
         for (var i = 0; i < images.length; i++) {
             images[i].style.cursor = 'pointer';
             
-            // Previne o comportamento padrão de arrastar imagem
             images[i].addEventListener('dragstart', function(e) {
                 e.preventDefault();
             });
+
+            (function(imgElement) {
+                imgElement.addEventListener('click', function(e) {
+                    openLightbox(imgElement.src);
+                });
+            })(images[i]);
         }
-        
-        // NOTA: O lightbox agora é aberto diretamente pelo carrossel
-        // quando detecta um clique rápido em uma imagem.
         
         function close() {
             lightbox.className = 'lightbox';
@@ -435,6 +447,13 @@ document.head.appendChild(style);
         
         if (closeBtn) closeBtn.onclick = close;
         if (overlay) overlay.onclick = close;
+
+        // Clique no próprio fundo do lightbox para fechar
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+                close();
+            }
+        });
         
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && lightbox.className.indexOf('active') >= 0) {
