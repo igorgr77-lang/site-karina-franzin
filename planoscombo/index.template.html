@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J488T0R72B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-J488T0R72B');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planos e Combos Promocionais | Karina Franzin Assessoria Esportiva</title>
+    <meta name="description"
+        content="Escolha o melhor plano de corrida e caminhada. Combos trimestrais e semestrais com descontos exclusivos no cartão de crédito.">
+    <link rel="canonical" href="https://karinafranzin.com.br/planoscombo/">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#ff6b35">
+
+    <!-- Google Fonts & Tailwind & Lucide Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;700;900&family=Oswald:wght@500;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'lord-gold': '#ffb703',
+                        'lord-amber': '#ff8f00',
+                        'karina-orange': '#ff6b35',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#141414',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'display': ['Montserrat', 'sans-serif'],
+                        'oswald': ['Oswald', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="../css/styles.css?v=1.0.2">
+    <script src="/js/navbar.js?v=1.0.2" defer></script>
+
+    <!-- SDK Efí Bank Tokenização -->
+    <script src="https://cdn.jsdelivr.net/npm/payment-token-efi/dist/payment-token-efi-umd.min.js"></script>
+
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s ease;
+        }
+
+        body {
+            padding-top: 64px;
+        }
+
+        .pricing-toggle-btn.active {
+            background-color: #ff6b35;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+    </style>
+</head>
+
+<body class="bg-dark-bg text-white font-sans antialiased">
+
+    <!-- NAVBAR_PLACEHOLDER -->
+
+    <!-- ===== HERO SECTION ===== -->
+    <header class="relative overflow-hidden py-20 border-b border-white/5 bg-gradient-to-b from-dark-bg to-[#0f0f0f]">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-karina-orange/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="container mx-auto px-4 z-10 text-center relative">
+            <h1 class="text-4xl md:text-6xl font-oswald font-black leading-tight mb-6 uppercase italic">
+                Evolua sua corrida com acompanhamento <br class="hidden md:inline"><span class="text-karina-orange">profissional</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
+                Treinos individuais, suporte próximo e a flexibilidade que você precisa para alcançar seus objetivos e planilhas personalizadas via aplicativo.
+            </p>
+            <div>
+                <a href="#planos" class="inline-flex items-center gap-2 px-8 py-4 bg-karina-orange text-white font-extrabold rounded-full transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(255,107,53,0.4)]">
+                    VER PLANOS E VALORES
+                    <i data-lucide="arrow-down" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== SEÇÃO DE PLANOS E PREÇOS ===== -->
+    <section id="planos" class="py-20 bg-dark-bg">
+        <div class="container mx-auto px-4">
+            
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-5xl font-oswald font-bold uppercase italic mb-4">Escolha a melhor opção para você</h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Selecione entre mensalidade flexível ou garanta descontos exclusivos com os combos de fidelidade.</p>
+                
+                <!-- Selector Toggle -->
+                <div class="inline-flex p-1 bg-white/5 rounded-full mt-8 border border-white/10">
+                    <button id="toggle-mensal" onclick="switchPricing('mensal')" class="pricing-toggle-btn active px-6 py-2.5 rounded-full font-bold text-sm tracking-wide transition-all duration-300 uppercase">
+                        Mensal (Sem Fidelidade)
+                    </button>
+                    <button id="toggle-combo" onclick="switchPricing('combo')" class="pricing-toggle-btn px-6 py-2.5 rounded-full font-bold text-sm tracking-wide transition-all duration-300 uppercase">
+                        Combos com Desconto 🔥
+                    </button>
+                </div>
+            </div>
+
+            <!-- GRIDS DE PLANOS -->
+            <div class="max-w-6xl mx-auto">
+                
+                <!-- GRID MENSAL -->
+                <div id="grid-mensal" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- BRONZE MENSAL -->
+                    <div class="bg-dark-card border border-white/5 rounded-3xl p-8 flex flex-col justify-between hover:border-white/15 transition-all duration-300">
+                        <div>
+                            <div class="mb-6">
+                                <span class="text-xs uppercase tracking-widest text-gray-400 font-bold bg-white/5 px-3 py-1 rounded-full">Plano Básico</span>
+                                <h3 class="text-3xl font-oswald font-bold uppercase mt-3">Plano Bronze</h3>
+                                <p class="text-xs text-gray-500 mt-1">Mensalidade simples</p>
+                            </div>
+                            <div class="mb-6 flex items-baseline gap-1">
+                                <span class="text-4xl font-oswald font-bold text-white">R$ 120,00</span>
+                                <span class="text-gray-400 text-xs">/mês</span>
+                            </div>
+                            <div class="text-xs text-lord-gold font-semibold bg-lord-gold/10 border border-lord-gold/20 p-2.5 rounded-xl mb-6">
+                                💡 Desconto de Pontualidade: R$ 114,00 se pago até o dia 10!
+                            </div>
+                            <ul class="space-y-4 text-sm text-gray-300 mb-8">
+                                <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange mt-0.5 shrink-0"></i>Histórico & condicionamento físico</li>
+                                <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange mt-0.5 shrink-0"></i>Acesso aos treinos presenciais</li>
+                                <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange mt-0.5 shrink-0"></i>Planilha semanal via App Treinus</li>
+                                <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange mt-0.5 shrink-0"></i>Dúvidas via WhatsApp com a Karina</li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/5517996566908?text=Olá,%20Karina!%20Gostaria%20de%20assinar%20o%20Plano%20Bronze%20Mensal." target="_blank" rel="noopener noreferrer" class="w-full py-4 text-center bg-white/5 border border-white/10 hover:bg-white/10 text-white rounded-xl font-bold transition-all duration-300">
+                            Assinar Mensal
+                        </a>
+                    </div>
+
+                    <!-- PRATA MENSAL -->
+                    <div class="bg-dark-card border border-karina-orange/20 rounded-3xl p-8 flex flex-col justify-between hover:border-karina-orange/40 transition-all duration-300 relative">
+                        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-karina-orange text-white text-[10px] font-bold tracking-widest px-4 py-1.5 rounded-full uppercase">Intermediário</div>
+                        <div>
+                            <div class="mb-6">
+                                <h3 class="text-3xl font-oswald font-bold uppercase mt-3">Plano Prata</h3>
+                                <p class="text-xs text-gray-500 mt-1">Acompanhamento mais próximo</p>
+                            </div>
+                            <div class="mb-6 flex items-baseline gap-1">
+                                <span class="text-4xl font-oswald font-bold text-white">R$ 150,00</span>
+                                <span class="text-gray-400 text-xs">/mês</span>
+                            </div>
+                            <div class="text-xs text-lord-gold font-semibold bg-lord-gold/10 border border-lord-gold/20 p-2.5 rounded-xl mb-6">
+                                💡 Desconto de Pontualidade: R$ 142,50 se pago até o dia 10!
+                            </div>
+                            <ul class="space-y-4 text-sm text-gray-300 mb-8">
+                                <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange mt-0.5 shrink-0"></i>Todos os benefícios do Plano Bronze</li>
+                                <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange mt-0.5 shrink-0"></i>1 Análise semanal de treino selecionado</li>
+                                <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange mt-0.5 shrink-0"></i>Análise profunda de ritmo e métricas</li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/5517996566908?text=Olá,%20Karina!%20Gostaria%20de%20assinar%20o%20Plano%20Prata%20Mensal." target="_blank" rel="noopener noreferrer" class="w-full py-4 text-center bg-karina-orange text-white rounded-xl font-bold transition-all duration-300 hover:shadow-[0_4px_15px_rgba(255,107,53,0.3)]">
+                            Assinar Mensal
+                        </a>
+                    </div>
+
+                    <!-- OURO MENSAL -->
+                    <div class="bg-dark-card border border-white/5 rounded-3xl p-8 flex flex-col justify-between hover:border-white/15 transition-all duration-300">
+                        <div>
+                            <div class="mb-6">
+                                <span class="text-xs uppercase tracking-widest text-lord-gold font-bold bg-lord-gold/5 px-3 py-1 rounded-full">Pró VIP</span>
+                                <h3 class="text-3xl font-oswald font-bold uppercase mt-3">Plano Ouro</h3>
+                                <p class="text-xs text-gray-500 mt-1">Suporte total e prioridade</p>
+                            </div>
+                            <div class="mb-6 flex items-baseline gap-1">
+                                <span class="text-4xl font-oswald font-bold text-white">R$ 200,00</span>
+                                <span class="text-gray-400 text-xs">/mês</span>
+                            </div>
+                            <div class="text-xs text-lord-gold font-semibold bg-lord-gold/10 border border-lord-gold/20 p-2.5 rounded-xl mb-6">
+                                💡 Desconto de Pontualidade: R$ 180,00 se pago até o dia 10!
+                            </div>
+                            <ul class="space-y-4 text-sm text-gray-300 mb-8">
+                                <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange mt-0.5 shrink-0"></i>Benefícios do Bronze e Prata</li>
+                                <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange mt-0.5 shrink-0"></i>Análise profunda de TODOS os treinos</li>
+                                <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange mt-0.5 shrink-0"></i>Suporte prioritário via WhatsApp</li>
+                                <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange mt-0.5 shrink-0"></i>Acesso ao Grupo VIP de alunos</li>
+                            </ul>
+                        </div>
+                        <a href="https://wa.me/5517996566908?text=Olá,%20Karina!%20Gostaria%20de%20assinar%20o%20Plano%20Ouro%20Mensal." target="_blank" rel="noopener noreferrer" class="w-full py-4 text-center bg-white/5 border border-white/10 hover:bg-white/10 text-white rounded-xl font-bold transition-all duration-300">
+                            Assinar Mensal
+                        </a>
+                    </div>
+                </div>
+
+                <!-- GRID COMBOS (Cartão de Crédito) -->
+                <div id="grid-combo" class="grid grid-cols-1 md:grid-cols-3 gap-8 hidden animate__animated animate__fadeIn">
+                    
+                    <!-- BRONZE COMBO -->
+                    <div class="bg-dark-card border border-white/5 rounded-3xl p-8 flex flex-col justify-between hover:border-white/15 transition-all duration-300">
+                        <div>
+                            <div class="mb-6">
+                                <h3 class="text-3xl font-oswald font-bold uppercase">Plano Bronze</h3>
+                                <p class="text-xs text-gray-500 mt-1">Acesso econômico</p>
+                            </div>
+                            <!-- Bronze Trimestral Card -->
+                            <div class="bg-white/5 border border-white/5 rounded-2xl p-4 mb-4">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs font-bold text-karina-orange uppercase tracking-wide">Trimestral (3 Meses)</span>
+                                    <span class="text-[10px] bg-green-500/10 border border-green-500/20 text-green-400 font-semibold px-2 py-0.5 rounded-full">Economize R$ 45</span>
+                                </div>
+                                <div class="flex items-baseline gap-1 mt-1.5">
+                                    <span class="text-2xl font-bold text-white">R$ 105,00</span>
+                                    <span class="text-gray-400 text-xs">/mês</span>
+                                </div>
+                                <p class="text-[10px] text-gray-500 mt-0.5">Total de R$ 315,00 parcelado no cartão</p>
+                                <button onclick="openCheckout('bronze_trimestral')" class="w-full mt-3.5 py-2.5 bg-karina-orange hover:bg-karina-orange/90 text-white font-bold text-xs rounded-lg transition-all">
+                                    Garantir Trimestral
+                                </button>
+                            </div>
+                            <!-- Bronze Semestral Card -->
+                            <div class="bg-white/5 border border-white/5 rounded-2xl p-4 mb-6">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs font-bold text-lord-gold uppercase tracking-wide">Semestral (6 Meses)</span>
+                                    <span class="text-[10px] bg-green-500/10 border border-green-500/20 text-green-400 font-semibold px-2 py-0.5 rounded-full">Economize R$ 120</span>
+                                </div>
+                                <div class="flex items-baseline gap-1 mt-1.5">
+                                    <span class="text-2xl font-bold text-white">R$ 100,00</span>
+                                    <span class="text-gray-400 text-xs">/mês</span>
+                                </div>
+                                <p class="text-[10px] text-gray-500 mt-0.5">Total de R$ 600,00 parcelado no cartão</p>
+                                <button onclick="openCheckout('bronze_semestral')" class="w-full mt-3.5 py-2.5 bg-white/10 hover:bg-white/15 text-white font-bold text-xs rounded-lg transition-all">
+                                    Garantir Semestral
+                                </button>
+                            </div>
+                            <!-- Perks -->
+                            <ul class="space-y-3.5 text-xs text-gray-400">
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-karina-orange shrink-0"></i>Histórico & condicionamento físico</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-karina-orange shrink-0"></i>Acesso aos treinos presenciais</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-karina-orange shrink-0"></i>Planilha semanal via App Treinus</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- PRATA COMBO -->
+                    <div class="bg-dark-card border border-karina-orange/20 rounded-3xl p-8 flex flex-col justify-between hover:border-karina-orange/40 transition-all duration-300 relative">
+                        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-karina-orange text-white text-[10px] font-bold tracking-widest px-4 py-1.5 rounded-full uppercase">Intermediário</div>
+                        <div>
+                            <div class="mb-6">
+                                <h3 class="text-3xl font-oswald font-bold uppercase">Plano Prata</h3>
+                                <p class="text-xs text-gray-500 mt-1">Acompanhamento intermediário</p>
+                            </div>
+                            <!-- Prata Trimestral Card -->
+                            <div class="bg-white/5 border border-white/5 rounded-2xl p-4 mb-4">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs font-bold text-karina-orange uppercase tracking-wide">Trimestral (3 Meses)</span>
+                                    <span class="text-[10px] bg-green-500/10 border border-green-500/20 text-green-400 font-semibold px-2 py-0.5 rounded-full">Economize R$ 45</span>
+                                </div>
+                                <div class="flex items-baseline gap-1 mt-1.5">
+                                    <span class="text-2xl font-bold text-white">R$ 135,00</span>
+                                    <span class="text-gray-400 text-xs">/mês</span>
+                                </div>
+                                <p class="text-[10px] text-gray-500 mt-0.5">Total de R$ 405,00 parcelado no cartão</p>
+                                <button onclick="openCheckout('prata_trimestral')" class="w-full mt-3.5 py-2.5 bg-karina-orange hover:bg-karina-orange/90 text-white font-bold text-xs rounded-lg transition-all">
+                                    Garantir Trimestral
+                                </button>
+                            </div>
+                            <!-- Prata Semestral Card (Recomendado) -->
+                            <div class="bg-white/10 border border-karina-orange/30 rounded-2xl p-4 mb-6 relative">
+                                <div class="absolute -top-2.5 right-4 bg-lord-gold text-neutral-900 text-[8px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">Recomendado</div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs font-bold text-lord-gold uppercase tracking-wide">Semestral (6 Meses)</span>
+                                    <span class="text-[10px] bg-green-500/10 border border-green-500/20 text-green-400 font-semibold px-2 py-0.5 rounded-full">Economize R$ 150</span>
+                                </div>
+                                <div class="flex items-baseline gap-1 mt-1.5">
+                                    <span class="text-2xl font-bold text-white">R$ 125,00</span>
+                                    <span class="text-gray-400 text-xs">/mês</span>
+                                </div>
+                                <p class="text-[10px] text-gray-400 mt-0.5">Total de R$ 750,00 parcelado no cartão</p>
+                                <button onclick="openCheckout('prata_semestral')" class="w-full mt-3.5 py-2.5 bg-lord-gold hover:bg-lord-gold/90 text-neutral-950 font-extrabold text-xs rounded-lg transition-all">
+                                    Garantir Semestral
+                                </button>
+                            </div>
+                            <!-- Perks -->
+                            <ul class="space-y-3.5 text-xs text-gray-400">
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-karina-orange shrink-0"></i>Todos os benefícios do Bronze</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-karina-orange shrink-0"></i>1 Análise semanal de treino selecionado</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- OURO COMBO -->
+                    <div class="bg-dark-card border border-white/5 rounded-3xl p-8 flex flex-col justify-between hover:border-white/15 transition-all duration-300">
+                        <div>
+                            <div class="mb-6">
+                                <h3 class="text-3xl font-oswald font-bold uppercase">Plano Ouro</h3>
+                                <p class="text-xs text-gray-500 mt-1">Acompanhamento completo e prioritário</p>
+                            </div>
+                            <!-- Ouro Trimestral Card -->
+                            <div class="bg-white/5 border border-white/5 rounded-2xl p-4 mb-4">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs font-bold text-karina-orange uppercase tracking-wide">Trimestral (3 Meses)</span>
+                                    <span class="text-[10px] bg-green-500/10 border border-green-500/20 text-green-400 font-semibold px-2 py-0.5 rounded-full">Economize R$ 90</span>
+                                </div>
+                                <div class="flex items-baseline gap-1 mt-1.5">
+                                    <span class="text-2xl font-bold text-white">R$ 170,00</span>
+                                    <span class="text-gray-400 text-xs">/mês</span>
+                                </div>
+                                <p class="text-[10px] text-gray-500 mt-0.5">Total de R$ 510,00 parcelado no cartão</p>
+                                <button onclick="openCheckout('ouro_trimestral')" class="w-full mt-3.5 py-2.5 bg-karina-orange hover:bg-karina-orange/90 text-white font-bold text-xs rounded-lg transition-all">
+                                    Garantir Trimestral
+                                </button>
+                            </div>
+                            <!-- Ouro Semestral Card -->
+                            <div class="bg-white/5 border border-white/5 rounded-2xl p-4 mb-6">
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs font-bold text-lord-gold uppercase tracking-wide">Semestral (6 Meses)</span>
+                                    <span class="text-[10px] bg-green-500/10 border border-green-500/20 text-green-400 font-semibold px-2 py-0.5 rounded-full">Economize R$ 240</span>
+                                </div>
+                                <div class="flex items-baseline gap-1 mt-1.5">
+                                    <span class="text-2xl font-bold text-white">R$ 160,00</span>
+                                    <span class="text-gray-400 text-xs">/mês</span>
+                                </div>
+                                <p class="text-[10px] text-gray-500 mt-0.5">Total de R$ 960,00 parcelado no cartão</p>
+                                <button onclick="openCheckout('ouro_semestral')" class="w-full mt-3.5 py-2.5 bg-white/10 hover:bg-white/15 text-white font-bold text-xs rounded-lg transition-all">
+                                    Garantir Semestral
+                                </button>
+                            </div>
+                            <!-- Perks -->
+                            <ul class="space-y-3.5 text-xs text-gray-400">
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-karina-orange shrink-0"></i>Benefícios do Bronze e Prata</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-karina-orange shrink-0"></i>Análise profunda de todos os treinos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== SEÇÃO PERGUNTAS FREQUENTES (FAQ) ===== -->
+    <section class="py-20 bg-[#0c0c0c] border-t border-white/5">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-3xl font-oswald font-bold uppercase italic text-center mb-12">Dúvidas Frequentes</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl">
+                    <h3 class="font-bold text-lg text-karina-orange mb-2">Como funciona o pagamento parcelado no cartão?</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Ao adquirir o plano trimestral ou semestral, a operadora reserva o valor total do combo (ex: R$ 315,00 no trimestral Bronze) do limite do seu cartão de crédito e lança as parcelas mensais (ex: 3 parcelas de R$ 105,00) de forma automática e sem juros adicionais nas suas faturas.
+                    </p>
+                </div>
+
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl">
+                    <h3 class="font-bold text-lg text-karina-orange mb-2">O que é o desconto de pontualidade no Plano Mensal?</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Para os planos de recorrência mensal sem fidelidade, o vencimento da mensalidade ocorre no dia 10. Efetuando o pagamento da mensalidade até esta data limite, você recebe um desconto automático (ex: R$ 114,00 no Plano Bronze).
+                    </p>
+                </div>
+
+                <div class="bg-dark-card border border-white/5 p-6 rounded-2xl">
+                    <h3 class="font-bold text-lg text-karina-orange mb-2">Posso mudar de plano depois?</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Sim! A transição ou alteração de planos pode ser solicitada a qualquer momento entrando em contato direto com o suporte administrativo ou com a treinadora Karina via WhatsApp.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MODAL DE CHECKOUT TRANSPARENTE ===== -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 overflow-y-auto hidden">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-black/80 backdrop-blur-md" onclick="closeCheckout()"></div>
+        
+        <!-- Conteúdo do Modal -->
+        <div class="relative min-h-screen flex items-center justify-center p-4">
+            <div class="relative bg-dark-card border border-white/10 rounded-3xl w-full max-w-lg p-6 md:p-8 text-left shadow-2xl z-10">
+                
+                <!-- Botão de Fechar -->
+                <button onclick="closeCheckout()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+
+                <!-- Cabeçalho do Modal -->
+                <div class="mb-6">
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-karina-orange bg-karina-orange/10 px-3 py-1 rounded-full">Checkout Seguro</span>
+                    <h3 id="checkout-plan-name" class="text-2xl font-oswald font-black uppercase italic mt-3">Plano Combo</h3>
+                    <p id="checkout-plan-price" class="text-sm text-gray-400 mt-1">Total de R$ 0,00</p>
+                </div>
+
+                <!-- Formulário de Pagamento -->
+                <form id="checkout-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                    <!-- Informações do Combo Selecionado (Hidden) -->
+                    <input type="hidden" id="form-combo-key" name="comboKey">
+
+                    <!-- Aba 1: Dados Pessoais -->
+                    <div id="step-1" class="space-y-3">
+                        <h4 class="text-sm font-bold text-gray-300 border-b border-white/5 pb-2">1. Dados do Aluno</h4>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Nome Completo</label>
+                            <input type="text" id="cust-name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">E-mail</label>
+                            <input type="email" id="cust-email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">CPF</label>
+                                <input type="text" id="cust-cpf" required placeholder="000.000.000-00" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">Data Nascimento</label>
+                                <input type="date" id="cust-birth" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">WhatsApp (Celular)</label>
+                            <input type="tel" id="cust-phone" required placeholder="(17) 99999-9999" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                        </div>
+                    </div>
+
+                    <!-- Aba 2: Endereço de Cobrança -->
+                    <div id="step-2" class="space-y-3">
+                        <h4 class="text-sm font-bold text-gray-300 border-b border-white/5 pb-2">2. Endereço de Cobrança</h4>
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="col-span-2">
+                                <label class="block text-xs text-gray-400 mb-1">CEP</label>
+                                <input type="text" id="addr-zipcode" required placeholder="00000-000" onblur="buscarCEP()" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">Número</label>
+                                <input type="text" id="addr-number" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Rua/Logradouro</label>
+                            <input type="text" id="addr-street" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                        </div>
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="col-span-1">
+                                <label class="block text-xs text-gray-400 mb-1">Bairro</label>
+                                <input type="text" id="addr-neighborhood" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-xs text-gray-400 mb-1">Cidade</label>
+                                <input type="text" id="addr-city" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                            </div>
+                            <div class="col-span-1">
+                                <label class="block text-xs text-gray-400 mb-1">Estado (UF)</label>
+                                <input type="text" id="addr-state" required placeholder="SP" maxlength="2" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition text-center">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aba 3: Dados do Cartão -->
+                    <div id="step-3" class="space-y-3">
+                        <h4 class="text-sm font-bold text-gray-300 border-b border-white/5 pb-2">3. Dados do Cartão</h4>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Nome Impresso no Cartão</label>
+                            <input type="text" id="card-name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition uppercase">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Número do Cartão</label>
+                            <div class="relative">
+                                <input type="text" id="card-number" required placeholder="0000 0000 0000 0000" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                                <div id="card-brand-badge" class="absolute right-3.5 top-3.5 text-xs font-bold text-karina-orange"></div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="col-span-2">
+                                <label class="block text-xs text-gray-400 mb-1">Validade (MM/AAAA)</label>
+                                <input type="text" id="card-expiry" required placeholder="MM/AAAA" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition text-center">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">CVV</label>
+                                <input type="text" id="card-cvv" required placeholder="123" maxlength="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition text-center">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1">Opções de Parcelamento</label>
+                            <select id="card-installments" required class="w-full bg-neutral-900 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition text-white">
+                                <!-- Preenchido dinamicamente via JS -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Mensagem de Erro de Checkout -->
+                    <div id="checkout-error" class="hidden text-xs text-red-500 bg-red-500/10 border border-red-500/20 p-3 rounded-xl"></div>
+
+                    <!-- Botão de Ação -->
+                    <button type="submit" class="w-full py-4 bg-karina-orange hover:bg-karina-orange/90 text-white font-extrabold rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+                        <i data-lucide="lock" class="w-4 h-4"></i>
+                        FINALIZAR MATRÍCULA SEGURA
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== SPINNER DE LOADING GERAL ===== -->
+    <div id="loading-overlay" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex flex-col justify-center items-center gap-4 hidden">
+        <div class="w-12 h-12 border-4 border-karina-orange border-t-transparent rounded-full animate-spin"></div>
+        <p class="text-white font-bold tracking-wide text-sm">Processando matrícula segura... Não feche esta página</p>
+    </div>
+
+    <!-- FOOTER_PLACEHOLDER -->
+
+    <script>
+        // Configurações e Preços dos Combos
+        const PLANS_DATA = {
+            'bronze_trimestral': { name: 'Bronze Trimestral (3 Meses)', total: 315.00, monthly: 105.00, months: 3 },
+            'bronze_semestral': { name: 'Bronze Semestral (6 Meses)', total: 600.00, monthly: 100.00, months: 6 },
+            'prata_trimestral': { name: 'Prata Trimestral (3 Meses)', total: 405.00, monthly: 135.00, months: 3 },
+            'prata_semestral': { name: 'Prata Semestral (6 Meses)', total: 750.00, monthly: 125.00, months: 6 },
+            'ouro_trimestral': { name: 'Ouro Trimestral (3 Meses)', total: 510.00, monthly: 170.00, months: 3 },
+            'ouro_semestral': { name: 'Ouro Semestral (6 Meses)', total: 960.00, monthly: 160.00, months: 6 }
+        };
+
+        // Alternador de Aba de Preços
+        function switchPricing(mode) {
+            document.querySelectorAll('.pricing-toggle-btn').forEach(btn => btn.classList.remove('active'));
+            if (mode === 'mensal') {
+                document.getElementById('toggle-mensal').classList.add('active');
+                document.getElementById('grid-mensal').classList.remove('hidden');
+                document.getElementById('grid-combo').classList.add('hidden');
+            } else {
+                document.getElementById('toggle-combo').classList.add('active');
+                document.getElementById('grid-mensal').classList.add('hidden');
+                document.getElementById('grid-combo').classList.remove('hidden');
+            }
+        }
+
+        // Script de Inicialização da Efí via Endpoint de Configuração do Backend
+        let efiPayInstance = null;
+        fetch('http://localhost:3000/api/payments/efi/config')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    const { accountId, sandbox } = data.config;
+                    efiPayInstance = new EfiPay({
+                        account_id: accountId,
+                        sandbox: sandbox
+                    });
+                    console.log('Efí SDK inicializada (sandbox:', sandbox, ')');
+                }
+            })
+            .catch(err => console.error('Erro ao ler configurações da Efí no backend:', err));
+
+        // Abrir Modal de Checkout
+        function openCheckout(comboKey) {
+            const plan = PLANS_DATA[comboKey];
+            if (!plan) return;
+
+            document.getElementById('form-combo-key').value = comboKey;
+            document.getElementById('checkout-plan-name').textContent = plan.name;
+            document.getElementById('checkout-plan-price').textContent = `Total: R$ ${plan.total.toFixed(2)} (${plan.months}x de R$ ${plan.monthly.toFixed(2)})`;
+            
+            // Gerar opções de parcelas
+            const installmentsSelect = document.getElementById('card-installments');
+            installmentsSelect.innerHTML = '';
+            for (let i = 1; i <= plan.months; i++) {
+                const value = plan.total / i;
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = `${i}x de R$ ${value.toFixed(2)} sem juros`;
+                if (i === plan.months) opt.selected = true; // Pré-seleciona o máximo de parcelas
+                installmentsSelect.appendChild(opt);
+            }
+
+            document.getElementById('checkout-error').classList.add('hidden');
+            document.getElementById('checkout-error').textContent = '';
+            document.getElementById('checkout-modal').classList.remove('hidden');
+        }
+
+        // Fechar Modal
+        function closeCheckout() {
+            document.getElementById('checkout-modal').classList.add('hidden');
+        }
+
+        // Buscar CEP
+        function buscarCEP() {
+            const zipcode = document.getElementById('addr-zipcode').value.replace(/\D/g, '');
+            if (zipcode.length !== 8) return;
+
+            fetch(`https://viacep.com.br/ws/${zipcode}/json/`)
+                .then(res => res.json())
+                .then(data => {
+                    if (!data.erro) {
+                        document.getElementById('addr-street').value = data.logradouro;
+                        document.getElementById('addr-neighborhood').value = data.bairro;
+                        document.getElementById('addr-city').value = data.localidade;
+                        document.getElementById('addr-state').value = data.uf;
+                    }
+                })
+                .catch(err => console.warn('Falha ao buscar CEP via API:', err));
+        }
+
+        // Submit do Form
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const errorDiv = document.getElementById('checkout-error');
+            errorDiv.classList.add('hidden');
+
+            if (!efiPayInstance) {
+                errorDiv.textContent = 'Erro de inicialização do gateway de pagamento. Recarregue a página.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            // Exibir Loading
+            document.getElementById('loading-overlay').classList.remove('hidden');
+
+            const cardNumber = document.getElementById('card-number').value.replace(/\D/g, '');
+            const cardName = document.getElementById('card-name').value.trim();
+            const cardCvv = document.getElementById('card-cvv').value.trim();
+            const expiry = document.getElementById('card-expiry').value.replace(/\D/g, '');
+            
+            if (expiry.length !== 6) {
+                document.getElementById('loading-overlay').classList.add('hidden');
+                errorDiv.textContent = 'Data de validade do cartão deve ser no formato MM/AAAA.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            const expMonth = expiry.substring(0, 2);
+            const expYear = expiry.substring(2);
+
+            // Gerar Token do Cartão com o SDK da Efí
+            efiPayInstance.getPaymentToken({
+                number: cardNumber,
+                cvv: cardCvv,
+                expiration_month: expMonth,
+                expiration_year: expYear
+            })
+            .then(tokenResponse => {
+                const paymentToken = tokenResponse.payment_token;
+                
+                // Enviar para o backend
+                const payload = {
+                    paymentToken: paymentToken,
+                    installments: document.getElementById('card-installments').value,
+                    comboKey: document.getElementById('form-combo-key').value,
+                    customer: {
+                        name: document.getElementById('cust-name').value.trim(),
+                        email: document.getElementById('cust-email').value.trim(),
+                        cpf: document.getElementById('cust-cpf').value.replace(/\D/g, ''),
+                        birth: document.getElementById('cust-birth').value, // YYYY-MM-DD
+                        phone: document.getElementById('cust-phone').value.replace(/\D/g, '')
+                    },
+                    billingAddress: {
+                        street: document.getElementById('addr-street').value.trim(),
+                        number: document.getElementById('addr-number').value.trim(),
+                        neighborhood: document.getElementById('addr-neighborhood').value.trim(),
+                        zipcode: document.getElementById('addr-zipcode').value.replace(/\D/g, ''),
+                        city: document.getElementById('addr-city').value.trim(),
+                        state: document.getElementById('addr-state').value.trim().toUpperCase()
+                    }
+                };
+
+                return fetch('http://localhost:3000/api/payments/efi/checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('loading-overlay').classList.add('hidden');
+                if (data.success) {
+                    // Sucesso! Redireciona
+                    window.location.href = '/planoscombo/sucesso.html';
+                } else {
+                    // Erro retornado pelo controller
+                    errorDiv.textContent = data.message || 'Houve um problema ao processar seu pagamento. Verifique seus dados.';
+                    errorDiv.classList.remove('hidden');
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('loading-overlay').classList.add('hidden');
+                errorDiv.textContent = 'Erro de comunicação com o servidor de pagamentos ou cartão inválido.';
+                errorDiv.classList.remove('hidden');
+            });
+        }
+
+        // Inicializa ícones do Lucide
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+
+</html>

@@ -65,6 +65,9 @@ O site migrou de um modelo de replicação manual para um sistema de templates e
 | Cupons | `cupons/index.template.html` | `cupons/index.html` | Estático compilado |
 | Eventos Individuais (5 páginas) | `eventos/[pasta-evento]/index.template.html` | `eventos/[pasta-evento]/index.html` | Estáticos compilados dinamicamente |
 | Admin (CMS) | — | `admin/index.html` | CMS (Supabase) |
+| Planos Combo | `planoscombo/index.template.html` | `planoscombo/index.html` | Estático compilado |
+| Sucesso Checkout | `planoscombo/sucesso.template.html` | `planoscombo/sucesso.html` | Estático compilado |
+| Cancelado Checkout | `planoscombo/cancelado.template.html` | `planoscombo/cancelado.html` | Estático compilado |
 
 ### Estrutura de Pastas
 ```
@@ -96,6 +99,13 @@ site-karina-franzin/
 ├── cupons/
 │   ├── index.template.html           ← Template de cupons e descontos
 │   └── index.html                    ← Página de cupons final compilada
+├── planoscombo/
+│   ├── index.template.html           ← Template da página de combos e planos
+│   ├── index.html                    ← Página de combos compilada
+│   ├── sucesso.template.html         ← Template de sucesso pós-checkout
+│   ├── sucesso.html                  ← Página de sucesso compilada
+│   ├── cancelado.template.html       ← Template de recusa/cancelamento
+│   └── cancelado.html                ← Página de cancelado compilada
 ├── admin/
 │   ├── index.html                    ← Painel de gestão de artigos
 │   ├── login.html
@@ -926,6 +936,63 @@ og:image: (imagem real do artigo do Supabase)
 - Todos os arquivos HTML de posts compilados em `blog/[slug]/index.html` (MODIFICADOS/NOVOS)
 - `assets/img/blog/card-hidratacao-na-corrida-de-rua-1785596363299.webp` (NOVO)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
+---
+
+## 💳 ESTRUTURA DO GATEWAY STRIPE (MANTIDO PRONTO)
+
+Para futuras campanhas ou novos produtos digitais (ex: "Meus Primeiros 5 km"), a infraestrutura da Stripe foi mantida pronta e integrada no repositório de faturamento:
+
+*   **Banco de Dados (`schema.prisma`)**:
+    *   Campos em `Student`: `stripeCustomerId` e `stripeSubscriptionId`.
+    *   Campos em `Invoice`: `stripePaymentIntentId` e `stripeInvoiceId`.
+*   **Serviços e Configurações (`ContasReceberKarina`)**:
+    *   `src/config/stripe.ts`: Inicialização do SDK `stripe` via `process.env.STRIPE_SECRET_KEY`.
+    *   `src/services/StripeService.ts`: Criação de Checkout Sessions da Stripe e verificação criptográfica das assinaturas de Webhook.
+    *   `src/controllers/StripeController.ts`: Processamento de requisições de checkout e eventos de webhook (`checkout.session.completed`, `invoice.payment_succeeded`, `customer.subscription.deleted`).
+*   **Modificações Globais**:
+    *   `app.ts` modificado para reter o buffer cru no middleware JSON (`req.rawBody`), necessário para a validação das assinaturas de eventos da Stripe.
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 05/08/2026 — INTEGRAÇÃO DO CHECKOUT TRANSPARENTE EFÍ BANK E RESEND ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Implementar cobrança por Cartão de Crédito transparente usando a API Efí Bank (Uso do SDK `payment-token-efi`).
+2. Criar a página de combos promocionais em `/planoscombo` com toggle dinâmico entre Mensal (direcionando para WhatsApp) e Trimestral/Semestral (abrindo modal de cartão de crédito).
+3. Gerar 3 (trimestral) ou 6 (semestral) faturas consecutivas no banco Supabase com status `PAID` (prevenindo cobranças extras manuais de alunos ativos).
+4. Sincronizar criação de novos usuários no portal do aluno e disparar e-mail de onboarding com login, senha provisória e link para cadastro no aplicativo **Treinus** através da API Resend.
+5. Manter suporte a modo mock/sandbox para testes offline locais sem consumo de créditos.
+
+**O que foi feito:**
+- **Backend (`ContasReceberKarina`)**:
+  - ✅ **Configurações**: Adicionadas as variáveis de ambiente `EFI_MOCK`, `EFI_PRODUCTION`, `EFI_CLIENT_ID`, `EFI_CLIENT_SECRET`, `EFI_ACCOUNT_ID`, `EFI_CERT_BASE64`, `RESEND_API_KEY`, `EMAIL_MOCK` em `.env`.
+  - ✅ **Serviço de E-mail (`EmailService.ts`)**: Implementado envio via `@resend/node` com modo mock que imprime o HTML formatado no console de desenvolvimento.
+  - ✅ **Serviço Efí Bank (`EfiService.ts`)**: Adicionado o método `createCreditCardCharge` para cobrança de cartão.
+  - ✅ **Controlador Efí (`EfiController.ts`)**: Cria/atualiza cadastro de alunos por e-mail, gera faturas parceladas com status `PAID` e envia e-mail de onboarding.
+  - ✅ **Rotas (`payment.routes.ts`)**: Registradas as rotas `/efi/config` e `/efi/checkout`.
+- **Frontend (`site-karina-franzin`)**:
+  - ✅ **Landing Page de Planos/Combos (`/planoscombo/index.template.html`)**: Página com toggle dinâmico e modal inline de cartão de crédito.
+  - ✅ **Integração do Tokenizador**: Tokeniza dados do cartão com a API Efí Bank.
+  - ✅ **Páginas de feedback**: Criadas `planoscombo/sucesso.template.html` e `planoscombo/cancelado.template.html`.
+  - ✅ **Compilador (`build-blog.js`)**: Compila os templates de planoscombo auto-injetando navbar e footer globais.
+
+### 📁 Arquivos criados/modificados:
+- **No repositório do site (`site-karina-franzin`)**:
+  - `planoscombo/index.template.html` (NOVO)
+  - `planoscombo/sucesso.template.html` (NOVO)
+  - `planoscombo/cancelado.template.html` (NOVO)
+  - `build-blog.js` (MODIFICADO)
+  - `sitemap.xml` (MODIFICADO)
+  - `walkthrough.md` (MODIFICADO)
+- **No repositório financeiro (`ContasReceberKarina`)**:
+  - `src/services/EmailService.ts` (NOVO)
+  - `src/controllers/EfiController.ts` (NOVO)
+  - `src/services/EfiService.ts` (MODIFICADO)
+  - `src/routes/payment.routes.ts` (MODIFICADO)
+  - `.env` (MODIFICADO)
 
 
 

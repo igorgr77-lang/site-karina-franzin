@@ -433,6 +433,22 @@ async function build() {
             console.log('💾 Página Lord Run VIP compilada com sucesso em: lord-run-vip/index.html');
         }
 
+        // 3.2 Planos Combo (planoscombo/*.html) - escura
+        const planosComboDir = path.join(__dirname, 'planoscombo');
+        if (fs.existsSync(planosComboDir)) {
+            const files = fs.readdirSync(planosComboDir);
+            for (const file of files) {
+                if (file.endsWith('.template.html')) {
+                    const templatePath = path.join(planosComboDir, file);
+                    const outputName = file.replace('.template.html', '.html');
+                    let htmlContent = fs.readFileSync(templatePath, 'utf8');
+                    htmlContent = compilePageComponents(htmlContent, false);
+                    fs.writeFileSync(path.join(planosComboDir, outputName), htmlContent, 'utf8');
+                    console.log(`💾 Página planoscombo/${outputName} compilada com sucesso.`);
+                }
+            }
+        }
+
         // 4. Compilar subpáginas de eventos individuais dinamicamente
         console.log('\n📅 Compilando subpáginas de eventos...');
         const subEventosDir = path.join(__dirname, 'eventos');
@@ -489,6 +505,12 @@ async function build() {
         <loc>https://karinafranzin.com.br/lord-run-vip/</loc>
         <lastmod>${hoje}</lastmod>
         <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/planoscombo/</loc>
+        <lastmod>${hoje}</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
 `;
