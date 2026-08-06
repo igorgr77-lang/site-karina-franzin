@@ -874,6 +874,12 @@
                     <!-- Informações do Combo Selecionado (Hidden) -->
                     <input type="hidden" id="form-combo-key" name="comboKey">
 
+                    <!-- Honeypot (Campos Armadilha contra Bots) -->
+                    <div style="display:none !important;" aria-hidden="true">
+                        <input type="text" id="honey_field_name" name="honey_field_name" tabindex="-1" autocomplete="off">
+                        <input type="email" id="honey_field_email" name="honey_field_email" tabindex="-1" autocomplete="off">
+                    </div>
+
                     <!-- Aba 1: Dados Pessoais -->
                     <div id="step-1" class="space-y-3">
                         <h4 class="text-sm font-bold text-gray-300 border-b border-white/5 pb-2">1. Dados do Aluno</h4>
@@ -1042,6 +1048,7 @@
 
         // Configurações do Backend
         let efiConfig = null;
+        let submitAttempts = [];
         fetch('https://api-contas-karina.onrender.com/api/payments/efi/config')
             .then(res => res.json())
             .then(data => {
@@ -1283,6 +1290,31 @@
             event.preventDefault();
             const errorDiv = document.getElementById('checkout-error');
             errorDiv.classList.add('hidden');
+
+            // 0. Anti-Brute-Force (Limite Local de Requisições)
+            const now = Date.now();
+            submitAttempts = submitAttempts.filter(time => now - time < 60000);
+            if (submitAttempts.length >= 3) {
+                errorDiv.textContent = 'Muitas tentativas de matrícula seguidas. Aguarde 1 minuto para tentar novamente.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+            submitAttempts.push(now);
+
+            // 0.1 Honeypot (Bloqueio de Bots)
+            const honeyName = document.getElementById('honey_field_name').value;
+            const honeyEmail = document.getElementById('honey_field_email').value;
+            if (honeyName || honeyEmail) {
+                console.warn('Bot detectado via honeypot.');
+                // Simular carregamento infinito para despistar o bot
+                document.getElementById('loading-overlay').classList.remove('hidden');
+                setTimeout(() => {
+                    document.getElementById('loading-overlay').classList.add('hidden');
+                    errorDiv.textContent = 'Erro de comunicação temporário. Tente novamente mais tarde.';
+                    errorDiv.classList.remove('hidden');
+                }, 4000);
+                return;
+            }
 
             if (!efiConfig || typeof EfiPay === 'undefined') {
                 errorDiv.textContent = 'Erro de inicialização do gateway de pagamento. Recarregue a página.';
