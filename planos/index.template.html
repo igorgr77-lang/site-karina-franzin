@@ -881,9 +881,16 @@
                             <label class="block text-xs text-gray-400 mb-1">Nome Completo</label>
                             <input type="text" id="cust-name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
                         </div>
-                        <div>
-                            <label class="block text-xs text-gray-400 mb-1">E-mail</label>
-                            <input type="email" id="cust-email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">E-mail</label>
+                                <input type="email" id="cust-email" required placeholder="seu@email.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400 mb-1">Confirmar E-mail</label>
+                                <input type="email" id="cust-email-confirm" required placeholder="seu@email.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                                <span id="email-match-error" class="hidden text-[10px] text-red-400 mt-1 block">Os e-mails informados não são idênticos.</span>
+                            </div>
                         </div>
                         <div class="grid grid-cols-2 gap-3">
                             <div>
@@ -1045,21 +1052,113 @@
             })
             .catch(err => console.error('Erro ao ler configurações da Efí no backend:', err));
 
-        // Evento de input do cartão para atualizar bandeira dinamicamente
-        document.getElementById('card-number').addEventListener('input', (e) => {
-            const num = e.target.value.replace(/\D/g, '');
-            if (num.length >= 4 && typeof EfiPay !== 'undefined') {
-                const brand = EfiPay.CreditCard.verifyCardBrand(num);
-                const badge = document.getElementById('card-brand-badge');
-                if (brand && brand !== 'undefined' && brand !== 'unsupported') {
-                    badge.textContent = brand.toUpperCase();
+        // Evento de input do cartão para atualizar bandeira dinamicamente e aplicar máscara
+        const cardNumberInput = document.getElementById('card-number');
+        if (cardNumberInput) {
+            cardNumberInput.addEventListener('input', (e) => {
+                let val = e.target.value.replace(/\D/g, '').substring(0, 16);
+                let matches = val.match(/\d{1,4}/g);
+                e.target.value = matches ? matches.join(' ') : val;
+
+                const num = val;
+                if (num.length >= 4 && typeof EfiPay !== 'undefined') {
+                    const brand = EfiPay.CreditCard.verifyCardBrand(num);
+                    const badge = document.getElementById('card-brand-badge');
+                    if (brand && brand !== 'undefined' && brand !== 'unsupported') {
+                        badge.textContent = brand.toUpperCase();
+                    } else {
+                        badge.textContent = '';
+                    }
                 } else {
-                    badge.textContent = '';
+                    document.getElementById('card-brand-badge').textContent = '';
                 }
-            } else {
-                document.getElementById('card-brand-badge').textContent = '';
-            }
+            });
+        }
+
+        // Helper para formatar/mascarar inputs
+        const maskInput = (elementId, maskFn) => {
+            const input = document.getElementById(elementId);
+            if (!input) return;
+            input.addEventListener('input', (e) => {
+                const start = e.target.selectionStart;
+                const prevLen = e.target.value.length;
+                e.target.value = maskFn(e.target.value);
+                const nextLen = e.target.value.length;
+                const diff = nextLen - prevLen;
+                if (diff !== 0 && start) {
+                    e.target.setSelectionRange(start + diff, start + diff);
+                }
+            });
+        };
+
+        // Máscara do CPF: 000.000.000-00
+        maskInput('cust-cpf', (val) => {
+            let clean = val.replace(/\D/g, '').substring(0, 11);
+            if (clean.length <= 3) return clean;
+            if (clean.length <= 6) return `${clean.substring(0, 3)}.${clean.substring(3)}`;
+            if (clean.length <= 9) return `${clean.substring(0, 3)}.${clean.substring(3, 6)}.${clean.substring(6)}`;
+            return `${clean.substring(0, 3)}.${clean.substring(3, 6)}.${clean.substring(6, 9)}-${clean.substring(9)}`;
         });
+
+        // Máscara do WhatsApp/Celular: (00) 00000-0000
+        maskInput('cust-phone', (val) => {
+            let clean = val.replace(/\D/g, '').substring(0, 11);
+            if (clean.length === 0) return '';
+            if (clean.length <= 2) return `(${clean}`;
+            if (clean.length <= 6) return `(${clean.substring(0, 2)}) ${clean.substring(2)}`;
+            if (clean.length <= 10) return `(${clean.substring(0, 2)}) ${clean.substring(2, 6)}-${clean.substring(6)}`;
+            return `(${clean.substring(0, 2)}) ${clean.substring(2, 7)}-${clean.substring(7)}`;
+        });
+
+        // Máscara do CEP: 00000-000
+        maskInput('addr-zipcode', (val) => {
+            let clean = val.replace(/\D/g, '').substring(0, 8);
+            if (clean.length <= 5) return clean;
+            return `${clean.substring(0, 5)}-${clean.substring(5)}`;
+        });
+
+        // Máscara de validade do cartão: MM/AAAA
+        maskInput('card-expiry', (val) => {
+            let clean = val.replace(/\D/g, '').substring(0, 6);
+            if (clean.length <= 2) return clean;
+            return `${clean.substring(0, 2)}/${clean.substring(2)}`;
+        });
+
+        // Máscara do CVV (máx 4 dígitos numéricos)
+        maskInput('card-cvv', (val) => {
+            return val.replace(/\D/g, '').substring(0, 4);
+        });
+
+        // Nome do Titular do Cartão: Apenas letras maiúsculas
+        maskInput('card-name', (val) => {
+            return val.toUpperCase().replace(/[^A-Z\s]/g, '');
+        });
+
+        // Validação de correspondência de e-mail em tempo real
+        const emailInput = document.getElementById('cust-email');
+        const emailConfirmInput = document.getElementById('cust-email-confirm');
+        const emailMatchError = document.getElementById('email-match-error');
+
+        function checkEmailMatch() {
+            if (!emailConfirmInput.value) {
+                emailMatchError.classList.add('hidden');
+                emailConfirmInput.classList.remove('border-red-500/50');
+                return;
+            }
+            if (emailInput.value !== emailConfirmInput.value) {
+                emailMatchError.classList.remove('hidden');
+                emailConfirmInput.classList.add('border-red-500/50');
+                emailConfirmInput.classList.remove('focus:border-karina-orange');
+            } else {
+                emailMatchError.classList.add('hidden');
+                emailConfirmInput.classList.remove('border-red-500/50');
+                emailConfirmInput.classList.add('focus:border-karina-orange');
+            }
+        }
+        if (emailInput && emailConfirmInput) {
+            emailInput.addEventListener('input', checkEmailMatch);
+            emailConfirmInput.addEventListener('input', checkEmailMatch);
+        }
 
         // Abrir Modal de Checkout
         function openCheckout(comboKey) {
@@ -1175,6 +1274,39 @@
                 return;
             }
 
+            // 1. Validar e-mails idênticos
+            const email = document.getElementById('cust-email').value.trim();
+            const emailConfirm = document.getElementById('cust-email-confirm').value.trim();
+            if (email !== emailConfirm) {
+                errorDiv.textContent = 'Os e-mails informados não são idênticos. Verifique a digitação.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            // 2. Validar CPF completo (11 dígitos)
+            const cpf = document.getElementById('cust-cpf').value.replace(/\D/g, '');
+            if (cpf.length !== 11) {
+                errorDiv.textContent = 'O CPF informado é inválido. Digite os 11 dígitos.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            // 3. Validar WhatsApp completo (10 ou 11 dígitos)
+            const phone = document.getElementById('cust-phone').value.replace(/\D/g, '');
+            if (phone.length < 10 || phone.length > 11) {
+                errorDiv.textContent = 'O número de celular deve conter o DDD com 10 ou 11 dígitos.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            // 4. Validar CEP (8 dígitos)
+            const zipcode = document.getElementById('addr-zipcode').value.replace(/\D/g, '');
+            if (zipcode.length !== 8) {
+                errorDiv.textContent = 'O CEP informado está incompleto.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
             // Exibir Loading
             document.getElementById('loading-overlay').classList.remove('hidden');
 
@@ -1183,6 +1315,7 @@
             const cardCvv = document.getElementById('card-cvv').value.trim();
             const expiry = document.getElementById('card-expiry').value.replace(/\D/g, '');
             
+            // 5. Validar Validade do Cartão
             if (expiry.length !== 6) {
                 document.getElementById('loading-overlay').classList.add('hidden');
                 errorDiv.textContent = 'Data de validade do cartão deve ser no formato MM/AAAA.';
@@ -1192,6 +1325,14 @@
 
             const expMonth = expiry.substring(0, 2);
             const expYear = expiry.substring(2);
+
+            // 6. Validar CVV
+            if (cardCvv.length < 3 || cardCvv.length > 4) {
+                document.getElementById('loading-overlay').classList.add('hidden');
+                errorDiv.textContent = 'O código de segurança (CVV) do cartão deve conter 3 ou 4 dígitos.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
 
             // Detectar bandeira usando o SDK
             const brand = EfiPay.CreditCard.verifyCardBrand(cardNumber);
