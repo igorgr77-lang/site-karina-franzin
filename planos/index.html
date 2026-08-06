@@ -1356,6 +1356,22 @@
             const interval = setInterval(updateTimer, 1000);
         }
 
+        // Algoritmo de Luhn para validação matemática de número de cartão de crédito (Mod 10)
+        function validateLuhn(cardNumber) {
+            let sum = 0;
+            let shouldDouble = false;
+            for (let i = cardNumber.length - 1; i >= 0; i--) {
+                let digit = parseInt(cardNumber.charAt(i), 10);
+                if (shouldDouble) {
+                    digit *= 2;
+                    if (digit > 9) digit -= 9;
+                }
+                sum += digit;
+                shouldDouble = !shouldDouble;
+            }
+            return (sum % 10) === 0;
+        }
+
         // Submit do Form
         function handleFormSubmit(event) {
             event.preventDefault();
@@ -1401,10 +1417,17 @@
                 return;
             }
 
+            // 5. Validar número do cartão via algoritmo de Luhn (Mod 10)
+            const cardNumber = document.getElementById('card-number').value.replace(/\D/g, '');
+            if (cardNumber.length < 13 || cardNumber.length > 19 || !validateLuhn(cardNumber)) {
+                errorDiv.textContent = 'O número do cartão de crédito digitado é inválido. Verifique a digitação.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
             // Exibir Loading
             document.getElementById('loading-overlay').classList.remove('hidden');
 
-            const cardNumber = document.getElementById('card-number').value.replace(/\D/g, '');
             const cardName = document.getElementById('card-name').value.trim();
             const cardCvv = document.getElementById('card-cvv').value.trim();
             const expiry = document.getElementById('card-expiry').value.replace(/\D/g, '');
