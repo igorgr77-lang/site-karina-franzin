@@ -955,6 +955,19 @@
                             <label class="block text-xs text-gray-400 mb-1">Nome Impresso no Cartão</label>
                             <input type="text" id="card-name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition uppercase">
                         </div>
+                        
+                        <!-- Checkbox para CPF do Titular diferente -->
+                        <div class="flex items-center gap-2 py-1">
+                            <input type="checkbox" id="different-holder-cpf" class="rounded bg-white/5 border border-white/10 text-karina-orange focus:ring-karina-orange focus:ring-offset-neutral-900 w-4 h-4 cursor-pointer">
+                            <label for="different-holder-cpf" class="text-xs text-gray-400 cursor-pointer select-none">O cartão é de outra pessoa (titular diferente)?</label>
+                        </div>
+
+                        <!-- Campo para CPF do Titular -->
+                        <div id="holder-cpf-wrapper" class="hidden transition-all duration-300">
+                            <label class="block text-xs text-gray-400 mb-1">CPF do Titular do Cartão</label>
+                            <input type="text" id="card-holder-cpf" placeholder="000.000.000-00" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                            <span id="holder-cpf-validation-error" class="hidden text-[10px] text-red-400 mt-1 block">CPF do titular inválido.</span>
+                        </div>
                         <div>
                             <label class="block text-xs text-gray-400 mb-1">Número do Cartão</label>
                             <div class="relative">
@@ -1207,6 +1220,103 @@
             });
         }
 
+        // Toggle de CPF do Titular do Cartão diferente do Aluno
+        const diffHolderCheckbox = document.getElementById('different-holder-cpf');
+        const holderCpfWrapper = document.getElementById('holder-cpf-wrapper');
+        const holderCpfInput = document.getElementById('card-holder-cpf');
+        const holderCpfErrorSpan = document.getElementById('holder-cpf-validation-error');
+
+        function isFormCpfStateValid() {
+            const studentCpf = cpfInput.value.replace(/\D/g, '');
+            if (studentCpf.length > 0 && !isValidCPF(studentCpf)) return false;
+
+            if (diffHolderCheckbox && diffHolderCheckbox.checked && holderCpfInput) {
+                const holderCpf = holderCpfInput.value.replace(/\D/g, '');
+                if (holderCpf.length > 0 && !isValidCPF(holderCpf)) return false;
+            }
+            return true;
+        }
+
+        if (diffHolderCheckbox && holderCpfWrapper && holderCpfInput) {
+            diffHolderCheckbox.addEventListener('change', () => {
+                if (diffHolderCheckbox.checked) {
+                    holderCpfWrapper.classList.remove('hidden');
+                    holderCpfInput.required = true;
+                    handleHolderCpfValidation();
+                } else {
+                    holderCpfWrapper.classList.add('hidden');
+                    holderCpfInput.required = false;
+                    holderCpfInput.value = '';
+                    holderCpfInput.classList.remove('border-red-400');
+                    if (holderCpfErrorSpan) holderCpfErrorSpan.classList.add('hidden');
+                    handleCpfValidation();
+                }
+            });
+        }
+
+        // Máscara do CPF do Titular do Cartão
+        maskInput('card-holder-cpf', (val) => {
+            let clean = val.replace(/\D/g, '').substring(0, 11);
+            if (clean.length <= 3) return clean;
+            if (clean.length <= 6) return `${clean.substring(0, 3)}.${clean.substring(3)}`;
+            if (clean.length <= 9) return `${clean.substring(0, 3)}.${clean.substring(3, 6)}.${clean.substring(6)}`;
+            return `${clean.substring(0, 3)}.${clean.substring(3, 6)}.${clean.substring(6, 9)}-${clean.substring(9)}`;
+        });
+
+        function handleHolderCpfValidation() {
+            if (!diffHolderCheckbox || !diffHolderCheckbox.checked) return true;
+            const val = holderCpfInput.value.replace(/\D/g, '');
+            const submitBtn = document.getElementById('submit-btn');
+
+            let isHolderCpfOk = true;
+            if (val.length > 0) {
+                if (isValidCPF(val)) {
+                    holderCpfInput.classList.remove('border-red-400');
+                    holderCpfInput.classList.add('focus:border-karina-orange');
+                    if (holderCpfErrorSpan) holderCpfErrorSpan.classList.add('hidden');
+                } else {
+                    holderCpfInput.classList.add('border-red-400');
+                    holderCpfInput.classList.remove('focus:border-karina-orange');
+                    if (holderCpfErrorSpan) holderCpfErrorSpan.classList.remove('hidden');
+                    isHolderCpfOk = false;
+                }
+            } else {
+                holderCpfInput.classList.remove('border-red-400');
+                if (holderCpfErrorSpan) holderCpfErrorSpan.classList.add('hidden');
+            }
+
+            if (submitBtn) {
+                const valCpfStudent = cpfInput.value.replace(/\D/g, '');
+                const isStudentCpfOk = valCpfStudent.length === 0 || isValidCPF(valCpfStudent);
+                if (isHolderCpfOk && isStudentCpfOk) {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-50', 'pointer-events-none');
+                } else {
+                    submitBtn.disabled = true;
+                    submitBtn.classList.add('opacity-50', 'pointer-events-none');
+                }
+            }
+
+            return isHolderCpfOk;
+        }
+
+        if (holderCpfInput && holderCpfErrorSpan) {
+            holderCpfInput.addEventListener('input', (e) => {
+                const val = e.target.value.replace(/\D/g, '');
+                if (val.length === 11) {
+                    handleHolderCpfValidation();
+                } else {
+                    holderCpfInput.classList.remove('border-red-400');
+                    holderCpfErrorSpan.classList.add('hidden');
+                    handleCpfValidation();
+                }
+            });
+
+            holderCpfInput.addEventListener('blur', () => {
+                handleHolderCpfValidation();
+            });
+        }
+
         // Máscara do WhatsApp/Celular: (00) 00000-0000
         maskInput('cust-phone', (val) => {
             let clean = val.replace(/\D/g, '').substring(0, 11);
@@ -1286,6 +1396,19 @@
                 cpfInput.classList.add('focus:border-karina-orange');
             }
             if (cpfErrorSpan) cpfErrorSpan.classList.add('hidden');
+
+            const diffHolderCheckbox = document.getElementById('different-holder-cpf');
+            const holderCpfWrapper = document.getElementById('holder-cpf-wrapper');
+            const holderCpfInput = document.getElementById('card-holder-cpf');
+            const holderCpfErrorSpan = document.getElementById('holder-cpf-validation-error');
+            if (diffHolderCheckbox) diffHolderCheckbox.checked = false;
+            if (holderCpfWrapper) holderCpfWrapper.classList.add('hidden');
+            if (holderCpfInput) {
+                holderCpfInput.required = false;
+                holderCpfInput.value = '';
+                holderCpfInput.classList.remove('border-red-400');
+            }
+            if (holderCpfErrorSpan) holderCpfErrorSpan.classList.add('hidden');
 
             const submitBtn = document.getElementById('submit-btn');
             if (submitBtn) {
@@ -1461,6 +1584,17 @@
                 return;
             }
 
+            // Validar CPF do Titular se for diferente
+            if (document.getElementById('different-holder-cpf').checked) {
+                const holderCpf = document.getElementById('card-holder-cpf').value.replace(/\D/g, '');
+                if (holderCpf.length !== 11 || !isValidCPF(holderCpf)) {
+                    errorDiv.textContent = 'O CPF do titular do cartão informado é inválido.';
+                    errorDiv.classList.remove('hidden');
+                    handleHolderCpfValidation();
+                    return;
+                }
+            }
+
             // 3. Validar WhatsApp completo (10 ou 11 dígitos)
             const phone = document.getElementById('cust-phone').value.replace(/\D/g, '');
             if (phone.length < 10 || phone.length > 11) {
@@ -1534,7 +1668,9 @@
                             expirationMonth: expMonth,
                             expirationYear: expYear,
                             holderName: cardName,
-                            holderDocument: document.getElementById('cust-cpf').value.replace(/\D/g, ''),
+                            holderDocument: document.getElementById('different-holder-cpf').checked
+                                ? document.getElementById('card-holder-cpf').value.replace(/\D/g, '')
+                                : document.getElementById('cust-cpf').value.replace(/\D/g, ''),
                             reuse: false
                         })
                         .getPaymentToken();
