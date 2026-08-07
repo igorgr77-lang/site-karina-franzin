@@ -1040,6 +1040,29 @@
                                 <!-- Preenchido dinamicamente via JS -->
                             </select>
                         </div>
+
+                        <!-- Resumo do Pedido (Order Summary) -->
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 mt-3 space-y-2.5">
+                            <h5 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center gap-1.5">
+                                <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-karina-orange"></i>
+                                <span>Resumo do Pedido</span>
+                            </h5>
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-gray-400" id="summary-plan-name">Plano Trimestral</span>
+                                <span class="text-white font-bold" id="summary-plan-total">R$ 0,00</span>
+                            </div>
+                            <div class="flex justify-between items-center text-xs border-t border-white/5 pt-2.5">
+                                <span class="text-gray-400">Pagamento Parcelado</span>
+                                <span class="text-karina-orange font-bold" id="summary-payment-installment">6x de R$ 0,00 sem juros</span>
+                            </div>
+                            <div class="flex justify-between items-center text-[10px] text-green-400 border-t border-white/5 pt-2.5">
+                                <div class="flex items-center gap-1">
+                                    <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                                    <span>Garantia de 7 dias incondicional</span>
+                                </div>
+                                <span class="text-gray-500">Sem taxas extras</span>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Mensagem de Erro de Checkout -->
@@ -1076,11 +1099,7 @@
         </div>
     </div>
 
-    <!-- ===== SPINNER DE LOADING GERAL ===== -->
-    <div id="loading-overlay" class="fixed inset-0 z-[3000] bg-black/80 backdrop-blur-md flex flex-col justify-center items-center gap-4 hidden">
-        <div class="w-12 h-12 border-4 border-karina-orange border-t-transparent rounded-full animate-spin"></div>
-        <p class="text-white font-bold tracking-wide text-sm">Processando matrícula segura... Não feche esta página</p>
-    </div>
+    <!-- O overlay de loading do HTML pode ser omitido ou mantido apenas como fallback -->
 
     <footer class="footer">
     <div class="container">
@@ -1167,6 +1186,32 @@
             }
 
             return error.message || error.error_description || error;
+        }
+
+        // Controla o estado de carregamento (loading) inline no próprio botão de enviar
+        function setSubmitButtonLoading(isLoading) {
+            const btn = document.getElementById('submit-btn');
+            if (!btn) return;
+
+            if (isLoading) {
+                btn.disabled = true;
+                btn.classList.add('opacity-75', 'pointer-events-none');
+                btn.innerHTML = `
+                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>PROCESSANDO PAGAMENTO SEGURO...</span>
+                `;
+            } else {
+                btn.disabled = false;
+                btn.classList.remove('opacity-75', 'pointer-events-none');
+                btn.innerHTML = `
+                    <i data-lucide="lock" class="w-4 h-4"></i>
+                    <span>FINALIZAR MATRÍCULA</span>
+                `;
+                if (window.lucide) lucide.createIcons();
+            }
         }
 
         // Validador dinâmico de validade de cartão (MM/AAAA)
@@ -1654,9 +1699,9 @@
             return val.replace(/\D/g, '').substring(0, 4);
         });
 
-        // Nome do Titular do Cartão: Apenas letras maiúsculas
+        // Nome do Titular do Cartão: Apenas letras maiúsculas, sem números ou múltiplos espaços consecutivos
         maskInput('card-name', (val) => {
-            return val.toUpperCase().replace(/[^A-Z\s]/g, '');
+            return val.toUpperCase().replace(/[^A-Z\s]/g, '').replace(/\s{2,}/g, ' ');
         });
 
         // Validação de correspondência de e-mail em tempo real
@@ -1757,6 +1802,21 @@
                 if (i === plan.months) opt.selected = true; // Pré-seleciona o máximo de parcelas
                 installmentsSelect.appendChild(opt);
             }
+
+            // Atualizar Resumo de Compra Inicial
+            document.getElementById('summary-plan-name').textContent = plan.name;
+            document.getElementById('summary-plan-total').textContent = `R$ ${plan.total.toFixed(2)}`;
+            document.getElementById('summary-payment-installment').textContent = `${plan.months}x de R$ ${plan.monthly.toFixed(2)} sem juros`;
+
+            // Listener para atualizar o resumo dinamicamente quando a parcela mudar
+            installmentsSelect.addEventListener('change', () => {
+                const selectedInstallment = Number(installmentsSelect.value);
+                const valInstallment = plan.total / selectedInstallment;
+                document.getElementById('summary-payment-installment').textContent = `${selectedInstallment}x de R$ ${valInstallment.toFixed(2)} sem juros`;
+            });
+
+            // Recria ícones Lucide no resumo (para shopping-bag e shield-check)
+            if (window.lucide) lucide.createIcons();
 
             document.getElementById('checkout-error').classList.add('hidden');
             document.getElementById('checkout-error').textContent = '';
@@ -1876,10 +1936,10 @@
             const honeyEmail = document.getElementById('honey_field_email').value;
             if (honeyName || honeyEmail) {
                 console.warn('Bot detectado via honeypot.');
-                // Simular carregamento infinito para despistar o bot
-                document.getElementById('loading-overlay').classList.remove('hidden');
+                // Simular carregamento interno para despistar o bot
+                setSubmitButtonLoading(true);
                 setTimeout(() => {
-                    document.getElementById('loading-overlay').classList.add('hidden');
+                    setSubmitButtonLoading(false);
                     errorDiv.textContent = 'Erro de comunicação temporário. Tente novamente mais tarde.';
                     errorDiv.classList.remove('hidden');
                 }, 4000);
@@ -1954,8 +2014,8 @@
                 return;
             }
 
-            // Exibir Loading
-            document.getElementById('loading-overlay').classList.remove('hidden');
+            // Exibir Loading inline no botão
+            setSubmitButtonLoading(true);
 
             const cardName = document.getElementById('card-name').value.trim();
             const cardCvv = document.getElementById('card-cvv').value.trim();
@@ -1964,7 +2024,7 @@
             // 5. Validar Validade do Cartão (matemático e futuro)
             const cardExpiryVal = document.getElementById('card-expiry').value;
             if (!isValidExpiry(cardExpiryVal)) {
-                document.getElementById('loading-overlay').classList.add('hidden');
+                setSubmitButtonLoading(false);
                 errorDiv.textContent = 'A data de validade do cartão inserida é inválida ou expirou.';
                 errorDiv.classList.remove('hidden');
                 handleExpiryValidation();
@@ -1976,7 +2036,7 @@
 
             // 6. Validar CVV
             if (cardCvv.length < 3 || cardCvv.length > 4) {
-                document.getElementById('loading-overlay').classList.add('hidden');
+                setSubmitButtonLoading(false);
                 errorDiv.textContent = 'O código de segurança (CVV) do cartão deve conter 3 ou 4 dígitos.';
                 errorDiv.classList.remove('hidden');
                 return;
@@ -1989,7 +2049,7 @@
                     .verifyCardBrand()
                 .then(brand => {
                     if (!brand || brand === 'undefined' || brand === 'unsupported') {
-                        document.getElementById('loading-overlay').classList.add('hidden');
+                        setSubmitButtonLoading(false);
                         errorDiv.textContent = 'Bandeira do cartão não identificada ou não suportada.';
                         errorDiv.classList.remove('hidden');
                         return null;
@@ -2051,7 +2111,7 @@
                 })
                 .then(data => {
                     if (!data) return;
-                    document.getElementById('loading-overlay').classList.add('hidden');
+                    setSubmitButtonLoading(false);
                     if (data.success) {
                         // Sucesso! Redireciona
                         window.location.href = '/planos/sucesso.html';
@@ -2063,13 +2123,13 @@
                 })
                 .catch(err => {
                     console.error(err);
-                    document.getElementById('loading-overlay').classList.add('hidden');
+                    setSubmitButtonLoading(false);
                     errorDiv.textContent = translateCheckoutError(err);
                     errorDiv.classList.remove('hidden');
                 });
             } catch (e) {
                 console.error(e);
-                document.getElementById('loading-overlay').classList.add('hidden');
+                setSubmitButtonLoading(false);
                 errorDiv.textContent = translateCheckoutError(e);
                 errorDiv.classList.remove('hidden');
             }
