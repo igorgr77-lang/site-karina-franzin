@@ -907,6 +907,7 @@
                             <div>
                                 <label class="block text-xs text-gray-400 mb-1">Data Nascimento</label>
                                 <input type="date" id="cust-birth" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                                <span id="birth-validation-error" class="hidden text-[10px] text-red-400 mt-1 block">Idade mínima de 15 anos para a assessoria.</span>
                             </div>
                         </div>
                         <div>
@@ -979,6 +980,7 @@
                             <div class="col-span-2">
                                 <label class="block text-xs text-gray-400 mb-1">Validade (MM/AAAA)</label>
                                 <input type="text" id="card-expiry" required placeholder="MM/AAAA" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition text-center">
+                                <span id="card-expiry-error" class="hidden text-[10px] text-red-400 mt-1 block text-left">Validade inválida.</span>
                             </div>
                             <div>
                                 <label class="block text-xs text-gray-400 mb-1">CVV</label>
@@ -1006,12 +1008,12 @@
                 <!-- Selos de Segurança e Confiança -->
                 <div class="mt-6 pt-6 border-t border-white/5 flex flex-col items-center gap-4 text-center">
                     <!-- Ícones de Cartões de Crédito Aceitos -->
-                    <div class="flex items-center justify-center gap-2.5 opacity-60">
-                        <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/visa.svg" alt="Visa" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
-                        <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/mastercard.svg" alt="Mastercard" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
-                        <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/elo.svg" alt="Elo" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
-                        <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/american-express.svg" alt="Amex" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
-                        <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/hipercard.svg" alt="Hipercard" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
+                    <div class="flex items-center justify-center gap-2.5" id="brand-logos-container">
+                        <img id="brand-logo-visa" src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/visa.svg" alt="Visa" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
+                        <img id="brand-logo-mastercard" src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/mastercard.svg" alt="Mastercard" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
+                        <img id="brand-logo-elo" src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/elo.svg" alt="Elo" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
+                        <img id="brand-logo-amex" src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/american-express.svg" alt="Amex" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
+                        <img id="brand-logo-hipercard" src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/hipercard.svg" alt="Hipercard" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
                     </div>
                     
                     <!-- Texto e Selo de Ambiente Seguro -->
@@ -1036,6 +1038,117 @@
     <!-- FOOTER_PLACEHOLDER -->
 
     <script>
+        // Tradutor de Erros do Gateway (Efí / Cartão de Crédito)
+        function translateCheckoutError(error) {
+            if (!error) return 'Houve um problema ao processar seu pagamento. Verifique seus dados.';
+            
+            const msg = String(error.message || error.error_description || error).toLowerCase();
+            
+            if (msg.includes('insufficient_funds') || msg.includes('saldo insuficiente') || msg.includes('funds')) {
+                return 'Saldo insuficiente no cartão. Tente usar outro cartão ou parcelar em menos vezes.';
+            }
+            if (msg.includes('expired_card') || msg.includes('cartão expirado') || msg.includes('expired')) {
+                return 'Este cartão está expirado. Verifique os dados inseridos ou use outro cartão.';
+            }
+            if (msg.includes('blocked_card') || msg.includes('cartão bloqueado') || msg.includes('blocked')) {
+                return 'Cartão bloqueado pelo banco emissor. Por favor, entre em contato com seu banco ou use outro cartão.';
+            }
+            if (msg.includes('refused') || msg.includes('recusad') || msg.includes('decline') || msg.includes('cancelada')) {
+                return 'Transação recusada pela operadora do cartão. Entre em contato com seu banco ou tente outro cartão.';
+            }
+            if (msg.includes('cvv') || msg.includes('security_code') || msg.includes('código de segurança')) {
+                return 'Código de segurança (CVV) inválido. Verifique a digitação.';
+            }
+            if (msg.includes('validade') || msg.includes('expiry') || msg.includes('expiration')) {
+                return 'Data de validade do cartão inválida ou no passado.';
+            }
+            if (msg.includes('cpf') || msg.includes('document') || msg.includes('documento')) {
+                return 'CPF do titular do cartão inválido ou incompatível.';
+            }
+            if (msg.includes('timeout') || msg.includes('tempo limite')) {
+                return 'Tempo de resposta da operadora esgotado. Tente novamente mais tarde.';
+            }
+            if (msg.includes('inativo') || msg.includes('inactive')) {
+                return 'Erro interno do gateway de pagamentos. Entre em contato com o suporte.';
+            }
+
+            return error.message || error.error_description || error;
+        }
+
+        // Validador dinâmico de validade de cartão (MM/AAAA)
+        function isValidExpiry(expiry) {
+            const clean = expiry.replace(/\D/g, '');
+            if (clean.length !== 6) return false;
+            const month = parseInt(clean.substring(0, 2), 10);
+            const year = parseInt(clean.substring(2), 10);
+
+            if (month < 1 || month > 12) return false;
+
+            const now = new Date();
+            const currentMonth = now.getMonth() + 1; // 1-12
+            const currentYear = now.getFullYear(); // YYYY
+
+            if (year < currentYear) return false;
+            if (year === currentYear && month < currentMonth) return false;
+
+            return true;
+        }
+
+        // Validador dinâmico de idade mínima (15 anos)
+        function isValidBirthDate(birthString) {
+            if (!birthString) return false;
+            const birthDate = new Date(birthString);
+            if (isNaN(birthDate.getTime())) return false;
+
+            const today = new Date();
+            if (birthDate.getFullYear() < 1900 || birthDate > today) return false;
+
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            return age >= 15;
+        }
+
+        // Destaca a bandeira correspondente nos logotipos de cartão
+        function highlightBrandLogo(brandName) {
+            const logos = {
+                'visa': document.getElementById('brand-logo-visa'),
+                'mastercard': document.getElementById('brand-logo-mastercard'),
+                'elo': document.getElementById('brand-logo-elo'),
+                'amex': document.getElementById('brand-logo-amex'),
+                'american-express': document.getElementById('brand-logo-amex'),
+                'hipercard': document.getElementById('brand-logo-hipercard')
+            };
+
+            // Reseta todas
+            Object.values(logos).forEach(img => {
+                if (img) {
+                    img.classList.add('grayscale');
+                    img.classList.remove('grayscale-0', 'scale-110');
+                    img.style.opacity = '0.3';
+                }
+            });
+
+            if (!brandName) {
+                // Se nenhuma identificada, volta todas para opacidade de standby
+                Object.values(logos).forEach(img => {
+                    if (img) img.style.opacity = '0.6';
+                });
+                return;
+            }
+
+            // Destaca a correspondente
+            const activeImg = logos[brandName.toLowerCase()];
+            if (activeImg) {
+                activeImg.classList.remove('grayscale');
+                activeImg.classList.add('grayscale-0', 'scale-110');
+                activeImg.style.opacity = '1';
+            }
+        }
+
         // Configurações e Preços dos Combos
         const PLANS_DATA = {
             'bronze_trimestral': { name: 'Bronze Trimestral (3 Meses)', total: 315.00, monthly: 105.00, months: 3 },
@@ -1094,8 +1207,10 @@
                             const badge = document.getElementById('card-brand-badge');
                             if (brand && brand !== 'undefined' && brand !== 'unsupported') {
                                 badge.textContent = String(brand).toUpperCase();
+                                highlightBrandLogo(brand);
                             } else {
                                 badge.textContent = '';
+                                highlightBrandLogo(null);
                             }
                         })
                         .catch(err => {
@@ -1217,6 +1332,90 @@
 
             cpfInput.addEventListener('blur', () => {
                 handleCpfValidation();
+            });
+        }
+
+        // Máscara e Validação de Validade do Cartão (MM/AAAA)
+        maskInput('card-expiry', (val) => {
+            let clean = val.replace(/\D/g, '').substring(0, 6);
+            if (clean.length <= 2) return clean;
+            return `${clean.substring(0, 2)}/${clean.substring(2)}`;
+        });
+
+        const expiryInput = document.getElementById('card-expiry');
+        const expiryErrorSpan = document.getElementById('card-expiry-error');
+
+        function handleExpiryValidation() {
+            if (!expiryInput) return true;
+            const val = expiryInput.value.replace(/\D/g, '');
+            if (val.length === 0) {
+                expiryInput.classList.remove('border-red-400');
+                if (expiryErrorSpan) expiryErrorSpan.classList.add('hidden');
+                return true;
+            }
+
+            if (isValidExpiry(expiryInput.value)) {
+                expiryInput.classList.remove('border-red-400');
+                expiryInput.classList.add('focus:border-karina-orange');
+                if (expiryErrorSpan) expiryErrorSpan.classList.add('hidden');
+                return true;
+            } else {
+                expiryInput.classList.add('border-red-400');
+                expiryInput.classList.remove('focus:border-karina-orange');
+                if (expiryErrorSpan) expiryErrorSpan.classList.remove('hidden');
+                return false;
+            }
+        }
+
+        if (expiryInput && expiryErrorSpan) {
+            expiryInput.addEventListener('input', (e) => {
+                const val = e.target.value.replace(/\D/g, '');
+                if (val.length === 6) {
+                    handleExpiryValidation();
+                } else {
+                    expiryInput.classList.remove('border-red-400');
+                    expiryErrorSpan.classList.add('hidden');
+                }
+            });
+
+            expiryInput.addEventListener('blur', () => {
+                handleExpiryValidation();
+            });
+        }
+
+        // Validação de Data de Nascimento e Idade Mínima
+        const birthInput = document.getElementById('cust-birth');
+        const birthErrorSpan = document.getElementById('birth-validation-error');
+
+        function handleBirthValidation() {
+            if (!birthInput) return true;
+            const val = birthInput.value;
+            if (!val) {
+                birthInput.classList.remove('border-red-400');
+                if (birthErrorSpan) birthErrorSpan.classList.add('hidden');
+                return true;
+            }
+
+            if (isValidBirthDate(val)) {
+                birthInput.classList.remove('border-red-400');
+                birthInput.classList.add('focus:border-karina-orange');
+                if (birthErrorSpan) birthErrorSpan.classList.add('hidden');
+                return true;
+            } else {
+                birthInput.classList.add('border-red-400');
+                birthInput.classList.remove('focus:border-karina-orange');
+                if (birthErrorSpan) birthErrorSpan.classList.remove('hidden');
+                return false;
+            }
+        }
+
+        if (birthInput && birthErrorSpan) {
+            birthInput.addEventListener('change', () => {
+                handleBirthValidation();
+            });
+
+            birthInput.addEventListener('blur', () => {
+                handleBirthValidation();
             });
         }
 
@@ -1416,6 +1615,24 @@
                 submitBtn.classList.remove('opacity-50', 'pointer-events-none');
             }
 
+            const expiryInput = document.getElementById('card-expiry');
+            const expiryErrorSpan = document.getElementById('card-expiry-error');
+            if (expiryInput) {
+                expiryInput.classList.remove('border-red-400');
+                expiryInput.classList.add('focus:border-karina-orange');
+            }
+            if (expiryErrorSpan) expiryErrorSpan.classList.add('hidden');
+
+            const birthInput = document.getElementById('cust-birth');
+            const birthErrorSpan = document.getElementById('birth-validation-error');
+            if (birthInput) {
+                birthInput.classList.remove('border-red-400');
+                birthInput.classList.add('focus:border-karina-orange');
+            }
+            if (birthErrorSpan) birthErrorSpan.classList.add('hidden');
+
+            highlightBrandLogo(null);
+
             document.getElementById('form-combo-key').value = comboKey;
             document.getElementById('checkout-plan-name').textContent = plan.name;
             document.getElementById('checkout-plan-price').textContent = `Total: R$ ${plan.total.toFixed(2)} (${plan.months}x de R$ ${plan.monthly.toFixed(2)})`;
@@ -1575,6 +1792,15 @@
                 return;
             }
 
+            // Validar Data de Nascimento e Idade Mínima (15 anos)
+            const birthVal = document.getElementById('cust-birth').value;
+            if (!isValidBirthDate(birthVal)) {
+                errorDiv.textContent = 'A idade mínima do aluno para assinar a assessoria é de 15 anos.';
+                errorDiv.classList.remove('hidden');
+                handleBirthValidation();
+                return;
+            }
+
             // 2. Validar CPF completo (11 dígitos) e matemático
             const cpf = document.getElementById('cust-cpf').value.replace(/\D/g, '');
             if (cpf.length !== 11 || !isValidCPF(cpf)) {
@@ -1626,11 +1852,13 @@
             const cardCvv = document.getElementById('card-cvv').value.trim();
             const expiry = document.getElementById('card-expiry').value.replace(/\D/g, '');
             
-            // 5. Validar Validade do Cartão
-            if (expiry.length !== 6) {
+            // 5. Validar Validade do Cartão (matemático e futuro)
+            const cardExpiryVal = document.getElementById('card-expiry').value;
+            if (!isValidExpiry(cardExpiryVal)) {
                 document.getElementById('loading-overlay').classList.add('hidden');
-                errorDiv.textContent = 'Data de validade do cartão deve ser no formato MM/AAAA.';
+                errorDiv.textContent = 'A data de validade do cartão inserida é inválida ou expirou.';
                 errorDiv.classList.remove('hidden');
+                handleExpiryValidation();
                 return;
             }
 
@@ -1720,20 +1948,20 @@
                         window.location.href = '/planos/sucesso.html';
                     } else {
                         // Erro retornado pelo controller
-                        errorDiv.textContent = data.message || 'Houve um problema ao processar seu pagamento. Verifique seus dados.';
+                        errorDiv.textContent = translateCheckoutError(data.message);
                         errorDiv.classList.remove('hidden');
                     }
                 })
                 .catch(err => {
                     console.error(err);
                     document.getElementById('loading-overlay').classList.add('hidden');
-                    errorDiv.textContent = 'Erro de comunicação com o servidor de pagamentos ou cartão inválido.';
+                    errorDiv.textContent = translateCheckoutError(err);
                     errorDiv.classList.remove('hidden');
                 });
             } catch (e) {
                 console.error(e);
                 document.getElementById('loading-overlay').classList.add('hidden');
-                errorDiv.textContent = 'Erro interno ao processar dados do cartão. Por favor, revise as informações digitadas.';
+                errorDiv.textContent = translateCheckoutError(e);
                 errorDiv.classList.remove('hidden');
             }
         }
