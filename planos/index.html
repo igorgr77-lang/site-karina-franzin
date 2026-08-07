@@ -1139,7 +1139,7 @@
             const msg = String(error.message || error.error_description || error).toLowerCase();
             
             if (msg.includes('insufficient_funds') || msg.includes('saldo insuficiente') || msg.includes('funds')) {
-                return 'Saldo insuficiente no cartão. Tente usar outro cartão ou parcelar em menos vezes.';
+                return 'Saldo insuficiente no cartão. Tente usar outro cartão.';
             }
             if (msg.includes('expired_card') || msg.includes('cartão expirado') || msg.includes('expired')) {
                 return 'Este cartão está expirado. Verifique os dados inseridos ou use outro cartão.';
