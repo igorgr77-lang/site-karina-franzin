@@ -1047,9 +1047,13 @@
         }
 
         // Configurações do Backend
+        const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:3000'
+            : 'https://api-contas-karina.onrender.com';
+
         let efiConfig = null;
         let submitAttempts = [];
-        fetch('https://api-contas-karina.onrender.com/api/payments/efi/config')
+        fetch(`${API_BASE_URL}/api/payments/efi/config`)
             .then(res => res.json())
             .then(data => {
                 if (data.success) {
@@ -1439,7 +1443,7 @@
                         }
                     };
 
-                    return fetch('https://api-contas-karina.onrender.com/api/payments/efi/checkout', {
+                    return fetch(`${API_BASE_URL}/api/payments/efi/checkout`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
