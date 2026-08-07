@@ -949,6 +949,7 @@
                             <div>
                                 <label class="block text-xs text-gray-400 mb-1">CPF</label>
                                 <input type="text" id="cust-cpf" required placeholder="000.000.000-00" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                                <span id="cpf-validation-error" class="hidden text-[10px] text-red-400 mt-1 block">CPF inválido.</span>
                             </div>
                             <div>
                                 <label class="block text-xs text-gray-400 mb-1">Data Nascimento</label>
@@ -1213,6 +1214,74 @@
             return `${clean.substring(0, 3)}.${clean.substring(3, 6)}.${clean.substring(6, 9)}-${clean.substring(9)}`;
         });
 
+        // Validação Matemática de CPF
+        function isValidCPF(cpf) {
+            cpf = cpf.replace(/\D/g, '');
+            if (cpf.length !== 11) return false;
+            if (/^(\d)\1{10}$/.test(cpf)) return false; // Evita CPFs com todos os dígitos iguais (ex: 111.111.111-11)
+
+            let sum = 0;
+            let remainder;
+
+            for (let i = 1; i <= 9; i++) {
+                sum += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+            }
+            remainder = (sum * 10) % 11;
+            if (remainder === 10 || remainder === 11) remainder = 0;
+            if (remainder !== parseInt(cpf.substring(9, 10))) return false;
+
+            sum = 0;
+            for (let i = 1; i <= 10; i++) {
+                sum += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+            }
+            remainder = (sum * 10) % 11;
+            if (remainder === 10 || remainder === 11) remainder = 0;
+            if (remainder !== parseInt(cpf.substring(10, 11))) return false;
+
+            return true;
+        }
+
+        const cpfInput = document.getElementById('cust-cpf');
+        const cpfErrorSpan = document.getElementById('cpf-validation-error');
+        
+        function handleCpfValidation() {
+            const val = cpfInput.value.replace(/\D/g, '');
+            if (val.length === 0) {
+                cpfInput.classList.remove('border-red-400');
+                cpfErrorSpan.classList.add('hidden');
+                return true;
+            }
+            
+            if (isValidCPF(val)) {
+                cpfInput.classList.remove('border-red-400');
+                cpfInput.classList.add('focus:border-karina-orange');
+                cpfErrorSpan.classList.add('hidden');
+                return true;
+            } else {
+                cpfInput.classList.add('border-red-400');
+                cpfInput.classList.remove('focus:border-karina-orange');
+                cpfErrorSpan.classList.remove('hidden');
+                return false;
+            }
+        }
+
+        if (cpfInput && cpfErrorSpan) {
+            cpfInput.addEventListener('input', (e) => {
+                const val = e.target.value.replace(/\D/g, '');
+                if (val.length === 11) {
+                    handleCpfValidation();
+                } else {
+                    // Limpa o estado de erro enquanto o usuário digita (não completou 11)
+                    cpfInput.classList.remove('border-red-400');
+                    cpfErrorSpan.classList.add('hidden');
+                }
+            });
+
+            cpfInput.addEventListener('blur', () => {
+                handleCpfValidation();
+            });
+        }
+
         // Máscara do WhatsApp/Celular: (00) 00000-0000
         maskInput('cust-phone', (val) => {
             let clean = val.replace(/\D/g, '').substring(0, 11);
@@ -1437,11 +1506,12 @@
                 return;
             }
 
-            // 2. Validar CPF completo (11 dígitos)
+            // 2. Validar CPF completo (11 dígitos) e matemático
             const cpf = document.getElementById('cust-cpf').value.replace(/\D/g, '');
-            if (cpf.length !== 11) {
-                errorDiv.textContent = 'O CPF informado é inválido. Digite os 11 dígitos.';
+            if (cpf.length !== 11 || !isValidCPF(cpf)) {
+                errorDiv.textContent = 'O CPF informado é inválido. Verifique os números digitados.';
                 errorDiv.classList.remove('hidden');
+                handleCpfValidation();
                 return;
             }
 
