@@ -1280,17 +1280,37 @@
         const cpfInput = document.getElementById('cust-cpf');
         const cpfErrorSpan = document.getElementById('cpf-validation-error');
         
+        // Função unificada para sincronizar o estado (desativar/ativar) do botão submit
+        function updateSubmitButtonState() {
+            const submitBtn = document.getElementById('submit-btn');
+            if (!submitBtn) return;
+
+            const isCpfOk = isFormCpfStateValid();
+
+            const birthInput = document.getElementById('cust-birth');
+            const birthVal = birthInput ? birthInput.value : '';
+            const isBirthOk = isValidBirthDate(birthVal);
+
+            const expiryInput = document.getElementById('card-expiry');
+            const expiryVal = expiryInput ? expiryInput.value : '';
+            const isExpiryOk = expiryVal.length === 0 || isValidExpiry(expiryVal);
+
+            if (isCpfOk && isBirthOk && isExpiryOk) {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-50', 'pointer-events-none');
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.classList.add('opacity-50', 'pointer-events-none');
+            }
+        }
+
         function handleCpfValidation() {
             const val = cpfInput.value.replace(/\D/g, '');
-            const submitBtn = document.getElementById('submit-btn');
 
             if (val.length === 0) {
                 cpfInput.classList.remove('border-red-400');
                 cpfErrorSpan.classList.add('hidden');
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-50', 'pointer-events-none');
-                }
+                updateSubmitButtonState();
                 return true;
             }
             
@@ -1298,19 +1318,13 @@
                 cpfInput.classList.remove('border-red-400');
                 cpfInput.classList.add('focus:border-karina-orange');
                 cpfErrorSpan.classList.add('hidden');
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-50', 'pointer-events-none');
-                }
+                updateSubmitButtonState();
                 return true;
             } else {
                 cpfInput.classList.add('border-red-400');
                 cpfInput.classList.remove('focus:border-karina-orange');
                 cpfErrorSpan.classList.remove('hidden');
-                if (submitBtn) {
-                    submitBtn.disabled = true;
-                    submitBtn.classList.add('opacity-50', 'pointer-events-none');
-                }
+                updateSubmitButtonState();
                 return false;
             }
         }
@@ -1318,17 +1332,13 @@
         if (cpfInput && cpfErrorSpan) {
             cpfInput.addEventListener('input', (e) => {
                 const val = e.target.value.replace(/\D/g, '');
-                const submitBtn = document.getElementById('submit-btn');
                 if (val.length === 11) {
                     handleCpfValidation();
                 } else {
                     // Limpa o estado de erro enquanto o usuário digita (não completou 11)
                     cpfInput.classList.remove('border-red-400');
                     cpfErrorSpan.classList.add('hidden');
-                    if (submitBtn) {
-                        submitBtn.disabled = false;
-                        submitBtn.classList.remove('opacity-50', 'pointer-events-none');
-                    }
+                    updateSubmitButtonState();
                 }
             });
 
@@ -1353,6 +1363,7 @@
             if (val.length === 0) {
                 expiryInput.classList.remove('border-red-400');
                 if (expiryErrorSpan) expiryErrorSpan.classList.add('hidden');
+                updateSubmitButtonState();
                 return true;
             }
 
@@ -1360,11 +1371,13 @@
                 expiryInput.classList.remove('border-red-400');
                 expiryInput.classList.add('focus:border-karina-orange');
                 if (expiryErrorSpan) expiryErrorSpan.classList.add('hidden');
+                updateSubmitButtonState();
                 return true;
             } else {
                 expiryInput.classList.add('border-red-400');
                 expiryInput.classList.remove('focus:border-karina-orange');
                 if (expiryErrorSpan) expiryErrorSpan.classList.remove('hidden');
+                updateSubmitButtonState();
                 return false;
             }
         }
@@ -1377,6 +1390,7 @@
                 } else {
                     expiryInput.classList.remove('border-red-400');
                     expiryErrorSpan.classList.add('hidden');
+                    updateSubmitButtonState();
                 }
             });
 
@@ -1395,6 +1409,7 @@
             if (!val) {
                 birthInput.classList.remove('border-red-400');
                 if (birthErrorSpan) birthErrorSpan.classList.add('hidden');
+                updateSubmitButtonState();
                 return true;
             }
 
@@ -1402,20 +1417,30 @@
                 birthInput.classList.remove('border-red-400');
                 birthInput.classList.add('focus:border-karina-orange');
                 if (birthErrorSpan) birthErrorSpan.classList.add('hidden');
+                updateSubmitButtonState();
                 return true;
             } else {
                 birthInput.classList.add('border-red-400');
                 birthInput.classList.remove('focus:border-karina-orange');
                 if (birthErrorSpan) birthErrorSpan.classList.remove('hidden');
+                updateSubmitButtonState();
                 return false;
             }
         }
 
         if (birthInput && birthErrorSpan) {
-            birthInput.addEventListener('change', () => {
-                handleBirthValidation();
+            // Ao focar ou digitar, remove a borda de erro e esconde a mensagem
+            birthInput.addEventListener('focus', () => {
+                birthInput.classList.remove('border-red-400');
+                birthErrorSpan.classList.add('hidden');
+            });
+            
+            birthInput.addEventListener('input', () => {
+                birthInput.classList.remove('border-red-400');
+                birthErrorSpan.classList.add('hidden');
             });
 
+            // Valida apenas ao perder o foco (blur)
             birthInput.addEventListener('blur', () => {
                 handleBirthValidation();
             });
@@ -1467,7 +1492,6 @@
         function handleHolderCpfValidation() {
             if (!diffHolderCheckbox || !diffHolderCheckbox.checked) return true;
             const val = holderCpfInput.value.replace(/\D/g, '');
-            const submitBtn = document.getElementById('submit-btn');
 
             let isHolderCpfOk = true;
             if (val.length > 0) {
@@ -1486,18 +1510,7 @@
                 if (holderCpfErrorSpan) holderCpfErrorSpan.classList.add('hidden');
             }
 
-            if (submitBtn) {
-                const valCpfStudent = cpfInput.value.replace(/\D/g, '');
-                const isStudentCpfOk = valCpfStudent.length === 0 || isValidCPF(valCpfStudent);
-                if (isHolderCpfOk && isStudentCpfOk) {
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-50', 'pointer-events-none');
-                } else {
-                    submitBtn.disabled = true;
-                    submitBtn.classList.add('opacity-50', 'pointer-events-none');
-                }
-            }
-
+            updateSubmitButtonState();
             return isHolderCpfOk;
         }
 
@@ -1509,7 +1522,7 @@
                 } else {
                     holderCpfInput.classList.remove('border-red-400');
                     holderCpfErrorSpan.classList.add('hidden');
-                    handleCpfValidation();
+                    updateSubmitButtonState();
                 }
             });
 
