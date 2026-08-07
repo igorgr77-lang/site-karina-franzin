@@ -1073,13 +1073,21 @@
 
                 const num = val;
                 if (num.length >= 4 && typeof EfiPay !== 'undefined') {
-                    const brand = EfiPay.CreditCard.verifyCardBrand(num);
-                    const badge = document.getElementById('card-brand-badge');
-                    if (brand && brand !== 'undefined' && brand !== 'unsupported') {
-                        badge.textContent = brand.toUpperCase();
-                    } else {
-                        badge.textContent = '';
-                    }
+                    EfiPay.CreditCard
+                        .setCardNumber(num)
+                        .verifyCardBrand()
+                        .then(brand => {
+                            const badge = document.getElementById('card-brand-badge');
+                            if (brand && brand !== 'undefined' && brand !== 'unsupported') {
+                                badge.textContent = String(brand).toUpperCase();
+                            } else {
+                                badge.textContent = '';
+                            }
+                        })
+                        .catch(err => {
+                            console.warn('Erro ao identificar bandeira:', err);
+                            document.getElementById('card-brand-badge').textContent = '';
+                        });
                 } else {
                     document.getElementById('card-brand-badge').textContent = '';
                 }
@@ -1393,32 +1401,37 @@
                 return;
             }
 
-            // Detectar bandeira usando o SDK
-            const brand = EfiPay.CreditCard.verifyCardBrand(cardNumber);
-            if (!brand || brand === 'undefined' || brand === 'unsupported') {
-                document.getElementById('loading-overlay').classList.add('hidden');
-                errorDiv.textContent = 'Bandeira do cartão não identificada ou não suportada.';
-                errorDiv.classList.remove('hidden');
-                return;
-            }
-
             // Gerar Token do Cartão com o SDK da Efí (builder pattern)
             try {
                 EfiPay.CreditCard
-                    .setAccount(efiConfig.accountId)
-                    .setEnvironment(efiConfig.sandbox ? 'sandbox' : 'production')
-                    .setCreditCardData({
-                        brand: brand,
-                        number: cardNumber,
-                        cvv: cardCvv,
-                        expirationMonth: expMonth,
-                        expirationYear: expYear,
-                        holderName: cardName,
-                        holderDocument: document.getElementById('cust-cpf').value.replace(/\D/g, ''),
-                        reuse: false
-                    })
-                    .getPaymentToken()
+                    .setCardNumber(cardNumber)
+                    .verifyCardBrand()
+                .then(brand => {
+                    if (!brand || brand === 'undefined' || brand === 'unsupported') {
+                        document.getElementById('loading-overlay').classList.add('hidden');
+                        errorDiv.textContent = 'Bandeira do cartão não identificada ou não suportada.';
+                        errorDiv.classList.remove('hidden');
+                        return null;
+                    }
+
+                    return EfiPay.CreditCard
+                        .setAccount(efiConfig.accountId)
+                        .setEnvironment(efiConfig.sandbox ? 'sandbox' : 'production')
+                        .setCreditCardData({
+                            brand: brand,
+                            number: cardNumber,
+                            cvv: cardCvv,
+                            expirationMonth: expMonth,
+                            expirationYear: expYear,
+                            holderName: cardName,
+                            holderDocument: document.getElementById('cust-cpf').value.replace(/\D/g, ''),
+                            reuse: false
+                        })
+                        .getPaymentToken();
+                })
                 .then(tokenResponse => {
+                    if (!tokenResponse) return; // Se a verificação de bandeira falhou e retornou null
+
                     const paymentToken = tokenResponse.payment_token;
                     
                     // Enviar para o backend
@@ -1449,8 +1462,12 @@
                         body: JSON.stringify(payload)
                     });
                 })
-                .then(res => res.json())
+                .then(res => {
+                    if (!res) return null;
+                    return res.json();
+                })
                 .then(data => {
+                    if (!data) return;
                     document.getElementById('loading-overlay').classList.add('hidden');
                     if (data.success) {
                         // Sucesso! Redireciona
