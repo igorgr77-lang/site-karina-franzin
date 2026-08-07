@@ -1399,69 +1399,76 @@
             }
 
             // Gerar Token do Cartão com o SDK da Efí (builder pattern)
-            EfiPay.CreditCard
-                .setAccount(efiConfig.accountId)
-                .setEnvironment(efiConfig.sandbox ? 'sandbox' : 'production')
-                .setCreditCardData({
-                    brand: brand,
-                    number: cardNumber,
-                    cvv: cardCvv,
-                    expirationMonth: expMonth,
-                    expirationYear: expYear,
-                    holderName: cardName,
-                    holderDocument: document.getElementById('cust-cpf').value.replace(/\D/g, ''),
-                    reuse: false
-                })
-                .getPaymentToken()
-            .then(tokenResponse => {
-                const paymentToken = tokenResponse.payment_token;
-                
-                // Enviar para o backend
-                const payload = {
-                    paymentToken: paymentToken,
-                    installments: document.getElementById('card-installments').value,
-                    comboKey: document.getElementById('form-combo-key').value,
-                    customer: {
-                        name: document.getElementById('cust-name').value.trim(),
-                        email: document.getElementById('cust-email').value.trim(),
-                        cpf: document.getElementById('cust-cpf').value.replace(/\D/g, ''),
-                        birth: document.getElementById('cust-birth').value, // YYYY-MM-DD
-                        phone: document.getElementById('cust-phone').value.replace(/\D/g, '')
-                    },
-                    billingAddress: {
-                        street: document.getElementById('addr-street').value.trim(),
-                        number: document.getElementById('addr-number').value.trim(),
-                        neighborhood: document.getElementById('addr-neighborhood').value.trim(),
-                        zipcode: document.getElementById('addr-zipcode').value.replace(/\D/g, ''),
-                        city: document.getElementById('addr-city').value.trim(),
-                        state: document.getElementById('addr-state').value.trim().toUpperCase()
-                    }
-                };
+            try {
+                EfiPay.CreditCard
+                    .setAccount(efiConfig.accountId)
+                    .setEnvironment(efiConfig.sandbox ? 'sandbox' : 'production')
+                    .setCreditCardData({
+                        brand: brand,
+                        number: cardNumber,
+                        cvv: cardCvv,
+                        expirationMonth: expMonth,
+                        expirationYear: expYear,
+                        holderName: cardName,
+                        holderDocument: document.getElementById('cust-cpf').value.replace(/\D/g, ''),
+                        reuse: false
+                    })
+                    .getPaymentToken()
+                .then(tokenResponse => {
+                    const paymentToken = tokenResponse.payment_token;
+                    
+                    // Enviar para o backend
+                    const payload = {
+                        paymentToken: paymentToken,
+                        installments: document.getElementById('card-installments').value,
+                        comboKey: document.getElementById('form-combo-key').value,
+                        customer: {
+                            name: document.getElementById('cust-name').value.trim(),
+                            email: document.getElementById('cust-email').value.trim(),
+                            cpf: document.getElementById('cust-cpf').value.replace(/\D/g, ''),
+                            birth: document.getElementById('cust-birth').value, // YYYY-MM-DD
+                            phone: document.getElementById('cust-phone').value.replace(/\D/g, '')
+                        },
+                        billingAddress: {
+                            street: document.getElementById('addr-street').value.trim(),
+                            number: document.getElementById('addr-number').value.trim(),
+                            neighborhood: document.getElementById('addr-neighborhood').value.trim(),
+                            zipcode: document.getElementById('addr-zipcode').value.replace(/\D/g, ''),
+                            city: document.getElementById('addr-city').value.trim(),
+                            state: document.getElementById('addr-state').value.trim().toUpperCase()
+                        }
+                    };
 
-                return fetch('https://api-contas-karina.onrender.com/api/payments/efi/checkout', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-            })
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById('loading-overlay').classList.add('hidden');
-                if (data.success) {
-                    // Sucesso! Redireciona
-                    window.location.href = '/planos/sucesso.html';
-                } else {
-                    // Erro retornado pelo controller
-                    errorDiv.textContent = data.message || 'Houve um problema ao processar seu pagamento. Verifique seus dados.';
+                    return fetch('https://api-contas-karina.onrender.com/api/payments/efi/checkout', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                })
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('loading-overlay').classList.add('hidden');
+                    if (data.success) {
+                        // Sucesso! Redireciona
+                        window.location.href = '/planos/sucesso.html';
+                    } else {
+                        // Erro retornado pelo controller
+                        errorDiv.textContent = data.message || 'Houve um problema ao processar seu pagamento. Verifique seus dados.';
+                        errorDiv.classList.remove('hidden');
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    document.getElementById('loading-overlay').classList.add('hidden');
+                    errorDiv.textContent = 'Erro de comunicação com o servidor de pagamentos ou cartão inválido.';
                     errorDiv.classList.remove('hidden');
-                }
-            })
-            .catch(err => {
-                console.error(err);
+                });
+            } catch (e) {
+                console.error(e);
                 document.getElementById('loading-overlay').classList.add('hidden');
-                errorDiv.textContent = 'Erro de comunicação com o servidor de pagamentos ou cartão inválido.';
+                errorDiv.textContent = 'Erro interno ao processar dados do cartão. Por favor, revise as informações digitadas.';
                 errorDiv.classList.remove('hidden');
-            });
+            }
         }
 
         // Inicializa scripts ao carregar
