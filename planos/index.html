@@ -954,7 +954,7 @@
                             <div>
                                 <label class="block text-xs text-gray-400 mb-1">Data Nascimento</label>
                                 <input type="date" id="cust-birth" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                                <span id="birth-validation-error" class="hidden text-[10px] text-red-400 mt-1 block">Idade mínima de 15 anos para a assessoria.</span>
+                                <span id="birth-validation-error" class="hidden text-[10px] text-red-400 mt-1 block">Idade mínima de 16 anos para a assessoria.</span>
                             </div>
                         </div>
                         <div>
@@ -1203,7 +1203,7 @@
                 age--;
             }
 
-            return age >= 15;
+            return age >= 16;
         }
 
         // Destaca a bandeira correspondente nos logotipos de cartão
@@ -1891,7 +1891,7 @@
             // Validar Data de Nascimento e Idade Mínima (15 anos)
             const birthVal = document.getElementById('cust-birth').value;
             if (!isValidBirthDate(birthVal)) {
-                errorDiv.textContent = 'A idade mínima do aluno para assinar a assessoria é de 15 anos.';
+                errorDiv.textContent = 'A idade mínima do aluno para assinar a assessoria é de 16 anos.';
                 errorDiv.classList.remove('hidden');
                 handleBirthValidation();
                 return;
