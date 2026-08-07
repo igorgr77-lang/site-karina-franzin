@@ -1216,9 +1216,11 @@
                         .catch(err => {
                             console.warn('Erro ao identificar bandeira:', err);
                             document.getElementById('card-brand-badge').textContent = '';
+                            highlightBrandLogo(null);
                         });
                 } else {
                     document.getElementById('card-brand-badge').textContent = '';
+                    highlightBrandLogo(null);
                 }
             });
         }
