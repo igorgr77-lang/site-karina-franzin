@@ -405,6 +405,15 @@ async function build() {
             fs.writeFileSync(path.join(__dirname, 'index.html'), htmlRootIndex, 'utf8');
             console.log('💾 Homepage compilada com sucesso em: index.html');
         }
+
+        // 1.1 Custom 404 Page (404.html) - escura
+        const root404TemplatePath = path.join(__dirname, '404.template.html');
+        if (fs.existsSync(root404TemplatePath)) {
+            let html404 = fs.readFileSync(root404TemplatePath, 'utf8');
+            html404 = compilePageComponents(html404, false);
+            fs.writeFileSync(path.join(__dirname, '404.html'), html404, 'utf8');
+            console.log('💾 Página 404 compilada com sucesso em: 404.html');
+        }
         
         // 2. Eventos (eventos/index.html) - escura
         const eventosTemplatePath = path.join(__dirname, 'eventos', 'index.template.html');
