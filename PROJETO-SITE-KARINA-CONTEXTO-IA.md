@@ -1007,6 +1007,7 @@ og:image: (imagem real do artigo do Supabase)
   - `src/services/StudentService.ts` (MODIFICADO)
   - `src/app.ts` (MODIFICADO)
   - `src/middleware/xssSanitizer.ts` (NOVO)
+  - `src/controllers/StatsController.ts` (MODIFICADO)
 
 
 
