@@ -1,6 +1,6 @@
 # 🏃‍♀️ PROJETO SITE KARINA FRANZIN — CONTEXTO PARA IA
 
-> **Última atualização:** 31/07/2026  
+> **Última atualização:** 08/08/2026  
 > **Branch activa:** `develop`  
 > **Projeto online:** https://karinafranzin.com.br  
 > **Repositório:** https://github.com/igorgr77-lang/site-karina-franzin  
@@ -966,6 +966,47 @@ og:image: (imagem real do artigo do Supabase)
 - **No repositório do backend (`ContasReceberKarina`)**:
   - `src/services/EmailService.ts` (MODIFICADO)
   - `.env` (MODIFICADO)
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 08/08/2026 — EXPERIÊNCIA DE CHECKOUT, SEGURANÇA E REENVIO DE ACESSO NO PAINEL ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Melhorar o fluxo de validação da data de nascimento (DOB) e CPF/CVV no formulário de pagamento para evitar avisos precoces que causam má experiência de uso.
+2. Exibir um card dinâmico de resumo do pedido (Order Summary) sincronizado com a seleção de parcelamento do cartão e plano.
+3. Substituir o overlay de carregamento em tela cheia por um spinner inline no próprio botão de enviar.
+4. Resolver erros de banco de dados (chave única duplicada de celular/CPF) quando alunos existentes compram planos combo promocionais no site público.
+5. Proteger o histórico de faturamento mantendo faturas pagas/canceladas e limpando de forma segura apenas as faturas pendentes da mesma competência (Opção 1).
+6. Implementar proteção anti-card testing e sanitização global contra injeções de script (XSS) no backend.
+7. Criar uma rota e botão no painel administrativo para reenviar e-mail de acesso aos alunos de forma simples.
+
+**O que foi feito:**
+- ✅ **UX de Nascimento:** Removida a validação precoce no `input`/`change` do campo de nascimento. O erro e a borda vermelha agora limpam imediatamente ao focar ou digitar, e a validação só é disparada no `blur` (ao sair do campo) ou ao enviar.
+- ✅ **Botão de Envio Coordenado:** Criada a função `updateSubmitButtonState()` para verificar CPF, CPF do titular (se ativo), nascimento (idade mínima de 16 anos) e validade do cartão, travando ou liberando o botão de envio dinamicamente.
+- ✅ **Resumo do Pedido:** Adicionado um card elegante na Etapa 3 que atualiza em tempo real com o plano e a parcela selecionada (ex: *"3x de R$ 105,00 sem juros"*), incluindo selo de garantia de 7 dias.
+- ✅ **Carregamento Inline:** Removido o overlay preto invasivo. Ao clicar em enviar, o próprio botão assume um spinner giratório e desativa contra duplo clique com a mensagem *"PROCESSANDO PAGAMENTO SEGURO..."*.
+- ✅ **Busca Combinada no Checkout:** Ajustado o backend para buscar por `email` OR `cpf` OR `phone`. Se encontrar correspondência, realiza um `update` mesclando dados e e-mail novos em vez de lançar erro de criação duplicada.
+- ✅ **Tratamento de Faturas (Opção 1):** Se o aluno possuir faturas `PENDING` futuras no mês coberto pelo combo, elas são deletadas. Se as faturas forem `PAID` ou `CANCELED`, elas são preservadas para fins fiscais e a nova fatura do combo é gerada paralelamente.
+- ✅ **Tratamento Amigável de Erros:** Erros de unique constraint do Prisma são traduzidos em mensagens claras instruindo o usuário sobre qual campo (CPF, E-mail ou Celular) está duplicado.
+- ✅ **Prevenção de Card Testing:** Adicionado rate limiter exclusivo na rota de checkout limitando a no máximo 5 tentativas por IP a cada 15 minutos em produção (deixado com limite alto em desenvolvimento para testes locais).
+- ✅ **Middleware Anti-XSS:** Implementada a higienização global de inputs (`xssSanitizer.ts`) que limpa tags HTML/XML e pseudoprotocolos em `req.body`, `req.query` e `req.params`.
+- ✅ **Reenvio de Boas-Vindas:** Criado endpoint no backend e botão de e-mail (com indicador de progresso) ao lado do aluno na listagem do painel React para disparar o reenvio de acesso rapidamente.
+
+### 📁 Arquivos criados/modificados:
+- **No repositório do site (`site-karina-franzin`)**:
+  - `planos/index.template.html` (MODIFICADO)
+  - `planos/index.html` (COMPILADO)
+  - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+- **No repositório do backend (`ContasReceberKarina`)**:
+  - `src/controllers/EfiController.ts` (MODIFICADO)
+  - `src/routes/payment.routes.ts` (MODIFICADO)
+  - `src/routes/student.routes.ts` (MODIFICADO)
+  - `src/controllers/StudentController.ts` (MODIFICADO)
+  - `src/services/StudentService.ts` (MODIFICADO)
+  - `src/app.ts` (MODIFICADO)
+  - `src/middleware/xssSanitizer.ts` (NOVO)
 
 
 
