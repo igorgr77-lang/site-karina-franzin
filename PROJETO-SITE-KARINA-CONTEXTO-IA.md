@@ -1,6 +1,6 @@
 # 🏃‍♀️ PROJETO SITE KARINA FRANZIN — CONTEXTO PARA IA
 
-> **Última atualização:** 08/08/2026  
+> **Última atualização:** 08/08/2026 (Onboarding Treinus & Churn)  
 > **Branch activa:** `develop`  
 > **Projeto online:** https://karinafranzin.com.br  
 > **Repositório:** https://github.com/igorgr77-lang/site-karina-franzin  
@@ -1008,6 +1008,46 @@ og:image: (imagem real do artigo do Supabase)
   - `src/app.ts` (MODIFICADO)
   - `src/middleware/xssSanitizer.ts` (NOVO)
   - `src/controllers/StatsController.ts` (MODIFICADO)
+
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 08/08/2026 — RASTREAMENTO DE ONBOARDING TREINUS E PAINEL DE CHURN RATE ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Implementar o rastreamento do formulário de novos atletas do Treinus para monitorar quais alunos preencheram e quais estão pendentes.
+2. Adicionar contadores de alunos criados (joins) e alunos desativados no mês corrente, incluindo a taxa de evasão (Churn Rate).
+3. Criar um gráfico de barras e linha unificado (`ComposedChart`) comparando a evolução de novos alunos vs. saídas e a taxa de Churn nos últimos 6 meses.
+4. Adicionar suporte a status de onboarding com badges dinâmicos no Painel de Alunos e controle manual de liberação.
+5. Corrigir falha no parse da resposta de chamadas da API no frontend (que tratavam `resJson.success` em vez de `resJson.status === 'success'`).
+
+**O que foi feito:**
+- ✅ **Modelagem de Onboarding:** Adicionados campos `onboardingStatus` e `deactivatedAt` no esquema do Prisma.
+- ✅ **Roteamento de Tracking:** Criado endpoint `/api/students/track-treinus/:id` que intercepta o clique do aluno no e-mail de boas-vindas, altera o status para `LINK_CLICKED` (Ficha Acessada) e o redireciona automaticamente para o formulário oficial do Treinus.
+- ✅ **Envio de Link Dinâmico:** Atualizado `EmailService.ts` para enviar o link do tracking em vez do link direto do Treinus.
+- ✅ **Serviço de Estatísticas e Churn:** Atualizada a rota `/api/stats/dashboard` para computar a evolução dos últimos 6 meses e retornar as contagens e a taxa de Churn do mês atual.
+- ✅ **Cards & Gráficos no Painel:**
+  - Adicionado card unificado de "Evolução & Churn" no topo do dashboard.
+  - Renderizado um gráfico `ComposedChart` da Recharts (Novos Alunos, Saídas e Churn Rate) na coluna de gráficos.
+- ✅ **Badges de Onboarding:**
+  - Exibidos status de onboarding (🔴 Pendente, 🟡 Ficha Acessada, 🟢 Ativo no App) na listagem de alunos.
+  - Adicionado botão **Liberar** para aprovar o aluno e marcá-lo como ativo no Treinus.
+- ✅ **Bug de Resposta Corrigido:** Resolvido o alerta falso de erro ao clicar em liberar ou reenviar e-mail de boas-vindas no frontend, convertendo as verificações de `resJson.success` para `resJson.status === 'success'`.
+
+### 📁 Arquivos criados/modificados:
+- **No repositório do backend (`ContasReceberKarina`)**:
+  - `prisma/schema.prisma` (MODIFICADO)
+  - `src/controllers/StudentController.ts` (MODIFICADO)
+  - `src/controllers/EfiController.ts` (MODIFICADO)
+  - `src/controllers/StatsController.ts` (MODIFICADO)
+  - `src/services/StudentService.ts` (MODIFICADO)
+  - `src/services/EmailService.ts` (MODIFICADO)
+- **No repositório do site/frontend (`ContasReceberKarina/frontend` / `site-karina-franzin`)**:
+  - `frontend/src/pages/Dashboard.tsx` (MODIFICADO)
+  - `frontend/src/pages/StudentsList.tsx` (MODIFICADO)
+  - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 
 
 
