@@ -1791,6 +1791,20 @@
             const plan = PLANS_DATA[comboKey];
             if (!plan) return;
 
+            // Evento begin_checkout do Google Analytics
+            if (typeof gtag === 'function') {
+                gtag('event', 'begin_checkout', {
+                    currency: 'BRL',
+                    value: plan.total,
+                    items: [{
+                        item_id: comboKey,
+                        item_name: plan.name,
+                        price: plan.total,
+                        quantity: 1
+                    }]
+                });
+            }
+
             // Limpa dados e erros anteriores
             const form = document.getElementById('checkout-form');
             if (form) form.reset();
@@ -2170,6 +2184,21 @@
                     if (!data) return;
                     setSubmitButtonLoading(false);
                     if (data.success) {
+                        // Salva dados da compra para disparar a conversão na página de sucesso
+                        try {
+                            const selectedComboKey = document.getElementById('form-combo-key').value;
+                            const plan = PLANS_DATA[selectedComboKey];
+                            if (plan) {
+                                sessionStorage.setItem('last_purchase', JSON.stringify({
+                                    comboKey: selectedComboKey,
+                                    name: plan.name,
+                                    total: plan.total
+                                }));
+                            }
+                        } catch (e) {
+                            console.error('Erro ao salvar metadados da compra:', e);
+                        }
+
                         // Sucesso! Redireciona
                         window.location.href = '/planos/sucesso.html';
                     } else {

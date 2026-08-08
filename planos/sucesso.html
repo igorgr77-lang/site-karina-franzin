@@ -13,6 +13,15 @@
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#ff6b35">
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J488T0R72B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-J488T0R72B');
+    </script>
+
     <!-- Google Fonts & Tailwind & Lucide Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -219,6 +228,30 @@
     <script>
         // Inicializa ícones
         lucide.createIcons();
+
+        // Dispara evento de conversão se houver dados da última compra
+        try {
+            const lastPurchaseStr = sessionStorage.getItem('last_purchase');
+            if (lastPurchaseStr) {
+                const purchaseData = JSON.parse(lastPurchaseStr);
+                if (typeof gtag === 'function') {
+                    gtag('event', 'purchase', {
+                        transaction_id: 'T_' + Date.now() + '_' + Math.floor(Math.random() * 1000),
+                        value: purchaseData.total,
+                        currency: 'BRL',
+                        items: [{
+                            item_id: purchaseData.comboKey,
+                            item_name: purchaseData.name,
+                            price: purchaseData.total,
+                            quantity: 1
+                        }]
+                    });
+                }
+                sessionStorage.removeItem('last_purchase'); // Evita duplicar em refresh
+            }
+        } catch (e) {
+            console.error('Erro ao processar tag de conversão:', e);
+        }
     </script>
 </body>
 
