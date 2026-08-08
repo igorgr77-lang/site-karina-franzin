@@ -1,6 +1,6 @@
 # 🏃‍♀️ PROJETO SITE KARINA FRANZIN — CONTEXTO PARA IA
 
-> **Última atualização:** 08/08/2026 (Onboarding Treinus & Churn)  
+> **Última atualização:** 08/08/2026 (Onboarding, 404 Page, WhatsApp CTA, Google Analytics)  
 > **Branch activa:** `develop`  
 > **Projeto online:** https://karinafranzin.com.br  
 > **Repositório:** https://github.com/igorgr77-lang/site-karina-franzin  
@@ -1048,6 +1048,45 @@ og:image: (imagem real do artigo do Supabase)
   - `frontend/src/pages/Dashboard.tsx` (MODIFICADO)
   - `frontend/src/pages/StudentsList.tsx` (MODIFICADO)
   - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 08/08/2026 — ONBOARDING PÚBLICO, MÁSCARA MM/AA, 404 PERSONALIZADA, DESTAQUE WHATSAPP E GOOGLE ANALYTICS ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Tornar a rota de rastreamento de onboarding pública para evitar que o clique no e-mail retorne erro 401.
+2. Ajustar a validação do campo de validade do cartão de crédito para aceitar `MM/AA` e convertê-lo com segurança para 4 dígitos no checkout transparente.
+3. Criar uma página 404 personalizada integrada com navbar e footer, configurando o script de build para gerá-la de forma automatizada no GitHub Pages.
+4. Dar destaque para o botão de atendimento do WhatsApp no rodapé dos planos, transformando o link simples em um botão verde sólido e responsivo com logotipo integrado e mensagem pré-definida.
+5. Otimizar as páginas de planos, sucesso e cancelamento para Google Analytics (`G-J488T0R72B`), disparando eventos de início de checkout (`begin_checkout`) e conversão de compra bem-sucedida (`purchase`).
+
+**O que foi feito:**
+- ✅ **Onboarding do Treinus Público:** Removido o middleware global de autenticação JWT da rota `/api/students/track-treinus/:id` no backend, mantendo a rota pública para que os novos alunos possam clicar no e-mail de boas-vindas e ser redirecionados ao app sem erros de credencial expirada.
+- ✅ **Ajustes no Cartão de Crédito:**
+  - Implementada a máscara em tempo real para o campo de validade no formato `MM/AA`.
+  - Tratamento no submit para converter o ano de 2 dígitos em 4 dígitos antes do tokenizador da Efí Bank.
+  - Correção na validação manual de bandeiras de cartão (adicionada Elo e tratamento de outros fallbacks para evitar erros de bandeiras não detectadas pelo SDK).
+- ✅ **Página 404 Personalizada:** Criada a página `404.template.html` e configurado o script `build-blog.js` para compilar e gerar a página final `404.html` na raiz do site estático (necessário para tratamento automático de rotas não localizadas no GitHub Pages).
+- ✅ **Botão de WhatsApp Destacado:** Alterada a seção final de conversão nos planos para conter dois botões responsivos: o botão de inscrição rápida e o botão de atendimento direto no WhatsApp estilizado em cor verde sólida (`#25D366`), com vetor SVG oficial e a mensagem *"Olá, Karina! Gostaria de saber como funciona a assessoria esportiva."*.
+- ✅ **Google Analytics Otimizado:**
+  - Inserido o script global do GA nas páginas `sucesso.template.html` e `cancelado.template.html`.
+  - Disparado o evento `begin_checkout` no início do checkout do formulário de planos.
+  - Criado o fluxo de armazenamento de metadados da transação via `sessionStorage` no checkout, disparando o evento de conversão final `purchase` (e-commerce do GA) na página de sucesso após o pagamento.
+
+### 📁 Arquivos criados/modificados:
+- **No repositório do site (`site-karina-franzin`)**:
+  - `404.template.html` (NOVO)
+  - `404.html` (COMPILADO)
+  - `build-blog.js` (MODIFICADO)
+  - `planos/index.template.html` e `planos/index.html` (MODIFICADOS/COMPILADOS)
+  - `planos/sucesso.template.html` e `planos/sucesso.html` (MODIFICADOS/COMPILADOS)
+  - `planos/cancelado.template.html` e `planos/cancelado.html` (MODIFICADOS/COMPILADOS)
+  - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+- **No repositório do backend (`ContasReceberKarina`)**:
+  - `src/routes/index.ts` (MODIFICADO)
+  - `src/routes/student.routes.ts` (MODIFICADO)
 
 
 
