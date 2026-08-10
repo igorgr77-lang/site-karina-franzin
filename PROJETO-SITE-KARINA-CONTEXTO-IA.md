@@ -1127,6 +1127,7 @@ og:image: (imagem real do artigo do Supabase)
   - Calculado e exibido o MRR (Receita Recorrente Mensal) considerando os planos ativos e as porcentagens de descontos concedidos aos alunos.
   - Calculado e exibido o LTV (Lifetime Value) multiplicando a receita média por aluno (ARPU) pelo tempo médio de permanência dos alunos inativos.
   - Implementados indicadores adicionais no painel financeiro: ARR (Receita Anual Projetada - MRR x 12), ARPU (Ticket Médio/Receita Média por Aluno) e Permanência Média (tempo médio ativo de alunos inativos no banco de dados).
+  - Adicionado controle de sanidade visual: a seção de Métricas SaaS agora inicia **oculta por padrão** em um container expansível (acordeão), que exibe um botão/indicador dinâmico de 'Exibir/Ocultar Relatório' com chevrons direcionais para expandir ou recolher a visualização.
 
 ### 📁 Arquivos criados/modificados:
 - **No repositório do site (`site-karina-franzin`)**:
