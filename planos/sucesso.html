@@ -137,7 +137,7 @@
             <h1 class="text-4xl md:text-5xl font-oswald font-black uppercase italic mb-4">
                 MATRÍCULA CONFIRMADA! 🎉
             </h1>
-            <p class="text-gray-300 text-lg mb-8 leading-relaxed">
+            <p id="success-message" class="text-gray-300 text-lg mb-8 leading-relaxed">
                 Seja bem-vindo(a) à assessoria esportiva! O seu pagamento foi processado e aprovado com sucesso via cartão de crédito.
             </p>
 
@@ -228,6 +228,15 @@
     <script>
         // Inicializa ícones
         lucide.createIcons();
+
+        // Ajusta mensagem de sucesso baseada no método de pagamento
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('type') === 'pix') {
+            const msgEl = document.getElementById('success-message');
+            if (msgEl) {
+                msgEl.textContent = 'Seja bem-vindo(a) à assessoria esportiva! O seu pagamento via PIX foi confirmado com sucesso.';
+            }
+        }
 
         // Dispara evento de conversão se houver dados da última compra
         try {
