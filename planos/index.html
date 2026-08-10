@@ -1126,6 +1126,14 @@
                         </div>
                     </div>
 
+                    <!-- Termos de Uso e Política de Privacidade Checkbox -->
+                    <div class="mt-4 mb-4 flex items-start gap-2.5 text-left" id="checkout-terms-container">
+                        <input type="checkbox" id="accept-terms" required class="w-4 h-4 mt-0.5 rounded border-white/10 bg-white/5 text-karina-orange focus:ring-karina-orange outline-none accent-karina-orange cursor-pointer">
+                        <label for="accept-terms" class="text-xs text-gray-405 leading-normal cursor-pointer select-none">
+                            Li e concordo com os <a href="/planos/termos.html" target="_blank" class="text-karina-orange hover:underline font-semibold">Termos de Serviço</a> e a <a href="/planos/privacidade.html" target="_blank" class="text-karina-orange hover:underline font-semibold">Política de Privacidade</a> da assessoria.
+                        </label>
+                    </div>
+
                     <!-- Mensagem de Erro de Checkout -->
                     <div id="checkout-error" class="hidden text-xs text-red-500 bg-red-500/10 border border-red-500/20 p-3 rounded-xl"></div>
 
@@ -1889,6 +1897,11 @@
                 submitBtn.classList.remove('opacity-50', 'pointer-events-none');
             }
 
+            const termsContainer = document.getElementById('checkout-terms-container');
+            if (termsContainer) {
+                termsContainer.classList.remove('hidden');
+            }
+
             const expiryInput = document.getElementById('card-expiry');
             const expiryErrorSpan = document.getElementById('card-expiry-error');
             if (expiryInput) {
@@ -2103,6 +2116,14 @@
             const errorDiv = document.getElementById('checkout-error');
             errorDiv.classList.add('hidden');
 
+            // Validar Termos de Serviço e Política de Privacidade
+            const acceptTerms = document.getElementById('accept-terms');
+            if (acceptTerms && !acceptTerms.checked) {
+                errorDiv.textContent = 'Você precisa ler e aceitar os Termos de Serviço e a Política de Privacidade para prosseguir.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
             const selectedComboKey = document.getElementById('form-combo-key').value;
             const plan = PLANS_DATA[selectedComboKey];
 
@@ -2140,6 +2161,7 @@
                 // Oculta formulário e exibe tela do PIX com loading
                 document.getElementById('step-1').classList.add('hidden');
                 document.getElementById('submit-btn').classList.add('hidden');
+                document.getElementById('checkout-terms-container').classList.add('hidden');
                 document.getElementById('step-pix').classList.remove('hidden');
                 document.getElementById('pix-qrcode-img').classList.add('hidden');
                 document.getElementById('pix-qrcode-loading').classList.remove('hidden');
@@ -2186,6 +2208,7 @@
                         // Retorna ao passo 1 se falhar
                         document.getElementById('step-1').classList.remove('hidden');
                         document.getElementById('submit-btn').classList.remove('hidden');
+                        document.getElementById('checkout-terms-container').classList.remove('hidden');
                         document.getElementById('step-pix').classList.add('hidden');
                         errorDiv.textContent = data.message || 'Falha ao gerar cobrança PIX.';
                         errorDiv.classList.remove('hidden');
@@ -2195,6 +2218,7 @@
                     console.error(err);
                     document.getElementById('step-1').classList.remove('hidden');
                     document.getElementById('submit-btn').classList.remove('hidden');
+                    document.getElementById('checkout-terms-container').classList.remove('hidden');
                     document.getElementById('step-pix').classList.add('hidden');
                     errorDiv.textContent = 'Erro de comunicação ao solicitar PIX. Tente novamente.';
                     errorDiv.classList.remove('hidden');
