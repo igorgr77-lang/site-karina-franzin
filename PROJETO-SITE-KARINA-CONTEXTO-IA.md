@@ -1122,6 +1122,11 @@ og:image: (imagem real do artigo do Supabase)
 - ✅ **Filtros Avançados no Painel:**
   - Adicionados filtros por Início Legal (mês/ano via seletor nativo HTML5), Plano Designado (extraído dinamicamente a partir da base de dados dos alunos carregados) e Ficha Treinus (status do onboardingStatus: Pendente, Ficha Acessada, Ativo no App).
   - Adicionado botão dinâmico para limpar filtros ativos e atualizada a mensagem de estado vazio da tabela para refletir quando filtros de busca ativa não retornarem resultados.
+- ✅ **Métricas SaaS de Faturamento Recorrente & LTV:**
+  - Adicionada uma nova seção dedicada ("Métricas de Receita Recorrente & LTV (SaaS)") no topo do painel principal do dashboard.
+  - Calculado e exibido o MRR (Receita Recorrente Mensal) considerando os planos ativos e as porcentagens de descontos concedidos aos alunos.
+  - Calculado e exibido o LTV (Lifetime Value) multiplicando a receita média por aluno (ARPU) pelo tempo médio de permanência dos alunos inativos.
+  - Implementados indicadores adicionais no painel financeiro: ARR (Receita Anual Projetada - MRR x 12), ARPU (Ticket Médio/Receita Média por Aluno) e Permanência Média (tempo médio ativo de alunos inativos no banco de dados).
 
 ### 📁 Arquivos criados/modificados:
 - **No repositório do site (`site-karina-franzin`)**:
@@ -1137,7 +1142,10 @@ og:image: (imagem real do artigo do Supabase)
   - `src/services/PaymentService.ts` (MODIFICADO)
   - `src/services/StudentService.ts` (MODIFICADO)
   - `src/controllers/EfiController.ts` (MODIFICADO)
+  - `src/controllers/StatsController.ts` (MODIFICADO)
   - `frontend/src/pages/StudentsList.tsx` (MODIFICADO)
+  - `frontend/src/pages/Dashboard.tsx` (MODIFICADO)
+
 
 
 
