@@ -1134,6 +1134,11 @@ og:image: (imagem real do artigo do Supabase)
   - Implementada atualização automática de faturas pendentes (`PENDING`): quando plano, desconto ou dia de vencimento do aluno são editados, a fatura pendente ativa tem seu valor e vencimento corrigidos, limpando e invalidando payloads antigos de PIX e Stripe para prevenir transações incorretas.
   - Criada a tabela de logs de auditoria `AuditLog` no banco e o serviço `AuditLogService` para registrar ações administrativas sensíveis no sistema (criação, edição, inativação de alunos, redefinição de senhas, cancelamento e reativação de faturas).
 
+  - `frontend/src/pages/Collections.tsx` (MODIFICADO)
+- ✅ **Remoção de Escassez Artificial (Contador Regressivo):**
+  - Removido o contador regressivo de escassez da página de planos (`planos/index.template.html`), substituindo-o por um box estático com indicador de status "Vagas Abertas" (contendo animação de pulso) e texto focado na facilidade de início imediato.
+  - Removida a lógica em JavaScript que realizava o cálculo da contagem regressiva e atualizava os seletores do timer no DOM.
+
 ### 📁 Arquivos criados/modificados:
 - **No repositório do site (`site-karina-franzin`)**:
   - `planos/termos.template.html` (NOVO)
