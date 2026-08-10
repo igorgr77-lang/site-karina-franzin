@@ -1158,6 +1158,7 @@ og:image: (imagem real do artigo do Supabase)
   - `frontend/src/pages/Dashboard.tsx` (MODIFICADO)
   - `frontend/src/components/StudentFormDialog.tsx` (MODIFICADO)
   - `frontend/src/pages/PortalDashboard.tsx` (MODIFICADO)
+  - `frontend/src/pages/Collections.tsx` (MODIFICADO)
 
 
 
