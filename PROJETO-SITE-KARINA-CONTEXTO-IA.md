@@ -1088,6 +1088,54 @@ og:image: (imagem real do artigo do Supabase)
   - `src/routes/index.ts` (MODIFICADO)
   - `src/routes/student.routes.ts` (MODIFICADO)
 
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 09/08/2026 — CHECKOUT PIX MENSAL, CONFORMIDADE LGPD (TERMOS E PRIVACIDADE) E PERSONALIZAÇÃO DE E-MAIL ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Implementar o Checkout PIX para planos mensais no formulário de planos com fricção zero (inserção de checkbox obrigatório para consentimento dos Termos de Serviço e Política de Privacidade).
+2. Criar as páginas estáticas oficiais de Termos de Serviço (`termos.template.html`) e Política de Privacidade (`privacidade.template.html`) integradas ao sistema de compilação da navbar/rodapé.
+3. Garantir a conformidade total com a LGPD no momento do cadastro de alunos sem coletar informações desnecessárias (como endereço e data de nascimento, mas registrando a data de início dos treinos).
+4. Corrigir o schema de resposta da API do backend no fluxo do PIX para retornar `{ success: true, data: ... }` diretamente para evitar falhas de parse de propriedades indefinidas no JS do checkout.
+5. Personalizar dinamicamente o e-mail de boas-vindas: para contratantes de planos mensais via PIX, o e-mail é disparado sem a informação sobre transição de combos (3 ou 6 meses), descrevendo apenas o faturamento mensal via PIX de 30 em 30 dias. Alteração de "aplicativo Treinus e WhatsApp" para "aplicativo Treinus ou WhatsApp" no texto informativo de cancelamento de todos os templates de e-mail.
+6. Ajustar a classificação de tipo de pagamento (`isMonthlyPix`) no backend de forma que analise o método de pagamento da primeira fatura criada (`pixTxid` na primeira fatura) em vez de checar apenas o nome do plano (visto que o plano associado é idêntico para ambas as formas de pagamento).
+
+**O que foi feito:**
+- ✅ **Checkout PIX com Checkbox LGPD:**
+  - Adicionado checkbox de aceite obrigatório dos Termos de Serviço e Políticas de Privacidade na página de checkout (`planos/index.template.html`).
+  - Adicionada validação de checkout para bloquear envios caso o checkbox não esteja marcado.
+  - Implementada a exibição do QR Code e Pix Copia e Cola dinamicamente na tela com contador de expiração e verificação de status em tempo real.
+- ✅ **Páginas de Termos & Privacidade:**
+  - Criados templates `planos/termos.template.html` e `planos/privacidade.template.html` unindo os cabeçalhos/rodapés e importando as folhas de estilos.
+  - Incluído o número de contato do suporte (+55 17 99782-7296) e os detalhes de cancelamento até o dia 25 de cada mês.
+  - Integradas ao build do blog (`node build-blog.js`) gerando as páginas finais estáticas funcionais e estilizadas.
+- ✅ **Normalização de Respostas da API do PIX:**
+  - Ajustadas as respostas dos endpoints de checkout pix e status do pix no controller do backend para retornar o payload sem envolver na classe base do controller, garantindo compatibilidade direta com a validação do script do frontend.
+- ✅ **Personalização Inteligente dos E-mails de Boas-vindas:**
+  - Modificado o schema de dados do template de onboarding em `EmailService.ts`.
+  - Inserido bloco condicional de informações de pagamento no e-mail:
+    * Se for plano PIX mensal: *"Sua assinatura mensal será faturada a cada 30 dias via Pix. Caso queira se desligar da assessoria, o pedido de desligamento deve ser realizado via aplicativo Treinus ou WhatsApp até o dia 25 de cada mês para que não seja gerada uma nova fatura."*
+    * Se for combo: *"Após a finalização dos 3 meses pagos ou 6 meses pagos de seu combo, serão geradas faturas mensais para pagamento via Pix. Caso queira se desligar da assessoria, o pedido de desligamento deve ser realizado via aplicativo Treinus ou WhatsApp até o dia 25 de cada mês para que não seja gerada uma nova fatura."*
+  - Correção na checagem de tipo de contratação via banco de dados analisando se a primeira fatura (`createdAt` ascendente) possui dados de transação PIX (`pixTxid`), resolvendo a sobreposição de planos com o mesmo nome.
+
+### 📁 Arquivos criados/modificados:
+- **No repositório do site (`site-karina-franzin`)**:
+  - `planos/termos.template.html` (NOVO)
+  - `planos/privacidade.template.html` (NOVO)
+  - `planos/termos.html` (COMPILADO)
+  - `planos/privacidade.html` (COMPILADO)
+  - `planos/index.template.html` e `planos/index.html` (MODIFICADOS/COMPILADOS)
+  - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+- **No repositório do backend (`ContasReceberKarina`)**:
+  - `src/controllers/PaymentController.ts` (MODIFICADO)
+  - `src/services/EmailService.ts` (MODIFICADO)
+  - `src/services/PaymentService.ts` (MODIFICADO)
+  - `src/services/StudentService.ts` (MODIFICADO)
+  - `src/controllers/EfiController.ts` (MODIFICADO)
+
+
 
 
 
