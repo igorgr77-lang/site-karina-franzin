@@ -1128,6 +1128,11 @@ og:image: (imagem real do artigo do Supabase)
   - Calculado e exibido o LTV (Lifetime Value) multiplicando a receita média por aluno (ARPU) pelo tempo médio de permanência dos alunos inativos.
   - Implementados indicadores adicionais no painel financeiro: ARR (Receita Anual Projetada - MRR x 12), ARPU (Ticket Médio/Receita Média por Aluno) e Permanência Média (tempo médio ativo de alunos inativos no banco de dados).
   - Adicionado controle de sanidade visual: a seção de Métricas SaaS agora inicia **oculta por padrão** em um container expansível (acordeão), que exibe um botão/indicador dinâmico de 'Exibir/Ocultar Relatório' com chevrons direcionais para expandir ou recolher a visualização.
+- ✅ **Gestão de Senhas, Faturas Pendentes e Logs de Auditoria:**
+  - Adicionado botão/campo na tela de edição do aluno (`StudentFormDialog.tsx`) permitindo ao administrador redefinir manualmente a senha de acesso a qualquer momento, gravando a alteração no banco e no Supabase Auth.
+  - Implementada seção de "Configurações de Acesso" no portal do aluno (`PortalDashboard.tsx`) permitindo redefinir a própria senha de forma segura no lado do cliente utilizando a API do Supabase Auth.
+  - Implementada atualização automática de faturas pendentes (`PENDING`): quando plano, desconto ou dia de vencimento do aluno são editados, a fatura pendente ativa tem seu valor e vencimento corrigidos, limpando e invalidando payloads antigos de PIX e Stripe para prevenir transações incorretas.
+  - Criada a tabela de logs de auditoria `AuditLog` no banco e o serviço `AuditLogService` para registrar ações administrativas sensíveis no sistema (criação, edição, inativação de alunos, redefinição de senhas, cancelamento e reativação de faturas).
 
 ### 📁 Arquivos criados/modificados:
 - **No repositório do site (`site-karina-franzin`)**:
@@ -1138,14 +1143,21 @@ og:image: (imagem real do artigo do Supabase)
   - `planos/index.template.html` e `planos/index.html` (MODIFICADOS/COMPILADOS)
   - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 - **No repositório do backend (`ContasReceberKarina`)**:
+  - `src/services/AuditLogService.ts` (NOVO)
+  - `prisma/schema.prisma` (MODIFICADO)
   - `src/controllers/PaymentController.ts` (MODIFICADO)
   - `src/services/EmailService.ts` (MODIFICADO)
   - `src/services/PaymentService.ts` (MODIFICADO)
   - `src/services/StudentService.ts` (MODIFICADO)
   - `src/controllers/EfiController.ts` (MODIFICADO)
   - `src/controllers/StatsController.ts` (MODIFICADO)
+  - `src/controllers/InvoiceController.ts` (MODIFICADO)
+  - `src/controllers/StudentController.ts` (MODIFICADO)
+  - `src/routes/student.routes.ts` (MODIFICADO)
   - `frontend/src/pages/StudentsList.tsx` (MODIFICADO)
   - `frontend/src/pages/Dashboard.tsx` (MODIFICADO)
+  - `frontend/src/components/StudentFormDialog.tsx` (MODIFICADO)
+  - `frontend/src/pages/PortalDashboard.tsx` (MODIFICADO)
 
 
 
