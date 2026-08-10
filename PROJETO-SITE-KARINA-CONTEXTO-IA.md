@@ -1119,6 +1119,9 @@ og:image: (imagem real do artigo do Supabase)
     * Se for plano PIX mensal: *"Sua assinatura mensal será faturada a cada 30 dias via Pix. Caso queira se desligar da assessoria, o pedido de desligamento deve ser realizado via aplicativo Treinus ou WhatsApp até o dia 25 de cada mês para que não seja gerada uma nova fatura."*
     * Se for combo: *"Após a finalização dos 3 meses pagos ou 6 meses pagos de seu combo, serão geradas faturas mensais para pagamento via Pix. Caso queira se desligar da assessoria, o pedido de desligamento deve ser realizado via aplicativo Treinus ou WhatsApp até o dia 25 de cada mês para que não seja gerada uma nova fatura."*
   - Correção na checagem de tipo de contratação via banco de dados analisando se a primeira fatura (`createdAt` ascendente) possui dados de transação PIX (`pixTxid`), resolvendo a sobreposição de planos com o mesmo nome.
+- ✅ **Filtros Avançados no Painel:**
+  - Adicionados filtros por Início Legal (mês/ano via seletor nativo HTML5), Plano Designado (extraído dinamicamente a partir da base de dados dos alunos carregados) e Ficha Treinus (status do onboardingStatus: Pendente, Ficha Acessada, Ativo no App).
+  - Adicionado botão dinâmico para limpar filtros ativos e atualizada a mensagem de estado vazio da tabela para refletir quando filtros de busca ativa não retornarem resultados.
 
 ### 📁 Arquivos criados/modificados:
 - **No repositório do site (`site-karina-franzin`)**:
@@ -1134,6 +1137,8 @@ og:image: (imagem real do artigo do Supabase)
   - `src/services/PaymentService.ts` (MODIFICADO)
   - `src/services/StudentService.ts` (MODIFICADO)
   - `src/controllers/EfiController.ts` (MODIFICADO)
+  - `frontend/src/pages/StudentsList.tsx` (MODIFICADO)
+
 
 
 
