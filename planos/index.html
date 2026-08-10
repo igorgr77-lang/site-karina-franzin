@@ -190,32 +190,17 @@
                     </div>
                 </div>
 
-                <!-- Coluna Timer e Ação -->
-                <div class="lg:col-span-5 bg-dark-card border border-white/10 p-6 md:p-8 rounded-3xl text-center shadow-2xl relative">
-                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-karina-orange text-white text-[10px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider">
-                        Vagas Limitadas para esta Semana
+                <!-- Coluna Inscrição e Status -->
+                <div class="lg:col-span-5 bg-dark-card border border-white/10 p-6 md:p-8 rounded-3xl text-center shadow-2xl relative flex flex-col justify-center items-center">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-500 text-white text-[10px] font-extrabold px-4 py-1 rounded-full uppercase tracking-wider flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span> Vagas Abertas
                     </div>
                     
-                    <h3 class="text-gray-400 font-bold uppercase tracking-wider text-xs mb-6 mt-2">A oferta expira em:</h3>
-                    
-                    <!-- Countdown Timer -->
-                    <div class="grid grid-cols-4 gap-2 mb-8">
-                        <div class="bg-white/5 border border-white/5 p-3 rounded-2xl">
-                            <span id="timer-days" class="text-3xl md:text-4xl font-oswald font-black text-karina-orange block">02</span>
-                            <span class="text-[9px] uppercase font-bold text-gray-400">Dias</span>
-                        </div>
-                        <div class="bg-white/5 border border-white/5 p-3 rounded-2xl">
-                            <span id="timer-hours" class="text-3xl md:text-4xl font-oswald font-black text-white block">23</span>
-                            <span class="text-[9px] uppercase font-bold text-gray-400">Horas</span>
-                        </div>
-                        <div class="bg-white/5 border border-white/5 p-3 rounded-2xl">
-                            <span id="timer-minutes" class="text-3xl md:text-4xl font-oswald font-black text-white block">59</span>
-                            <span class="text-[9px] uppercase font-bold text-gray-400">Min</span>
-                        </div>
-                        <div class="bg-white/5 border border-white/5 p-3 rounded-2xl">
-                            <span id="timer-seconds" class="text-3xl md:text-4xl font-oswald font-black text-white block">58</span>
-                            <span class="text-[9px] uppercase font-bold text-gray-400">Seg</span>
-                        </div>
+                    <div class="my-6">
+                        <h3 class="text-white font-oswald font-black text-2xl uppercase tracking-wide mb-2">Inicie Hoje Mesmo</h3>
+                        <p class="text-gray-400 text-xs md:text-sm max-w-xs mx-auto leading-relaxed">
+                            Receba sua planilha personalizada em até 48 horas e comece a treinar com acompanhamento profissional.
+                        </p>
                     </div>
 
                     <a href="#planos" class="w-full block py-4 bg-karina-orange text-white text-center font-extrabold rounded-xl transition transform hover:-translate-y-0.5 hover:shadow-lg uppercase text-sm mb-4">
@@ -2056,44 +2041,7 @@
             }
         }
 
-        // Countdown Timer Logic
-        function startCountdown() {
-            // Conta regressiva de 24h cíclica baseada no dia atual para sempre parecer ativa
-            const now = new Date();
-            const targetDate = new Date();
-            targetDate.setHours(23, 59, 59, 999);
-            
-            // Adiciona 1 ou 2 dias se faltarem poucas horas
-            const diffHours = (targetDate - now) / (1000 * 60 * 60);
-            if (diffHours < 6) {
-                targetDate.setDate(targetDate.getDate() + 2);
-            } else {
-                targetDate.setDate(targetDate.getDate() + 1);
-            }
 
-            function updateTimer() {
-                const currentTime = new Date();
-                const difference = targetDate - currentTime;
-
-                if (difference <= 0) {
-                    clearInterval(interval);
-                    return;
-                }
-
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-                document.getElementById('timer-days').textContent = String(days).padStart(2, '0');
-                document.getElementById('timer-hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('timer-minutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('timer-seconds').textContent = String(seconds).padStart(2, '0');
-            }
-
-            updateTimer();
-            const interval = setInterval(updateTimer, 1000);
-        }
 
         // Algoritmo de Luhn para validação matemática de número de cartão de crédito (Mod 10)
         function validateLuhn(cardNumber) {
@@ -2497,7 +2445,6 @@
         // Inicializa scripts ao carregar
         window.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
-            startCountdown();
         });
     </script>
 
