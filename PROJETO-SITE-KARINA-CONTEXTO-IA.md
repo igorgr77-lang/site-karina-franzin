@@ -1138,6 +1138,11 @@ og:image: (imagem real do artigo do Supabase)
 - ✅ **Remoção de Escassez Artificial (Contador Regressivo):**
   - Removido o contador regressivo de escassez da página de planos (`planos/index.template.html`), substituindo-o por um box estático com indicador de status "Vagas Abertas" (contendo animação de pulso) e texto focado na facilidade de início imediato.
   - Removida a lógica em JavaScript que realizava o cálculo da contagem regressiva e atualizava os seletores do timer no DOM.
+- ✅ **Portal do Aluno e Biblioteca de Vídeos (YouTube Shorts):**
+  - O portal financeiro do aluno foi transformado em um **Portal do Aluno** completo, incorporando uma biblioteca interativa de vídeos de treino organizados em 3 categorias (*📚 Educativos*, *⚡ Ativações*, *🧘 Auto Liberação*).
+  - Implementado player lightbox embutido que renderiza vídeos do YouTube Shorts na proporção vertical exata de `9:16` com desfoque de fundo e modal de reprodução de alta fidelidade para manter a navegação integrada.
+  - Desenvolvida a tela administrativa `VideosAdminList.tsx` permitindo o gerenciamento dinâmico de vídeos (inserção, edição, ordenação por categoria, exclusão e visualização rápida) com suporte a logs de auditoria automáticos (`AuditLog`).
+  - Atualizada a modelagem do banco de dados adicionando a tabela `videos` (`Video` model) no Prisma e gerando os tipos correspondentes.
 
 ### 📁 Arquivos criados/modificados:
 - **No repositório do site (`site-karina-franzin`)**:
@@ -1148,8 +1153,12 @@ og:image: (imagem real do artigo do Supabase)
   - `planos/index.template.html` e `planos/index.html` (MODIFICADOS/COMPILADOS)
   - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 - **No repositório do backend (`ContasReceberKarina`)**:
+  - `src/controllers/VideoController.ts` (NOVO)
+  - `src/routes/video.routes.ts` (NOVO)
+  - `frontend/src/pages/VideosAdminList.tsx` (NOVO)
   - `src/services/AuditLogService.ts` (NOVO)
   - `prisma/schema.prisma` (MODIFICADO)
+  - `src/routes/index.ts` (MODIFICADO)
   - `src/controllers/PaymentController.ts` (MODIFICADO)
   - `src/services/EmailService.ts` (MODIFICADO)
   - `src/services/PaymentService.ts` (MODIFICADO)
@@ -1159,6 +1168,7 @@ og:image: (imagem real do artigo do Supabase)
   - `src/controllers/InvoiceController.ts` (MODIFICADO)
   - `src/controllers/StudentController.ts` (MODIFICADO)
   - `src/routes/student.routes.ts` (MODIFICADO)
+  - `frontend/src/App.tsx` (MODIFICADO)
   - `frontend/src/pages/StudentsList.tsx` (MODIFICADO)
   - `frontend/src/pages/Dashboard.tsx` (MODIFICADO)
   - `frontend/src/components/StudentFormDialog.tsx` (MODIFICADO)
