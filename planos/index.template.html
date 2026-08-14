@@ -1284,6 +1284,8 @@
             'bronze_mensal': { name: 'Plano Bronze Mensal', total: 114.00, monthly: 114.00, months: 1, type: 'mensal' },
             'prata_mensal': { name: 'Plano Prata Mensal', total: 142.50, monthly: 142.50, months: 1, type: 'mensal' },
             'ouro_mensal': { name: 'Plano Ouro Mensal', total: 180.00, monthly: 180.00, months: 1, type: 'mensal' },
+            'teste_pix': { name: 'Plano Teste PIX', total: 1.00, monthly: 1.00, months: 1, type: 'mensal' },
+            'teste_cartao': { name: 'Combo Teste Cartão', total: 15.00, monthly: 5.00, months: 3 },
             'bronze_trimestral': { name: 'Bronze Trimestral (3 Meses)', total: 315.00, monthly: 105.00, months: 3 },
             'bronze_semestral': { name: 'Bronze Semestral (6 Meses)', total: 600.00, monthly: 100.00, months: 6 },
             'prata_trimestral': { name: 'Prata Trimestral (3 Meses)', total: 405.00, monthly: 135.00, months: 3 },
@@ -1291,6 +1293,32 @@
             'ouro_trimestral': { name: 'Ouro Trimestral (3 Meses)', total: 510.00, monthly: 170.00, months: 3 },
             'ouro_semestral': { name: 'Ouro Semestral (6 Meses)', total: 960.00, monthly: 160.00, months: 6 }
         };
+
+        // Verifica se é modo de teste e injeta o banner
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('test') === 'true') {
+            window.addEventListener('DOMContentLoaded', () => {
+                const banner = document.createElement('div');
+                banner.className = 'w-full max-w-4xl mx-auto mb-10 p-6 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-center';
+                banner.innerHTML = `
+                    <h3 class="text-amber-400 font-bold font-oswald text-lg uppercase tracking-wider mb-2">🛠️ MODO DE TESTE ATIVO</h3>
+                    <p class="text-gray-300 text-sm mb-4">Você pode realizar cobranças reais de teste para validar o PIX e o Cartão de Crédito no ambiente de produção.</p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <button onclick="openCheckout('teste_pix')" class="px-6 py-2.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-lg transition text-xs uppercase flex items-center gap-1.5 shadow-lg">
+                            <i data-lucide="qr-code" class="w-4 h-4"></i> Testar PIX (R$ 1,00)
+                        </button>
+                        <button onclick="openCheckout('teste_cartao')" class="px-6 py-2.5 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg transition text-xs uppercase flex items-center gap-1.5 shadow-lg">
+                            <i data-lucide="credit-card" class="w-4 h-4"></i> Testar Cartão (R$ 15,00 em 3x)
+                        </button>
+                    </div>
+                `;
+                const container = document.querySelector('#planos .container');
+                if (container) {
+                    container.insertBefore(banner, container.firstChild);
+                    if (window.lucide) lucide.createIcons();
+                }
+            });
+        }
 
         // Alternador de Aba de Preços
         function switchPricing(mode) {
