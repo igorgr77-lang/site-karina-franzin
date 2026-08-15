@@ -1529,3 +1529,73 @@ body.is-webview .hero {
         animation: none;
     }
 }
+
+/* ===========================
+   CARROSSEL DE RESULTADOS
+   =========================== */
+
+.results-carousel {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    padding: 40px 0;
+}
+
+@media (max-width: 968px) {
+    .results-carousel {
+        max-width: 100%;
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 640px) {
+    .results-carousel {
+        padding: 20px 15px;
+    }
+}
+
+.result-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.result-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.result-card img {
+    width: 100%;
+    height: 400px;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    cursor: pointer;
+}
+
+.result-card img[src] {
+    animation: none;
+    background: none;
+}
+
+.carousel-slide.active .result-card {
+    animation: fadeIn 0.6s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .result-card img {
+        animation: none;
+    }
+    
+    .carousel-slide.active .result-card {
+        animation: none;
+    }
+}

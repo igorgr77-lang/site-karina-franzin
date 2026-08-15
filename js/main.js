@@ -157,22 +157,31 @@ document.head.appendChild(style);
 // ===========================
 // Carrossel de Feedbacks com Swipe
 // ===========================
+// ===========================
+// Carrossel com Swipe (Genérico)
+// ===========================
 (function() {
-    console.log('[CAROUSEL] Iniciando com suporte a swipe...');
+    console.log('[CAROUSEL] Iniciando com suporte a swipe para múltiplos carrosséis...');
     
-    function init() {
-        var track = document.querySelector('.carousel-track');
-        var slides = document.querySelectorAll('.carousel-slide');
-        var prevBtn = document.querySelector('.carousel-btn.prev');
-        var nextBtn = document.querySelector('.carousel-btn.next');
-        var indicators = document.querySelector('.carousel-indicators');
-        
-        if (!track || slides.length === 0) {
-            console.log('[CAROUSEL] Elementos nao encontrados');
+    function initCarousel(carouselClass) {
+        var carouselEl = document.querySelector(carouselClass);
+        if (!carouselEl) {
+            console.log('[CAROUSEL] Carrossel nao encontrado:', carouselClass);
             return;
         }
         
-        console.log('[CAROUSEL] Encontrados ' + slides.length + ' slides');
+        var track = carouselEl.querySelector('.carousel-track');
+        var slides = carouselEl.querySelectorAll('.carousel-slide');
+        var prevBtn = carouselEl.querySelector('.carousel-btn.prev');
+        var nextBtn = carouselEl.querySelector('.carousel-btn.next');
+        var indicators = carouselEl.querySelector('.carousel-indicators');
+        
+        if (!track || slides.length === 0) {
+            console.log('[CAROUSEL] Elementos do carrossel nao encontrados para:', carouselClass);
+            return;
+        }
+        
+        console.log('[CAROUSEL] Encontrados ' + slides.length + ' slides em:', carouselClass);
         
         var currentPage = 0;
         var slidesPerView = 3;
@@ -203,7 +212,7 @@ document.head.appendChild(style);
                 dot.className = 'indicator';
                 dot.setAttribute('data-page', i);
                 dot.setAttribute('aria-label', 'Ir para o slide ' + (i + 1));
-                // Suporte a touchstart para WebViews (Instagram/Facebook) — evita delay de 300ms
+                
                 (function(page, btn) {
                     var dotTouched = false;
                     btn.addEventListener('touchstart', function(e) {
@@ -218,7 +227,6 @@ document.head.appendChild(style);
                 })(i, dot);
                 indicators.appendChild(dot);
             }
-            console.log('[CAROUSEL] Criados ' + total + ' dots');
         }
         
         function update() {
@@ -249,10 +257,6 @@ document.head.appendChild(style);
             update();
         }
         
-        // ===========================
-        // SWIPE/TOUCH FUNCTIONALITY
-        // ===========================
-        
         function getPositionX(event) {
             return event.type.indexOf('mouse') !== -1 ? event.pageX : event.touches[0].clientX;
         }
@@ -263,7 +267,6 @@ document.head.appendChild(style);
             hasMoved = false;
             touchStartTime = Date.now();
             
-            // Verifica se clicou em uma imagem (busca também em parent caso clique na borda)
             var target = event.target;
             if (target.tagName === 'IMG') {
                 clickedImage = target;
@@ -273,7 +276,6 @@ document.head.appendChild(style);
                 clickedImage = null;
             }
             
-            // Desabilita a transição durante o drag
             track.style.transition = 'none';
         }
         
@@ -283,19 +285,14 @@ document.head.appendChild(style);
             currentX = getPositionX(event);
             var diffX = currentX - startX;
             
-            // Marca que houve movimento se passar de 5px
             if (Math.abs(diffX) > 5) {
                 hasMoved = true;
             }
             
-            // Calcula a posição atual do carrossel
             var currentTranslate = -currentPage * 100;
-            
-            // Converte o movimento do mouse/dedo em porcentagem
             var trackWidth = track.offsetWidth;
             var movePercent = (diffX / trackWidth) * 100;
             
-            // Aplica o movimento
             track.style.transform = 'translateX(' + (currentTranslate + movePercent) + '%)';
         }
         
@@ -303,21 +300,16 @@ document.head.appendChild(style);
             if (!isDragging) return;
             
             isDragging = false;
-            
-            // Reativa a transição
             track.style.transition = 'transform 0.5s ease';
             
             var diffX = currentX - startX;
-            var threshold = 50; // pixels mínimos para mudar de página
+            var threshold = 50;
             var touchDuration = Date.now() - touchStartTime;
             
-            // Se foi um clique rápido (sem movimento) E clicou em uma imagem
-            // Abre o lightbox diretamente aqui
             if (!hasMoved && touchDuration < 300 && clickedImage) {
                 update();
                 console.log('[CAROUSEL] Clique rápido em imagem - abrindo lightbox');
                 
-                // Abre o lightbox diretamente
                 var lightbox = document.getElementById('feedbackLightbox');
                 var lightboxImg = document.getElementById('lightboxImage') || document.getElementById('lightboxImg');
                 
@@ -326,7 +318,6 @@ document.head.appendChild(style);
                     lightbox.className = 'lightbox active';
                     lightbox.setAttribute('aria-hidden', 'false');
                     document.body.style.overflow = 'hidden';
-                    console.log('[CAROUSEL] Lightbox aberto com sucesso!');
                 }
                 
                 return;
@@ -334,24 +325,19 @@ document.head.appendChild(style);
             
             if (Math.abs(diffX) > threshold) {
                 if (diffX > 0) {
-                    // Swipe para direita (voltar)
                     goPrev();
                 } else {
-                    // Swipe para esquerda (avançar)
                     goNext();
                 }
             } else {
-                // Volta para a posição atual
                 update();
             }
         }
         
-        // Event listeners para TOUCH (mobile)
         track.addEventListener('touchstart', touchStart);
         track.addEventListener('touchmove', touchMove, { passive: true });
         track.addEventListener('touchend', touchEnd);
         
-        // Event listeners para MOUSE (desktop - drag)
         track.addEventListener('mousedown', touchStart);
         track.addEventListener('mousemove', touchMove);
         track.addEventListener('mouseup', touchEnd);
@@ -361,34 +347,33 @@ document.head.appendChild(style);
             }
         });
         
-        // Previne o comportamento padrão de arrastar imagem
         track.addEventListener('dragstart', function(e) {
             e.preventDefault();
         });
         
-        // Botões de navegação
         if (prevBtn) prevBtn.onclick = goPrev;
         if (nextBtn) nextBtn.onclick = goNext;
         
-        // Inicialização
         updateSlidesPerView();
         createDots();
         update();
         
-        // Atualiza ao redimensionar a janela
         window.addEventListener('resize', function() {
             updateSlidesPerView();
             createDots();
             update();
         });
-        
-        console.log('[CAROUSEL] Inicializado com sucesso! Swipe ativado.');
+    }
+    
+    function initAll() {
+        initCarousel('.feedbacks-carousel');
+        initCarousel('.results-carousel');
     }
     
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', initAll);
     } else {
-        init();
+        initAll();
     }
 })();
 
@@ -407,8 +392,8 @@ document.head.appendChild(style);
             return;
         }
         
-        var images = document.querySelectorAll('.feedback-card img');
-        console.log('[LIGHTBOX] Encontradas ' + images.length + ' imagens');
+        var images = document.querySelectorAll('.feedback-card img, .result-card img');
+        console.log('[LIGHTBOX] Encontradas ' + images.length + ' imagens amplíaveis');
         
         function openLightbox(src) {
             if (lightbox && lightboxImg && src) {
@@ -447,8 +432,7 @@ document.head.appendChild(style);
         
         if (closeBtn) closeBtn.onclick = close;
         if (overlay) overlay.onclick = close;
-
-        // Clique no próprio fundo do lightbox para fechar
+ 
         lightbox.addEventListener('click', function(e) {
             if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
                 close();
