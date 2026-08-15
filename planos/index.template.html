@@ -1320,6 +1320,16 @@
             });
         }
 
+        // Abre o modal de checkout automaticamente se o parâmetro ?checkout=KEY for fornecido
+        window.addEventListener('DOMContentLoaded', () => {
+            const checkoutKey = urlParams.get('checkout');
+            if (checkoutKey && PLANS_DATA[checkoutKey]) {
+                setTimeout(() => {
+                    openCheckout(checkoutKey);
+                }, 300);
+            }
+        });
+
         // Alternador de Aba de Preços
         function switchPricing(mode) {
             document.querySelectorAll('.pricing-toggle-btn').forEach(btn => btn.classList.remove('active'));
