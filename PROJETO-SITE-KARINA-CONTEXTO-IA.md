@@ -1238,7 +1238,7 @@ og:image: (imagem real do artigo do Supabase)
   - **FAQ de Investimento:** Atualizou a resposta da pergunta 3 direcionando os visitantes diretamente para `/planos/`.
   - **CTA de Artigos do Blog (`artigo.template.html`):** Atualizou a caixa de acompanhamento ao final de todos os artigos estáticos para apontar para a página de planos `/planos/` com o texto *"Conhecer Treinamento"*.
   - **CTA Strong (Rodapé da Home, Cupons e Eventos):** Atualizou os botões principais de rodapé para apontar para `/planos/` com textos de *"Escolher Meu Plano"* ou *"Conhecer Treinamentos"*.
-  - **Lord Run Festival (`lord-run-festival/index.template.html`):** Adicionou o botão extra *"Escolher Meu Plano"* direcionando para `/planos/` ao lado do botão de WhatsApp na caixa de preparação e corrigiu a data do primeiro treinão para **13/08/2026 às 19h00 (Quinta-feira)**.
+  - **Lord Run Festival (`lord-run-festival/index.template.html`):** Adicionou o botão extra *"Escolher Meu Plano"* direcionando para `/planos/` e o posicionou à esquerda com cor laranja e efeito de pulso, colocou o botão *"Quero Treinar com a Karina"* à direita com cor verde oficial do WhatsApp, e corrigiu a data do primeiro treinão para **13/08/2026 às 19h00 (Quinta-feira)**.
   - **Tela de Login do Portal (`Login.tsx`):** Renomeou o subtítulo *"Financeiro"* para *"Portal do Atleta"* para manter a coerência de marca da plataforma de faturas/vídeos.
 - ✅ **Compilação e Deploy:** Rodado o script `node build-blog.js` para atualizar todas as páginas finais do site e realizado o deploy das correções em produção para ambos os repositórios (`ContasReceberKarina` e `site-karina-franzin`).
 
