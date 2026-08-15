@@ -306,7 +306,7 @@ async function build() {
                     "@type": "Person",
                     "name": autor,
                     "jobTitle": "Graduada em Educação Física e Fisioterapeuta",
-                    "description": "Graduada em Educação Física e Fisioterapia, com mais de 14 anos de experiência na área de corrida de rua. CREF 116683-G/SP.",
+                    "description": "Graduada em Educação Física e Fisioterapia. Com mais de 14 anos de experiência na corrida de rua, ajuda atletas de todos os níveis a alcançarem seus objetivos com segurança. Como especialista em periodização esportiva, desenvolve planos sob medida focados em evolução contínua, técnica e longevidade no esporte. CREF 116683-G/SP.",
                     "knowsAbout": [
                         "Corrida de rua",
                         "Fisioterapia esportiva",
