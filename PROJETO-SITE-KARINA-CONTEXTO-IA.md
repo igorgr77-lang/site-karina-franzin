@@ -1233,19 +1233,23 @@ og:image: (imagem real do artigo do Supabase)
   - Removido o card de descrição em texto abaixo do player de vídeo para simplificar o layout.
   - Aumentado o tamanho do botão fechar (`X`) para otimizar interações por toque em dispositivos móveis.
 - ✅ **Atualização de Links e Botões de Conversão (CTAs):**
-  - **Menu de Navegação (`navbar.html`):** Renomeou *"Portal Financeiro"* para *"Portal do Aluno"* e alterou o botão *"Começar Agora"* para *"Conhecer Treinamento"* apontando para `/planos/`.
+  - **Menu de Navegação (`navbar.html`):** Renomeou o link da nossa plataforma de *"Portal Financeiro"* para *"Portal do Atleta"*, renomeou o link do Treinus de *"Portal do Atleta"* para *"Portal Treinus"* e alterou o botão *"Começar Agora"* para *"Conhecer Treinamento"* apontando para `/planos/`.
   - **Hero (Topo da Home):** Alterou o link principal do botão primário para `/planos/` com o texto *"Conhecer Treinamentos"* e reconfigurou o botão secundário para *"Falar no WhatsApp"*.
   - **FAQ de Investimento:** Atualizou a resposta da pergunta 3 direcionando os visitantes diretamente para `/planos/`.
+  - **CTA de Artigos do Blog (`artigo.template.html`):** Atualizou a caixa de acompanhamento ao final de todos os artigos estáticos para apontar para a página de planos `/planos/` com o texto *"Conhecer Treinamento"*.
   - **CTA Strong (Rodapé da Home, Cupons e Eventos):** Atualizou os botões principais de rodapé para apontar para `/planos/` com textos de *"Escolher Meu Plano"* ou *"Conhecer Treinamentos"*.
+  - **Tela de Login do Portal (`Login.tsx`):** Renomeou o subtítulo *"Financeiro"* para *"Portal do Atleta"* para manter a coerência de marca da plataforma de faturas/vídeos.
 - ✅ **Compilação e Deploy:** Rodado o script `node build-blog.js` para atualizar todas as páginas finais do site e realizado o deploy das correções em produção para ambos os repositórios (`ContasReceberKarina` e `site-karina-franzin`).
 
 ### 📁 Arquivos criados/modificados:
 - **No repositório do portal/backend (`ContasReceberKarina`)**:
   - `frontend/src/pages/PortalDashboard.tsx` (MODIFICADO)
+  - `frontend/src/pages/Login.tsx` (MODIFICADO)
 - **No repositório do site (`site-karina-franzin`)**:
   - `components/navbar.html` (MODIFICADO)
   - `index.template.html` e `index.html` (MODIFICADOS/COMPILADOS)
   - `cupons/index.template.html` e `cupons/index.html` (MODIFICADOS/COMPILADOS)
   - `eventos/index.template.html` e `eventos/index.html` (MODIFICADOS/COMPILADOS)
+  - `blog/artigo.template.html` e todas as páginas de artigos compiladas (MODIFICADOS/COMPILADOS)
   - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 
