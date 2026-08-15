@@ -1,6 +1,6 @@
 # 🏃‍♀️ PROJETO SITE KARINA FRANZIN — CONTEXTO PARA IA
 
-> **Última atualização:** 15/08/2026 (Benefícios, Onboarding Inteligente, Aprovação de Cartão, Links de Checkout, Fim do Modo de Teste)  
+> **Última atualização:** 15/08/2026 (Benefícios, Onboarding Inteligente, Aprovação de Cartão, Links de Checkout, Fim do Modo de Teste, Responsividade do Vídeo, Redirecionamento de CTAs)  
 > **Branch activa:** `develop`  
 > **Projeto online:** https://karinafranzin.com.br  
 > **Repositório:** https://github.com/igorgr77-lang/site-karina-franzin  
@@ -1215,4 +1215,37 @@ og:image: (imagem real do artigo do Supabase)
   - `src/controllers/EfiController.ts` (MODIFICADO)
   - `src/controllers/PaymentController.ts` (MODIFICADO)
   - `src/services/EmailService.ts` (MODIFICADO)
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 15/08/2026 (PARTE 2) — RESPONSIVIDADE DO PORTAL E DIRECIONAMENTO DE CTAs PARA PLANOS ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Tornar o player de vídeo lightbox do Portal do Aluno (Shorts) 100% responsivo para todos os tamanhos de tela.
+2. Atualizar todos os botões de conversão e menus do site institucional para redirecionar o usuário para a página de planos (`/planos/`), estimulando o auto-atendimento.
+
+**O que foi feito:**
+- ✅ **Responsividade do Player de Vídeo:**
+  - Adicionada rolagem vertical (`overflow-y: auto`) e centralização automática (`margin: auto`) no container do lightbox.
+  - Definida a altura proporcional do vídeo baseando-se no viewport (`height: min(65vh, 540px)`).
+  - Removido o card de descrição em texto abaixo do player de vídeo para simplificar o layout.
+  - Aumentado o tamanho do botão fechar (`X`) para otimizar interações por toque em dispositivos móveis.
+- ✅ **Atualização de Links e Botões de Conversão (CTAs):**
+  - **Menu de Navegação (`navbar.html`):** Renomeou *"Portal Financeiro"* para *"Portal do Aluno"* e alterou o botão *"Começar Agora"* para *"Conhecer Treinamento"* apontando para `/planos/`.
+  - **Hero (Topo da Home):** Alterou o link principal do botão primário para `/planos/` com o texto *"Conhecer Treinamentos"* e reconfigurou o botão secundário para *"Falar no WhatsApp"*.
+  - **FAQ de Investimento:** Atualizou a resposta da pergunta 3 direcionando os visitantes diretamente para `/planos/`.
+  - **CTA Strong (Rodapé da Home, Cupons e Eventos):** Atualizou os botões principais de rodapé para apontar para `/planos/` com textos de *"Escolher Meu Plano"* ou *"Conhecer Treinamentos"*.
+- ✅ **Compilação e Deploy:** Rodado o script `node build-blog.js` para atualizar todas as páginas finais do site e realizado o deploy das correções em produção para ambos os repositórios (`ContasReceberKarina` e `site-karina-franzin`).
+
+### 📁 Arquivos criados/modificados:
+- **No repositório do portal/backend (`ContasReceberKarina`)**:
+  - `frontend/src/pages/PortalDashboard.tsx` (MODIFICADO)
+- **No repositório do site (`site-karina-franzin`)**:
+  - `components/navbar.html` (MODIFICADO)
+  - `index.template.html` e `index.html` (MODIFICADOS/COMPILADOS)
+  - `cupons/index.template.html` e `cupons/index.html` (MODIFICADOS/COMPILADOS)
+  - `eventos/index.template.html` e `eventos/index.html` (MODIFICADOS/COMPILADOS)
+  - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 
