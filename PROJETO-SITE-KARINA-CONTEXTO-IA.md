@@ -1,6 +1,6 @@
 # 🏃‍♀️ PROJETO SITE KARINA FRANZIN — CONTEXTO PARA IA
 
-> **Última atualização:** 08/08/2026 (Onboarding, 404 Page, WhatsApp CTA, Google Analytics)  
+> **Última atualização:** 15/08/2026 (Benefícios, Onboarding Inteligente, Aprovação de Cartão, Links de Checkout, Fim do Modo de Teste)  
 > **Branch activa:** `develop`  
 > **Projeto online:** https://karinafranzin.com.br  
 > **Repositório:** https://github.com/igorgr77-lang/site-karina-franzin  
@@ -1175,9 +1175,44 @@ og:image: (imagem real do artigo do Supabase)
   - `frontend/src/pages/PortalDashboard.tsx` (MODIFICADO)
   - `frontend/src/pages/Collections.tsx` (MODIFICADO)
 
+---
 
+## 📅 SESSÃO DE DESENVOLVIMENTO — 15/08/2026 — BENEFÍCIOS DOS PLANOS, ONBOARDING INTELIGENTE, LINKS DE CHECKOUT E FIM DO MODO DE TESTES ✅
 
+### ✅ Status: CONCLUÍDO
 
+**Objetivos:**
+1. Habilitar a aprovação automática de transações reais autorizadas via Cartão de Crédito tratando o status de sucesso `'approved'`.
+2. Corrigir a URL do servidor de tracking do Treinus (`serverUrl`) para detectar dinamicamente o ambiente e apontar para a URL real em produção no Render, em vez de `localhost:3000`.
+3. Ajustar o e-mail de boas-vindas para tratar alunos existentes de forma amigável: ocultar senhas fictícias e remover o botão de ficha cadastral repetida do Treinus, enviando um link direto de login para o portal.
+4. Implementar parâmetros de checkout direto (`?checkout=CHAVE`) na página de planos para abrir o modal de pagamento automaticamente.
+5. Reorganizar a descrição dos benefícios nos cards de planos do site para exibir os tópicos revisados de forma limpa.
+6. Desativar completamente o modo de testes em produção, removendo o banner com botões de testes rápidos e excluindo as chaves `teste_pix`/`teste_cartao` do frontend e backend.
 
+**O que foi feito:**
+- ✅ **Aprovação Nativa de Cartão:** Atualizado o backend (`EfiController.ts`) para normalizar o status da transação para minúsculas e aceitar `'approved'` como status de sucesso imediato, liberando o onboarding.
+- ✅ **Detecção Dinâmica do Servidor de Tracking:** Corrigido o `EmailService.ts` para ler a variável de produção `EFI_PRODUCTION === 'true'` e definir a `serverUrl` correta do backend (`https://api-contas-karina.onrender.com`).
+- ✅ **Onboarding Inteligente para Usuários Antigos:**
+  - Se o e-mail já existe no banco (`isNewUser === false`), a senha provisória é oculta (exibe *"Senha de Acesso: Sua senha atual já cadastrada no portal"*).
+  - O botão de preenchimento de ficha do Treinus foi removido e substituído por um botão de login direto na plataforma: **`https://karinafranzin.treinus.com.br/`**.
+- ✅ **Parâmetro de Checkout Automático (`?checkout`):** Adicionado listener no `DOMContentLoaded` de `planos/index.template.html` que verifica o parâmetro de URL e dispara `openCheckout(key)` se ele corresponder a um combo/plano válido.
+- ✅ **Reformulação dos Benefícios (Bronze, Prata, Ouro):**
+  - Removidos os itens *"Histórico & condicionamento físico"* e *"Acesso aos treinos presenciais"*.
+  - Configurados novos tópicos:
+    * **Bronze:** Avaliações periódicas, Planilha personalizada pela Karina, Suporte tira-dúvidas, Grupo VIP de alunos no WhatsApp, Portal do Aluno (Vídeos educativos, ativações, fortalecimento).
+    * **Prata:** Benefícios do Bronze + 1 Análise profunda por semana do treino selecionado.
+    * **Ouro:** Benefícios do Bronze/Prata + Análise profunda de todos os treinos.
+- ✅ **Remoção de Testes:**
+  - O script que lia o parâmetro `?test=true` e injetava os botões rápidos foi removido da raiz e dos templates.
+  - As chaves `teste_pix` e `teste_cartao` foram removidas das definições estáticas do frontend e do mapeamento interno de planos do backend (`PaymentController.ts` e `EfiController.ts`).
+- ✅ **Compilação e Deploy:** Compilado via `build-blog.js` e efetuado merge/push da branch `develop` para `main` em ambos os repositórios para publicação imediata.
 
+### 📁 Arquivos criados/modificados:
+- **No repositório do site (`site-karina-franzin`)**:
+  - `planos/index.template.html` e `planos/index.html` (MODIFICADOS/COMPILADOS)
+  - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+- **No repositório do backend (`ContasReceberKarina`)**:
+  - `src/controllers/EfiController.ts` (MODIFICADO)
+  - `src/controllers/PaymentController.ts` (MODIFICADO)
+  - `src/services/EmailService.ts` (MODIFICADO)
 
