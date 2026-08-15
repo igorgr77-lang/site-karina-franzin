@@ -304,7 +304,16 @@ async function build() {
                 "image": `https://karinafranzin.com.br${localCardImg}`,
                 "author": {
                     "@type": "Person",
-                    "name": autor
+                    "name": autor,
+                    "jobTitle": "Graduada em Educação Física e Fisioterapeuta",
+                    "description": "Graduada em Educação Física e Fisioterapia, com mais de 14 anos de experiência na área de corrida de rua. CREF 116683-G/SP.",
+                    "knowsAbout": [
+                        "Corrida de rua",
+                        "Fisioterapia esportiva",
+                        "Biomecânica",
+                        "Treinamento esportivo",
+                        "Prevenção de lesões"
+                    ]
                 },
                 "publisher": {
                     "@type": "Organization",
