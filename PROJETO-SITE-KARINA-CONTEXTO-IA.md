@@ -1,6 +1,6 @@
 # 🏃‍♀️ PROJETO SITE KARINA FRANZIN — CONTEXTO PARA IA
 
-> **Última atualização:** 15/08/2026 (Benefícios, Onboarding Inteligente, Aprovação de Cartão, Links de Checkout, Fim do Modo de Teste, Responsividade do Vídeo, Redirecionamento de CTAs)  
+> **Última atualização:** 15/08/2026 (Alertas de Falha, Simulação Efí Cartão, Health-Check, Bio da Autora, Blog Schema, Carrossel de Resultados, Lightbox e Cache-Busting)  
 > **Branch activa:** `develop`  
 > **Projeto online:** https://karinafranzin.com.br  
 > **Repositório:** https://github.com/igorgr77-lang/site-karina-franzin  
@@ -1257,4 +1257,49 @@ og:image: (imagem real do artigo do Supabase)
   - `planos/privacidade.template.html`, `planos/privacidade.html`, `planos/termos.template.html`, `planos/termos.html`, `planos/sucesso.template.html`, `planos/sucesso.html`, `planos/cancelado.template.html`, `planos/cancelado.html` (MODIFICADOS/COMPILADOS)
   - `blog/artigo.template.html` e todas as páginas de artigos compiladas (MODIFICADOS/COMPILADOS)
   - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 15/08/2026 (PARTE 3) — ALERTAS DE INTEGRAÇÃO, SIMULAÇÃO EFI, OTIMIZAÇÃO DE SEO/GEO BLOG (AUTORA) E CARROSSEL DE RESULTADOS ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Habilitar Alertas Ativos de Falhas de Integração: enviar notificações de falhas críticas (PIX/Cartão Efí, checkout Stripe ou falhas no envio de e-mails/onboarding no portal) via e-mail HTML ao administrador (`igor.gr77@gmail.com`).
+2. Adicionar simulação de pagamento via Cartão de Crédito da Efí no painel de testes do portal (`WebhookTester.tsx` / `PaymentController.ts`), gerando logs de auditoria `EFI_CARD_PAYMENT_CONFIRMED`.
+3. Ajustar o indicador visual do Stripe para o estado dormente (Lua amarela 🌙) quando inativo.
+4. Resolver bug 403 Forbidden no endpoint de Health Check alterando a rota de `/health` para `/health-check`.
+5. Adicionar o card de biografia da "Autora" (`artigo.template.html` / `blog.css`) contendo foto, títulos profissionais e especialidade de periodização em todos os artigos.
+6. Enriquecer o objeto JSON-LD `BlogPosting` do Schema.org para indexação semântica rica (GEO/E-E-A-T), incluindo `jobTitle`, `description` e `knowsAbout` nos dados do autor.
+7. Substituir a galeria estática de pódios do site por um carrossel dinâmico e responsivo (`results-carousel`) contendo 11 fotos de alunos no pódio, integrando com o Lightbox existente e suporte a gestos de swipe.
+8. Implementar cache-busting nos scripts da navbar e rodapé aumentando a versão de `main.js` para `v=1.0.3` em todos os templates para forçar a expiração do cache do navegador.
+
+**O que foi feito:**
+- ✅ **Alertas de Falha de Integração:** Desenvolvido o método `sendAdminAlertEmail` em `EmailService.ts` usando o SDK do Resend. O alerta HTML avisa sobre falhas de PIX/Cartão Efí, checkout Stripe ou falhas no fluxo de onboarding.
+- ✅ **Simulação Efí Cartão:** Acrescentada a opção de simular cartão Efí Bank na interface de WebhookTester e implementado o processamento correspondente na API (`PaymentController.ts`), registrando logs de auditoria `EFI_CARD_PAYMENT_CONFIRMED`.
+- ✅ **Ajuste de Status do Stripe e Health Check:** Renomeado o Health Check para `/health-check` para contornar problemas de autorização 403. Mudança do status do Stripe para Lua 🌙 quando desativado.
+- ✅ **Card da Autora no Blog:** Inserido container `.author-bio-card` com a foto de perfil (`karina-profile.jpg`), subtítulo acadêmico/CREF e descrição atualizada citando especialidade em periodização esportiva.
+- ✅ **Schema.org Enriquecido:** Atualizado o objeto do Schema no `build-blog.js` com a bio completa, competências chave e formação.
+- ✅ **Carrossel de Conquistas/Pódios:** Criada a estrutura flexível `.results-carousel` que compartilha estilos e funcionalidades do carrossel de feedbacks. Ajustado o script `js/main.js` para inicializar múltiplos carrosséis independentes na mesma página via seletores explícitos. Removido o slide redundante `varios-alunos-assessoria-corrida-karina-franzin-1.webp` restando 11 fotos. Utilizado a tag `<picture>` com `srcset` para responsividade em resoluções mobile, tablet e desktop.
+- ✅ **Cache-Busting:** Alterada a versão do script `main.js` de `?v=1.0.2` para `?v=1.0.3` em todos os templates (`index.template.html`, `planos/index.template.html`, `lord-run-vip/index.template.html`, `cupons/index.template.html`) para forçar a expiração imediata do cache do navegador.
+- ✅ **Compilação e Deploy:** Compilado e atualizado via `build-blog.js` e efetuado merge/push da branch `develop` para `main` em ambos os repositórios para publicação imediata.
+
+### 📁 Arquivos criados/modificados:
+- **No repositório do site (`site-karina-franzin`)**:
+  - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+  - `js/main.js` (MODIFICADO)
+  - `css/styles.css` (MODIFICADO)
+  - `index.template.html` e `index.html` (MODIFICADOS/COMPILADOS)
+  - `planos/index.template.html` e `planos/index.html` (MODIFICADOS/COMPILADOS)
+  - `lord-run-vip/index.template.html` e `lord-run-vip/index.html` (MODIFICADOS/COMPILADOS)
+  - `cupons/index.template.html` e `cupons/index.html` (MODIFICADOS/COMPILADOS)
+  - `blog/artigo.template.html` e todas as páginas de artigos compiladas (MODIFICADOS/COMPILADOS)
+  - `build-blog.js` (MODIFICADO)
+  - `css/blog.css` (MODIFICADO)
+- **No repositório do portal/backend (`ContasReceberKarina`)**:
+  - `src/services/EmailService.ts` (MODIFICADO)
+  - `src/services/PaymentService.ts` (MODIFICADO)
+  - `src/controllers/PaymentController.ts` (MODIFICADO)
+  - `src/controllers/StripeController.ts` (MODIFICADO)
+  - `frontend/src/pages/WebhookTester.tsx` (MODIFICADO)
 
