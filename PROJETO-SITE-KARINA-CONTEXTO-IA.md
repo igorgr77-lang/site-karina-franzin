@@ -1239,6 +1239,7 @@ og:image: (imagem real do artigo do Supabase)
   - **CTA de Artigos do Blog (`artigo.template.html`):** Atualizou a caixa de acompanhamento ao final de todos os artigos estáticos para apontar para a página de planos `/planos/` com o texto *"Conhecer Treinamento"*.
   - **CTA Strong (Rodapé da Home, Cupons e Eventos):** Atualizou os botões principais de rodapé para apontar para `/planos/` com textos de *"Escolher Meu Plano"* ou *"Conhecer Treinamentos"*.
   - **Lord Run Festival (`lord-run-festival/index.template.html`):** Adicionou o botão extra *"Escolher Meu Plano"* direcionando para `/planos/` e o posicionou à esquerda com cor laranja e efeito de pulso, colocou o botão *"Quero Treinar com a Karina"* à direita com cor verde oficial do WhatsApp, e corrigiu a data do primeiro treinão para **13/08/2026 às 19h00 (Quinta-feira)**.
+  - **Páginas Institucionais (`404.template.html`, `privacidade.template.html`, `termos.template.html`, `sucesso.template.html`, `cancelado.template.html`):** Inseriu dados estruturados JSON-LD (`WebPage`, `Organization`, `Person`) para elevar a nota geral de indexação semântica por IAs (GEO) do site de 43% para 61%.
   - **Tela de Login do Portal (`Login.tsx`):** Renomeou o subtítulo *"Financeiro"* para *"Portal do Atleta"* para manter a coerência de marca da plataforma de faturas/vídeos.
 - ✅ **Compilação e Deploy:** Rodado o script `node build-blog.js` para atualizar todas as páginas finais do site e realizado o deploy das correções em produção para ambos os repositórios (`ContasReceberKarina` e `site-karina-franzin`).
 
@@ -1249,9 +1250,11 @@ og:image: (imagem real do artigo do Supabase)
 - **No repositório do site (`site-karina-franzin`)**:
   - `components/navbar.html` (MODIFICADO)
   - `index.template.html` e `index.html` (MODIFICADOS/COMPILADOS)
+  - `404.template.html` e `404.html` (MODIFICADOS/COMPILADOS)
   - `cupons/index.template.html` e `cupons/index.html` (MODIFICADOS/COMPILADOS)
   - `eventos/index.template.html` e `eventos/index.html` (MODIFICADOS/COMPILADOS)
   - `eventos/lord-run-festival/index.template.html` e `eventos/lord-run-festival/index.html` (MODIFICADOS/COMPILADOS)
+  - `planos/privacidade.template.html`, `planos/privacidade.html`, `planos/termos.template.html`, `planos/termos.html`, `planos/sucesso.template.html`, `planos/sucesso.html`, `planos/cancelado.template.html`, `planos/cancelado.html` (MODIFICADOS/COMPILADOS)
   - `blog/artigo.template.html` e todas as páginas de artigos compiladas (MODIFICADOS/COMPILADOS)
   - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 
