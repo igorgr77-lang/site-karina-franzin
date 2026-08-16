@@ -1303,3 +1303,32 @@ og:image: (imagem real do artigo do Supabase)
   - `src/controllers/StripeController.ts` (MODIFICADO)
   - `frontend/src/pages/WebhookTester.tsx` (MODIFICADO)
 
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 16/08/2026 — ATUALIZAÇÃO DO CARROSSEL DE RESULTADOS ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Remover do carrossel de resultados de alunos a primeira foto (`aluna-assessoria-corrida-karina-franzin-1.webp`).
+2. Adicionar como primeira foto a imagem `aluna-primeiro-lugar-corrida-karina-franzin-3.webp` (copiada da pasta `assets/img/resultados/novas/` para `assets/img/resultados/`).
+3. Adicionar as outras duas imagens da mesma pasta (`aluna-primeiro-lugar-corrida-karina-franzin-2.webp` e `podio-aluna-corrida-karina-franzin-2.webp`) no carrossel.
+4. Manter o carrossel perfeitamente sincronizado e idêntico em todas as páginas onde ele é exibido: Homepage (`index.template.html`), Planos (`planos/index.template.html`) e Lord Run VIP (`lord-run-vip/index.template.html`).
+
+**O que foi feito:**
+- ✅ Copiadas as três novas imagens da subpasta `novas/` para a pasta principal de resultados (`assets/img/resultados/`).
+- ✅ Removido o slide que continha `aluna-assessoria-corrida-karina-franzin-1.webp` de todos os três templates.
+- ✅ Inseridos os novos slides nos templates, configurando `aluna-primeiro-lugar-corrida-karina-franzin-3.webp` como o primeiro slide com a classe `active` (essencial para a inicialização correta do JS).
+- ✅ Rodado o build local para gerar os arquivos estáticos compilados correspondentes (`index.html`, `planos/index.html` e `lord-run-vip/index.html`) e atualizar o `sitemap.xml`.
+- ✅ Realizado commit e push na branch `develop` (respeitando a regra de não enviar para a `main` sem solicitação direta).
+
+### 📁 Arquivos criados/modificados:
+- `index.template.html` e `index.html` (MODIFICADOS/COMPILADOS)
+- `planos/index.template.html` e `planos/index.html` (MODIFICADOS/COMPILADOS)
+- `lord-run-vip/index.template.html` e `lord-run-vip/index.html` (MODIFICADOS/COMPILADOS)
+- `sitemap.xml` (MODIFICADO)
+- `assets/img/resultados/aluna-primeiro-lugar-corrida-karina-franzin-3.webp` (NOVO/COPIADO)
+- `assets/img/resultados/aluna-primeiro-lugar-corrida-karina-franzin-2.webp` (NOVO/COPIADO)
+- `assets/img/resultados/podio-aluna-corrida-karina-franzin-2.webp` (NOVO/COPIADO)
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
