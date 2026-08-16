@@ -1305,7 +1305,7 @@ og:image: (imagem real do artigo do Supabase)
 
 ---
 
-## 📅 SESSÃO DE DESENVOLVIMENTO — 16/08/2026 — ATUALIZAÇÃO DO CARROSSEL DE RESULTADOS ✅
+## 📅 SESSÃO DE DESENVOLVIMENTO — 16/08/2026 — ATUALIZAÇÃO E OTIMIZAÇÃO VISUAL DO CARROSSEL DE RESULTADOS ✅
 
 ### ✅ Status: CONCLUÍDO
 
@@ -1314,19 +1314,19 @@ og:image: (imagem real do artigo do Supabase)
 2. Adicionar como primeira foto a imagem `aluna-primeiro-lugar-corrida-karina-franzin-3.webp` (copiada da pasta `assets/img/resultados/novas/` para `assets/img/resultados/`).
 3. Adicionar as outras duas imagens da mesma pasta (`aluna-primeiro-lugar-corrida-karina-franzin-2.webp` e `podio-aluna-corrida-karina-franzin-2.webp`) no carrossel.
 4. Manter o carrossel perfeitamente sincronizado e idêntico em todas as páginas onde ele é exibido: Homepage (`index.template.html`), Planos (`planos/index.template.html`) e Lord Run VIP (`lord-run-vip/index.template.html`).
+5. **Otimização Visual**: Resolver o problema de alinhamento vertical/desproporção das imagens balanceando a sequência de exibição (intercalando retrato, paisagem e quadrado) e corrigindo o cache do navegador para aplicar a altura fixa uniforme de `400px` (`object-fit: cover`) via `.result-card img`.
 
 **O que foi feito:**
 - ✅ Copiadas as três novas imagens da subpasta `novas/` para a pasta principal de resultados (`assets/img/resultados/`).
-- ✅ Removido o slide que continha `aluna-assessoria-corrida-karina-franzin-1.webp` de todos os três templates.
-- ✅ Inseridos os novos slides nos templates, configurando `aluna-primeiro-lugar-corrida-karina-franzin-3.webp` como o primeiro slide com a classe `active` (essencial para a inicialização correta do JS).
-- ✅ Rodado o build local para gerar os arquivos estáticos compilados correspondentes (`index.html`, `planos/index.html` e `lord-run-vip/index.html`) e atualizar o `sitemap.xml`.
-- ✅ Realizado commit e push na branch `develop` (respeitando a regra de não enviar para a `main` sem solicitação direta).
+- ✅ Reordenados e intercalados os slides do carrossel de resultados para alternar proporções de aspecto (Ex: Retrato, Paisagem, Retrato, Quadrado) garantindo um layout simétrico.
+- ✅ Implementada invalidação de cache (cache-busting) do arquivo `styles.css` e scripts em todos os arquivos de template `.template.html` (passando do parâmetro `?v=1.0.2` para `?v=1.0.3`).
+- ✅ Bumped da versão do cache no Service Worker (`sw.js`) de `karina-franzin-v3` para `karina-franzin-v4` para forçar a limpeza de caches antigos no navegador e garantir o carregamento do novo CSS.
+- ✅ Rodado o build local para gerar os arquivos estáticos compilados e atualizar o `sitemap.xml`.
+- ✅ Realizado commit e push de todas as atualizações e arquivos gerados na branch `develop`.
 
 ### 📁 Arquivos criados/modificados:
-- `index.template.html` e `index.html` (MODIFICADOS/COMPILADOS)
-- `planos/index.template.html` e `planos/index.html` (MODIFICADOS/COMPILADOS)
-- `lord-run-vip/index.template.html` e `lord-run-vip/index.html` (MODIFICADOS/COMPILADOS)
-- `sitemap.xml` (MODIFICADO)
+- Todos os arquivos `.template.html` e `.html` compilados correspondentes (MODIFICADOS)
+- `sw.js` (MODIFICADO)
 - `assets/img/resultados/aluna-primeiro-lugar-corrida-karina-franzin-3.webp` (NOVO/COPIADO)
 - `assets/img/resultados/aluna-primeiro-lugar-corrida-karina-franzin-2.webp` (NOVO/COPIADO)
 - `assets/img/resultados/podio-aluna-corrida-karina-franzin-2.webp` (NOVO/COPIADO)
