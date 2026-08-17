@@ -1,6 +1,6 @@
 # 🏃‍♀️ PROJETO SITE KARINA FRANZIN — CONTEXTO PARA IA
 
-> **Última atualização:** 15/08/2026 (Alertas de Falha, Simulação Efí Cartão, Health-Check, Bio da Autora, Blog Schema, Carrossel de Resultados, Lightbox e Cache-Busting)  
+> **Última atualização:** 16/08/2026 (Notificações Push PWA, Inscrição de Admin, Chaves VAPID, Banco Prisma, Templates WhatsApp)  
 > **Branch activa:** `develop`  
 > **Projeto online:** https://karinafranzin.com.br  
 > **Repositório:** https://github.com/igorgr77-lang/site-karina-franzin  
@@ -1331,4 +1331,39 @@ og:image: (imagem real do artigo do Supabase)
 - `assets/img/resultados/aluna-primeiro-lugar-corrida-karina-franzin-2.webp` (NOVO/COPIADO)
 - `assets/img/resultados/podio-aluna-corrida-karina-franzin-2.webp` (NOVO/COPIADO)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 16/08/2026 — IMPLEMENTAÇÃO DE NOTIFICAÇÕES PUSH NATIVAS (PWA) NO SISTEMA FINANCEIRO ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Implementar Web Push nativo utilizando a infraestrutura PWA (`vite-plugin-pwa` com estratégia `injectManifest`) para que somente administradores recebam um alerta no celular quando um novo aluno for cadastrado no sistema.
+2. Criar a rota de API protegida para persistir as inscrições de push (`PushSubscription`) no banco de dados vinculada à tabela `Admin`.
+3. Desenvolver o Service Worker customizado no frontend para manipular o evento `push` e exibir notificações mesmo em background.
+4. Integrar o disparo em background no fluxo de cadastro de alunos e certificar que tudo compile e funcione em produção no Render.
+
+**O que foi feito:**
+- ✅ **Modelagem do Banco (Prisma)**: Adicionado o modelo `PushSubscription` relacionado ao modelo `Admin` em `schema.prisma`. Sincronizado via `npx prisma db push`.
+- ✅ **Chaves VAPID**: Gerado o par de chaves de assinatura Web Push e salvas no `.env` do backend e nas variáveis de ambiente do Render.
+- ✅ **Serviço de Envio (web-push)**: Criado o `PushNotificationService.ts` no backend, tratando o envio e limpando inscrições obsoletas (erros 410/404).
+- ✅ **API de Inscrição**: Criadas a rota `/api/admin/push-subscription` e controlador `AdminController.ts` protegidos com `authMiddleware` e `adminOnly` para salvar as inscrições de dispositivo dos admins via `upsert`.
+- ✅ **Acoplamento no Cadastro**: Chamada assíncrona inserida em `StudentService.createStudent` para notificar admins em background ao concluir uma matrícula.
+- ✅ **Frontend PWA & Service Worker**: Atualizado o `vite.config.ts` do frontend para usar a estratégia `injectManifest` apontando para o novo arquivo fonte `frontend/src/sw.ts`.
+- ✅ **Lógica de Inscrição do Admin**: Injetada lógica no `AppShell` (`App.tsx`) para solicitar permissões e registrar inscrições de forma exclusiva para administradores após o login.
+- ✅ **Build & Validação**: Compilados e testados com sucesso os builds do backend e do frontend (gerando o Service Worker `dist/sw.js` e manifesto de precache).
+- ✅ **Versionamento**: Todas as alterações foram salvas, commitadas e enviadas para as branches `develop` e `main` do repositório `ContasReceberKarina`.
+
+### 📁 Arquivos criados/modificados no projeto `ContasReceberKarina`:
+- `prisma/schema.prisma` (MODIFICADO)
+- `package.json` e `package-lock.json` (MODIFICADOS)
+- `src/services/PushNotificationService.ts` (NOVO)
+- `src/services/StudentService.ts` (MODIFICADO)
+- `src/controllers/AdminController.ts` (NOVO)
+- `src/routes/admin.routes.ts` (NOVO)
+- `src/routes/index.ts` (MODIFICADO)
+- `frontend/vite.config.ts` (MODIFICADO)
+- `frontend/src/sw.ts` (NOVO)
+- `frontend/src/App.tsx` (MODIFICADO)
 
