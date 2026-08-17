@@ -451,6 +451,15 @@ async function build() {
             console.log('💾 Página Lord Run VIP compilada com sucesso em: lord-run-vip/index.html');
         }
 
+        // 3.1.5 Página Local de Corrida em Votuporanga (corrida-votuporanga/index.html) - escura
+        const localVotuporangaTemplatePath = path.join(__dirname, 'corrida-votuporanga', 'index.template.html');
+        if (fs.existsSync(localVotuporangaTemplatePath)) {
+            let htmlVotuporanga = fs.readFileSync(localVotuporangaTemplatePath, 'utf8');
+            htmlVotuporanga = compilePageComponents(htmlVotuporanga, false);
+            fs.writeFileSync(path.join(__dirname, 'corrida-votuporanga', 'index.html'), htmlVotuporanga, 'utf8');
+            console.log('💾 Página local de Corrida em Votuporanga compilada com sucesso em: corrida-votuporanga/index.html');
+        }
+
         // 3.2 Planos Combo (planos/*.html) - escura
         const planosComboDir = path.join(__dirname, 'planos');
         if (fs.existsSync(planosComboDir)) {
@@ -530,6 +539,12 @@ async function build() {
         <lastmod>${hoje}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/corrida-votuporanga/</loc>
+        <lastmod>${hoje}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
     </url>
 `;
 
