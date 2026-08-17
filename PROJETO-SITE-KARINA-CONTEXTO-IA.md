@@ -1367,3 +1367,34 @@ og:image: (imagem real do artigo do Supabase)
 - `frontend/src/sw.ts` (NOVO)
 - `frontend/src/App.tsx` (MODIFICADO)
 
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 17/08/2026 — OTIMIZAÇÃO SEO/GEO E PÁGINA LOCAL DE VOTUPORANGA ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Analisar e aprimorar a estrutura de otimização de busca (SEO, AEO, GEO/AIO) nas páginas principais.
+2. Criar uma Landing Page dedicada para captação local de corrida em Votuporanga, SP, mantendo a homepage para visibilidade nacional.
+3. Integrar a compilação do novo template no pipeline do script de build do site e no sitemap.xml.
+
+**O que foi feito:**
+- ✅ **Metatags Open Graph & Twitter**: Injetadas no cabeçalho de `planos/index.template.html` para habilitar previews visuais ao compartilhar a URL.
+- ✅ **Reviews JSON-LD Schema (GEO/AIO)**: Adicionadas marcações estruturadas `aggregateRating` e `review` individuais reais (Douglas Vicente, Juliana Mendes e Renan Lima) nos planos Bronze, Prata e Ouro no cabeçalho do template de planos.
+- ✅ **FAQ Expandido**: Adicionados novos tópicos ao FAQPage do JSON-LD cobrando a nova Aba de Vídeos e segurança de pagamento.
+- ✅ **Landing Page Votuporanga**: Criada a subpasta e arquivo `corrida-votuporanga/index.template.html` contendo copywriting focado na região local, descrição dos pontos de corrida locais (Parque da Cultura, Represa, etc.), FAQs locais e CTAs diretos para o WhatsApp.
+- ✅ **Schema LocalBusiness**: Injetada a marcação semântica `SportsClub` para associar o site físico à busca local de Votuporanga.
+- ✅ **Pipeline de Compilação**: Atualizado o arquivo `build-blog.js` para compilar o template de Votuporanga, injetando Navbar/Rodapé unificados e atualizando o `sitemap.xml` com a nova URL `/corrida-votuporanga/` com prioridade `0.9`.
+- ✅ **Build & Validação Visual**: Executado o script de compilação sem falhas e validada a estrutura final via ferramentas de navegador local.
+- ✅ **Controle de Versão**: Commit e push realizados na branch `develop`.
+
+### 📁 Arquivos criados/modificados:
+- `planos/index.template.html` (MODIFICADO)
+- `planos/index.html` (COMPILADO/MODIFICADO)
+- `build-blog.js` (MODIFICADO)
+- `sitemap.xml` (MODIFICADO)
+- `corrida-votuporanga/index.template.html` (NOVO)
+- `corrida-votuporanga/index.html` (COMPILADO/NOVO)
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
+
