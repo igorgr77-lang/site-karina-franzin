@@ -1376,14 +1376,21 @@ og:image: (imagem real do artigo do Supabase)
 **Objetivos:**
 1. Analisar e aprimorar a estrutura de otimização de busca (SEO, AEO, GEO/AIO) nas páginas principais.
 2. Criar uma Landing Page dedicada para captação local de corrida em Votuporanga, SP, mantendo a homepage para visibilidade nacional.
-3. Integrar a compilação do novo template no pipeline do script de build do site e no sitemap.xml.
+3. Restruturar a Landing Page local para exibir detalhadamente os dois tipos de treinos presenciais (**Funcional Run** e **Corrida de Rua**) e injetar a grade de planos local (com o novo plano Funcional Run de R$ 200,00 fixos).
+4. Integrar a compilação no pipeline do script de build do site e no sitemap.xml.
 
 **O que foi feito:**
 - ✅ **Metatags Open Graph & Twitter**: Injetadas no cabeçalho de `planos/index.template.html` para habilitar previews visuais ao compartilhar a URL.
-- ✅ **Reviews JSON-LD Schema (GEO/AIO)**: Adicionadas marcações estruturadas `aggregateRating` e `review` individuais reais (Douglas Vicente, Juliana Mendes e Renan Lima) nos planos Bronze, Prata e Ouro no cabeçalho do template de planos.
+- ✅ **Reviews JSON-LD Schema (GEO/AIO)**: Adicionadas marcações estruturadas `aggregateRating` e `review` nos planos Bronze, Prata e Ouro no cabeçalho do template de planos.
 - ✅ **FAQ Expandido**: Adicionados novos tópicos ao FAQPage do JSON-LD cobrando a nova Aba de Vídeos e segurança de pagamento.
-- ✅ **Landing Page Votuporanga**: Criada a subpasta e arquivo `corrida-votuporanga/index.template.html` contendo copywriting focado na região local, descrição dos pontos de corrida locais (Parque da Cultura, Represa, etc.), FAQs locais e CTAs diretos para o WhatsApp.
-- ✅ **Schema LocalBusiness**: Injetada a marcação semântica `SportsClub` para associar o site físico à busca local de Votuporanga.
+- ✅ **Landing Page Votuporanga**: Criado o arquivo `corrida-votuporanga/index.template.html` contendo copywriting focado na região local, descrição detalhada dos dois modelos presenciais:
+    *   **Treino Funcional Run**: Segundas e Quartas às 18h30 no Lord Lion / Parques, focando em corrida + funcional, estrutura de 4 etapas e metodologia baseada em fortalecimento articular e coordenação.
+    *   **Treino de Corrida Presencial**: Terças e Quintas às 18h30 na Av. do Pozzobom, focando em performance/distância (5k, 10k, 21k), modelo híbrido (extensão do online com aquecimento em grupo e planilhas individuais no app), incluso nos planos tradicionais.
+- ✅ **Diferencial Único**: Seção moved para baixo dos modelos de treino e acima da grade de planos.
+- ✅ **Grade de Planos Integrada**:
+    *   **Plano Funcional Run Presencial**: Adicionado com valor fixo de R$ 200,00/mês e link direto para WhatsApp com mensagem personalizada.
+    *   **Planos de Corrida (Bronze, Prata, Ouro)**: Exibidos de forma clara, destacando o acesso incluso aos treinos na Av. do Pozzobom.
+- ✅ **Schema LocalBusiness & FAQPage**: Atualizada a marcação semântica da página local para mapear as novas modalidades, horários e dúvidas frequentes locais.
 - ✅ **Pipeline de Compilação**: Atualizado o arquivo `build-blog.js` para compilar o template de Votuporanga, injetando Navbar/Rodapé unificados e atualizando o `sitemap.xml` com a nova URL `/corrida-votuporanga/` com prioridade `0.9`.
 - ✅ **Build & Validação Visual**: Executado o script de compilação sem falhas e validada a estrutura final via ferramentas de navegador local.
 - ✅ **Controle de Versão**: Commit e push realizados na branch `develop`.
@@ -1396,5 +1403,6 @@ og:image: (imagem real do artigo do Supabase)
 - `corrida-votuporanga/index.template.html` (NOVO)
 - `corrida-votuporanga/index.html` (COMPILADO/NOVO)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
 
 
