@@ -118,6 +118,67 @@
                     "name": "Karina Franzin",
                     "jobTitle": "Treinadora e Fisioterapeuta"
                 }
+            },
+            {
+                "@type": "Product",
+                "name": "Plano Funcional Run Presencial - Votuporanga",
+                "description": "Treino presencial e coletivo de corrida associado a fortalecimento funcional com peso corporal e elásticos. Acontece às segundas e quartas às 18h30.",
+                "brand": {
+                    "@type": "Brand",
+                    "name": "Karina Franzin Assessoria Esportiva"
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "price": "200.00",
+                    "priceCurrency": "BRL",
+                    "priceValidUntil": "2027-12-31"
+                }
+            },
+            {
+                "@type": "Product",
+                "name": "Assessoria de Corrida Presencial / Híbrida - Votuporanga",
+                "description": "Extensão presencial da assessoria de corrida com planilhas de treino online via app Treinus e treinos de corrida na Avenida do Pozzobom às terças e quintas às 18h30. Incluso nos planos Bronze, Prata e Ouro.",
+                "brand": {
+                    "@type": "Brand",
+                    "name": "Karina Franzin Assessoria Esportiva"
+                },
+                "offers": {
+                    "@type": "AggregateOffer",
+                    "priceCurrency": "BRL",
+                    "lowPrice": "114.00",
+                    "highPrice": "180.00",
+                    "offerCount": "3"
+                }
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "https://karinafranzin.com.br/corrida-votuporanga/#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Quem assina plano Bronze, Prata ou Ouro pode ir aos treinos presenciais?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sim! Qualquer um dos planos tradicionais de assessoria de corrida dá acesso integral aos treinos presenciais de corrida que ocorrem às terças e quintas-feiras na Avenida do Pozzobom às 18h30. Não há custos adicionais."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Qual a diferença entre o Funcional Run e a Assessoria de Corrida?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "O Funcional Run é um treino presencial coletivo voltado para fortalecimento físico geral associado à corrida, ideal para quem prefere dinamismo e exercícios com peso corporal em grupo (Seg/Qua às 18h30). Já a Assessoria de Corrida (Bronze, Prata, Ouro) é focada no desenvolvimento de distâncias (5k, 10k, 21k) por meio de planilhas de corrida personalizadas no aplicativo, contando com treinos presenciais focados em corrida (Ter/Qui às 18h30) na Avenida do Pozzobom."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Nunca corri e estou totalmente fora de forma. Consigo acompanhar o grupo?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Com certeza! Ambos os treinos são altamente progressivos. No Funcional Run, adaptamos os exercícios e usamos intervalos de caminhada. Nos treinos de corrida na Pozzobom, embora o aquecimento seja em grupo, o treino principal é individual e respeita a sua planilha e ritmo."
+                        }
+                    }
+                ]
             }
         ]
     }
@@ -152,11 +213,11 @@
             </h1>
             
             <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-                Aprenda a correr do zero ou baixe o seu pace em Votuporanga com o acompanhamento individual de uma atleta de elite, formada em Educação Física e Fisioterapia.
+                Aprenda a correr do zero ou melhore sua performance com treinos presenciais coletivos e planilhas individuais personalizadas por uma treinadora e fisioterapeuta da elite.
             </p>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="/planos/#planos" 
+                <a href="#planos" 
                    class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-karina-orange hover:bg-[#e0531f] text-white font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-[0_4px_20px_rgba(255,107,53,0.3)]">
                     Ver Planos e Valores
                 </a>
@@ -169,57 +230,191 @@
         </div>
     </header>
 
-    <!-- ===== 2. LOCAL PRACTICE SPOTS ===== -->
-    <section class="py-20 border-b border-white/5 bg-dark-bg" id="locais">
+    <!-- ===== 2. TRAINING TYPES SECTION ===== -->
+    <section class="py-20 border-b border-white/5 bg-dark-bg" id="treinos-presenciais">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-oswald font-extrabold uppercase italic text-white mb-4">
-                    Onde Treinamos em Votuporanga?
+                <h2 class="text-3xl md:text-5xl font-oswald font-extrabold uppercase italic text-white mb-4">
+                    Nossos Treinos Presenciais em Votuporanga
                 </h2>
-                <p class="text-gray-400 max-w-xl mx-auto">
-                    Montamos planilhas personalizadas adaptadas para os principais pontos de corrida e fortalecimento da nossa cidade.
+                <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base">
+                    Unimos a energia dos encontros em grupo com a precisão científica das planilhas personalizadas. Escolha o treino ideal para o seu perfil e objetivos.
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Spot 1 -->
-                <div class="bg-dark-card border border-white/5 rounded-2xl p-8 hover:border-karina-orange/20 transition-all duration-300">
-                    <div class="w-12 h-12 bg-karina-orange/10 rounded-xl flex items-center justify-center text-karina-orange mb-6">
-                        <i data-lucide="tree-pine" class="w-6 h-6"></i>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+                <!-- Training 1: Funcional Run -->
+                <div class="bg-dark-card border border-white/5 rounded-3xl p-8 md:p-10 flex flex-col justify-between hover:border-karina-orange/20 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-karina-orange/5 rounded-full blur-3xl pointer-events-none"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-karina-orange/10 border border-karina-orange/20 text-karina-orange text-xs font-bold uppercase tracking-wider">
+                                <i data-lucide="dumbbell" class="w-3.5 h-3.5"></i> Funcional Run
+                            </span>
+                            <span class="text-xs text-gray-500">Corrida + Treino Funcional</span>
+                        </div>
+                        
+                        <h3 class="text-2xl md:text-3xl font-oswald font-black uppercase tracking-tight text-white mb-6">
+                            Treino Funcional Run
+                        </h3>
+                        
+                        <!-- Details list -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 border-b border-white/5 pb-6">
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-karina-orange shrink-0 mt-0.5"></i>
+                                <div>
+                                    <h5 class="text-xs text-gray-400 font-semibold uppercase">Onde acontece:</h5>
+                                    <p class="text-sm text-gray-200 font-medium">Lord Lion, praças e parques da cidade</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="calendar" class="w-5 h-5 text-karina-orange shrink-0 mt-0.5"></i>
+                                <div>
+                                    <h5 class="text-xs text-gray-400 font-semibold uppercase">Dias e horários:</h5>
+                                    <p class="text-sm text-gray-200 font-medium">Segundas e Quartas às 18h30</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 sm:col-span-2">
+                                <i data-lucide="users" class="w-5 h-5 text-karina-orange shrink-0 mt-0.5"></i>
+                                <div>
+                                    <h5 class="text-xs text-gray-400 font-semibold uppercase">Para quem é:</h5>
+                                    <p class="text-sm text-gray-300 leading-relaxed">Para quem gosta de treinos integrados de corrida e fortalecimento funcional.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Estutura -->
+                        <div class="mb-8">
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                <i data-lucide="activity" class="w-4 h-4 text-karina-orange"></i> Como funciona o treino (Estrutura):
+                            </h4>
+                            <div class="space-y-4 text-sm text-gray-300">
+                                <div>
+                                    <span class="font-bold text-white">1. Mobilidade Dinâmica:</span>
+                                    <p class="text-xs text-gray-400 mt-1 leading-relaxed">Etapa inicial que serve para destravar as articulações do tornozelo, quadril e coluna por meio de movimentos repetidos e controlados, preparando o corpo para o fortalecimento e para os educativos.</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-white">2. Fortalecimento Funcional:</span>
+                                    <p class="text-xs text-gray-400 mt-1 leading-relaxed">Exercícios com peso corporal, elásticos (mini bands) ou bases instáveis focados no core, glúteos e pernas (ex: agachamentos, avanços e pranchas) para preparar as articulações e prevenir lesões.</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-white">3. Exercícios Educativos:</span>
+                                    <p class="text-xs text-gray-400 mt-1 leading-relaxed">Movimentos coordenativos específicos executados em distâncias curtas que servem para automatizar a postura correta e a biomecânica da passada.</p>
+                                </div>
+                                <div>
+                                    <span class="font-bold text-white">4. Corrida (Parte Principal):</span>
+                                    <p class="text-xs text-gray-400 mt-1 leading-relaxed">Aplicação prática com o corpo aquecido e a técnica alinhada, podendo ser um treino de rodagem (contínuo), tiros rápidos (intervalados) ou ritmados.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Metodologia -->
+                        <div class="bg-white/[0.02] border border-white/5 rounded-2xl p-5 mb-8">
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                <i data-lucide="brain" class="w-4 h-4 text-karina-orange"></i> Metodologia Funcional Run:
+                            </h4>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-3">
+                                Baseia-se na especificidade e integração, unindo a biomecânica da corrida à valência física do treinamento funcional para melhorar a eficiência do movimento e prevenir lesões através de uma sessão progressiva que prepara o corpo do geral ao específico.
+                            </p>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                Foca na adaptação anatômica e coordenação motora, priorizando o aprendizado do movimento correto e o fortalecimento articular antes de exigir volume ou intensidade na corrida. O objetivo principal é construir uma base física sólida para que o corpo de iniciantes aguente o impacto de forma segura.
+                            </p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-oswald font-bold uppercase text-white mb-3">Parque da Cultura</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        A Avenida Ângelo Bimbato é perfeita para treinos intervalados (tiros) e de ritmo no asfalto. Excelente espaço para fazer educativos e aquecimentos no gramado.
-                    </p>
+                    
+                    <a href="#planos" 
+                       class="w-full py-4 text-center bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl font-bold text-sm transition-all duration-300 block mt-4">
+                        Conhecer Plano Funcional Run
+                    </a>
                 </div>
-                
-                <!-- Spot 2 -->
-                <div class="bg-dark-card border border-white/5 rounded-2xl p-8 hover:border-karina-orange/20 transition-all duration-300">
-                    <div class="w-12 h-12 bg-karina-orange/10 rounded-xl flex items-center justify-center text-karina-orange mb-6">
-                        <i data-lucide="droplet" class="w-6 h-6"></i>
+
+                <!-- Training 2: Corrida de Rua -->
+                <div class="bg-dark-card border border-white/5 rounded-3xl p-8 md:p-10 flex flex-col justify-between hover:border-karina-orange/20 transition-all duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-karina-orange/5 rounded-full blur-3xl pointer-events-none"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-karina-orange/10 border border-karina-orange/20 text-karina-orange text-xs font-bold uppercase tracking-wider">
+                                <i data-lucide="gauge" class="w-3.5 h-3.5"></i> Corrida de Rua
+                            </span>
+                            <span class="text-xs text-gray-500">Performance & Distância (5k, 10k, 21k)</span>
+                        </div>
+                        
+                        <h3 class="text-2xl md:text-3xl font-oswald font-black uppercase tracking-tight text-white mb-6">
+                            Assessoria de Corrida Presencial
+                        </h3>
+                        
+                        <!-- Details list -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 border-b border-white/5 pb-6">
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-karina-orange shrink-0 mt-0.5"></i>
+                                <div>
+                                    <h5 class="text-xs text-gray-400 font-semibold uppercase">Onde acontece:</h5>
+                                    <p class="text-sm text-gray-200 font-medium">Avenida do Pozzobom</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i data-lucide="calendar" class="w-5 h-5 text-karina-orange shrink-0 mt-0.5"></i>
+                                <div>
+                                    <h5 class="text-xs text-gray-400 font-semibold uppercase">Dias e horários:</h5>
+                                    <p class="text-sm text-gray-200 font-medium">Terças e Quintas às 18h30</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3 sm:col-span-2">
+                                <i data-lucide="star" class="w-5 h-5 text-karina-orange shrink-0 mt-0.5"></i>
+                                <div>
+                                    <h5 class="text-xs text-gray-400 font-semibold uppercase">Quem mais se beneficia deste treino:</h5>
+                                    <ul class="text-xs text-gray-300 space-y-1.5 mt-1.5 list-disc pl-4">
+                                        <li><strong class="text-white">Iniciantes em Transição:</strong> Corredores que já completam 5 km de forma contínua e querem evoluir para os 10 km ou estrear na meia maratona (21 km).</li>
+                                        <li><strong class="text-white">Buscadores de Performance (RP):</strong> Atletas estagnados que precisam de estímulos fortes para quebrar recordes pessoais.</li>
+                                        <li><strong class="text-white">Falta de Motivação Individual:</strong> Quem precisa do incentivo do grupo e da treinadora presente na pista para manter a disciplina.</li>
+                                        <li><strong class="text-white">Focados em Provas:</strong> Atletas com calendário de eventos que precisam alinhar performance para a data alvo.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Como funciona -->
+                        <div class="mb-8">
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                <i data-lucide="info" class="w-4 h-4 text-karina-orange"></i> Como funciona (Extensão Híbrida):
+                            </h4>
+                            <p class="text-sm text-gray-300 leading-relaxed mb-4">
+                                Este treino funciona como uma <strong class="text-white">extensão presencial da sua assessoria online</strong>. Os alunos se reúnem em grupo para o aquecimento e exercícios educativos conjuntos.
+                            </p>
+                            <p class="text-sm text-gray-300 leading-relaxed">
+                                Na parte de corrida principal, cada aluno executa o seu treino específico individualizado (calculado no aplicativo) ou em parceria com corredores de mesmo nível.
+                            </p>
+                            <div class="mt-4 p-3.5 rounded-xl bg-karina-orange/10 border border-karina-orange/20 text-xs text-karina-orange font-semibold flex items-center gap-2.5">
+                                <i data-lucide="check-circle" class="w-5 h-5 shrink-0"></i>
+                                💡 Totalmente incluso na assinatura de qualquer um dos planos (Bronze, Prata ou Ouro).
+                            </div>
+                        </div>
+
+                        <!-- Metodologia -->
+                        <div class="bg-white/[0.02] border border-white/5 rounded-2xl p-5 mb-8">
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                <i data-lucide="trending-up" class="w-4 h-4 text-karina-orange"></i> Metodologia (Periodização Científica):
+                            </h4>
+                            <ul class="text-xs text-gray-400 space-y-2.5">
+                                <li><strong class="text-white">Controle de Carga por Pace ou Frequência:</strong> Cada treino é feito com base nos seus limites fisiológicos individuais, mapeados por testes periódicos.</li>
+                                <li><strong class="text-white">Variabilidade de Estímulos:</strong> Alterna treinos de rodagem aeróbios com treinos anaeróbios de tiros e fartleks para aumentar a economia de corrida.</li>
+                                <li><strong class="text-white">Correção Biomecânica em Tempo Real:</strong> Olhar atento na postura, cadência e técnica de corrida exatamente quando a fadiga aparece.</li>
+                                <li><strong class="text-white">Individualidade Biológica:</strong> Embora seja coletivo, a sua planilha é exclusiva de acordo com seu objetivo.</li>
+                            </ul>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-oswald font-bold uppercase text-white mb-3">Represa Municipal</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        O Parque Prefeito Mário Covas oferece um percurso plano ideal para rodagens mais longas, com visual inspirador e clima agradável para treinar no início da manhã ou fim de tarde.
-                    </p>
-                </div>
-                
-                <!-- Spot 3 -->
-                <div class="bg-dark-card border border-white/5 rounded-2xl p-8 hover:border-karina-orange/20 transition-all duration-300">
-                    <div class="w-12 h-12 bg-karina-orange/10 rounded-xl flex items-center justify-center text-karina-orange mb-6">
-                        <i data-lucide="mountain" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="text-xl font-oswald font-bold uppercase text-white mb-3">Estradas da Região</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Para quem busca treinos de endurance, treinos de ritmo com altimetria ou cross-country, as estradas rurais e caminhos de terra da região são ideais para o desenvolvimento de força muscular.
-                    </p>
+                    
+                    <a href="#planos" 
+                       class="w-full py-4 text-center bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl font-bold text-sm transition-all duration-300 block mt-4">
+                        Ver Planos de Corrida
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ===== 3. DIFEERENTIAL SECTION ===== -->
-    <section class="py-20 border-b border-white/5 bg-[#0a0a0a]">
+    <section class="py-20 border-b border-white/5 bg-[#0a0a0a]" id="diferenciais">
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <div class="w-full lg:w-1/2">
@@ -269,8 +464,137 @@
         </div>
     </section>
 
-    <!-- ===== 4. FAQ LOCAL ===== -->
-    <section class="py-20 bg-dark-bg" id="faq">
+    <!-- ===== 4. PLANS SECTION ===== -->
+    <section class="py-20 border-b border-white/5 bg-dark-bg" id="planos">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-oswald font-extrabold uppercase italic text-white mb-4">
+                    Escolha o Seu Plano
+                </h2>
+                <p class="text-gray-400 max-w-xl mx-auto">
+                    Invista na sua saúde e performance de forma segura com quem entende do assunto.
+                </p>
+            </div>
+
+            <!-- Grid de Planos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+                
+                <!-- PLANO FUNCIONAL RUN PRESENCIAL -->
+                <div class="bg-dark-card border-2 border-karina-orange/30 rounded-3xl p-6 flex flex-col justify-between hover:border-karina-orange transition-all duration-300 relative">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-karina-orange text-white text-[10px] font-black uppercase px-4.5 py-1.5 rounded-full tracking-widest whitespace-nowrap shadow-md">
+                        🔥 Mais Popular Presencial
+                    </div>
+                    
+                    <div class="mt-4">
+                        <div class="mb-6">
+                            <h3 class="text-2xl font-oswald font-bold uppercase">Funcional Run</h3>
+                            <p class="text-xs text-gray-500 mt-1">Presencial e Coletivo</p>
+                        </div>
+                        <div class="mb-6 flex items-baseline gap-1">
+                            <span class="text-3xl font-oswald font-bold text-white">R$ 200,00</span>
+                            <span class="text-gray-400 text-xs">/mês</span>
+                        </div>
+                        <div class="text-xs text-gray-400 border border-white/5 bg-white/[0.02] p-3 rounded-xl mb-6">
+                            Pague de forma recorrente e treine duas vezes por semana presencialmente com a equipe.
+                        </div>
+                        <ul class="space-y-3.5 text-xs text-gray-300 mb-8">
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i>Treinos presenciais (Seg/Qua às 18h30)</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i>Educativos e fortalecimento em grupo</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i>Suporte tira-dúvidas no WhatsApp</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i>Acesso à biblioteca de vídeos do Portal</li>
+                        </ul>
+                    </div>
+                    <a href="https://wa.me/5517996566908?text=Olá,%20Karina!%20Gostaria%20de%20me%20inscrever%20no%20Plano%20Funcional%20Run%20Presencial%20de%20R$200,00%20em%20Votuporanga." 
+                       target="_blank" rel="noopener noreferrer"
+                       class="w-full py-4 text-center bg-karina-orange hover:bg-[#e0531f] text-white rounded-xl font-bold text-sm transition-all duration-300 hover:shadow-[0_4px_15px_rgba(255,107,53,0.3)] block">
+                        Matricular-se via WhatsApp
+                    </a>
+                </div>
+
+                <!-- PLANO BRONZE -->
+                <div class="bg-dark-card border border-white/5 rounded-3xl p-6 flex flex-col justify-between hover:border-white/15 transition-all duration-300">
+                    <div class="mt-4">
+                        <div class="mb-6">
+                            <h3 class="text-2xl font-oswald font-bold uppercase">Plano Bronze</h3>
+                            <p class="text-xs text-gray-500 mt-1">Assessoria Completa + Treino Presencial</p>
+                        </div>
+                        <div class="mb-6 flex items-baseline gap-1">
+                            <span class="text-3xl font-oswald font-bold text-white">R$ 114,00</span>
+                            <span class="text-gray-400 text-xs">/mês</span>
+                        </div>
+                        <div class="text-[10px] text-lord-gold font-semibold bg-lord-gold/5 border border-lord-gold/20 p-2 rounded-xl mb-6">
+                            💡 Inclui o treino presencial de Terça/Quinta na Pozzobom!
+                        </div>
+                        <ul class="space-y-3.5 text-xs text-gray-300 mb-8">
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i>Treino Presencial (Ter/Qui 18h30 - Pozzobom)</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i>Planilhas de corrida personalizadas no app</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i>Suporte tira-dúvidas no WhatsApp</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i>Portal do Aluno (Vídeos educativos e treinos de força)</li>
+                        </ul>
+                    </div>
+                    <a href="/planos/" 
+                       class="w-full py-4 text-center bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl font-bold text-sm transition-all duration-300 block">
+                        Assinar Plano Bronze
+                    </a>
+                </div>
+
+                <!-- PLANO PRATA -->
+                <div class="bg-dark-card border border-white/5 rounded-3xl p-6 flex flex-col justify-between hover:border-white/15 transition-all duration-300">
+                    <div class="mt-4">
+                        <div class="mb-6">
+                            <h3 class="text-2xl font-oswald font-bold uppercase">Plano Prata</h3>
+                            <p class="text-xs text-gray-500 mt-1">Mais próximo com análise de vídeo</p>
+                        </div>
+                        <div class="mb-6 flex items-baseline gap-1">
+                            <span class="text-3xl font-oswald font-bold text-white">R$ 142,50</span>
+                            <span class="text-gray-400 text-xs">/mês</span>
+                        </div>
+                        <div class="text-[10px] text-lord-gold font-semibold bg-lord-gold/5 border border-lord-gold/20 p-2 rounded-xl mb-6">
+                            💡 Inclui o treino presencial de Terça/Quinta na Pozzobom!
+                        </div>
+                        <ul class="space-y-3.5 text-xs text-gray-300 mb-8">
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i>Todos os benefícios do Bronze</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i>1 Análise profunda semanal de técnica por vídeo</li>
+                        </ul>
+                    </div>
+                    <a href="/planos/" 
+                       class="w-full py-4 text-center bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl font-bold text-sm transition-all duration-300 block">
+                        Assinar Plano Prata
+                    </a>
+                </div>
+
+                <!-- PLANO OURO -->
+                <div class="bg-dark-card border border-white/5 rounded-3xl p-6 flex flex-col justify-between hover:border-white/15 transition-all duration-300">
+                    <div class="mt-4">
+                        <div class="mb-6">
+                            <h3 class="text-2xl font-oswald font-bold uppercase">Plano Ouro</h3>
+                            <p class="text-xs text-gray-500 mt-1">Acompanhamento VIP da Elite</p>
+                        </div>
+                        <div class="mb-6 flex items-baseline gap-1">
+                            <span class="text-3xl font-oswald font-bold text-white">R$ 180,00</span>
+                            <span class="text-gray-400 text-xs">/mês</span>
+                        </div>
+                        <div class="text-[10px] text-lord-gold font-semibold bg-lord-gold/5 border border-lord-gold/20 p-2 rounded-xl mb-6">
+                            💡 Inclui o treino presencial de Terça/Quinta na Pozzobom!
+                        </div>
+                        <ul class="space-y-3.5 text-xs text-gray-300 mb-8">
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i>Todos os benefícios do Bronze e Prata</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i>Análise biomecânica de todos os treinos de corrida</li>
+                            <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i>Acompanhamento individual prioritário no WhatsApp</li>
+                        </ul>
+                    </div>
+                    <a href="/planos/" 
+                       class="w-full py-4 text-center bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl font-bold text-sm transition-all duration-300 block">
+                        Assinar Plano Ouro
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 5. FAQ LOCAL ===== -->
+    <section class="py-20 bg-[#0c0c0c]" id="faq">
         <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-oswald font-extrabold uppercase italic text-white">Dúvidas Frequentes (Votuporanga)</h2>
@@ -280,39 +604,39 @@
             <div class="space-y-6">
                 <!-- FAQ 1 -->
                 <div class="bg-dark-card border border-white/5 rounded-2xl p-6">
-                    <h3 class="text-lg font-bold text-white mb-2">A assessoria tem treinos presenciais em grupo em Votuporanga?</h3>
+                    <h3 class="text-lg font-bold text-white mb-2">Quem assina plano Bronze, Prata ou Ouro pode ir aos treinos presenciais?</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">
-                        A nossa assessoria funciona de forma individualizada com planilhas entregues digitalmente pelo aplicativo (sincronizadas com seu relógio Garmin/Polar ou Strava). Os encontros presenciais ocorrem de forma pontual para análises técnicas de corrida ou eventos conjuntos que divulgamos para os alunos da cidade.
+                        Sim! Qualquer um dos planos tradicionais de assessoria de corrida dá acesso integral aos treinos presenciais de corrida que ocorrem às terças e quintas-feiras na Avenida do Pozzobom às 18h30. Não há custos adicionais.
                     </p>
                 </div>
                 
                 <!-- FAQ 2 -->
                 <div class="bg-dark-card border border-white/5 rounded-2xl p-6">
-                    <h3 class="text-lg font-bold text-white mb-2">Nunca corri e estou totalmente fora de forma. Posso participar?</h3>
+                    <h3 class="text-lg font-bold text-white mb-2">Qual a diferença entre o Funcional Run e a Assessoria de Corrida?</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">
-                        Com certeza! A maior parte dos nossos alunos começa do absoluto zero. A periodização do Plano Bronze, por exemplo, alterna caminhada com corrida leve de forma gradual, garantindo que o seu sistema cardiovascular e suas articulações se adaptem perfeitamente.
+                        O Funcional Run é um treino presencial coletivo voltado para fortalecimento físico geral associado à corrida, ideal para quem prefere dinamismo e exercícios com peso corporal em grupo (Seg/Qua às 18h30). Já a Assessoria de Corrida (Bronze, Prata, Ouro) é focada no desenvolvimento de distâncias (5k, 10k, 21k) por meio de planilhas de corrida personalizadas no aplicativo, contando com treinos presenciais focados em corrida (Ter/Qui às 18h30) na Avenida do Pozzobom.
                     </p>
                 </div>
                 
                 <!-- FAQ 3 -->
                 <div class="bg-dark-card border border-white/5 rounded-2xl p-6">
-                    <h3 class="text-lg font-bold text-white mb-2">Como funciona a análise técnica de corrida por vídeo?</h3>
+                    <h3 class="text-lg font-bold text-white mb-2">Nunca corri e estou totalmente fora de forma. Consigo acompanhar o grupo?</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">
-                        Nos planos Prata e Ouro, você grava um vídeo curto correndo de perfil e de costas (pode ser gravado no Parque da Cultura ou na Represa) e me envia pelo WhatsApp. Eu realizo uma análise biomecânica detalhada do seu movimento de braços, quadril, pisada e passada, te indicando exatamente quais educativos corretivos fazer para render mais e evitar lesões.
+                        Com certeza! Ambos os treinos são altamente progressivos. No Funcional Run, adaptamos os exercícios e usamos intervalos de caminhada. Nos treinos de corrida na Pozzobom, embora o aquecimento seja em grupo, o treino principal é individual e respeita a sua planilha e ritmo, permitindo que você evolua no seu tempo sem sobrecarregar joelhos ou articulações.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== 5. FINAL CALL ===== -->
+    <!-- ===== 6. FINAL CALL ===== -->
     <section class="py-20 bg-gradient-to-b from-dark-bg to-[#141414] text-center border-t border-white/5">
         <div class="max-w-4xl mx-auto px-6">
             <h2 class="text-3xl md:text-5xl font-oswald font-black uppercase tracking-tight text-white mb-6">
                 Pronto para Começar a Correr em Votuporanga?
             </h2>
             <p class="text-gray-400 max-w-xl mx-auto mb-10">
-                Seja para terminar seus primeiros 5km ou para baixar seu tempo na Meia Maratona, treine com a orientação técnica correta.
+                Seja para entrar em forma com o Funcional Run ou para bater recordes pessoais nos 5k, 10k ou 21k, treine com acompanhamento técnico da elite.
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="https://wa.me/5517996566908?text=Olá,%20vi%20a%20página%20de%20corrida%20em%20Votuporanga%20e%20gostaria%20de%20conversar%20sobre%20a%20assessoria!" 
@@ -327,7 +651,6 @@
             </div>
         </div>
     </section>
-
     <!-- FOOTER_PLACEHOLDER -->
 
     <script>
