@@ -1439,6 +1439,31 @@ og:image: (imagem real do artigo do Supabase)
 - `corrida-votuporanga/index.html` (COMPILADO/MODIFICADO)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 18/08/2026 — ADIÇÃO DE MELHORIAS NA PÁGINA LOCAL DE VOTUPORANGA (CARROSSEL DE FEEDBACKS, GATILHO DE VAGAS E MAPA GOOGLE MAPS) ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Injetar o carrossel de depoimentos do WhatsApp (com lightbox para ampliação) idêntico ao das páginas principal e de planos na página local `/corrida-votuporanga/`.
+2. Adicionar frase de escassez numérica de vagas para o plano presencial do Funcional Run.
+3. Criar uma nova seção `#localizacao` contendo o mapa interativo incorporado do Google Maps para o Lord Lion Cervejaria.
+
+**O que foi feito:**
+- ✅ **Carrossel do WhatsApp**: Injetada a seção do feedbacks-carousel de `planos/index.template.html` na página de Votuporanga, logo abaixo de diferenciais e antes dos planos. Copiado também o HTML do `#feedbackLightbox` no rodapé da página para garantir a funcionalidade de ampliação.
+- ✅ **Gatilho de Escassez**: Adicionadas as frases de alerta de vagas nos botões de inscrição:
+    *   *Seção de Treino*: *"Apenas 5 vagas restantes para novos alunos este mês!"* com ícone de alerta e animação de pulso.
+    *   *Tabela de Preço*: *"Apenas 5 vagas restantes!"* com ícone e animação de pulso.
+- ✅ **Seção de Localização com Google Maps**: Criada a seção `#localizacao` logo após as dúvidas frequentes (FAQ) exibindo o mapa interativo do Lord Lion Cervejaria no formato grayscale (mutado, combinando com o tema escuro da página) e botão para abrir a localização externamente no Maps.
+- ✅ **Build & Validação Visual**: Executado o script de compilação sem falhas e validada a estrutura final (testando transições de slides, abertura de lightbox e mapa) via subagente de navegação.
+
+### 📁 Arquivos criados/modificados:
+- `corrida-votuporanga/index.template.html` (MODIFICADO)
+- `corrida-votuporanga/index.html` (COMPILADO/MODIFICADO)
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
+
 
 
 
