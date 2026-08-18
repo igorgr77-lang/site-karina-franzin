@@ -1599,3 +1599,10 @@ body.is-webview .hero {
         animation: none;
     }
 }
+
+/* Estilos do botão toggle de planos */
+.pricing-toggle-btn.active {
+    background-color: #ff6b35 !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3) !important;
+}
