@@ -1457,6 +1457,7 @@ og:image: (imagem real do artigo do Supabase)
     *   *Tabela de Preço*: *"Apenas 5 vagas restantes!"* com ícone e animação de pulso.
 - ✅ **Seção de Localização com Google Maps**: Criada a seção `#localizacao` logo após as dúvidas frequentes (FAQ) exibindo o mapa interativo do Lord Lion Cervejaria no formato grayscale (mutado, combinando com o tema escuro da página) e botão para abrir a localização externamente no Maps.
 - ✅ **Build & Validação Visual**: Executado o script de compilação sem falhas e validada a estrutura final (testando transições de slides, abertura de lightbox e mapa) via subagente de navegação.
+- ✅ **Prioridade de Botões do Rodapé**: Invertidos os estilos e ordem dos botões de chamada no rodapé da página para priorizar o CTA de *"Ver Planos e Preços"* (destacado em laranja e em primeiro) em relação ao *"Iniciar Contato no WhatsApp"* (estilizado em cinza/borda).
 
 ### 📁 Arquivos criados/modificados:
 - `corrida-votuporanga/index.template.html` (MODIFICADO)
