@@ -1410,6 +1410,36 @@ og:image: (imagem real do artigo do Supabase)
 - `corrida-votuporanga/index.html` (COMPILADO/MODIFICADO)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 18/08/2026 — REMODELAÇÃO DA PÁGINA LOCAL DE VOTUPORANGA (EXCLUSÃO DO PRESENCIAL DE CORRIDA E FOCO EM ASSESSORIA ONLINE) ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Remover as referências aos treinos presenciais de corrida na Av. do Pozzobom (Ter/Qui) da página `/corrida-votuporanga/` por suspensão temporária dessas atividades.
+2. Remodelar a página local focando o conteúdo presencial exclusivamente no **Funcional Run** (Seg/Qua às 18h30).
+3. Criar uma nova seção dedicada à **Assessoria de Corrida Online** personalizada para captar o público local de corrida de rua em Votuporanga, mantendo a força de marca da Karina.
+4. Ajustar a grade de planos, garantias, dúvidas frequentes (FAQ) e schema JSON-LD para refletir o formato 100% online/flexível dos planos Bronze, Prata e Ouro.
+
+**O que foi feito:**
+- ✅ **Exclusão de Pozzobom**: Removidas todas as menções aos treinos presenciais de terça e quinta-feira da página `/corrida-votuporanga/`.
+- ✅ **Seção Funcional Run Presencial**: Reestruturada como seção presencial exclusiva (Seg/Qua às 18h30 no Lord Lion / parques), detalhando a metodologia de fortalecimento físico e mecânica de corrida.
+- ✅ **Nova Seção Assessoria Online**: Criada uma seção rica e persuasiva detalhando o formato de assessoria 100% online personalizada, ideal para quem busca flexibilidade de horários em Votuporanga, usando o aplicativo Treinus e contato direto no WhatsApp.
+- ✅ **Grade de Planos Remodelada**:
+    *   **Lado Esquerdo**: Plano Funcional Run Presencial destacado (R$ 200,00/mês, inscrições via WhatsApp).
+    *   **Lado Direito**: Planos Bronze, Prata e Ouro readequados como *"100% Online e Flexível"* (sem Pozzobom incluso). Restaurada a integração do modal de checkout do Efí Bank no rodapé, permitindo compras seguras por cartão e Pix direto na página.
+- ✅ **Dúvidas Frequentes (FAQ) e Schema**:
+    *   Atualizados os acordeons no tema escuro para esclarecer a diferença de dinâmica entre o Funcional Run presencial e a Assessoria de Corrida Online.
+    *   Mapeado no JSON-LD LocalBusiness apenas os horários de Segunda/Quarta para o clube físico de esportes, e adicionado os planos online como ofertas de serviço.
+- ✅ **Build & Validação Visual**: Executado o build do blog, confirmando a correta compilação da página e testando no navegador local.
+
+### 📁 Arquivos criados/modificados:
+- `corrida-votuporanga/index.template.html` (MODIFICADO)
+- `corrida-votuporanga/index.html` (COMPILADO/MODIFICADO)
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
+
 
 
 
