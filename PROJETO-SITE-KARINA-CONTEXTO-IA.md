@@ -1390,6 +1390,11 @@ og:image: (imagem real do artigo do Supabase)
 - ✅ **Grade de Planos Integrada**:
     *   **Plano Funcional Run Presencial**: Adicionado com valor fixo de R$ 200,00/mês e link direto para WhatsApp com mensagem personalizada.
     *   **Planos de Corrida (Bronze, Prata, Ouro)**: Exibidos de forma clara, destacando o acesso incluso aos treinos na Av. do Pozzobom.
+- ✅ **Modularização do Checkout**:
+    *   Extraídos 1.250 linhas de JavaScript de integração com a API e o gateway do Efí Bank de `planos/index.template.html` para um arquivo compartilhado: `js/checkout.js`.
+    *   Substituídos os blocos inline de scripts por `<script src="/js/checkout.js?v=1.0.3" defer></script>` nos templates de planos e de Votuporanga.
+    *   Injetados o checkout modal HTML e as dependências de tokenização do Efí Bank na página `/corrida-votuporanga/`.
+    *   Implementada a grade de planos dual (Funcional Run na esquerda, Assessoria de Corrida com toggle Mensal/Combo na direita) com suporte a compras e Pix diretos na página de Votuporanga.
 - ✅ **Schema LocalBusiness & FAQPage**: Atualizada a marcação semântica da página local para mapear as novas modalidades, horários e dúvidas frequentes locais.
 - ✅ **Pipeline de Compilação**: Atualizado o arquivo `build-blog.js` para compilar o template de Votuporanga, injetando Navbar/Rodapé unificados e atualizando o `sitemap.xml` com a nova URL `/corrida-votuporanga/` com prioridade `0.9`.
 - ✅ **Build & Validação Visual**: Executado o script de compilação sem falhas e validada a estrutura final via ferramentas de navegador local.
@@ -1398,11 +1403,13 @@ og:image: (imagem real do artigo do Supabase)
 ### 📁 Arquivos criados/modificados:
 - `planos/index.template.html` (MODIFICADO)
 - `planos/index.html` (COMPILADO/MODIFICADO)
+- `js/checkout.js` (NOVO)
 - `build-blog.js` (MODIFICADO)
 - `sitemap.xml` (MODIFICADO)
-- `corrida-votuporanga/index.template.html` (NOVO)
-- `corrida-votuporanga/index.html` (COMPILADO/NOVO)
+- `corrida-votuporanga/index.template.html` (MODIFICADO)
+- `corrida-votuporanga/index.html` (COMPILADO/MODIFICADO)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
 
 
 
