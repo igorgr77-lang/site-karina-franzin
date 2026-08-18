@@ -75,6 +75,42 @@
             color: white;
             box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
         }
+        /* Custom styles for dark accordions in FAQ */
+        #faq .faq-item {
+            background: rgba(255, 255, 255, 0.02) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            border-radius: 16px !important;
+            margin-bottom: 1.25rem !important;
+            box-shadow: none !important;
+            transition: all 0.3s ease !important;
+        }
+        #faq .faq-item:hover {
+            border-color: rgba(255, 107, 53, 0.25) !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+        }
+        #faq .faq-question {
+            color: #ffffff !important;
+            font-size: 1.05rem !important;
+            font-weight: 700 !important;
+            font-family: 'Oswald', sans-serif !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.025em !important;
+            padding: 1.5rem !important;
+            transition: all 0.3s ease !important;
+        }
+        #faq .faq-question:hover {
+            color: #ff6b35 !important;
+        }
+        #faq .faq-question::after {
+            color: #ff6b35 !important;
+            font-weight: 400 !important;
+        }
+        #faq .faq-answer p {
+            color: #a3a3a3 !important;
+            padding: 0 1.5rem 1.5rem 1.5rem !important;
+            font-size: 0.875rem !important;
+            line-height: 1.625 !important;
+        }
     </style>
 
     <!-- Schema.org LocalBusiness Structured Data -->
@@ -769,41 +805,52 @@
         </div>
     </section>
     <!-- ===== 5. FAQ LOCAL ===== -->
-    <section class="py-20 bg-[#0c0c0c]" id="faq">
+    <section class="py-20 bg-[#0c0c0c] border-b border-white/5" id="faq">
         <div class="max-w-4xl mx-auto px-6">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-oswald font-extrabold uppercase italic text-white">Dúvidas Frequentes (Votuporanga)</h2>
                 <p class="text-gray-400 mt-2">Esclareça suas principais dúvidas sobre o funcionamento da assessoria local</p>
             </div>
             
-            <div class="space-y-6">
+            <div class="faq-container space-y-4">
                 <!-- FAQ 1 -->
-                <div class="bg-dark-card border border-white/5 rounded-2xl p-6">
-                    <h3 class="text-lg font-bold text-white mb-2">Quem assina plano Bronze, Prata ou Ouro pode ir aos treinos presenciais?</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Sim! Qualquer um dos planos tradicionais de assessoria de corrida dá acesso integral aos treinos presenciais de corrida que ocorrem às terças e quintas-feiras na Avenida do Pozzobom às 18h30. Não há custos adicionais.
-                    </p>
+                <div class="faq-item">
+                    <button class="faq-question text-left" aria-expanded="false" aria-controls="faq-local-answer-1">
+                        Quem assina plano Bronze, Prata ou Ouro pode ir aos treinos presenciais?
+                    </button>
+                    <div class="faq-answer" id="faq-local-answer-1">
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Sim! Qualquer um dos planos tradicionais de assessoria de corrida dá acesso integral aos treinos presenciais de corrida que ocorrem às terças e quintas-feiras na Avenida do Pozzobom às 18h30. Não há custos adicionais.
+                        </p>
+                    </div>
                 </div>
                 
                 <!-- FAQ 2 -->
-                <div class="bg-dark-card border border-white/5 rounded-2xl p-6">
-                    <h3 class="text-lg font-bold text-white mb-2">Qual a diferença entre o Funcional Run e a Assessoria de Corrida?</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        O Funcional Run é um treino presencial coletivo voltado para fortalecimento físico geral associado à corrida, ideal para quem prefere dinamismo e exercícios com peso corporal em grupo (Seg/Qua às 18h30). Já a Assessoria de Corrida (Bronze, Prata, Ouro) é focada no desenvolvimento de distâncias (5k, 10k, 21k) por meio de planilhas de corrida personalizadas no aplicativo, contando com treinos presenciais focados em corrida (Ter/Qui às 18h30) na Avenida do Pozzobom.
-                    </p>
+                <div class="faq-item">
+                    <button class="faq-question text-left" aria-expanded="false" aria-controls="faq-local-answer-2">
+                        Qual a diferença entre o Funcional Run e a Assessoria de Corrida?
+                    </button>
+                    <div class="faq-answer" id="faq-local-answer-2">
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            O Funcional Run é um treino presencial coletivo voltado para fortalecimento físico geral associado à corrida, ideal para quem prefere dinamismo e exercícios com peso corporal em grupo (Seg/Qua às 18h30). Já a Assessoria de Corrida (Bronze, Prata, Ouro) é focada no desenvolvimento de distâncias (5k, 10k, 21k) por meio de planilhas de corrida personalizadas no aplicativo, contando com treinos presenciais focados em corrida (Ter/Qui às 18h30) na Avenida do Pozzobom.
+                        </p>
+                    </div>
                 </div>
                 
                 <!-- FAQ 3 -->
-                <div class="bg-dark-card border border-white/5 rounded-2xl p-6">
-                    <h3 class="text-lg font-bold text-white mb-2">Nunca corri e estou totalmente fora de forma. Consigo acompanhar o grupo?</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Com certeza! Ambos os treinos são altamente progressivos. No Funcional Run, adaptamos os exercícios e usamos intervalos de caminhada. Nos treinos de corrida na Pozzobom, embora o aquecimento seja em grupo, o treino principal é individual e respeita a sua planilha e ritmo, permitindo que você evolua no seu tempo sem sobrecarregar joelhos ou articulações.
-                    </p>
+                <div class="faq-item">
+                    <button class="faq-question text-left" aria-expanded="false" aria-controls="faq-local-answer-3">
+                        Nunca corri e estou totalmente fora de forma. Consigo acompanhar o grupo?
+                    </button>
+                    <div class="faq-answer" id="faq-local-answer-3">
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Com certeza! Ambos os treinos são altamente progressivos. No Funcional Run, adaptamos os exercícios e usamos intervalos de caminhada. Nos treinos de corrida na Pozzobom, embora o aquecimento seja em grupo, o treino principal é individual e respeita a sua planilha e ritmo, permitindo que você evolua no seu tempo sem sobrecarregar joelhos ou articulações.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- ===== 6. FINAL CALL ===== -->
     <section class="py-20 bg-gradient-to-b from-dark-bg to-[#141414] text-center border-t border-white/5">
         <div class="max-w-4xl mx-auto px-6">
