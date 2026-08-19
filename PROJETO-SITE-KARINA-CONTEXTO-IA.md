@@ -1475,8 +1475,39 @@ og:image: (imagem real do artigo do Supabase)
 - `corrida-votuporanga/index.html` (COMPILADO/MODIFICADO)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
 
+---
 
+## 📅 SESSÃO DE DESENVOLVIMENTO — 18/08/2026 — REESTRUTURAÇÃO COMPLETA DA PÁGINA LOCAL DE VOTUPORANGA (ARQUITETURA DE INFORMAÇÃO, EXPERIÊNCIA DO USUÁRIO E PERSUASÃO COMERCIAL) ✅
 
+### ✅ Status: CONCLUÍDO
 
+**Objetivos:**
+1. Reestruturar completamente a página `/corrida-votuporanga/` reorganizando-a em 14 seções bem delineadas que aumentam a persuasão comercial, clareza sobre assessoria online e presencial e autoridade técnica.
+2. Garantir a preservação total de toda a infraestrutura e chamadas do checkout seguro do Banco Efí (PIX, cartão, combos e recorrência).
+3. Atualizar o layout do guia local de locais de treino e o FAQ expandido com as novas dúvidas locais e de pagamento.
+4. Compilar e testar de forma interativa todas as funcionalidades da página final.
 
+**O que foi feito:**
+- ✅ **Estrutura de 14 Seções Implementada**:
+    1. *Hero Section*: Proposta dual com cards integrados de Assessoria Online e Funcional Run.
+    2. *Escolha Como Treinar*: Cards lado a lado contrastantes detalhando ambos os planos.
+    3. *Muito mais do que uma planilha*: Fluxo visual de 5 etapas para explicar a periodização individualizada.
+    4. *Online mas Local*: 8 diferenciais locais para alunos de Votuporanga e região.
+    5. *Da preparação à prova*: Fluxo temporal (Antes, Durante a Preparação, Pós-Prova).
+    6. *Diferencial da Karina*: Destaque técnico e biomecânico regulado (sem promessas absolutas de blindagem).
+    7. *Depoimentos*: Mantidos depoimentos do WhatsApp e feedbacks-carousel.
+    8. *Comunidade*: Destaque especial sobre eventos, grupos e parcerias.
+    9. *Planos e Preços*: Grade de planos atualizada com plano presencial Funcional Run (R$ 200) e planos online Bronze ("Planejamento Individual"), Prata ("Acompanhamento Técnico") e Ouro ("Acompanhamento Premium"), preservando os links e eventos `openCheckout`.
+    10. *Formas de Pagamento*: Box explicativo de Pix, Cartão e descontos de combos.
+    11. *Garantia*: Destaque dos 7 dias para testar com reembolso integral garantido.
+    12. *FAQ*: Expandido com categorias para Assessoria Online, Vivência Local e Pagamentos.
+    13. *Locais de Treino*: Guia de locais de treino recomendados na cidade + mapa do Google Maps em grayscale.
+    14. *CTA Final*: Botões de ação direta direcionando para planos e WhatsApp.
+- ✅ **Validação e Testes**: Executado o build do blog, confirmando a correta compilação da página. Um subagente web testou interativamente o comportamento do FAQ, o carrossel de depoimentos, os seletores de planos mensais/combos e a ativação correta do modal de checkout seguro da Efí Bank sem erros de console.
+- ✅ **Versionamento**: Alterações compiladas e preparadas para envio à branch `develop`.
 
+### 📁 Arquivos criados/modificados:
+- `corrida-votuporanga/index.template.html` (MODIFICADO)
+- `corrida-votuporanga/index.html` (COMPILADO/MODIFICADO)
+- `sitemap.xml` (MODIFICADO)
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
