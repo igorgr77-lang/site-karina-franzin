@@ -1,6 +1,6 @@
 # 🏃‍♀️ PROJETO SITE KARINA FRANZIN — CONTEXTO PARA IA
 
-> **Última atualização:** 16/08/2026 (Notificações Push PWA, Inscrição de Admin, Chaves VAPID, Banco Prisma, Templates WhatsApp)  
+> **Última atualização:** 22/08/2026 (Usabilidade do Checkout de Nascimento Mobile, Vencimento Dinâmico de Combos, Auto-Expiração de Combo no Faturamento, Widget de Alertas de Renovação)  
 > **Branch activa:** `develop`  
 > **Projeto online:** https://karinafranzin.com.br  
 > **Repositório:** https://github.com/igorgr77-lang/site-karina-franzin  
@@ -1510,4 +1510,35 @@ og:image: (imagem real do artigo do Supabase)
 - `corrida-votuporanga/index.template.html` (MODIFICADO)
 - `corrida-votuporanga/index.html` (COMPILADO/MODIFICADO)
 - `sitemap.xml` (MODIFICADO)
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 22/08/2026 — INTEGRAÇÃO DE COMBOS DINÂMICOS, AUTOMATIZAÇÃO DE EXPIRAÇÃO E MELHORIA DE USABILIDADE MOBILE ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivos:**
+1. Facilitar o preenchimento da Data de Nascimento no celular na tela de checkout, eliminando o date-picker nativo que era difícil de usar no mobile.
+2. Calcular dinamicamente a data de vencimento recorrente (`dueDay`) com base no dia em que o cartão de crédito do aluno foi passado para faturamento de planos combos.
+3. Automatizar a expiração de descontos promocionais de combos, redefinindo o desconto para o padrão mensal e limpando a cobertura ao gerar novas faturas.
+4. Criar um widget de alertas de renovação para notificar alunos que estão no último mês de vigência do combo.
+
+**O que foi feito:**
+- ✅ **Usabilidade Mobile (Data de Nascimento)**:
+    * Alteramos o campo de data de nascimento de `type="date"` para `type="tel"` com `placeholder="DD/MM/AAAA"`. Isso força a abertura do teclado numérico no mobile e permite digitação fluida.
+    * Adicionamos a máscara automática no input (`DD/MM/AAAA`) e tratamos no `checkout.js` para converter a data mascarada para o formato ISO `YYYY-MM-DD` antes da validação e do envio à API.
+- ✅ **Cálculo Dinâmico de Vencimento de Combos (dueDay)**:
+    * No backend, configuramos o fluxo de cartão para que o faturamento defina o `dueDay` do cadastro do estudante correspondente ao dia da cobrança do cartão (limitado ao dia 28).
+- ✅ **Expiração Automática de Combos**:
+    * No backend, configuramos a rotina de faturamento para reverter o desconto promocional de combo (ex: 20%) de volta para o desconto padrão mensal (ex: 10% no plano Ouro) e zerar a data `comboEndDate` quando o combo expira e o faturamento gera uma nova fatura comum pendente.
+- ✅ **Alertas de Renovação**:
+    * Criada a API no backend e um widget visual de alertas de renovação no Dashboard administrativo do administrador, ordenado por prazo restante e com link de contato rápido via WhatsApp customizado.
+
+### 📁 Arquivos criados/modificados:
+- `planos/index.template.html` (MODIFICADO)
+- `planos/index.html` (COMPILADO/MODIFICADO)
+- `corrida-votuporanga/index.template.html` (MODIFICADO)
+- `corrida-votuporanga/index.html` (COMPILADO/MODIFICADO)
+- `js/checkout.js` (MODIFICADO)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
