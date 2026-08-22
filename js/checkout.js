@@ -80,10 +80,19 @@
             return true;
         }
 
-        // Validador dinâmico de idade mínima (15 anos)
+        // Validador dinâmico de idade mínima (16 anos)
         function isValidBirthDate(birthString) {
             if (!birthString) return false;
-            const birthDate = new Date(birthString);
+            
+            let isoString = birthString;
+            if (birthString.includes('/')) {
+                const parts = birthString.split('/');
+                if (parts.length === 3) {
+                    isoString = `${parts[2]}-${parts[1]}-${parts[0]}`;
+                }
+            }
+
+            const birthDate = new Date(isoString);
             if (isNaN(birthDate.getTime())) return false;
 
             const today = new Date();
@@ -287,6 +296,14 @@
             if (clean.length <= 6) return `${clean.substring(0, 3)}.${clean.substring(3)}`;
             if (clean.length <= 9) return `${clean.substring(0, 3)}.${clean.substring(3, 6)}.${clean.substring(6)}`;
             return `${clean.substring(0, 3)}.${clean.substring(3, 6)}.${clean.substring(6, 9)}-${clean.substring(9)}`;
+        });
+
+        // Máscara da Data de Nascimento: 00/00/0000
+        maskInput('cust-birth', (val) => {
+            let clean = val.replace(/\D/g, '').substring(0, 8);
+            if (clean.length <= 2) return clean;
+            if (clean.length <= 4) return `${clean.substring(0, 2)}/${clean.substring(2)}`;
+            return `${clean.substring(0, 2)}/${clean.substring(2, 4)}/${clean.substring(4)}`;
         });
 
         // Validação Matemática de CPF
@@ -1147,7 +1164,16 @@
                             name: document.getElementById('cust-name').value.trim(),
                             email: document.getElementById('cust-email').value.trim(),
                             cpf: document.getElementById('cust-cpf').value.replace(/\D/g, ''),
-                            birth: document.getElementById('cust-birth').value, // YYYY-MM-DD
+                            birth: (() => {
+                                const rawBirth = document.getElementById('cust-birth').value;
+                                if (rawBirth.includes('/')) {
+                                    const parts = rawBirth.split('/');
+                                    if (parts.length === 3) {
+                                        return `${parts[2]}-${parts[1]}-${parts[0]}`;
+                                    }
+                                }
+                                return rawBirth;
+                            })(),
                             phone: document.getElementById('cust-phone').value.replace(/\D/g, '')
                         },
                         billingAddress: {
