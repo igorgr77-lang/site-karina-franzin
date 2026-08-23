@@ -460,6 +460,15 @@ async function build() {
             console.log('💾 Página local de Corrida em Votuporanga compilada com sucesso em: corrida-votuporanga/index.html');
         }
 
+        // 3.1.6 Página do Portal do Atleta KF (portal-do-atleta/index.html) - escura
+        const portalAtletaTemplatePath = path.join(__dirname, 'portal-do-atleta', 'index.template.html');
+        if (fs.existsSync(portalAtletaTemplatePath)) {
+            let htmlPortalAtleta = fs.readFileSync(portalAtletaTemplatePath, 'utf8');
+            htmlPortalAtleta = compilePageComponents(htmlPortalAtleta, false);
+            fs.writeFileSync(path.join(__dirname, 'portal-do-atleta', 'index.html'), htmlPortalAtleta, 'utf8');
+            console.log('💾 Página do Portal do Atleta KF compilada com sucesso em: portal-do-atleta/index.html');
+        }
+
         // 3.2 Planos Combo (planos/*.html) - escura
         const planosComboDir = path.join(__dirname, 'planos');
         if (fs.existsSync(planosComboDir)) {
@@ -542,6 +551,12 @@ async function build() {
     </url>
     <url>
         <loc>https://karinafranzin.com.br/corrida-votuporanga/</loc>
+        <lastmod>${hoje}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/portal-do-atleta/</loc>
         <lastmod>${hoje}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>

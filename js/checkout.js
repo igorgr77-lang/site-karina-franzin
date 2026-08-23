@@ -176,6 +176,7 @@
 
         // Configurações e Preços dos Combos
         const PLANS_DATA = {
+            'portal_atleta': { name: 'Portal do Atleta KF', total: 47.99, monthly: 47.99, months: 1, type: 'mensal' },
             'bronze_mensal': { name: 'Plano Bronze Mensal', total: 114.00, monthly: 114.00, months: 1, type: 'mensal' },
             'prata_mensal': { name: 'Plano Prata Mensal', total: 142.50, monthly: 142.50, months: 1, type: 'mensal' },
             'ouro_mensal': { name: 'Plano Ouro Mensal', total: 180.00, monthly: 180.00, months: 1, type: 'mensal' },
@@ -937,12 +938,14 @@
                 document.getElementById('pix-qrcode-img').classList.add('hidden');
                 document.getElementById('pix-qrcode-loading').classList.remove('hidden');
 
+                const isProductKey = selectedComboKey === 'portal_atleta';
                 const payload = {
                     name: document.getElementById('cust-name').value.trim(),
                     email: email,
                     phone: phone,
                     cpf: cpf,
-                    planKey: selectedComboKey
+                    planKey: isProductKey ? undefined : selectedComboKey,
+                    productKey: isProductKey ? selectedComboKey : undefined
                 };
 
                 fetch(`${API_BASE_URL}/api/payments/efi/checkout-pix`, {
@@ -1156,10 +1159,12 @@
                     const paymentToken = tokenResponse.payment_token;
                     
                     // Enviar para o backend
+                    const isProductKey = document.getElementById('form-combo-key').value === 'portal_atleta';
                     const payload = {
                         paymentToken: paymentToken,
                         installments: document.getElementById('card-installments').value,
-                        comboKey: document.getElementById('form-combo-key').value,
+                        comboKey: isProductKey ? undefined : document.getElementById('form-combo-key').value,
+                        productKey: isProductKey ? document.getElementById('form-combo-key').value : undefined,
                         customer: {
                             name: document.getElementById('cust-name').value.trim(),
                             email: document.getElementById('cust-email').value.trim(),
