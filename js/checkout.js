@@ -640,12 +640,86 @@
             } else {
                 emailMatchError.classList.add('hidden');
                 emailConfirmInput.classList.remove('border-red-500/50');
-                emailConfirmInput.classList.add('focus:border-karina-orange');
+                    emailConfirmInput.classList.add('focus:border-karina-orange');
             }
         }
         if (emailInput && emailConfirmInput) {
             emailInput.addEventListener('input', checkEmailMatch);
             emailConfirmInput.addEventListener('input', checkEmailMatch);
+        }
+
+        let selectedPaymentMethod = 'pix';
+
+        // Alternador Dinâmico de Método de Pagamento (Exposto globalmente para o HTML)
+        window.setPaymentMethod = function(method) {
+            selectedPaymentMethod = method;
+            
+            const pixBtn = document.getElementById('pay-method-pix');
+            const cardBtn = document.getElementById('pay-method-card');
+            const step2 = document.getElementById('step-2');
+            const step3 = document.getElementById('step-3');
+            const logosContainer = document.getElementById('brand-logos-container');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            if (method === 'pix') {
+                if (pixBtn) {
+                    pixBtn.classList.add('bg-karina-orange', 'text-white');
+                    pixBtn.classList.remove('text-gray-400', 'hover:text-white');
+                }
+                if (cardBtn) {
+                    cardBtn.classList.remove('bg-karina-orange', 'text-white');
+                    cardBtn.classList.add('text-gray-400', 'hover:text-white');
+                }
+                
+                if (step2) step2.classList.add('hidden');
+                if (step3) step3.classList.add('hidden');
+                if (logosContainer) logosContainer.classList.add('hidden');
+                
+                setRequiredFields(false);
+                
+                if (submitBtn) {
+                    submitBtn.classList.remove('hidden');
+                    submitBtn.innerHTML = '<i data-lucide="qr-code" class="w-4 h-4"></i> GERAR QR CODE PIX';
+                }
+                
+                const priceEl = document.getElementById('checkout-plan-price');
+                if (priceEl) priceEl.textContent = 'Total: R$ 47,99 via PIX';
+            } else {
+                if (cardBtn) {
+                    cardBtn.classList.add('bg-karina-orange', 'text-white');
+                    cardBtn.classList.remove('text-gray-400', 'hover:text-white');
+                }
+                if (pixBtn) {
+                    pixBtn.classList.remove('bg-karina-orange', 'text-white');
+                    pixBtn.classList.add('text-gray-400', 'hover:text-white');
+                }
+                
+                if (step2) step2.classList.remove('hidden');
+                if (step3) step3.classList.remove('hidden');
+                if (logosContainer) logosContainer.classList.remove('hidden');
+                
+                setRequiredFields(true);
+                
+                if (submitBtn) {
+                    submitBtn.classList.remove('hidden');
+                    submitBtn.innerHTML = '<i data-lucide="lock" class="w-4 h-4"></i> FINALIZAR MATRÍCULA';
+                }
+                
+                // Configura parcela única para o Portal
+                const installmentsSelect = document.getElementById('card-installments');
+                if (installmentsSelect) {
+                    installmentsSelect.innerHTML = '';
+                    const opt = document.createElement('option');
+                    opt.value = 1;
+                    opt.textContent = `1x de R$ 47,99 sem juros`;
+                    opt.selected = true;
+                    installmentsSelect.appendChild(opt);
+                }
+
+                const priceEl = document.getElementById('checkout-plan-price');
+                if (priceEl) priceEl.textContent = 'Total: R$ 47,99 (1x de R$ 47,99)';
+            }
+            if (window.lucide) lucide.createIcons();
         }
 
         // Abrir Modal de Checkout
@@ -700,25 +774,6 @@
             }
             if (holderCpfErrorSpan) holderCpfErrorSpan.classList.add('hidden');
 
-            const submitBtn = document.getElementById('submit-btn');
-            if (submitBtn) {
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('opacity-50', 'pointer-events-none');
-            }
-
-            const termsContainer = document.getElementById('checkout-terms-container');
-            if (termsContainer) {
-                termsContainer.classList.remove('hidden');
-            }
-
-            const expiryInput = document.getElementById('card-expiry');
-            const expiryErrorSpan = document.getElementById('card-expiry-error');
-            if (expiryInput) {
-                expiryInput.classList.remove('border-red-400');
-                expiryInput.classList.add('focus:border-karina-orange');
-            }
-            if (expiryErrorSpan) expiryErrorSpan.classList.add('hidden');
-
             const birthInput = document.getElementById('cust-birth');
             const birthErrorSpan = document.getElementById('birth-validation-error');
             if (birthInput) {
@@ -732,69 +787,94 @@
             document.getElementById('form-combo-key').value = comboKey;
             document.getElementById('checkout-plan-name').textContent = plan.name;
             
-            // Lógica condicional de Exibição dependendo se é mensal (PIX) ou combo (Cartão)
-            if (plan.type === 'mensal') {
-                document.getElementById('checkout-plan-price').textContent = `Mensalidade com Desconto: R$ ${plan.total.toFixed(2)} via PIX`;
-                
-                // Oculta cartão, endereço e logos de cartão
-                document.getElementById('step-2').classList.add('hidden');
-                document.getElementById('step-3').classList.add('hidden');
-                document.getElementById('brand-logos-container').classList.add('hidden');
-                document.getElementById('step-pix').classList.add('hidden'); // Oculta até gerar
-                
-                // Exibe passo 1 se ocultado
-                document.getElementById('step-1').classList.remove('hidden');
-                
-                // Remove required de endereço e cartão
-                setRequiredFields(false);
-                
-                if (submitBtn) {
-                    submitBtn.classList.remove('hidden');
-                    submitBtn.innerHTML = '<i data-lucide="qr-code" class="w-4 h-4"></i> GERAR QR CODE PIX';
-                }
+            const submitBtn = document.getElementById('submit-btn');
+            
+            // Gerencia seletor de pagamento se existir no DOM (exclusivo do portal do atleta)
+            const paymentSelector = document.getElementById('payment-method-selector');
+            if (comboKey === 'portal_atleta') {
+                if (paymentSelector) paymentSelector.classList.remove('hidden');
+                setPaymentMethod('pix');
             } else {
-                document.getElementById('checkout-plan-price').textContent = `Total: R$ ${plan.total.toFixed(2)} (${plan.months}x de R$ ${plan.monthly.toFixed(2)})`;
+                if (paymentSelector) paymentSelector.classList.add('hidden');
                 
-                // Exibe cartão, endereço e logos de cartão
-                document.getElementById('step-2').classList.remove('hidden');
-                document.getElementById('step-3').classList.remove('hidden');
-                document.getElementById('brand-logos-container').classList.remove('hidden');
-                document.getElementById('step-pix').classList.add('hidden');
-                
-                // Exibe passo 1
-                document.getElementById('step-1').classList.remove('hidden');
-                
-                // Adiciona required de endereço e cartão
-                setRequiredFields(true);
-                
-                if (submitBtn) {
-                    submitBtn.classList.remove('hidden');
-                    submitBtn.innerHTML = '<i data-lucide="lock" class="w-4 h-4"></i> FINALIZAR MATRÍCULA';
-                }
-                
-                // Gerar opções de parcelas
-                const installmentsSelect = document.getElementById('card-installments');
-                installmentsSelect.innerHTML = '';
-                for (let i = 1; i <= plan.months; i++) {
-                    const value = plan.total / i;
-                    const opt = document.createElement('option');
-                    opt.value = i;
-                    opt.textContent = `${i}x de R$ ${value.toFixed(2)} sem juros`;
-                    if (i === plan.months) opt.selected = true;
-                    installmentsSelect.appendChild(opt);
-                }
+                // Lógica condicional de Exibição dependendo se é mensal (PIX) ou combo (Cartão)
+                if (plan.type === 'mensal') {
+                    selectedPaymentMethod = 'pix';
+                    document.getElementById('checkout-plan-price').textContent = `Mensalidade com Desconto: R$ ${plan.total.toFixed(2)} via PIX`;
+                    
+                    // Oculta cartão, endereço e logos de cartão
+                    document.getElementById('step-2').classList.add('hidden');
+                    document.getElementById('step-3').classList.add('hidden');
+                    const logosContainer = document.getElementById('brand-logos-container');
+                    if (logosContainer) logosContainer.classList.add('hidden');
+                    document.getElementById('step-pix').classList.add('hidden'); // Oculta até gerar
+                    
+                    // Exibe passo 1 se ocultado
+                    document.getElementById('step-1').classList.remove('hidden');
+                    
+                    // Remove required de endereço e cartão
+                    setRequiredFields(false);
+                    
+                    if (submitBtn) {
+                        submitBtn.classList.remove('hidden');
+                        submitBtn.innerHTML = '<i data-lucide="qr-code" class="w-4 h-4"></i> GERAR QR CODE PIX';
+                    }
+                } else {
+                    selectedPaymentMethod = 'card';
+                    document.getElementById('checkout-plan-price').textContent = `Total: R$ ${plan.total.toFixed(2)} (${plan.months}x de R$ ${plan.monthly.toFixed(2)})`;
+                    
+                    // Exibe cartão, endereço e logos de cartão
+                    document.getElementById('step-2').classList.remove('hidden');
+                    document.getElementById('step-3').classList.remove('hidden');
+                    const logosContainer = document.getElementById('brand-logos-container');
+                    if (logosContainer) logosContainer.classList.remove('hidden');
+                    document.getElementById('step-pix').classList.add('hidden');
+                    
+                    // Exibe passo 1
+                    document.getElementById('step-1').classList.remove('hidden');
+                    
+                    // Adiciona required de endereço e cartão
+                    setRequiredFields(true);
+                    
+                    if (submitBtn) {
+                        submitBtn.classList.remove('hidden');
+                        submitBtn.innerHTML = '<i data-lucide="lock" class="w-4 h-4"></i> FINALIZAR MATRÍCULA';
+                    }
+                    
+                    // Gerar opções de parcelas
+                    const installmentsSelect = document.getElementById('card-installments');
+                    if (installmentsSelect) {
+                        installmentsSelect.innerHTML = '';
+                        for (let i = 1; i <= plan.months; i++) {
+                            const value = plan.total / i;
+                            const opt = document.createElement('option');
+                            opt.value = i;
+                            opt.textContent = `${i}x de R$ ${value.toFixed(2)} sem juros`;
+                            if (i === plan.months) opt.selected = true;
+                            installmentsSelect.appendChild(opt);
+                        }
+                    }
 
-                // Atualizar Resumo de Compra Inicial
-                document.getElementById('summary-plan-name').textContent = plan.name;
-                document.getElementById('summary-plan-total').textContent = `R$ ${plan.total.toFixed(2)}`;
-                document.getElementById('summary-payment-installment').textContent = `${plan.months}x de R$ ${plan.monthly.toFixed(2)} sem juros`;
+                    // Atualizar Resumo de Compra Inicial de forma defensiva
+                    const summaryPlanName = document.getElementById('summary-plan-name');
+                    const summaryPlanTotal = document.getElementById('summary-plan-total');
+                    const summaryPaymentInstallment = document.getElementById('summary-payment-installment');
+                    
+                    if (summaryPlanName) summaryPlanName.textContent = plan.name;
+                    if (summaryPlanTotal) summaryPlanTotal.textContent = `R$ ${plan.total.toFixed(2)}`;
+                    if (summaryPaymentInstallment) summaryPaymentInstallment.textContent = `${plan.months}x de R$ ${plan.monthly.toFixed(2)} sem juros`;
 
-                // Listener para atualizar o resumo dinamicamente quando a parcela mudar
-                installmentsSelect.addEventListener('change', () => {
-                    const selectedInstallment = Number(installmentsSelect.value);
-                    const valInstallment = plan.total / selectedInstallment;
-                    document.getElementById('summary-payment-installment').textContent = `${selectedInstallment}x de R$ ${valInstallment.toFixed(2)} sem juros`;
-                });
+                    // Listener para atualizar o resumo dinamicamente quando a parcela mudar
+                    if (installmentsSelect) {
+                        installmentsSelect.addEventListener('change', () => {
+                            const selectedInstallment = Number(installmentsSelect.value);
+                            const valInstallment = plan.total / selectedInstallment;
+                            if (summaryPaymentInstallment) {
+                                summaryPaymentInstallment.textContent = `${selectedInstallment}x de R$ ${valInstallment.toFixed(2)} sem juros`;
+                            }
+                        });
+                    }
+                }
             }
 
             // Recria ícones Lucide
@@ -900,7 +980,7 @@
             const plan = PLANS_DATA[selectedComboKey];
 
             // Fluxo PIX para Planos Mensais
-            if (plan.type === 'mensal') {
+            if (selectedPaymentMethod === 'pix') {
                 const email = document.getElementById('cust-email').value.trim();
                 const emailConfirm = document.getElementById('cust-email-confirm').value.trim();
                 if (email !== emailConfirm) {

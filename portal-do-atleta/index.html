@@ -837,6 +837,18 @@
                     <p id="checkout-plan-price" class="text-sm text-gray-400 mt-1">Total de R$ 47,99</p>
                 </div>
 
+                <!-- Seletor de Método de Pagamento -->
+                <div id="payment-method-selector" class="mb-6 grid grid-cols-2 gap-3 bg-white/5 p-1 rounded-xl border border-white/5 hidden">
+                    <button type="button" id="pay-method-pix" onclick="setPaymentMethod('pix')" class="py-2.5 text-xs font-bold rounded-lg flex items-center justify-center gap-2 transition-all">
+                        <i data-lucide="qr-code" class="w-4 h-4"></i>
+                        Pix
+                    </button>
+                    <button type="button" id="pay-method-card" onclick="setPaymentMethod('card')" class="py-2.5 text-xs font-bold rounded-lg flex items-center justify-center gap-2 transition-all">
+                        <i data-lucide="credit-card" class="w-4 h-4"></i>
+                        Cartão de Crédito
+                    </button>
+                </div>
+
                 <!-- Formulário de Pagamento -->
                 <form id="checkout-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
                     <!-- Informações do Combo Selecionado (Hidden) -->
@@ -968,11 +980,15 @@
                         <div class="mt-4 bg-white/[0.02] border border-white/5 p-4 rounded-xl text-xs space-y-1.5">
                             <div class="flex justify-between">
                                 <span class="text-gray-400">Produto:</span>
-                                <span class="font-bold text-white">Portal do Atleta KF</span>
+                                <span class="font-bold text-white" id="summary-plan-name">Portal do Atleta KF</span>
                             </div>
                             <div class="flex justify-between">
+                                <span class="text-gray-400">Pagamento:</span>
+                                <span class="font-bold text-white" id="summary-payment-installment">1x de R$ 47,99</span>
+                            </div>
+                            <div class="flex justify-between border-t border-white/5 pt-2 mt-2">
                                 <span class="text-gray-400">Total a pagar:</span>
-                                <span class="font-bold text-white" id="summary-total-price">R$ 47,99</span>
+                                <span class="font-bold text-white" id="summary-plan-total">R$ 47,99</span>
                             </div>
                             <div class="flex justify-between items-center text-[10px] text-emerald-400 font-bold border-t border-white/5 pt-2">
                                 <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Acesso Imediato</span>
@@ -1029,8 +1045,25 @@
                             <p class="font-bold text-gray-400">✓ O acesso é liberado automaticamente após o pagamento.</p>
                             <p>Após pagar, você receberá suas instruções de login no e-mail informado.</p>
                         </div>
-                    </div>
                 </form>
+
+                <!-- Selos de Segurança e Confiança -->
+                <div class="mt-6 pt-6 border-t border-white/5 flex flex-col items-center gap-4 text-center">
+                    <!-- Ícones de Cartões de Crédito Aceitos -->
+                    <div class="flex items-center justify-center gap-2.5" id="brand-logos-container">
+                        <img id="brand-logo-visa" src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/visa.svg" alt="Visa" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
+                        <img id="brand-logo-mastercard" src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/mastercard.svg" alt="Mastercard" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
+                        <img id="brand-logo-elo" src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/elo.svg" alt="Elo" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
+                        <img id="brand-logo-amex" src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/american-express.svg" alt="Amex" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
+                        <img id="brand-logo-hipercard" src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/hipercard.svg" alt="Hipercard" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
+                    </div>
+                    
+                    <!-- Texto e Selo de Ambiente Seguro -->
+                    <div class="flex items-center justify-center gap-2 text-gray-500 text-[10px] uppercase font-bold tracking-wider">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-green-500"></i>
+                        <span>Ambiente 100% Criptografado &amp; Seguro</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
