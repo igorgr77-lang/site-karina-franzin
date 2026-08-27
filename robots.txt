@@ -6,3 +6,6 @@ Sitemap: https://karinafranzin.com.br/sitemap.xml
 
 # Optimize crawl budget - block unnecessary paths
 Disallow: /assets/icons/
+
+# Block admin panel from indexing
+Disallow: /admin/

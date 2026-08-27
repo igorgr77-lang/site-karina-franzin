@@ -306,6 +306,7 @@ async function build() {
                 : 'CORRIDA';
             const keywords = (artigo.palavras_chave) ? artigo.palavras_chave.join(', ') : 'corrida, assessoria';
             const metaDescription = artigo.meta_description || artigo.resumo;
+            const metaTitulo = artigo.meta_titulo || artigo.titulo;
             const autor = artigo.autor || 'Karina Franzin';
             
             // Schema JSON
@@ -347,6 +348,7 @@ async function build() {
             // 4. Substituir placeholders no artigo
             let htmlArtigo = artigoTemplate
                 .replace(/{{TITULO}}/g, artigo.titulo)
+                .replace(/{{META_TITULO}}/g, metaTitulo)
                 .replace(/{{SLUG}}/g, artigo.slug)
                 .replace(/{{META_DESCRIPTION}}/g, metaDescription)
                 .replace(/{{KEYWORDS}}/g, keywords)
