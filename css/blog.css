@@ -628,6 +628,26 @@
     color: #2d3748;
 }
 
+.blog-header-preferred-source {
+    margin-top: 1.25rem;
+    display: flex;
+    justify-content: center;
+}
+
+.article-preferred-source {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 0 2.5rem;
+    flex-wrap: wrap;
+}
+
+.preferred-source-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2d3748;
+}
+
 .share-buttons {
     display: flex;
     gap: 0.75rem;

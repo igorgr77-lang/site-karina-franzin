@@ -1001,6 +1001,24 @@ body.is-webview .hero {
     /* Fica laranja no hover */
 }
 
+.footer-preferred-source {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.footer-preferred-source img {
+    height: 36px;
+    width: auto;
+    opacity: 0.9;
+    transition: var(--transition);
+}
+
+.footer-preferred-source a:hover img {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
 .footer-copy {
     opacity: 0.85;
     font-size: 0.9rem;
