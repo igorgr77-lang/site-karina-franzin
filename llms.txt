@@ -1,0 +1,32 @@
+# Karina Franzin - Assessoria de Corrida
+
+> Treinadora de corrida de rua e atleta de elite (14 anos de experiência, formada em Educação Física e Fisioterapia), oferecendo assessoria esportiva online e presencial personalizada para corredores de todos os níveis, sediada em Votuporanga, SP.
+
+Karina Franzin é treinadora de corrida e fisioterapeuta, campeã da Meia Maratona de Brasília (Elite) e do Pelotão Geral da Corrida de São Silvestre. Atende alunos de todo o Brasil via assessoria 100% online (planilhas semanais personalizadas pelo aplicativo Treinus, suporte via WhatsApp) e presencialmente em Votuporanga-SP (treino Funcional Run).
+
+## Páginas Principais
+
+- [Home](https://karinafranzin.com.br/): Apresentação da assessoria de corrida online, planos e metodologia da treinadora
+- [Planos e Valores](https://karinafranzin.com.br/planos/): Planos Bronze, Prata e Ouro de assessoria de corrida 100% online, com opções mensal e combo
+- [Assessoria em Votuporanga](https://karinafranzin.com.br/corrida-votuporanga/): Assessoria online e treino presencial (Funcional Run) para moradores de Votuporanga e região
+- [Portal do Atleta KF](https://karinafranzin.com.br/portal-do-atleta/): Biblioteca de vídeos de técnica, ativação muscular e mobilidade para corredores
+- [Eventos](https://karinafranzin.com.br/eventos/): Treinões e provas de corrida organizados ou apoiados pela Karina Franzin
+- [Cupons e Benefícios](https://karinafranzin.com.br/cupons/): Descontos exclusivos para alunos em parceiros locais de Votuporanga
+
+## Blog
+
+- [Hidratação na Corrida de Rua](https://karinafranzin.com.br/blog/hidratacao-na-corrida-de-rua/): Se você corre para se manter saudável, emagrecer ou completar provas, saber o que, quando e quanto beber é tão importante quanto o seu plano de treinos. A hidratação correta melhora seu desempenho, evita cãibras e garante que você termine a prova se sentindo bem.
+- [Rotary Run Votuporanga 2026: Expectativa, Dicas e Desafio de Botina com Zeca Corredor](https://karinafranzin.com.br/blog/rotary-run-votuporanga-2026-expectativas-e-desafio/): A contagem regressiva para a Rotary Run Votuporanga 2026 começou! Confira dicas essenciais de preparação para a prova e os detalhes do desafio divertido de correr de botina ao lado do Zeca Corredor.
+- [Do Gramado ao Asfalto: Jogadores de Copa do Mundo que Encararam as Maratonas](https://karinafranzin.com.br/blog/do-gramado-ao-asfalto-jogadores-de-copa-do-mundo-que-encararam-as-maratonas/): De Kaká a Arjen Robben, conheça os craques históricos do futebol que trocaram as chuteiras pelos tênis de corrida e venceram o desafio dos 42 km.
+- [11ª Run Avoa: O desafio de vencer a dor e manter uma hegemonia de 8 anos](https://karinafranzin.com.br/blog/11-run-avoa-o-desafio-de-vencer-a-dor-e-manter-uma-hegemonia-de-8-anos/): 8 anos invicta e um desafio real: a 11ª Run Avoa foi marcada pela superação de uma lesão na posterior. Entre a apreensão da largada e a vitória no topo do pódio, conto como a fisioterapia e a paciência foram chaves para manter minha hegemonia. Confira esse relato de superação!
+- [Lesão na posterior da coxa: a dor vai embora, mas e o movimento? O que a ciência e a biomecânica nos ensinam](https://karinafranzin.com.br/blog/lesao-na-posterior-da-coxa-a-dor-vai-embora-mas-e-o-movimento-o-que-a-ciencia-e-a-biomecanica-nos-ensinam/): Voltou a correr após lesionar a posterior da coxa? Cuidado: a ausência de dor não significa mecânica perfeita. Descubra como as compensações do corpo aumentam o risco de reincidência.
+- [29ª Corrida Pedestre Cidade de Lourdes-SP 2026 (7,5 km)](https://karinafranzin.com.br/blog/29-corrida-pedestre-cidade-de-lourdes-sp-2026-75-km/): A 29ª Corrida Pedestre Cidade de Lourdes-SP 2026 acontece no dia 07 de março, às 17:00, com percurso de 7,5 km e novidades como chip descartável na cronometragem e premiação com troféus e dinheiro.
+- [RUN AVOA 2026 Votuporanga: Tudo Sobre a Prova + Dicas de Preparação](https://karinafranzin.com.br/blog/run-avoa-2026-votuporanga/): A 11ª edição da RUN AVOA está chegando! Saiba tudo sobre a prova, como se inscrever e como se preparar da melhor forma para arrasar em Votuporanga-SP.
+- [Plano de Treino para Correr 5km em 8 Semanas (Iniciantes)](https://karinafranzin.com.br/blog/plano-de-treino-para-correr-5km-em-8-semanas-iniciantes/): Planilha completa de 8 semanas para você conseguir correr seus primeiros 5km. Progressão segura, sem lesões e com resultados garantidos.
+- [10 Erros Comuns que Iniciantes Cometem na Corrida (e Como Evitá-los)](https://karinafranzin.com.br/blog/erros-comuns-corrida-iniciantes/): Descubra os erros mais frequentes que iniciantes cometem e aprenda como evitá-los para progredir mais rápido e com menos riscos de lesão.
+- [Como Começar a Correr do Zero: Guia Completo para Iniciantes](https://karinafranzin.com.br/blog/como-comecar-a-correr-do-zero/): Quer começar a correr mas não sabe por onde começar? Este guia completo vai te ensinar tudo que você precisa saber para dar os primeiros passos com segurança e motivação.
+
+## Optional
+
+- [Termos de Serviço](https://karinafranzin.com.br/planos/termos.html): Termos de serviço e regulamento de contratação da assessoria
+- [Política de Privacidade](https://karinafranzin.com.br/planos/privacidade.html): Política de privacidade e proteção de dados pessoais sob a LGPD

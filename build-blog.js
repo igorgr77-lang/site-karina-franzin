@@ -610,6 +610,45 @@ async function build() {
         fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemapXml, 'utf8');
         console.log('💾 sitemap.xml atualizado com todas as novas páginas e eventos!');
 
+        // ============================================
+        // GERAR LLMS.TXT
+        // ============================================
+        console.log('\n🤖 Atualizando llms.txt...');
+
+        let llmsTxt = `# Karina Franzin - Assessoria de Corrida
+
+> Treinadora de corrida de rua e atleta de elite (14 anos de experiência, formada em Educação Física e Fisioterapia), oferecendo assessoria esportiva online e presencial personalizada para corredores de todos os níveis, sediada em Votuporanga, SP.
+
+Karina Franzin é treinadora de corrida e fisioterapeuta, campeã da Meia Maratona de Brasília (Elite) e do Pelotão Geral da Corrida de São Silvestre. Atende alunos de todo o Brasil via assessoria 100% online (planilhas semanais personalizadas pelo aplicativo Treinus, suporte via WhatsApp) e presencialmente em Votuporanga-SP (treino Funcional Run).
+
+## Páginas Principais
+
+- [Home](https://karinafranzin.com.br/): Apresentação da assessoria de corrida online, planos e metodologia da treinadora
+- [Planos e Valores](https://karinafranzin.com.br/planos/): Planos Bronze, Prata e Ouro de assessoria de corrida 100% online, com opções mensal e combo
+- [Assessoria em Votuporanga](https://karinafranzin.com.br/corrida-votuporanga/): Assessoria online e treino presencial (Funcional Run) para moradores de Votuporanga e região
+- [Portal do Atleta KF](https://karinafranzin.com.br/portal-do-atleta/): Biblioteca de vídeos de técnica, ativação muscular e mobilidade para corredores
+- [Eventos](https://karinafranzin.com.br/eventos/): Treinões e provas de corrida organizados ou apoiados pela Karina Franzin
+- [Cupons e Benefícios](https://karinafranzin.com.br/cupons/): Descontos exclusivos para alunos em parceiros locais de Votuporanga
+
+## Blog
+
+`;
+
+        for (const artigo of artigos) {
+            const resumo = (artigo.resumo || artigo.meta_description || '').replace(/\s+/g, ' ').trim();
+            llmsTxt += `- [${artigo.titulo.trim()}](https://karinafranzin.com.br/blog/${artigo.slug}/): ${resumo}\n`;
+        }
+
+        llmsTxt += `
+## Optional
+
+- [Termos de Serviço](https://karinafranzin.com.br/planos/termos.html): Termos de serviço e regulamento de contratação da assessoria
+- [Política de Privacidade](https://karinafranzin.com.br/planos/privacidade.html): Política de privacidade e proteção de dados pessoais sob a LGPD
+`;
+
+        fs.writeFileSync(path.join(__dirname, 'llms.txt'), llmsTxt, 'utf8');
+        console.log('💾 llms.txt atualizado com as páginas principais e artigos do blog!');
+
         console.log('\n✨ BUILD DO BLOG CONCLUÍDO COM SUCESSO! ✨\n');
         
     } catch (err) {
