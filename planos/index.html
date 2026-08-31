@@ -155,18 +155,66 @@
                     },
                     {
                         "@type": "Question",
-                        "name": "Como funciona a nova Aba de Vídeos no Portal do Aluno?",
-                        "acceptedAnswer": {
-                            "@type": "Answer",
-                            "text": "O Portal do Aluno da assessoria conta agora com uma biblioteca exclusiva de vídeos de apoio gravados pela Karina Franzin, divididos em Educativos de Corrida (para postura e técnica), Ativações Musculares (para aquecer antes de correr) e Auto Liberação/Mobilidade (para recuperação)."
-                        }
-                    },
-                    {
-                        "@type": "Question",
                         "name": "A compra deste produto é segura?",
                         "acceptedAnswer": {
                             "@type": "Answer",
                             "text": "Totalmente segura! Todo o processamento de pagamentos é feito de forma integrada pela Efí Bank, uma instituição financeira autorizada e regulamentada pelo Banco Central do Brasil. Suas informações de pagamento e dados de cartão de crédito são criptografados na origem e transmitidos com segurança SSL diretamente para o banco."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Quais são as formas de pagamento disponíveis?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Aceitamos PIX e Cartão de Crédito. Os planos mensais são cobrados via PIX, com renovação automática a cada 30 dias (e desconto de pontualidade se pago até o vencimento). Já os combos trimestral e semestral são pagos à vista, parcelados no cartão de crédito ou via PIX."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Qual a diferença entre o plano mensal e os combos (trimestral/semestral)?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "O plano mensal não tem fidelidade — você paga mês a mês e pode cancelar quando quiser. Já os combos de 3 ou 6 meses saem com desconto na mensalidade em troca do pagamento antecipado de todo o período, sendo ideais para quem já sabe que vai treinar por mais tempo."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Como funciona o cancelamento?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "É simples: o pedido de desligamento deve ser feito pelo aplicativo Treinus ou pelo WhatsApp de suporte até o dia 25 de cada mês. Avisos feitos após essa data geram a fatura do mês seguinte normalmente, sem estorno retroativo."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Preciso de relógio GPS ou equipamento específico para treinar?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Não é obrigatório. Você pode usar aplicativos gratuitos de celular (como Strava) para cronometrar e rastrear seus treinos, que sincronizam automaticamente com a nossa plataforma."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Tenho uma lesão ou condição física, ainda assim posso treinar?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sim. Como a Karina também é fisioterapeuta, ela pode adaptar sua planilha considerando lesões antigas, dores recorrentes ou limitações físicas, com atenção redobrada à prevenção. Se você tiver uma condição médica específica, recomendamos consultar seu médico antes de iniciar qualquer atividade física."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Posso trocar de plano depois (upgrade de Bronze pra Prata/Ouro)?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sim! Se ao longo da assessoria você sentir que precisa de um acompanhamento mais próximo, é só falar com a Karina pelo WhatsApp ou pelo Portal do Aluno para solicitar o upgrade do seu plano."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Posso mudar meu objetivo no meio do caminho?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sim. Conforme você evolui ou se inscreve em novas provas, a Karina reestrutura o planejamento da periodização para focar na nova meta sem problemas."
                         }
                     }
                 ]
@@ -1538,6 +1586,97 @@
                     <div id="faq-ans-5" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
                         <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
                             Totalmente segura! Todo o processamento de pagamentos é feito de forma integrada pela Efí Bank, uma instituição financeira autorizada e regulamentada pelo Banco Central do Brasil, referência nacional em segurança de transações digitais. Suas informações de pagamento e dados de cartão de crédito são criptografados na origem e transmitidos com segurança SSL diretamente para o banco, sem que nenhum dado sensível do seu cartão fique armazenado em servidor.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pergunta 6 -->
+                <div class="bg-dark-card border border-white/5 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(6)" class="w-full p-6 text-left flex justify-between items-center font-bold text-base hover:bg-white/5 transition">
+                        <span>Quais são as formas de pagamento disponíveis?</span>
+                        <i id="faq-icon-6" data-lucide="plus" class="w-5 h-5 text-karina-orange transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-6" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
+                        <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
+                            Aceitamos PIX e Cartão de Crédito. Os planos mensais são cobrados via PIX, com renovação automática a cada 30 dias (e desconto de pontualidade se pago até o vencimento). Já os combos trimestral e semestral são pagos à vista, parcelados no cartão de crédito ou via PIX.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pergunta 7 -->
+                <div class="bg-dark-card border border-white/5 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(7)" class="w-full p-6 text-left flex justify-between items-center font-bold text-base hover:bg-white/5 transition">
+                        <span>Qual a diferença entre o plano mensal e os combos (trimestral/semestral)?</span>
+                        <i id="faq-icon-7" data-lucide="plus" class="w-5 h-5 text-karina-orange transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-7" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
+                        <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
+                            O plano mensal não tem fidelidade — você paga mês a mês e pode cancelar quando quiser. Já os combos de 3 ou 6 meses saem com desconto na mensalidade em troca do pagamento antecipado de todo o período, sendo ideais para quem já sabe que vai treinar por mais tempo.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pergunta 8 -->
+                <div class="bg-dark-card border border-white/5 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(8)" class="w-full p-6 text-left flex justify-between items-center font-bold text-base hover:bg-white/5 transition">
+                        <span>Como funciona o cancelamento?</span>
+                        <i id="faq-icon-8" data-lucide="plus" class="w-5 h-5 text-karina-orange transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-8" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
+                        <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
+                            É simples: o pedido de desligamento deve ser feito pelo aplicativo Treinus ou pelo WhatsApp de suporte até o dia 25 de cada mês. Avisos feitos após essa data geram a fatura do mês seguinte normalmente, sem estorno retroativo.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pergunta 9 -->
+                <div class="bg-dark-card border border-white/5 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(9)" class="w-full p-6 text-left flex justify-between items-center font-bold text-base hover:bg-white/5 transition">
+                        <span>Preciso de relógio GPS ou equipamento específico para treinar?</span>
+                        <i id="faq-icon-9" data-lucide="plus" class="w-5 h-5 text-karina-orange transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-9" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
+                        <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
+                            Não é obrigatório. Você pode usar aplicativos gratuitos de celular (como Strava) para cronometrar e rastrear seus treinos, que sincronizam automaticamente com a nossa plataforma.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pergunta 10 -->
+                <div class="bg-dark-card border border-white/5 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(10)" class="w-full p-6 text-left flex justify-between items-center font-bold text-base hover:bg-white/5 transition">
+                        <span>Tenho uma lesão ou condição física, ainda assim posso treinar?</span>
+                        <i id="faq-icon-10" data-lucide="plus" class="w-5 h-5 text-karina-orange transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-10" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
+                        <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
+                            Sim. Como a Karina também é fisioterapeuta, ela pode adaptar sua planilha considerando lesões antigas, dores recorrentes ou limitações físicas, com atenção redobrada à prevenção. Se você tiver uma condição médica específica, recomendamos consultar seu médico antes de iniciar qualquer atividade física.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pergunta 11 -->
+                <div class="bg-dark-card border border-white/5 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(11)" class="w-full p-6 text-left flex justify-between items-center font-bold text-base hover:bg-white/5 transition">
+                        <span>Posso trocar de plano depois (upgrade de Bronze pra Prata/Ouro)?</span>
+                        <i id="faq-icon-11" data-lucide="plus" class="w-5 h-5 text-karina-orange transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-11" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
+                        <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
+                            Sim! Se ao longo da assessoria você sentir que precisa de um acompanhamento mais próximo, é só falar com a Karina pelo WhatsApp ou pelo Portal do Aluno para solicitar o upgrade do seu plano.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pergunta 12 -->
+                <div class="bg-dark-card border border-white/5 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(12)" class="w-full p-6 text-left flex justify-between items-center font-bold text-base hover:bg-white/5 transition">
+                        <span>Posso mudar meu objetivo no meio do caminho?</span>
+                        <i id="faq-icon-12" data-lucide="plus" class="w-5 h-5 text-karina-orange transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-12" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
+                        <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
+                            Sim. Conforme você evolui ou se inscreve em novas provas, a Karina reestrutura o planejamento da periodização para focar na nova meta sem problemas.
                         </p>
                     </div>
                 </div>
