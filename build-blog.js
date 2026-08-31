@@ -475,6 +475,15 @@ async function build() {
             console.log('💾 Página local de Corrida em Votuporanga compilada com sucesso em: corrida-votuporanga/index.html');
         }
 
+        // 3.1.55 Página de Vendas Local de Corrida em Três Lagoas (corrida-tres-lagoas/index.html) - escura, trafego pago
+        const localTresLagoasTemplatePath = path.join(__dirname, 'corrida-tres-lagoas', 'index.template.html');
+        if (fs.existsSync(localTresLagoasTemplatePath)) {
+            let htmlTresLagoas = fs.readFileSync(localTresLagoasTemplatePath, 'utf8');
+            htmlTresLagoas = compilePageComponents(htmlTresLagoas, false);
+            fs.writeFileSync(path.join(__dirname, 'corrida-tres-lagoas', 'index.html'), htmlTresLagoas, 'utf8');
+            console.log('💾 Página de vendas de Corrida em Três Lagoas compilada com sucesso em: corrida-tres-lagoas/index.html');
+        }
+
         // 3.1.6 Página do Portal do Atleta KF (portal-do-atleta/index.html) - escura
         const portalAtletaTemplatePath = path.join(__dirname, 'portal-do-atleta', 'index.template.html');
         if (fs.existsSync(portalAtletaTemplatePath)) {
@@ -569,6 +578,12 @@ async function build() {
         <lastmod>${hoje}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/corrida-tres-lagoas/</loc>
+        <lastmod>${hoje}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://karinafranzin.com.br/portal-do-atleta/</loc>
