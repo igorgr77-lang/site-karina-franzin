@@ -484,6 +484,16 @@ async function build() {
             console.log('💾 Página de vendas de Corrida em Três Lagoas compilada com sucesso em: corrida-tres-lagoas/index.html');
         }
 
+        // 3.1.56 Página de Checkout PIX de Combos Promocionais (combo-pix/index.html) - NÃO divulgada,
+        // acesso só por link direto enviado manualmente pela Karina. Não entra em sitemap.xml nem llms.txt.
+        const comboPixTemplatePath = path.join(__dirname, 'combo-pix', 'index.template.html');
+        if (fs.existsSync(comboPixTemplatePath)) {
+            let htmlComboPix = fs.readFileSync(comboPixTemplatePath, 'utf8');
+            htmlComboPix = compilePageComponents(htmlComboPix, false);
+            fs.writeFileSync(path.join(__dirname, 'combo-pix', 'index.html'), htmlComboPix, 'utf8');
+            console.log('💾 Página de checkout PIX de combos compilada com sucesso em: combo-pix/index.html');
+        }
+
         // 3.1.6 Página do Portal do Atleta KF (portal-do-atleta/index.html) - escura
         const portalAtletaTemplatePath = path.join(__dirname, 'portal-do-atleta', 'index.template.html');
         if (fs.existsSync(portalAtletaTemplatePath)) {
