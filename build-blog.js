@@ -484,6 +484,16 @@ async function build() {
             console.log('💾 Página de vendas de Corrida em Três Lagoas compilada com sucesso em: corrida-tres-lagoas/index.html');
         }
 
+        // 3.1.58 Página Pública "Minha História" (minha-historia/index.html) - conteúdo institucional/orgânico,
+        // entra em sitemap.xml e llms.txt (diferente das páginas de campanha de tráfego pago)
+        const minhaHistoriaTemplatePath = path.join(__dirname, 'minha-historia', 'index.template.html');
+        if (fs.existsSync(minhaHistoriaTemplatePath)) {
+            let htmlMinhaHistoria = fs.readFileSync(minhaHistoriaTemplatePath, 'utf8');
+            htmlMinhaHistoria = compilePageComponents(htmlMinhaHistoria, false);
+            fs.writeFileSync(path.join(__dirname, 'minha-historia', 'index.html'), htmlMinhaHistoria, 'utf8');
+            console.log('💾 Página "Minha História" compilada com sucesso em: minha-historia/index.html');
+        }
+
         // 3.1.57 Página de Vendas Estadual de Corrida em Mato Grosso (corrida-mato-grosso/index.html) - escura, trafego pago
         const localMatoGrossoTemplatePath = path.join(__dirname, 'corrida-mato-grosso', 'index.template.html');
         if (fs.existsSync(localMatoGrossoTemplatePath)) {
@@ -611,6 +621,12 @@ async function build() {
         <priority>0.7</priority>
     </url>
     <url>
+        <loc>https://karinafranzin.com.br/minha-historia/</loc>
+        <lastmod>${hoje}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://karinafranzin.com.br/portal-do-atleta/</loc>
         <lastmod>${hoje}</lastmod>
         <changefreq>monthly</changefreq>
@@ -664,6 +680,7 @@ Karina Franzin é treinadora de corrida e fisioterapeuta, campeã da Meia Marato
 ## Páginas Principais
 
 - [Home](https://karinafranzin.com.br/): Apresentação da assessoria de corrida online, planos e metodologia da treinadora
+- [Minha História](https://karinafranzin.com.br/minha-historia/): Trajetória completa de Karina Franzin, de jogadora de futebol a atleta de elite e treinadora, com linha do tempo de conquistas e reconhecimento da imprensa
 - [Planos e Valores](https://karinafranzin.com.br/planos/): Planos Bronze, Prata e Ouro de assessoria de corrida 100% online, com opções mensal e combo
 - [Assessoria em Votuporanga](https://karinafranzin.com.br/corrida-votuporanga/): Assessoria online e treino presencial (Funcional Run) para moradores de Votuporanga e região
 - [Portal do Atleta KF](https://karinafranzin.com.br/portal-do-atleta/): Biblioteca de vídeos de técnica, ativação muscular e mobilidade para corredores
