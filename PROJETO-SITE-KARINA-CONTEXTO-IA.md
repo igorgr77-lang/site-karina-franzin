@@ -1,6 +1,6 @@
 # 🏃‍♀️ PROJETO SITE KARINA FRANZIN — CONTEXTO PARA IA
 
-> **Última atualização:** 22/08/2026 (Usabilidade do Checkout de Nascimento Mobile, Vencimento Dinâmico de Combos, Auto-Expiração de Combo no Faturamento, Widget de Alertas de Renovação)  
+> **Última atualização:** 04/09/2026 (Checkout PIX de Combos Promocionais Não Divulgados + Correção de E-mail de Onboarding para Alunos Já Cadastrados)  
 > **Branch activa:** `develop`  
 > **Projeto online:** https://karinafranzin.com.br  
 > **Repositório:** https://github.com/igorgr77-lang/site-karina-franzin  
@@ -1542,3 +1542,54 @@ og:image: (imagem real do artigo do Supabase)
 - `corrida-votuporanga/index.html` (COMPILADO/MODIFICADO)
 - `js/checkout.js` (MODIFICADO)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
+---
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 04/09/2026 — CHECKOUT PIX DE COMBOS PROMOCIONAIS NÃO DIVULGADOS ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivo:** Criar uma página de checkout via PIX à vista para 4 combos promocionais (Prata/Ouro × Trimestral/Semestral) com desconto maior que os combos normais de cartão — mas **sem divulgar** publicamente. O link é enviado manualmente pela Karina no WhatsApp apenas para quem perguntar sobre pagamento à vista, evitando excesso de opções na grade pública de `/planos/`.
+
+**Decisões de arquitetura:**
+- Página única reutilizável `/combo-pix/`, com o combo escolhido vindo por **query string** (`?plano=comboKey`), não por rota dinâmica — o site é 100% estático (compilado via `build-blog.js`), não há roteamento de servidor para suportar `/combo-pix/:comboKey`.
+- **Não usa o `js/checkout.js` existente.** Esse arquivo é fortemente acoplado à grade de planos de `/planos/` (cartão de crédito + tokenização Efí + endereço de cobrança + parcelamento), e essa página só precisa do fluxo PIX simples (nome, e-mail, CPF, celular). Criado um script dedicado e enxuto: `js/combo-pix.js`.
+- **Página propositalmente NÃO divulgada:** `<meta name="robots" content="noindex,nofollow">` no `<head>`, sem link em `components/navbar.html`, sem entrada em `sitemap.xml` e sem entrada em `llms.txt` (mesmo padrão de exclusão já usado em `lord-run-vip/` e `corrida-tres-lagoas/` para "páginas de campanha"). A página ainda usa a navbar/rodapé globais normalmente — só não é *linkada* de lugar nenhum.
+- Dados dos 4 combos (nome do plano, meses, valor total) replicados no frontend **só para exibição** (`COMBOS_PIX_DISPLAY` em `js/combo-pix.js`) — o backend (`COMBOS_PIX` em `ContasReceberKarina/src/config/combosPix.ts`) é a fonte da verdade e revalida tudo de novo no servidor.
+
+**O que foi feito:**
+- ✅ **Nova página `combo-pix/index.template.html`**: estados de tela controlados por JS (`combo-checkout`, `combo-invalid`, `combo-already-paid`, `combo-success`) — mesma paleta/tipografia do site (dark-bg, dark-card, karina-orange, Oswald/Inter/Montserrat).
+  - Se o `comboKey` da URL for ausente ou desconhecido → tela de "Link inválido ou expirado" com botão de WhatsApp, sem quebrar.
+  - Formulário: Nome, E-mail (+ confirmação), CPF (com máscara e validação matemática), WhatsApp/Celular (com máscara). **Sem campo de Data de Nascimento** — o endpoint de combo PIX não usa/exige esse dado, diferente do checkout de `/planos/`.
+  - Etapa PIX: QR Code + código Copia e Cola + polling de status a cada 3s (mesmo padrão do checkout normal).
+  - Tela de sucesso: menciona liberação do acesso ao Portal do Atleta KF e link direto pra `gestao.karinafranzin.com.br`.
+- ✅ **Novo `js/combo-pix.js`**: chama `POST /api/payments/efi/checkout-pix-combo` (payload `{name, email, phone, cpf, comboKey}`) e `GET /api/payments/status/:txid` para polling, reaproveitando a mesma detecção de `API_BASE_URL` (localhost vs `https://api-contas-karina.onrender.com`) usada em `js/checkout.js`.
+- ✅ **`build-blog.js`**: bloco de compilação adicionado (mesmo padrão de `corrida-tres-lagoas`), **sem** entrada correspondente em `sitemap.xml`/`llms.txt` (intencional).
+- ✅ **Testes no navegador**: confirmado visualmente o preenchimento dinâmico do nome/preço do combo por `?plano=`, a tela de link inválido, e as validações client-side (e-mail divergente, CPF inválido) bloqueando o envio *antes* de qualquer chamada à API — evitando criar cadastros/cobranças de teste reais em produção durante a validação.
+- ✅ **Correção no backend `ContasReceberKarina` (ver sessão espelhada abaixo)**: bug de e-mail de onboarding tratando aluno já cadastrado como novo usuário, corrigido nos dois fluxos PIX (normal e combo).
+- ✅ **Links finais gerados** para a Karina enviar manualmente no WhatsApp:
+  - `https://karinafranzin.com.br/combo-pix/?plano=prata_trimestral_pix` (Prata 3 meses — R$ 380,00)
+  - `https://karinafranzin.com.br/combo-pix/?plano=prata_semestral_pix` (Prata 6 meses — R$ 700,00)
+  - `https://karinafranzin.com.br/combo-pix/?plano=ouro_trimestral_pix` (Ouro 3 meses — R$ 470,00)
+  - `https://karinafranzin.com.br/combo-pix/?plano=ouro_semestral_pix` (Ouro 6 meses — R$ 880,00)
+
+### 📁 Arquivos criados/modificados neste projeto (`site-karina-franzin`):
+- `combo-pix/index.template.html` (NOVO)
+- `combo-pix/index.html` (NOVO, COMPILADO)
+- `js/combo-pix.js` (NOVO)
+- `build-blog.js` (MODIFICADO)
+- `sitemap.xml` (recompilado — sem entrada nova, intencional)
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
+### 📁 Arquivos criados/modificados no projeto `ContasReceberKarina` (backend):
+- `src/config/combosPix.ts` (NOVO) — os 4 `comboKey` válidos, com `planId`, `monthlyPrice`, `totalPrice`, `months`, `discountPercentage`
+- `src/controllers/PaymentController.ts` (MODIFICADO) — novo endpoint `checkoutPixCombo` (`POST /efi/checkout-pix-combo`); também captura `isNewUser` (via retorno "already registered" do Supabase Auth) tanto no `checkoutPixCombo` quanto no `checkoutPix` normal
+- `src/routes/payment.routes.ts` (MODIFICADO) — rota `/efi/checkout-pix-combo` registrada com `cardTestingLimiter`
+- `src/services/PaymentService.ts` (MODIFICADO) — `confirmPayment` expande a fatura "mestre" do combo em N faturas mensais quando paga (via `comboKey`), e agora lê `invoice.wasNewUserAtCheckout` para repassar `isNewUser` corretamente ao `EmailService.sendWelcomeEmail`
+- `prisma/schema.prisma` (MODIFICADO) — novo campo `wasNewUserAtCheckout Boolean?` em `Invoice` (aplicado em produção via `prisma db push`, mudança aditiva/segura)
+
+### ⚠️ Bug real encontrado e corrigido (importante para próximas sessões):
+- **Sintoma:** o e-mail de boas-vindas (`EmailService.sendWelcomeEmail`) já tinha suporte a `isNewUser` (mostra "senha provisória" pra quem é novo, ou "use sua senha atual" pra quem já tem conta) — mas **nenhum fluxo PIX passava esse parâmetro**, então todo aluno recebia o e-mail como se fosse cadastro novo, inclusive quem já tinha conta e senha próprias.
+- **Causa raiz:** a detecção de "já existe ou não" acontece no momento do checkout (chamada a `supabaseAdmin.auth.admin.createUser`, que retorna erro "already registered" se já existir), mas o e-mail só é disparado depois, quando o webhook/polling confirma o pagamento via `PaymentService.confirmPayment` — que só recebe o `invoiceId` e não tinha como saber mais o que aconteceu no checkout.
+- **Fix:** o resultado do `createUser` agora é salvo na fatura (`wasNewUserAtCheckout`) no momento do checkout, e `confirmPayment` lê esse valor da fatura pra montar o e-mail certo. Faturas antigas (sem esse campo) assumem `true` (novo usuário) pra preservar o comportamento anterior.
+- **Onde procurar se o e-mail errado voltar a acontecer:** `PaymentController.ts` (linhas de criação da invoice em `checkoutPix`/`checkoutPixCombo`) e `PaymentService.confirmPayment`.
