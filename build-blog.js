@@ -484,6 +484,15 @@ async function build() {
             console.log('💾 Página de vendas de Corrida em Três Lagoas compilada com sucesso em: corrida-tres-lagoas/index.html');
         }
 
+        // 3.1.57 Página de Vendas Estadual de Corrida em Mato Grosso (corrida-mato-grosso/index.html) - escura, trafego pago
+        const localMatoGrossoTemplatePath = path.join(__dirname, 'corrida-mato-grosso', 'index.template.html');
+        if (fs.existsSync(localMatoGrossoTemplatePath)) {
+            let htmlMatoGrosso = fs.readFileSync(localMatoGrossoTemplatePath, 'utf8');
+            htmlMatoGrosso = compilePageComponents(htmlMatoGrosso, false);
+            fs.writeFileSync(path.join(__dirname, 'corrida-mato-grosso', 'index.html'), htmlMatoGrosso, 'utf8');
+            console.log('💾 Página de vendas de Corrida em Mato Grosso compilada com sucesso em: corrida-mato-grosso/index.html');
+        }
+
         // 3.1.56 Página de Checkout PIX de Combos Promocionais (combo-pix/index.html) - NÃO divulgada,
         // acesso só por link direto enviado manualmente pela Karina. Não entra em sitemap.xml nem llms.txt.
         const comboPixTemplatePath = path.join(__dirname, 'combo-pix', 'index.template.html');
@@ -591,6 +600,12 @@ async function build() {
     </url>
     <url>
         <loc>https://karinafranzin.com.br/corrida-tres-lagoas/</loc>
+        <lastmod>${hoje}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/corrida-mato-grosso/</loc>
         <lastmod>${hoje}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
