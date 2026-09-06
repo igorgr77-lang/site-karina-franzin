@@ -484,6 +484,17 @@ async function build() {
             console.log('💾 Página de vendas de Corrida em Três Lagoas compilada com sucesso em: corrida-tres-lagoas/index.html');
         }
 
+        // 3.1.59 Página de Vendas Mato Grosso - Variante B (corrida-mato-grosso-2/index.html) - teste A/B
+        // de estrutura/hero pra trafego pago de Google Ads Search. NAO divulgada organicamente:
+        // noindex no head, sem entrada em sitemap.xml/llms.txt (mesmo padrao de pagina de campanha).
+        const matoGrosso2TemplatePath = path.join(__dirname, 'corrida-mato-grosso-2', 'index.template.html');
+        if (fs.existsSync(matoGrosso2TemplatePath)) {
+            let htmlMatoGrosso2 = fs.readFileSync(matoGrosso2TemplatePath, 'utf8');
+            htmlMatoGrosso2 = compilePageComponents(htmlMatoGrosso2, false);
+            fs.writeFileSync(path.join(__dirname, 'corrida-mato-grosso-2', 'index.html'), htmlMatoGrosso2, 'utf8');
+            console.log('💾 Página de vendas de Mato Grosso (variante B) compilada com sucesso em: corrida-mato-grosso-2/index.html');
+        }
+
         // 3.1.58 Página Pública "Minha História" (minha-historia/index.html) - conteúdo institucional/orgânico,
         // entra em sitemap.xml e llms.txt (diferente das páginas de campanha de tráfego pago)
         const minhaHistoriaTemplatePath = path.join(__dirname, 'minha-historia', 'index.template.html');
