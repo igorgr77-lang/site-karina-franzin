@@ -1593,3 +1593,30 @@ og:image: (imagem real do artigo do Supabase)
 - **Causa raiz:** a detecção de "já existe ou não" acontece no momento do checkout (chamada a `supabaseAdmin.auth.admin.createUser`, que retorna erro "already registered" se já existir), mas o e-mail só é disparado depois, quando o webhook/polling confirma o pagamento via `PaymentService.confirmPayment` — que só recebe o `invoiceId` e não tinha como saber mais o que aconteceu no checkout.
 - **Fix:** o resultado do `createUser` agora é salvo na fatura (`wasNewUserAtCheckout`) no momento do checkout, e `confirmPayment` lê esse valor da fatura pra montar o e-mail certo. Faturas antigas (sem esse campo) assumem `true` (novo usuário) pra preservar o comportamento anterior.
 - **Onde procurar se o e-mail errado voltar a acontecer:** `PaymentController.ts` (linhas de criação da invoice em `checkoutPix`/`checkoutPixCombo`) e `PaymentService.confirmPayment`.
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 09/09/2026 — DESCONTINUAÇÃO DO FUNCIONAL RUN NA PÁGINA DE VOTUPORANGA ✅
+
+### ✅ Status: CONCLUÍDO
+
+**Objetivo:** A Karina não vai mais vender o plano presencial "Funcional Run" (treino em grupo Seg/Qua às 18h30 no Lord Lion, R$200/mês). Reestruturar `/corrida-votuporanga/` para focar 100% na Assessoria de Corrida Online, removendo toda referência ao presencial sem deixar buracos na página (seções, grade de preços, FAQ, schema.org e textos de apoio).
+
+**O que foi feito:**
+- ✅ **Hero**: removido o card duplo "Assessoria Online vs. Funcional Run"; substituído por 3 mini-cards de destaque (Planilhas no App, Suporte no WhatsApp, Conhecimento Local) e CTA ajustado para "Conhecer a Assessoria Online".
+- ✅ **Seção "Escolha como você quer treinar"**: virou "Como funciona a Assessoria Online" — um único card centralizado com os benefícios do formato online (antes eram dois cards lado a lado).
+- ✅ **Seção "Diferencial de ser aluno em Votuporanga"**: card "Treinamento complementar" (que sugeria somar com o Funcional Run presencial) reescrito para "Vídeos de Fortalecimento".
+- ✅ **Grade de Planos**: removida a coluna do plano Funcional Run (R$200/mês, link de WhatsApp de matrícula); os planos Bronze/Prata/Ouro (toggle Mensal/Combo) agora ocupam a largura toda da grade.
+- ✅ **FAQ (HTML + Schema.org)**: removida a pergunta "Posso fazer Assessoria Online + Funcional Run?" dos dois lugares; texto de introdução do FAQ ajustado (não menciona mais "presencial").
+- ✅ **Schema.org JSON-LD**: removido o `Product` "Plano Funcional Run Presencial" e o `openingHoursSpecification` (Seg/Qua) do `SportsClub`; descrição do negócio local ajustada para "100% online".
+- ✅ **Seção "Onde treinar em Votuporanga"**: removido o card "Lord Lion Cervejaria" (ponto de encontro do grupo presencial) e todo o bloco de mapa incorporado do Google Maps daquele endereço; grid dos 2 cards restantes (Represa Municipal, Avenidas e Subidas) ajustado de 3 para 2 colunas.
+- ✅ **CTA final**: texto que dizia "Seja presencialmente em Votuporanga ou através da Assessoria Online..." reescrito para focar só no online.
+- ✅ **`llms.txt` / `build-blog.js`**: a descrição da Karina e da página de Votuporanga no `llms.txt` é gerada a partir de texto hardcoded em `build-blog.js` (bloco `GERAR LLMS.TXT`) — atualizado para remover as menções a "presencial" e "treino Funcional Run", e o site foi recompilado (`node build-blog.js`) para propagar a mudança tanto no `corrida-votuporanga/index.html` quanto no `llms.txt`.
+- ✅ **Build validado**: `node build-blog.js` rodou sem erros e recompilou todas as páginas, incluindo a de Votuporanga.
+
+**Observação para próximas sessões:** o `llms.txt` **não é editado manualmente** — é sempre sobrescrito pelo `build-blog.js` a partir do template de string na seção "GERAR LLMS.TXT". Qualquer ajuste de copy nesse arquivo precisa ser feito na fonte (`build-blog.js`), nunca direto no `llms.txt`, ou o build seguinte desfaz a mudança.
+
+### 📁 Arquivos modificados:
+- `corrida-votuporanga/index.template.html` (MODIFICADO)
+- `corrida-votuporanga/index.html` (MODIFICADO, RECOMPILADO)
+- `build-blog.js` (MODIFICADO — texto do `llms.txt`)
+- `llms.txt` (RECOMPILADO)
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
