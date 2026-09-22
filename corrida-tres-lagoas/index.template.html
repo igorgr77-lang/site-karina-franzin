@@ -1571,7 +1571,7 @@
                     </button>
                     <div id="faq-ans-2" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
                         <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
-                            Seus treinos são disponibilizados semanalmente dentro da plataforma **Treinus**. Você pode acessar a planilha detalhada pelo aplicativo e também sincronizar diretamente com seu relógio de corrida (Garmin, Polar, Apple Watch) ou Strava.
+                            Seus treinos são disponibilizados semanalmente dentro da plataforma Treinus. Você pode acessar a planilha detalhada pelo aplicativo e também sincronizar diretamente com seu relógio de corrida (Garmin, Polar, Apple Watch) ou Strava.
                         </p>
                     </div>
                 </div>
@@ -1891,16 +1891,10 @@
                             <input type="text" id="card-name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition uppercase">
                         </div>
                         
-                        <!-- Checkbox para CPF do Titular diferente -->
-                        <div class="flex items-center gap-2 py-1">
-                            <input type="checkbox" id="different-holder-cpf" class="rounded bg-white/5 border border-white/10 text-karina-orange focus:ring-karina-orange focus:ring-offset-neutral-900 w-4 h-4 cursor-pointer">
-                            <label for="different-holder-cpf" class="text-xs text-gray-400 cursor-pointer select-none">O cartão é de outra pessoa (titular diferente)?</label>
-                        </div>
-
-                        <!-- Campo para CPF do Titular -->
-                        <div id="holder-cpf-wrapper" class="hidden transition-all duration-300">
+                        <!-- Campo para CPF do Titular do Cartão -->
+                        <div>
                             <label class="block text-xs text-gray-400 mb-1">CPF do Titular do Cartão</label>
-                            <input type="text" id="card-holder-cpf" placeholder="000.000.000-00" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                            <input type="text" id="card-holder-cpf" required placeholder="000.000.000-00" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
                             <span id="holder-cpf-validation-error" class="hidden text-[10px] text-red-400 mt-1 block">CPF do titular inválido.</span>
                         </div>
                         <div>

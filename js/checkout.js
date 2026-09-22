@@ -503,9 +503,7 @@
             });
         }
 
-        // Toggle de CPF do Titular do Cartão diferente do Aluno
-        const diffHolderCheckbox = document.getElementById('different-holder-cpf');
-        const holderCpfWrapper = document.getElementById('holder-cpf-wrapper');
+        // CPF do Titular do Cartão (sempre obrigatório, independente do CPF do aluno)
         const holderCpfInput = document.getElementById('card-holder-cpf');
         const holderCpfErrorSpan = document.getElementById('holder-cpf-validation-error');
 
@@ -513,28 +511,11 @@
             const studentCpf = cpfInput.value.replace(/\D/g, '');
             if (studentCpf.length > 0 && !isValidCPF(studentCpf)) return false;
 
-            if (diffHolderCheckbox && diffHolderCheckbox.checked && holderCpfInput) {
+            if (holderCpfInput) {
                 const holderCpf = holderCpfInput.value.replace(/\D/g, '');
                 if (holderCpf.length > 0 && !isValidCPF(holderCpf)) return false;
             }
             return true;
-        }
-
-        if (diffHolderCheckbox && holderCpfWrapper && holderCpfInput) {
-            diffHolderCheckbox.addEventListener('change', () => {
-                if (diffHolderCheckbox.checked) {
-                    holderCpfWrapper.classList.remove('hidden');
-                    holderCpfInput.required = true;
-                    handleHolderCpfValidation();
-                } else {
-                    holderCpfWrapper.classList.add('hidden');
-                    holderCpfInput.required = false;
-                    holderCpfInput.value = '';
-                    holderCpfInput.classList.remove('border-red-400');
-                    if (holderCpfErrorSpan) holderCpfErrorSpan.classList.add('hidden');
-                    handleCpfValidation();
-                }
-            });
         }
 
         // Máscara do CPF do Titular do Cartão
@@ -547,7 +528,6 @@
         });
 
         function handleHolderCpfValidation() {
-            if (!diffHolderCheckbox || !diffHolderCheckbox.checked) return true;
             const val = holderCpfInput.value.replace(/\D/g, '');
 
             let isHolderCpfOk = true;
@@ -761,14 +741,9 @@
             }
             if (cpfErrorSpan) cpfErrorSpan.classList.add('hidden');
 
-            const diffHolderCheckbox = document.getElementById('different-holder-cpf');
-            const holderCpfWrapper = document.getElementById('holder-cpf-wrapper');
             const holderCpfInput = document.getElementById('card-holder-cpf');
             const holderCpfErrorSpan = document.getElementById('holder-cpf-validation-error');
-            if (diffHolderCheckbox) diffHolderCheckbox.checked = false;
-            if (holderCpfWrapper) holderCpfWrapper.classList.add('hidden');
             if (holderCpfInput) {
-                holderCpfInput.required = false;
                 holderCpfInput.value = '';
                 holderCpfInput.classList.remove('border-red-400');
             }
@@ -1139,15 +1114,13 @@
                 return;
             }
 
-            // Validar CPF do Titular se for diferente
-            if (document.getElementById('different-holder-cpf').checked) {
-                const holderCpf = document.getElementById('card-holder-cpf').value.replace(/\D/g, '');
-                if (holderCpf.length !== 11 || !isValidCPF(holderCpf)) {
-                    errorDiv.textContent = 'O CPF do titular do cartão informado é inválido.';
-                    errorDiv.classList.remove('hidden');
-                    handleHolderCpfValidation();
-                    return;
-                }
+            // Validar CPF do Titular do Cartão
+            const holderCpf = document.getElementById('card-holder-cpf').value.replace(/\D/g, '');
+            if (holderCpf.length !== 11 || !isValidCPF(holderCpf)) {
+                errorDiv.textContent = 'O CPF do titular do cartão informado é inválido.';
+                errorDiv.classList.remove('hidden');
+                handleHolderCpfValidation();
+                return;
             }
 
             // 3. Validar WhatsApp completo (10 ou 11 dígitos)
@@ -1226,9 +1199,7 @@
                             expirationMonth: expMonth,
                             expirationYear: expYear,
                             holderName: cardName,
-                            holderDocument: document.getElementById('different-holder-cpf').checked
-                                ? document.getElementById('card-holder-cpf').value.replace(/\D/g, '')
-                                : document.getElementById('cust-cpf').value.replace(/\D/g, ''),
+                            holderDocument: document.getElementById('card-holder-cpf').value.replace(/\D/g, ''),
                             reuse: false
                         })
                         .getPaymentToken();

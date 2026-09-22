@@ -1023,18 +1023,10 @@
                             </select>
                         </div>
 
-                        <!-- Checkbox Titular Diferente -->
-                        <div class="pt-1">
-                            <label class="inline-flex items-center text-xs text-gray-400 cursor-pointer">
-                                <input type="checkbox" id="different-holder-cpf" class="rounded bg-white/5 border-white/10 text-karina-orange focus:ring-karina-orange/50 mr-2" onchange="toggleHolderCpfField()">
-                                O cartão é de outra pessoa (CPF do titular diferente)
-                            </label>
-                        </div>
-
-                        <!-- CPF do Titular -->
-                        <div id="holder-cpf-wrapper" class="hidden">
+                        <!-- CPF do Titular do Cartão -->
+                        <div>
                             <label class="block text-xs text-gray-400 mb-1">CPF do Titular do Cartão</label>
-                            <input type="text" id="card-holder-cpf" placeholder="000.000.000-00" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                            <input type="text" id="card-holder-cpf" required placeholder="000.000.000-00" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
                             <span id="holder-cpf-validation-error" class="hidden text-[10px] text-red-400 mt-1 block">CPF do titular inválido.</span>
                         </div>
 
@@ -1134,18 +1126,6 @@
 
     <!-- Script de validação e controle de visualização do checkout -->
     <script>
-        function toggleHolderCpfField() {
-            const wrapper = document.getElementById('holder-cpf-wrapper');
-            const input = document.getElementById('card-holder-cpf');
-            if (document.getElementById('different-holder-cpf').checked) {
-                wrapper.classList.remove('hidden');
-                input.required = true;
-            } else {
-                wrapper.classList.add('hidden');
-                input.required = false;
-                input.value = '';
-            }
-        }
         function copyPixCode() {
             const input = document.getElementById('pix-copia-cola');
             input.select();
