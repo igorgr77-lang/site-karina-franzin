@@ -154,6 +154,11 @@
                     },
                     {
                         "@type": "Question",
+                        "name": "Os exames laboratoriais estão inclusos no valor do Plano Performance?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "O pedido e a análise dos exames estão inclusos: quando necessário, o nutricionista solicita os exames e usa os resultados para ajustar a dieta. A realização dos exames é paga pelo aluno, diretamente no laboratório de sua preferência." }
+                    },
+                    {
+                        "@type": "Question",
                         "name": "Como é a forma de pagamento do Plano Performance?",
                         "acceptedAnswer": { "@type": "Answer", "text": "O Plano Performance é vendido no formato trimestral, por R$ 750,00, em até 3x de R$ 250,00 sem juros no cartão de crédito. O pagamento é processado com segurança pelo Efí Bank." }
                     },
@@ -404,7 +409,7 @@
                         <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Avaliação nutricional e dieta personalizada</li>
                         <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Avaliação física com medidas (na consulta presencial)</li>
                         <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Toda a elaboração da suplementação pré e pós-treino</li>
-                        <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Pedido de exames laboratoriais, quando necessário</li>
+                        <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Pedido de exames laboratoriais, quando necessário (o exame é pago no laboratório)</li>
                         <li class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Consulta mensal com a dieta ajustada aos seus objetivos</li>
                         <li class="flex items-start gap-2.5"><i data-lucide="map-pin" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Online ou presencial (Votuporanga, Jales e São José do Rio Preto)</li>
                     </ul>
@@ -817,7 +822,7 @@
                     <div class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange mt-0.5 shrink-0"></i>Suporte tira-dúvidas</div>
                     <div class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Suplementação pré e pós-treino</div>
                     <div class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange mt-0.5 shrink-0"></i>Grupo VIP de alunos</div>
-                    <div class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Exames, quando necessário</div>
+                    <div class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Pedido de exames, se necessário</div>
                     <div class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange mt-0.5 shrink-0"></i>Portal do Atleta KF</div>
                     <div class="flex items-start gap-2.5"><i data-lucide="check" class="w-4 h-4 text-emerald-400 mt-0.5 shrink-0"></i>Consulta mensal</div>
                 </div>
@@ -959,6 +964,18 @@
                     <div id="faq-ans-9" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
                         <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
                             O plano inclui uma consulta por mês com o Renan, e não inclui retornos extras entre elas. Em cada consulta mensal ele refaz as avaliações e ajusta a dieta de acordo com a sua evolução e os seus objetivos.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-dark-card border border-white/5 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(10)" class="w-full p-6 text-left flex justify-between items-center font-bold text-base hover:bg-white/5 transition">
+                        <span>Os exames laboratoriais estão inclusos no valor?</span>
+                        <i id="faq-icon-10" data-lucide="plus" class="w-5 h-5 text-karina-orange transition-transform duration-300 shrink-0 ml-3"></i>
+                    </button>
+                    <div id="faq-ans-10" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
+                        <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
+                            O pedido e a análise dos exames estão inclusos: quando necessário, o Renan solicita os exames e usa os resultados para ajustar a sua dieta. A realização dos exames é paga pelo aluno, diretamente no laboratório de sua preferência.
                         </p>
                     </div>
                 </div>

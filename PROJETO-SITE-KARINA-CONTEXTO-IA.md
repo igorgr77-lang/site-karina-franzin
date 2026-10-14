@@ -1678,7 +1678,7 @@ og:image: (imagem real do artigo do Supabase)
 ### ⏳ Pendências:
 - Compra de teste de ponta a ponta (cobrança, 3 faturas pagas, e-mail e página de sucesso).
 - Incluir "Plano Performance" nas regras de acesso das categorias de vídeo que o Bronze acessa (painel do ContasReceber).
-- Texto da página: ainda não diz quem paga os exames de laboratório (o Renan pede os exames quando necessário).
+- ✅ Resolvido em 14/10: os exames laboratoriais são pagos pelo aluno direto no laboratório; o plano inclui o pedido e a análise (nova pergunta no FAQ).
 - ✅ Resolvido em 14/10: CRN 34125 do Renan na página e no e-mail. Consulta presencial = avaliação nutricional + avaliação física com medidas + dieta; online = igual, só sem tirar as medidas. Uma consulta por mês, sem retornos extras entre elas (nova pergunta no FAQ).
 - Aviso automático ao Renan a cada venda (ainda não há; falta o e-mail dele).
 - A imagem de compartilhamento (og:image) da página ainda é a foto padrão da Karina.
