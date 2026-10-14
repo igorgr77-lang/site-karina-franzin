@@ -1,6 +1,6 @@
 # 🏃‍♀️ PROJETO SITE KARINA FRANZIN — CONTEXTO PARA IA
 
-> **Última atualização:** 04/09/2026 (Checkout PIX de Combos Promocionais Não Divulgados + Correção de E-mail de Onboarding para Alunos Já Cadastrados)  
+> **Última atualização:** 14/10/2026 (Página de vendas do Plano Performance em parceria com o nutricionista Renan Rodrigues + Pagamento de fatura mensal com cartão no Portal)  
 > **Branch activa:** `develop`  
 > **Projeto online:** https://karinafranzin.com.br  
 > **Repositório:** https://github.com/igorgr77-lang/site-karina-franzin  
@@ -68,6 +68,7 @@ O site migrou de um modelo de replicação manual para um sistema de templates e
 | Planos | `planos/index.template.html` | `planos/index.html` | Estático compilado |
 | Sucesso Checkout | `planos/sucesso.template.html` | `planos/sucesso.html` | Estático compilado |
 | Cancelado Checkout | `planos/cancelado.template.html` | `planos/cancelado.html` | Estático compilado |
+| Plano Performance (treino + nutrição) | `plano-performance/index.template.html` | `plano-performance/index.html` | Estático compilado (página de vendas, checkout de cartão) |
 
 ### Estrutura de Pastas
 ```
@@ -1619,4 +1620,74 @@ og:image: (imagem real do artigo do Supabase)
 - `corrida-votuporanga/index.html` (MODIFICADO, RECOMPILADO)
 - `build-blog.js` (MODIFICADO — texto do `llms.txt`)
 - `llms.txt` (RECOMPILADO)
+- `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 07/10/2026 — PAGAMENTO DE FATURA MENSAL COM CARTÃO NO PORTAL (BACKEND) ✅
+
+### ✅ Status: CONCLUÍDO (em produção; fluxo real dentro do portal ainda não conferido com um pagamento de verdade)
+
+**Objetivo:** Uma aluna pediu para pagar a mensalidade (Plano Ouro, R$ 180 com desconto de pontualidade) no cartão de crédito, com baixa automática. Em vez de criar uma página de vendas só para ela, o pagamento com cartão foi adicionado à fatura dentro do Portal do Atleta, liberado aluno por aluno.
+
+**Como as páginas de venda se ligam ao backend (resumo útil):**
+- `/planos/` e as 4 páginas de corrida usam o mesmo `js/checkout.js` e as mesmas 9 chaves `openCheckout(...)`. Mensal = só PIX (`/efi/checkout-pix`, baixa pelo `AutoPixSyncWorker` em até 2 min). Combos trimestral/semestral = cartão (`/efi/checkout`, baixa síncrona). `/portal-do-atleta/` usa a chave `portal_atleta`.
+- A fatura mensal é gerada pelo valor **cheio** do plano; o desconto do aluno (`discountPercentage`) só é aplicado se ele pagar até o vencimento.
+
+**O que foi feito (tudo no projeto `ContasReceberKarina`; nenhuma página deste site mudou):**
+- ✅ Campo `Student.cardPaymentEnabled` (checkbox "Habilitar pagamento com cartão" no cadastro do aluno) e `Invoice.cardChargeId` (ID da cobrança de cartão na Efí).
+- ✅ Endpoint `POST /api/payments/invoice/:invoiceId/card`: cobra a fatura em 1x com a mesma regra de pontualidade do PIX e dá baixa na hora. Recusa aluno não habilitado no servidor.
+- ✅ Portal: botão "Pagar com Cartão" só para alunos habilitados, com tokenização da Efí no navegador.
+- ✅ Proteções: trava contra clique duplo, cancelamento do PIX aberto antes de cobrar o cartão, e-mail de alerta ao admin se o cartão ficar "em análise" ou se for aprovado sem baixa.
+
+**Observações para próximas sessões:**
+- Aluno cadastrado pelo painel começa com **0% de desconto**; para pagar o valor com desconto (ex.: Ouro R$ 180) é preciso informar o percentual no cadastro.
+- O Render só roda `prisma generate && tsc`, sem migração: coluna nova no schema precisa de `npx prisma db push` **antes** do deploy do backend.
+- A taxa do cartão é absorvida pela Karina.
+
+## 📅 SESSÃO DE DESENVOLVIMENTO — 13 e 14/10/2026 — PÁGINA DE VENDAS DO PLANO PERFORMANCE (PARCERIA COM NUTRICIONISTA) ✅
+
+### ✅ Status: PUBLICADO (compra de ponta a ponta ainda não testada)
+
+**Objetivo:** Vender o **Plano Performance**, parceria da Karina Franzin com o nutricionista **Renan Rodrigues** ([@renanrodriguesnutri](https://www.instagram.com/renanrodriguesnutri/)): Plano Bronze da Karina + acompanhamento nutricional (avaliação física, elaboração da dieta, suplementação pré e pós-treino, solicitação e acompanhamento de exames laboratoriais, consulta mensal).
+
+**Regras de negócio definidas:**
+- Preço: "de R$ 300 por **R$ 250/mês**" (R$ 120 da Karina + R$ 130 do Renan, que avulso cobra R$ 170). Vendido **apenas no trimestral, no cartão**: R$ 750 em até 3x de R$ 250 sem juros.
+- Depois dos 3 meses: a Karina oferece a renovação; se o aluno não renovar, segue com fatura mensal via PIX de R$ 250.
+- Repasse: o valor entra inteiro na conta da Karina e ela repassa R$ 130/mês por aluno ao Renan por fora do sistema. Receita da assessoria = R$ 120.
+- Garantia de 7 dias vale para o plano.
+- Atendimento do Renan: online ou presencial em Votuporanga, Jales e São José do Rio Preto. WhatsApp dele: (17) 99768-0660.
+
+**O que foi feito neste projeto (`site-karina-franzin`):**
+- ✅ **Nova página `/plano-performance/`** com 10 seções: hero com as duas logos, dor, treino + nutrição lado a lado, passo a passo depois de assinar, os dois profissionais, para quem é, prova social, oferta com garantia, FAQ (schema `Product` + `FAQPage`) e CTA final. Laranja = Karina/treino; verde (emerald) = Renan/nutrição.
+- ✅ O cabeçalho comum, a seção de prova social e o modal de checkout foram **copiados** de `planos/index.template.html` no momento da criação. Mudanças futuras nesses blocos em `/planos/` não se propagam sozinhas.
+- ✅ **`js/checkout.js`**: nova chave `performance_trimestral` em `PLANS_DATA`. A página nova carrega `checkout.js?v=1.0.5`; as outras páginas continuam em `?v=1.0.4`.
+- ✅ **`planos/sucesso.template.html`**: passo extra, com botão de WhatsApp do Renan, exibido só quando a compra é do Plano Performance (`comboKey` começando com `performance_`).
+- ✅ **`build-blog.js`**: compilação da página (bloco 3.1.7), entrada no `sitemap.xml` e no `llms.txt`.
+- ✅ **`portal-do-atleta/index.template.html`**: o schema `FAQPage` existia só no `index.html` compilado; foi copiado para o template para o build não apagá-lo.
+
+**O que foi feito no projeto `ContasReceberKarina` (backend):**
+- ✅ `src/config/partnerPlans.ts` (NOVO): ID do plano, dados do parceiro e repasse mensal (`partnerMonthlyShare`).
+- ✅ `EfiController.ts`: combo `performance_trimestral` (R$ 750, 3 meses, 0% de desconto) apontando para o plano "Plano Performance" já cadastrado no banco por **R$ 250** (ID `2df264cc-98d0-4d6f-9d19-e565eae279c8`).
+- ✅ `StatsController.ts`: MRR/ARR/ARPU descontam o repasse ao parceiro. Totais de caixa e PDF de fechamento continuam mostrando o valor recebido.
+- ✅ `EmailService.ts`: o e-mail de boas-vindas ganha um bloco com botão de WhatsApp do Renan quando o plano é o Performance.
+
+### ⚠️ Problema real encontrado (importante para próximas sessões):
+- **`node build-blog.js` sem acesso ao Supabase é destrutivo.** Ele continua a compilação sem os artigos e reescreve `sitemap.xml` e `llms.txt` **sem o blog**. Só rodar o build com internet; se rodar offline, restaurar esses arquivos com `git checkout`.
+- Nesta sessão o build rodou offline, os arquivos foram restaurados e a página nova foi adicionada **à mão** no `sitemap.xml` e no `llms.txt` (as entradas também estão no `build-blog.js`, então o próximo build com internet deve gerar o mesmo resultado).
+- No build offline também sumiram do `llms.txt` as linhas de Três Lagoas, Mato Grosso e Lord Run VIP. Não foi investigado se elas estão na fonte do build: conferir o diff do `llms.txt` depois do próximo build com internet.
+
+### ⏳ Pendências:
+- Compra de teste de ponta a ponta (cobrança, 3 faturas pagas, e-mail e página de sucesso).
+- Incluir "Plano Performance" nas regras de acesso das categorias de vídeo que o Bronze acessa (painel do ContasReceber).
+- Texto da página: falta o CRN do Renan; não diz quem paga os exames de laboratório nem como é a avaliação física no atendimento online.
+- Aviso automático ao Renan a cada venda (ainda não há; falta o e-mail dele).
+- A imagem de compartilhamento (og:image) da página ainda é a foto padrão da Karina.
+
+### 📁 Arquivos criados/modificados neste projeto:
+- `plano-performance/index.template.html` (NOVO)
+- `plano-performance/index.html` (NOVO, COMPILADO)
+- `assets/img/RenanRodrigues/` (NOVO — foto e logo do nutricionista)
+- `js/checkout.js` (MODIFICADO)
+- `planos/sucesso.template.html` e `planos/sucesso.html` (MODIFICADOS)
+- `portal-do-atleta/index.template.html` (MODIFICADO — schema FAQPage)
+- `build-blog.js`, `sitemap.xml`, `llms.txt` (MODIFICADOS)
 - `PROJETO-SITE-KARINA-CONTEXTO-IA.md` (MODIFICADO)
