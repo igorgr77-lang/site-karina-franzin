@@ -141,6 +141,20 @@
                         <p class="text-xs text-gray-400 mt-0.5">Para receber sua planilha de treino personalizada, clique no link enviado por e-mail e faça seu cadastro no Treinus.</p>
                     </div>
                 </div>
+
+                <!-- Exibido apenas para compras do Plano Performance (parceria com o nutricionista Renan Rodrigues) -->
+                <div id="performance-nutrition-step" class="hidden flex gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                        <i data-lucide="apple" class="w-4 h-4"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">Agende sua Avaliação Nutricional</h4>
+                        <p class="text-xs text-gray-400 mt-0.5">Fale com o nutricionista Renan Rodrigues para marcar sua avaliação, online ou presencial.</p>
+                        <a href="https://wa.me/5517997680660?text=Ol%C3%A1%2C%20Renan!%20Acabei%20de%20assinar%20o%20Plano%20Performance%20com%20a%20Karina%20Franzin%20e%20quero%20agendar%20minha%20avalia%C3%A7%C3%A3o%20nutricional." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-3 px-5 py-2.5 bg-[#25D366] text-white font-bold rounded-full text-xs uppercase">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i> Agendar pelo WhatsApp
+                        </a>
+                    </div>
+                </div>
             </div>
 
             <!-- Buttons -->
@@ -175,6 +189,10 @@
             const lastPurchaseStr = sessionStorage.getItem('last_purchase');
             if (lastPurchaseStr) {
                 const purchaseData = JSON.parse(lastPurchaseStr);
+                if (String(purchaseData.comboKey || '').startsWith('performance_')) {
+                    const nutritionStep = document.getElementById('performance-nutrition-step');
+                    if (nutritionStep) nutritionStep.classList.remove('hidden');
+                }
                 if (typeof gtag === 'function') {
                     gtag('event', 'purchase', {
                         transaction_id: 'T_' + Date.now() + '_' + Math.floor(Math.random() * 1000),

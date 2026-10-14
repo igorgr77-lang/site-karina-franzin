@@ -185,7 +185,9 @@
             'prata_trimestral': { name: 'Prata Trimestral (3 Meses)', total: 405.00, monthly: 135.00, months: 3 },
             'prata_semestral': { name: 'Prata Semestral (6 Meses)', total: 750.00, monthly: 125.00, months: 6 },
             'ouro_trimestral': { name: 'Ouro Trimestral (3 Meses)', total: 510.00, monthly: 170.00, months: 3 },
-            'ouro_semestral': { name: 'Ouro Semestral (6 Meses)', total: 960.00, monthly: 160.00, months: 6 }
+            'ouro_semestral': { name: 'Ouro Semestral (6 Meses)', total: 960.00, monthly: 160.00, months: 6 },
+            // Parceria Karina Franzin + nutricionista Renan Rodrigues (página /plano-performance/)
+            'performance_trimestral': { name: 'Plano Performance Trimestral (3 Meses)', total: 750.00, monthly: 250.00, months: 3 }
         };
 
         // Verifica se é modo de teste e injeta o banner

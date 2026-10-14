@@ -533,6 +533,16 @@ async function build() {
             console.log('💾 Página do Portal do Atleta KF compilada com sucesso em: portal-do-atleta/index.html');
         }
 
+        // 3.1.7 Página de Vendas do Plano Performance (plano-performance/index.html) - escura
+        // Parceria Karina Franzin + nutricionista Renan Rodrigues (treino + nutrição, trimestral no cartão)
+        const planoPerformanceTemplatePath = path.join(__dirname, 'plano-performance', 'index.template.html');
+        if (fs.existsSync(planoPerformanceTemplatePath)) {
+            let htmlPlanoPerformance = fs.readFileSync(planoPerformanceTemplatePath, 'utf8');
+            htmlPlanoPerformance = compilePageComponents(htmlPlanoPerformance, false);
+            fs.writeFileSync(path.join(__dirname, 'plano-performance', 'index.html'), htmlPlanoPerformance, 'utf8');
+            console.log('💾 Página do Plano Performance compilada com sucesso em: plano-performance/index.html');
+        }
+
         // 3.2 Planos Combo (planos/*.html) - escura
         const planosComboDir = path.join(__dirname, 'planos');
         if (fs.existsSync(planosComboDir)) {
@@ -643,6 +653,12 @@ async function build() {
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
+    <url>
+        <loc>https://karinafranzin.com.br/plano-performance/</loc>
+        <lastmod>${hoje}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
 `;
 
         // 1. Adicionar eventos existentes fisicamente
@@ -695,6 +711,7 @@ Karina Franzin é treinadora de corrida e fisioterapeuta, campeã da Meia Marato
 - [Planos e Valores](https://karinafranzin.com.br/planos/): Planos Bronze, Prata e Ouro de assessoria de corrida 100% online, com opções mensal e combo
 - [Assessoria em Votuporanga](https://karinafranzin.com.br/corrida-votuporanga/): Assessoria de corrida 100% online com conhecimento local, focada em moradores de Votuporanga e região
 - [Portal do Atleta KF](https://karinafranzin.com.br/portal-do-atleta/): Biblioteca de vídeos de técnica, ativação muscular e mobilidade para corredores
+- [Plano Performance](https://karinafranzin.com.br/plano-performance/): Treino de corrida personalizado da Karina Franzin + acompanhamento nutricional com o nutricionista Renan Rodrigues (plano trimestral)
 - [Eventos](https://karinafranzin.com.br/eventos/): Treinões e provas de corrida organizados ou apoiados pela Karina Franzin
 - [Cupons e Benefícios](https://karinafranzin.com.br/cupons/): Descontos exclusivos para alunos em parceiros locais de Votuporanga
 
