@@ -874,6 +874,7 @@
             
             // Campos de cartão
             document.getElementById('card-name').required = required;
+            document.getElementById('card-holder-cpf').required = required;
             document.getElementById('card-number').required = required;
             document.getElementById('card-expiry').required = required;
             document.getElementById('card-cvv').required = required;
