@@ -457,15 +457,6 @@ async function build() {
             console.log('💾 Página de Cupons compilada com sucesso em: cupons/index.html');
         }
 
-        // 3.1 Campanha Lord Run VIP (lord-run-vip/index.html) - escura
-        const lordRunVipTemplatePath = path.join(__dirname, 'lord-run-vip', 'index.template.html');
-        if (fs.existsSync(lordRunVipTemplatePath)) {
-            let htmlLordRunVip = fs.readFileSync(lordRunVipTemplatePath, 'utf8');
-            htmlLordRunVip = compilePageComponents(htmlLordRunVip, false);
-            fs.writeFileSync(path.join(__dirname, 'lord-run-vip', 'index.html'), htmlLordRunVip, 'utf8');
-            console.log('💾 Página Lord Run VIP compilada com sucesso em: lord-run-vip/index.html');
-        }
-
         // 3.1.5 Página Local de Corrida em Votuporanga (corrida-votuporanga/index.html) - escura
         const localVotuporangaTemplatePath = path.join(__dirname, 'corrida-votuporanga', 'index.template.html');
         if (fs.existsSync(localVotuporangaTemplatePath)) {
@@ -612,12 +603,6 @@ async function build() {
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://karinafranzin.com.br/lord-run-vip/</loc>
-        <lastmod>${hoje}</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
         <loc>https://karinafranzin.com.br/planos/</loc>
         <lastmod>${hoje}</lastmod>
         <changefreq>monthly</changefreq>
@@ -710,6 +695,8 @@ Karina Franzin é treinadora de corrida e fisioterapeuta, campeã da Meia Marato
 - [Minha História](https://karinafranzin.com.br/minha-historia/): Trajetória completa de Karina Franzin, de jogadora de futebol a atleta de elite e treinadora, com linha do tempo de conquistas e reconhecimento da imprensa
 - [Planos e Valores](https://karinafranzin.com.br/planos/): Planos Bronze, Prata e Ouro de assessoria de corrida 100% online, com opções mensal e combo
 - [Assessoria em Votuporanga](https://karinafranzin.com.br/corrida-votuporanga/): Assessoria de corrida 100% online com conhecimento local, focada em moradores de Votuporanga e região
+- [Assessoria em Três Lagoas](https://karinafranzin.com.br/corrida-tres-lagoas/): Assessoria de corrida 100% online com conhecimento local, focada em moradores de Três Lagoas e região
+- [Assessoria no Mato Grosso](https://karinafranzin.com.br/corrida-mato-grosso/): Assessoria de corrida 100% online para corredores de Cuiabá, Várzea Grande e demais cidades do Mato Grosso
 - [Portal do Atleta KF](https://karinafranzin.com.br/portal-do-atleta/): Biblioteca de vídeos de técnica, ativação muscular e mobilidade para corredores
 - [Plano Performance](https://karinafranzin.com.br/plano-performance/): Treino de corrida personalizado da Karina Franzin + acompanhamento nutricional com o nutricionista Renan Rodrigues (plano trimestral)
 - [Eventos](https://karinafranzin.com.br/eventos/): Treinões e provas de corrida organizados ou apoiados pela Karina Franzin
