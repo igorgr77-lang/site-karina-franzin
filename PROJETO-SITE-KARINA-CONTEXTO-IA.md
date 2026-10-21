@@ -1680,7 +1680,7 @@ og:image: (imagem real do artigo do Supabase)
 - Incluir "Plano Performance" nas regras de acesso das categorias de vídeo que o Bronze acessa (painel do ContasReceber).
 - ✅ Resolvido em 14/10: os exames laboratoriais são pagos pelo aluno direto no laboratório; o plano inclui o pedido e a análise (nova pergunta no FAQ).
 - ✅ Resolvido em 14/10: CRN 34125 do Renan na página e no e-mail. Consulta presencial = avaliação nutricional + avaliação física com medidas + dieta; online = igual, só sem tirar as medidas. Uma consulta por mês, sem retornos extras entre elas (nova pergunta no FAQ).
-- Aviso automático ao Renan a cada venda (ainda não há; falta o e-mail dele).
+- ✅ Resolvido em 14/10: a cada compra aprovada do Plano Performance (nova ou renovação), o Renan recebe um e-mail em renanrodrigues37@hotmail.com com nome, WhatsApp e e-mail do aluno. Faturas mensais via PIX depois do trimestre não geram aviso.
 - A imagem de compartilhamento (og:image) da página ainda é a foto padrão da Karina.
 
 ### 📁 Arquivos criados/modificados neste projeto:
