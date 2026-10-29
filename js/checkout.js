@@ -35,6 +35,71 @@
             return error.message || error.error_description || error;
         }
 
+        // CAPTCHA invisível (Cloudflare Turnstile) do pagamento com cartão: impede robôs de testar cartões
+        // roubados no checkout. A site key é pública; a chave secreta fica só no servidor.
+        const TURNSTILE_SITE_KEY = '0x4AAAAAAFqgV18OVJpBZWz6';
+        const TURNSTILE_SCRIPT_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+        let turnstileScriptPromise = null;
+        let turnstileWidgetId = null;
+        let turnstileDeliver = null; // entrega o token à tentativa de pagamento que está esperando por ele
+
+        function loadTurnstileScript() {
+            if (window.turnstile) return Promise.resolve(window.turnstile);
+            if (!turnstileScriptPromise) {
+                turnstileScriptPromise = new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = TURNSTILE_SCRIPT_SRC;
+                    script.async = true;
+                    script.onload = () => window.turnstile ? resolve(window.turnstile) : reject(new Error('turnstile indisponivel'));
+                    script.onerror = () => { turnstileScriptPromise = null; reject(new Error('falha ao carregar turnstile')); };
+                    document.head.appendChild(script);
+                });
+            }
+            return turnstileScriptPromise;
+        }
+
+        // Pré-carrega o script enquanto o cliente preenche o formulário
+        loadTurnstileScript().catch(() => {});
+
+        // Devolve um token novo (uso único) ou null se o CAPTCHA não pôde ser carregado a tempo —
+        // nesse caso o servidor decide se aceita. Só aparece algo na tela se a Cloudflare exigir interação.
+        function getTurnstileToken() {
+            return loadTurnstileScript().then(turnstile => new Promise(resolve => {
+                const timer = setTimeout(() => finish(null), 45000); // dá tempo para um desafio interativo
+                function finish(token) {
+                    clearTimeout(timer);
+                    turnstileDeliver = null;
+                    resolve(token);
+                }
+                turnstileDeliver = finish;
+
+                let container = document.getElementById('turnstile-container');
+                if (!container) {
+                    container = document.createElement('div');
+                    container.id = 'turnstile-container';
+                    container.className = 'flex justify-center';
+                    const submitBtn = document.getElementById('submit-btn');
+                    submitBtn.parentNode.insertBefore(container, submitBtn);
+                }
+
+                if (turnstileWidgetId === null) {
+                    turnstileWidgetId = turnstile.render(container, {
+                        sitekey: TURNSTILE_SITE_KEY,
+                        theme: 'light',
+                        language: 'pt-br',
+                        execution: 'execute',
+                        appearance: 'interaction-only',
+                        callback: token => { if (turnstileDeliver) turnstileDeliver(token); },
+                        'error-callback': () => { if (turnstileDeliver) turnstileDeliver(null); },
+                        'timeout-callback': () => { if (turnstileDeliver) turnstileDeliver(null); }
+                    });
+                } else {
+                    turnstile.reset(turnstileWidgetId);
+                }
+                turnstile.execute(turnstileWidgetId);
+            })).catch(() => null);
+        }
+
         // Controla o estado de carregamento (loading) inline no próprio botão de enviar
         function setSubmitButtonLoading(isLoading) {
             const btn = document.getElementById('submit-btn');
@@ -1180,9 +1245,14 @@
 
             // Gerar Token do Cartão com o SDK da Efí (builder pattern)
             try {
-                EfiPay.CreditCard
-                    .setCardNumber(cardNumber)
-                    .verifyCardBrand()
+                let captchaToken = null;
+                getTurnstileToken()
+                .then(token => {
+                    captchaToken = token;
+                    return EfiPay.CreditCard
+                        .setCardNumber(cardNumber)
+                        .verifyCardBrand();
+                })
                 .then(brand => {
                     const resolvedBrand = (brand && brand !== 'undefined' && brand !== 'unsupported') ? brand : detectCardBrand(cardNumber);
                     if (!resolvedBrand) {
@@ -1216,6 +1286,7 @@
                     const isProductKey = document.getElementById('form-combo-key').value === 'portal_atleta';
                     const payload = {
                         paymentToken: paymentToken,
+                        captchaToken: captchaToken,
                         installments: document.getElementById('card-installments').value,
                         comboKey: isProductKey ? undefined : document.getElementById('form-combo-key').value,
                         productKey: isProductKey ? document.getElementById('form-combo-key').value : undefined,
