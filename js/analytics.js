@@ -92,6 +92,7 @@
             '.kf-cookie{position:fixed;left:16px;right:16px;bottom:16px;z-index:2147483000;max-width:720px;margin:0 auto;' +
             'background:#151515;color:#f2f2f2;border:1px solid #333;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.35);' +
             'padding:18px 20px;font:14px/1.5 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;gap:16px;align-items:center;flex-wrap:wrap}' +
+            '.kf-cookie[hidden]{display:none!important}' +
             '.kf-cookie p{margin:0;flex:1 1 320px}' +
             '.kf-cookie a{color:#FF8A5C;text-decoration:underline}' +
             '.kf-cookie-actions{display:flex;gap:10px;flex:0 0 auto}' +
