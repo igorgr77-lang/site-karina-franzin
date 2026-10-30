@@ -77,6 +77,30 @@ const SECURITY_HEADERS = {
   'Reporting-Endpoints': `csp="https://karinafranzin.com.br${CSP_REPORT_PATH}"`,
 };
 
+// security.txt (RFC 9116): diz a pesquisadores como avisar sobre falhas.
+// O domínio não recebe e-mail, então o contato é o WhatsApp do site.
+// "Expires" é calculado na hora (sempre 180 dias à frente) para nunca vencer.
+const SECURITY_TXT_PATHS = new Set(['/.well-known/security.txt', '/security.txt']);
+
+function securityTxt() {
+  const expires = new Date(Date.now() + 180 * 24 * 60 * 60 * 1000);
+  expires.setUTCHours(0, 0, 0, 0);
+  const body = [
+    'Contact: https://wa.me/5517996566908',
+    `Expires: ${expires.toISOString()}`,
+    'Preferred-Languages: pt, en',
+    'Canonical: https://karinafranzin.com.br/.well-known/security.txt',
+    '',
+  ].join('\n');
+  return new Response(body, {
+    status: 200,
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'public, max-age=86400',
+    },
+  });
+}
+
 // Redirecionamentos 301 fixos (antes ficavam no .htaccess, que o GitHub Pages ignora).
 const REDIRECTS = {
   '/cao-minhada-2026': '/eventos/cao-minhada-2026/',
@@ -132,6 +156,10 @@ async function handle(request) {
   if (url.protocol === 'http:') {
     url.protocol = 'https:';
     return redirect(url.toString(), url.origin);
+  }
+
+  if (SECURITY_TXT_PATHS.has(url.pathname)) {
+    return securityTxt();
   }
 
   if (url.pathname === CSP_REPORT_PATH) {
