@@ -212,6 +212,18 @@ if (typeof window.gtag !== 'function') {
 })();
 
 // ============================================
+// EVENTOS GA4 VIA ATRIBUTO (substitui onclick="gtag(...)")
+// Uso: <a data-gtag-event="click_treinus" data-gtag-category="footer">
+// ============================================
+document.addEventListener('click', function(e) {
+    var el = e.target.closest('[data-gtag-event]');
+    if (!el || typeof window.gtag !== 'function') return;
+    var params = {};
+    if (el.dataset.gtagCategory) params.event_category = el.dataset.gtagCategory;
+    window.gtag('event', el.dataset.gtagEvent, params);
+});
+
+// ============================================
 // AUTO-TRACKING DE LEADS WHATSAPP (GA4)
 // ============================================
 document.addEventListener('click', function(e) {

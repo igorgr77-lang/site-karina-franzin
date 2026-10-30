@@ -41,6 +41,30 @@ const CSP_REPORT_ONLY = [
   'report-to csp',
 ].join('; ');
 
+// CSP rígida (sem 'unsafe-inline' em scripts), aplicada de verdade só nas
+// páginas que já não têm <script> inline nem onclick="...". Para migrar uma
+// página: tirar o código inline do HTML e incluir o caminho em STRICT_CSP_PATHS.
+const CSP_STRICT = [
+  "default-src 'self'",
+  "script-src 'self' https://www.googletagmanager.com https://*.clarity.ms https://static.cloudflareinsights.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src 'self' https://fonts.gstatic.com",
+  "img-src 'self' data: https:",
+  "connect-src 'self' https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://cloudflareinsights.com",
+  "frame-src https://www.googletagmanager.com",
+  "worker-src 'self'",
+  "manifest-src 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "frame-ancestors 'self'",
+  'upgrade-insecure-requests',
+  `report-uri ${CSP_REPORT_PATH}`,
+  'report-to csp',
+].join('; ');
+
+const STRICT_CSP_PATHS = new Set(['/', '/index.html']);
+
 const SECURITY_HEADERS = {
   // Sem includeSubDomains: outros subdomínios (ex.: gestao.) ficam fora.
   'Strict-Transport-Security': 'max-age=31536000',
@@ -69,10 +93,14 @@ const BLOCKED_PATHS = [
   /^\/(cloudflare-worker|artigos-rascunhos)(\/|$)/i,
 ];
 
-function withSecurityHeaders(response) {
+function withSecurityHeaders(response, pathname) {
   const res = new Response(response.body, response);
   for (const [name, value] of Object.entries(SECURITY_HEADERS)) {
     res.headers.set(name, value);
+  }
+  if (STRICT_CSP_PATHS.has(pathname)) {
+    res.headers.set('Content-Security-Policy', CSP_STRICT);
+    res.headers.delete('Content-Security-Policy-Report-Only');
   }
   return res;
 }
@@ -135,6 +163,6 @@ async function handle(request) {
 export default {
   async fetch(request) {
     const response = await handle(request);
-    return withSecurityHeaders(response);
+    return withSecurityHeaders(response, new URL(request.url).pathname);
   },
 };

@@ -144,6 +144,8 @@ Redirecionamentos definitivos HTTP 301 de links antigos no formato dinâmico (`b
 
 **Segurança (out/2026):** o GitHub Pages ignora o `.htaccess` e não permite headers próprios, então o Worker passou a cobrir todo o site (`karinafranzin.com.br/*`). Ele força HTTPS, faz os redirects 301 (blog legado e `/cao-minhada-2026/`), devolve 404 para arquivos internos (`.sql`, `.md` da raiz, `*.template.html`, `package.json`, `cloudflare-worker/` etc.) e adiciona HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy e CSP. A CSP completa está em modo `Report-Only`: as violações aparecem nos logs do Worker (`npx wrangler tail` ou painel → Workers → Logs) com o prefixo `[csp-report]`. Ao adicionar um script/serviço externo novo, inclua o domínio na CSP em `cloudflare-worker/src/index.js`.
 
+**CSP rígida por página:** a home (`/`) já não tem `<script>` inline nem `onclick`, então recebe a `CSP_STRICT` (sem `'unsafe-inline'` em scripts). Analytics/Clarity ficam em `js/analytics.js`, o service worker em `js/sw-register.js`, e eventos GA4 usam o atributo `data-gtag-event` (tratado em `js/navbar.js`). O build não injeta o Clarity inline em páginas que já carregam `/js/analytics.js`. Para migrar outra página: tirar o código inline, rodar o build e incluir o caminho em `STRICT_CSP_PATHS` no Worker — publicar o HTML (push na main) **antes** do deploy do Worker.
+
 **Para alterar o layout/design dos artigos:** Edite `blog/artigo.template.html` ou `css/blog.css` e rode o build novamente. As pastas de artigos (ex: `blog/como-comecar-a-correr-do-zero/`) são geradas automaticamente pelo build; **nunca edite os arquivos estáticos diretamente nelas**, pois serão sobrescritos no próximo build.
 
 ### Supabase — Tabela `artigos`

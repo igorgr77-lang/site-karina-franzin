@@ -4,14 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J488T0R72B"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-J488T0R72B');
-    </script>
+    <!-- Google Analytics + Microsoft Clarity (sem script inline, por causa da CSP) -->
+    <script src="/js/analytics.js?v=1.0.0"></script>
     <meta name="description" content="Treinamento de corrida personalizado com a treinadora Karina Franzin. Planilhas semanais, acompanhamento individual e prevenção de lesões para todo o Brasil.">
     <meta name="keywords" content="treinamento corrida, assessoria esportiva corrida, planilha corrida personalizada, personal trainer corrida, karina franzin, treinadora corrida votuporanga, coaching corrida online, assessoria corrida online, treino corrida 5km, treino corrida 10km, meia maratona, maratona">
     <meta name="author" content="Karina Franzin">
@@ -61,7 +55,7 @@
     
     <!-- Load CSS -->
     <link rel="stylesheet" href="./css/styles.css?v=1.0.5">
-    <script src="/js/navbar.js?v=1.0.3" defer></script>
+    <script src="/js/navbar.js?v=1.0.4" defer></script>
 
     <!-- CSS Crítico Inline: evita FOUC (Flash of Unstyled Content) na navbar -->
     <style>
@@ -188,7 +182,7 @@
     </style>
     
     <!-- Load fonts asynchronously -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" media="print" data-async-css>
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"></noscript>
     
     <!-- Schema.org Structured Data (JSON-LD) -->
@@ -366,8 +360,7 @@
        class="whatsapp-float" 
        target="_blank" 
        rel="noopener noreferrer"
-       aria-label="Falar no WhatsApp com Karina Franzin para assessoria de corrida"
-       onclick="gtag('event', 'click_whatsapp')">
+       aria-label="Falar no WhatsApp com Karina Franzin para assessoria de corrida">
         <img src="./assets/icons/WhatsApp.svg.webp" alt="Ícone WhatsApp - Contato direto com treinadora de corrida" width="60" height="60" loading="eager" decoding="async">
     </a>
 
@@ -382,8 +375,7 @@
                 <a href="https://wa.me/5517996566908?text=Ol%C3%A1%2C%20Karina%21%20Vim%20pelo%20seu%20site%20e%20tenho%20d%C3%BAvidas%20sobre%20as%20assessorias." 
                    class="btn btn-secondary" 
                    target="_blank" 
-                   rel="noopener noreferrer"
-                   onclick="gtag('event', 'click_whatsapp')">
+                   rel="noopener noreferrer">
                     Falar no WhatsApp
                 </a>
             </div>
@@ -948,19 +940,7 @@
     <!-- FOOTER_PLACEHOLDER -->
 
     <!-- Register Service Worker for caching -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then((registration) => {
-                        console.log('SW registered: ', registration);
-                    })
-                    .catch((registrationError) => {
-                        console.log('SW registration failed: ', registrationError);
-                    });
-            });
-        }
-    </script>
+    <script src="/js/sw-register.js?v=1.0.0" defer></script>
 
     <!-- Load JavaScript -->
     <script src="./js/main.js?v=1.0.3"></script>

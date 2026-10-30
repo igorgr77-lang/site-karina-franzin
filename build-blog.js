@@ -242,7 +242,8 @@ async function build() {
             const compiledNavbar = navbarHtml.replace('{{NAVBAR_CLASS}}', navbarClass);
             compiled = compiled.replace('<!-- NAVBAR_PLACEHOLDER -->', compiledNavbar);
             compiled = compiled.replace('<!-- FOOTER_PLACEHOLDER -->', footerHtml);
-            if (compiled.includes('</head>')) {
+            // Páginas que já usam /js/analytics.js carregam o Clarity por ele (sem script inline)
+            if (compiled.includes('</head>') && !compiled.includes('/js/analytics.js')) {
                 compiled = compiled.replace('</head>', `    ${CLARITY_SCRIPT}\n</head>`);
             }
             return compiled;
