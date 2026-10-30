@@ -142,6 +142,8 @@ O blog funciona através de um modelo de **Geração de Sites Estáticos (SSG)**
 **Redirecionamentos de Compatibilidade:**
 Redirecionamentos definitivos HTTP 301 de links antigos no formato dinâmico (`blog/artigo.html?slug=meu-artigo`) são gerenciados diretamente na borda pela CDN no **Cloudflare Worker** (e opcionalmente no `.htaccess` em servidores Apache), direcionando robôs e usuários para a nova URL amigável e estática (`/blog/meu-artigo/`). O arquivo físico legado `blog/artigo.html` foi removido do repositório.
 
+**Segurança (out/2026):** o GitHub Pages ignora o `.htaccess` e não permite headers próprios, então o Worker passou a cobrir todo o site (`karinafranzin.com.br/*`). Ele força HTTPS, faz os redirects 301 (blog legado e `/cao-minhada-2026/`), devolve 404 para arquivos internos (`.sql`, `.md` da raiz, `*.template.html`, `package.json`, `cloudflare-worker/` etc.) e adiciona HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy e CSP. A CSP completa está em modo `Report-Only`: as violações aparecem nos logs do Worker (`npx wrangler tail` ou painel → Workers → Logs) com o prefixo `[csp-report]`. Ao adicionar um script/serviço externo novo, inclua o domínio na CSP em `cloudflare-worker/src/index.js`.
+
 **Para alterar o layout/design dos artigos:** Edite `blog/artigo.template.html` ou `css/blog.css` e rode o build novamente. As pastas de artigos (ex: `blog/como-comecar-a-correr-do-zero/`) são geradas automaticamente pelo build; **nunca edite os arquivos estáticos diretamente nelas**, pois serão sobrescritos no próximo build.
 
 ### Supabase — Tabela `artigos`

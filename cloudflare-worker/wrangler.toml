@@ -2,10 +2,14 @@ name = "karina-franzin-seo"
 main = "src/index.js"
 compatibility_date = "2024-01-01"
 
-# Rota: intercepta APENAS as páginas de blog do domínio
+# Rota: intercepta todo o site (headers de segurança, redirects e bloqueios)
 [[routes]]
-pattern = "karinafranzin.com.br/blog*"
+pattern = "karinafranzin.com.br/*"
 zone_name = "karinafranzin.com.br"
+
+# Guarda os logs (inclui os relatórios de violação da CSP) no painel do Cloudflare
+[observability]
+enabled = true
 
 # Variáveis de ambiente (os valores secretos são configurados via: wrangler secret put)
 [vars]
