@@ -25,11 +25,11 @@ const CSP_ENFORCED = [
 // dá para trocar para Content-Security-Policy.
 const CSP_REPORT_ONLY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://www.googletagmanager.com https://*.clarity.ms https://news.google.com https://challenges.cloudflare.com https://device.clearsale.com.br",
+  "script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://www.googletagmanager.com https://*.clarity.ms https://news.google.com https://challenges.cloudflare.com https://static.cloudflareinsights.com https://device.clearsale.com.br",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com",
   "font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com",
   "img-src 'self' data: blob: https:",
-  "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api-contas-karina.onrender.com https://viacep.com.br https://api.allorigins.win https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://news.google.com https://tokenizer.sejaefi.com.br https://cobrancas.api.efipay.com.br https://cobrancas-h.api.efipay.com.br https://*.clearsale.com.br https://*.fpcs-monitor.com.br",
+  "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api-contas-karina.onrender.com https://viacep.com.br https://api.allorigins.win https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.googletagmanager.com https://*.clarity.ms https://c.bing.com https://news.google.com https://tokenizer.sejaefi.com.br https://cobrancas.api.efipay.com.br https://cobrancas-h.api.efipay.com.br https://*.clearsale.com.br https://*.fpcs-monitor.com.br",
   "frame-src https://www.google.com https://challenges.cloudflare.com https://news.google.com https://accounts.google.com https://www.googletagmanager.com",
   "worker-src 'self' blob:",
   "manifest-src 'self'",
