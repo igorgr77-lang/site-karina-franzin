@@ -216,15 +216,8 @@ function limparConteudoArtigo(html) {
     return limpo;
 }
 
-// Microsoft Clarity (heatmaps + gravação de sessão) — injetado automaticamente
-// no <head> de toda página compilada pelo build. Para trocar/remover, edite só aqui.
-const CLARITY_SCRIPT = `<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "y8pg4kcmrc");
-</script>`;
+// Google Analytics e Microsoft Clarity NÃO são mais injetados aqui: cada página
+// carrega /js/analytics.js, que só ativa o Clarity depois do aceite de cookies (LGPD).
 
 // ============================================
 // CORE BUILD PIPELINE
@@ -242,10 +235,6 @@ async function build() {
             const compiledNavbar = navbarHtml.replace('{{NAVBAR_CLASS}}', navbarClass);
             compiled = compiled.replace('<!-- NAVBAR_PLACEHOLDER -->', compiledNavbar);
             compiled = compiled.replace('<!-- FOOTER_PLACEHOLDER -->', footerHtml);
-            // Páginas que já usam /js/analytics.js carregam o Clarity por ele (sem script inline)
-            if (compiled.includes('</head>') && !compiled.includes('/js/analytics.js')) {
-                compiled = compiled.replace('</head>', `    ${CLARITY_SCRIPT}\n</head>`);
-            }
             return compiled;
         }
 
