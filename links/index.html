@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J488T0R72B"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-J488T0R72B');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Karina Franzin | Treinadora de Corrida</title>
+    <meta name="description" content="Assessoria de corrida 100% online com a treinadora Karina Franzin. Conheça os planos de treinamento ou tire suas dúvidas no WhatsApp.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://karinafranzin.com.br/links/">
+
+    <meta property="og:title" content="Karina Franzin | Treinadora de Corrida">
+    <meta property="og:description" content="Assessoria de corrida 100% online. Conheça os planos de treinamento ou tire suas dúvidas no WhatsApp.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://karinafranzin.com.br/links/">
+    <meta property="og:image" content="https://karinafranzin.com.br/assets/img/karina-hero.jpg">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="theme-color" content="#0a0a0a">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --card: #141414;
+            --line: rgba(255, 255, 255, 0.08);
+            --text: #ffffff;
+            --muted: #a3a3a3;
+            --orange: #ff6b35;
+            --orange-dark: #e0531f;
+            --green: #25d366;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { -webkit-text-size-adjust: 100%; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            line-height: 1.4;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: inherit; text-decoration: none; }
+        a:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+
+        .page {
+            max-width: 480px;
+            margin: 0 auto;
+            padding-bottom: calc(40px + env(safe-area-inset-bottom));
+        }
+
+        /* ---------- Capa ---------- */
+        .cover {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            max-height: 600px;
+            overflow: hidden;
+        }
+        .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 12%;
+            display: block;
+        }
+        .cover::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0) 45%, rgba(10, 10, 10, 0.85) 82%, var(--bg) 100%);
+        }
+        .cover-info {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            padding: 0 20px 6px;
+            text-align: center;
+        }
+        .cover-info h1 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 2.1rem;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            line-height: 1.05;
+        }
+        .cover-info h1 span { color: var(--orange); }
+        .cover-info p {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-top: 6px;
+        }
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 14px;
+        }
+        .chip {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(255, 107, 53, 0.12);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            color: #ffd2c2;
+            white-space: nowrap;
+        }
+
+        /* ---------- Blocos ---------- */
+        .stack { display: flex; flex-direction: column; gap: 14px; padding: 18px 16px 0; }
+
+        .card {
+            position: relative;
+            display: block;
+            border-radius: 22px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .card:active { transform: scale(0.985); }
+        @media (hover: hover) {
+            .card:hover { transform: translateY(-2px); border-color: rgba(255, 107, 53, 0.5); }
+        }
+
+        /* Destaque principal: planos */
+        .feature {
+            min-height: 250px;
+            display: flex;
+            align-items: flex-end;
+            border: 1.5px solid rgba(255, 107, 53, 0.55);
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.18);
+            background: #111;
+        }
+        .feature img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 30%;
+        }
+        .feature::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(to top, rgba(10, 10, 10, 0.96) 8%, rgba(10, 10, 10, 0.55) 55%, rgba(10, 10, 10, 0.15) 100%);
+        }
+        .feature-body { position: relative; z-index: 2; padding: 22px 20px 20px; width: 100%; }
+        .tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: var(--orange);
+            color: #fff;
+        }
+        .feature h2 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 1.7rem;
+            line-height: 1.1;
+            text-transform: uppercase;
+            margin-top: 12px;
+        }
+        .feature p { color: #d4d4d4; font-size: 0.88rem; margin-top: 8px; }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 15px 18px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.98rem;
+            background: var(--orange);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.35);
+        }
+        .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .feature .btn { animation: pulse 2.6s ease-in-out infinite; }
+            @keyframes pulse {
+                0%, 100% { box-shadow: 0 6px 20px rgba(255, 107, 53, 0.35); }
+                50% { box-shadow: 0 6px 30px rgba(255, 107, 53, 0.7); }
+            }
+        }
+
+        /* WhatsApp */
+        .whats {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            background: linear-gradient(135deg, #1ebe5a, #128c3e);
+            border-color: rgba(37, 211, 102, 0.5);
+        }
+        .whats svg { width: 34px; height: 34px; flex-shrink: 0; }
+        .whats strong { display: block; font-size: 1rem; }
+        .whats span { display: block; font-size: 0.8rem; color: rgba(255, 255, 255, 0.85); margin-top: 2px; }
+        .whats .go { margin-left: auto; width: 20px; height: 20px; opacity: 0.9; }
+
+        /* Plano Performance */
+        .perf {
+            display: flex;
+            align-items: stretch;
+            background: var(--card);
+        }
+        .perf-media { position: relative; width: 116px; flex-shrink: 0; min-height: 150px; }
+        .perf-media img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 15%;
+        }
+        .perf-body { padding: 16px 16px 16px 14px; flex: 1; min-width: 0; }
+        .perf-body .mini {
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--orange);
+        }
+        .perf-body h3 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-top: 4px;
+        }
+        .perf-body p { font-size: 0.8rem; color: var(--muted); margin-top: 6px; }
+        .perf-body .more {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--orange);
+        }
+        .perf-body .more svg { width: 14px; height: 14px; }
+
+        /* Resultados */
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 500;
+            font-size: 1.05rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 26px 20px 0;
+        }
+        .section-title small {
+            display: block;
+            font-family: 'Inter', sans-serif;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+        .results {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-padding-left: 16px;
+            padding: 12px 16px 4px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .results::-webkit-scrollbar { display: none; }
+        .results a {
+            flex: 0 0 148px;
+            height: 188px;
+            border-radius: 16px;
+            overflow: hidden;
+            scroll-snap-align: start;
+            border: 1px solid var(--line);
+            background: var(--card);
+        }
+        .results img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        /* Links secundarios */
+        .secondary {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 22px 16px 0;
+        }
+        .secondary a {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #d4d4d4;
+            padding: 9px 16px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .secondary a:hover { border-color: rgba(255, 107, 53, 0.5); color: #fff; }
+
+        footer {
+            text-align: center;
+            font-size: 0.72rem;
+            color: #6b6b6b;
+            padding: 28px 16px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+
+        <!-- Capa -->
+        <header class="cover">
+            <img src="/assets/img/karina-profile.jpg" alt="Karina Franzin correndo em prova de rua" width="1066" height="1600" fetchpriority="high">
+            <div class="cover-info">
+                <h1>Karina <span>Franzin</span></h1>
+                <p>Treinadora de corrida &bull; Atleta de elite</p>
+                <div class="chips">
+                    <span class="chip">14 anos de corrida</span>
+                    <span class="chip">Educação Física + Fisioterapia</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="stack">
+
+            <!-- Destaque principal: planos -->
+            <a class="card feature" data-track="planos" href="/planos/">
+                <img src="/assets/img/karina-hero.jpg" alt="" width="1500" height="1000" loading="eager">
+                <div class="feature-body">
+                    <span class="tag">100% online &bull; 7 dias de garantia</span>
+                    <h2>Conheça os planos de treinamento</h2>
+                    <p>Planilhas personalizadas e acompanhamento direto da Karina, no seu ritmo e no seu horário.</p>
+                    <span class="btn">
+                        Ver planos
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </span>
+                </div>
+            </a>
+
+            <!-- WhatsApp -->
+            <a class="card whats" data-track="whatsapp" target="_blank" rel="noopener noreferrer"
+                href="https://wa.me/5517996566908?text=Ol%C3%A1%2C%20Karina!%20Vim%20pelo%20Instagram%20e%20quero%20tirar%20minhas%20d%C3%BAvidas%20sobre%20a%20assessoria%20de%20corrida.">
+                <svg fill="currentColor" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L3 480l117.7-30.9c32.4 17.700 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.100-222 0-59.300-25.200-115-67.100-157zm-157 341.600c-33.200 0-65.700-8.900-94-25.700l-6.700-4-69.800 18.300 18.700-68.100-4.400-7c-18.500-29.400-28.200-63.300-28.200-98.200 0-101.700 82.800-184.500 184.600-184.500 49.300 0 95.600 19.200 130.400 54.100 34.800 34.900 56.200 81.200 56.100 130.500 0 101.800-84.900 184.600-186.600 184.600zm101.200-138.200c-5.500-2.800-32.800-16.200-37.900-18-5.100-1.900-8.800-2.800-12.500 2.800-3.700 5.600-14.300 18-17.600 21.800-3.200 3.700-6.500 4.200-12 1.400-32.600-16.300-54-29.100-75.500-66-5.700-9.800 5.700-9.100 16.300-30.300 1.800-3.700.9-6.900-.5-9.700-1.400-2.800-12.500-30.100-17.100-41.200-4.500-10.800-9.100-9.300-12.500-9.500-3.200-.2-6.900-.2-10.600-.2-3.700 0-9.700 1.400-14.800 6.900-5.100 5.600-19.400 19-19.400 46.300 0 27.300 19.900 53.700 22.600 57.400 2.800 3.700 39.100 59.700 94.800 83.800 35.200 15.200 49 16.500 66.600 13.900 10.700-1.600 32.800-13.400 37.400-26.400 4.600-13 4.600-24.100 3.200-26.400-1.300-2.500-5-3.900-10.500-6.600z" />
+                </svg>
+                <div>
+                    <strong>Tirar minhas dúvidas no WhatsApp</strong>
+                    <span>Fale direto com a Karina</span>
+                </div>
+                <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
+
+            <!-- Plano Performance -->
+            <a class="card perf" data-track="plano_performance" href="/plano-performance/">
+                <div class="perf-media">
+                    <img src="/assets/img/RenanRodrigues/renan-1024w.webp" alt="Renan Rodrigues, nutricionista parceiro do Plano Performance" width="1024" height="1024" loading="lazy">
+                </div>
+                <div class="perf-body">
+                    <span class="mini">Novo</span>
+                    <h3>Plano Performance</h3>
+                    <p>Treino de corrida com a Karina + nutrição esportiva com o nutricionista Renan Rodrigues.</p>
+                    <span class="more">
+                        Saiba mais
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Resultados -->
+        <h2 class="section-title">Quem treina com a Karina evolui
+            <small>Resultados reais de alunos da assessoria</small>
+        </h2>
+        <div class="results">
+            <a data-track="resultado" href="/planos/#prova-social"><img src="/assets/img/resultados/aluna-primeiro-lugar-corrida-karina-franzin-3.webp" alt="Aluna no primeiro lugar do pódio" loading="lazy" width="148" height="188"></a>
+            <a data-track="resultado" href="/planos/#prova-social"><img src="/assets/img/resultados/aluna-podio-geral-assessoria-corrida-karina-franzin-2-640w.webp" alt="Aluna no pódio geral de corrida de rua" loading="lazy" width="148" height="188"></a>
+            <a data-track="resultado" href="/planos/#prova-social"><img src="/assets/img/resultados/podio-aluno-assessoria-corrida-karina-franzin-2-640w.webp" alt="Aluno no pódio de premiação" loading="lazy" width="148" height="188"></a>
+            <a data-track="resultado" href="/planos/#prova-social"><img src="/assets/img/resultados/trofeu-aluno-assessoria-corrida-karina-franzin-1-640w.webp" alt="Aluno segurando troféu conquistado na corrida" loading="lazy" width="148" height="188"></a>
+            <a data-track="resultado" href="/planos/#prova-social"><img src="/assets/img/resultados/woss-brasil-aluno-assessoria-corrida-karina-franzin-1-640w.webp" alt="Atleta no pódio de prova de corrida" loading="lazy" width="148" height="188"></a>
+            <a data-track="resultado" href="/planos/#prova-social"><img src="/assets/img/resultados/alunas-assessoria-corrida-karina-franzin-1.webp" alt="Grupo de alunas da assessoria de corrida" loading="lazy" width="148" height="188"></a>
+        </div>
+
+        <!-- Links secundarios (discretos) -->
+        <nav class="secondary" aria-label="Mais links">
+            <a data-track="minha_historia" href="/minha-historia/">Minha história</a>
+            <a data-track="eventos" href="/eventos/">Eventos</a>
+            <a data-track="blog" href="/blog/">Blog</a>
+        </nav>
+
+        <footer>karinafranzin.com.br</footer>
+    </main>
+
+    <script>
+        // Mensagem do WhatsApp conforme a origem do visitante (utm_source da entrada em /links/)
+        (function () {
+            var origem = { instagram: 'pelo Instagram', youtube: 'pelo YouTube' }[new URLSearchParams(location.search).get('utm_source')] || 'pelo site';
+            var wa = document.querySelector('a[data-track="whatsapp"]');
+            if (wa) {
+                wa.href = 'https://wa.me/5517996566908?text=' + encodeURIComponent('Olá, Karina! Vim ' + origem + ' e quero tirar minhas dúvidas sobre a assessoria de corrida.');
+            }
+        })();
+
+        document.querySelectorAll('a[data-track]').forEach(function (el) {
+            el.addEventListener('click', function () {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'click_links_page', { link_id: el.dataset.track, transport_type: 'beacon' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
