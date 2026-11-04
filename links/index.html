@@ -71,15 +71,15 @@
         .cover {
             position: relative;
             width: 100%;
-            aspect-ratio: 4 / 5;
-            max-height: 600px;
+            aspect-ratio: 1 / 1;
+            max-height: 520px;
             overflow: hidden;
         }
         .cover img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: 50% 12%;
+            object-position: 50% 14%;
             display: block;
         }
         .cover::after {
@@ -115,13 +115,13 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 8px;
-            margin-top: 14px;
+            gap: 6px;
+            margin-top: 12px;
         }
         .chip {
-            font-size: 0.7rem;
+            font-size: 0.66rem;
             font-weight: 600;
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 999px;
             background: rgba(255, 107, 53, 0.12);
             border: 1px solid rgba(255, 107, 53, 0.3);
@@ -130,7 +130,7 @@
         }
 
         /* ---------- Blocos ---------- */
-        .stack { display: flex; flex-direction: column; gap: 14px; padding: 18px 16px 0; }
+        .stack { display: flex; flex-direction: column; gap: 14px; padding: 14px 16px 0; }
 
         .card {
             position: relative;
@@ -147,7 +147,7 @@
 
         /* Destaque principal: planos */
         .feature {
-            min-height: 250px;
+            min-height: 230px;
             display: flex;
             align-items: flex-end;
             border: 1.5px solid rgba(255, 107, 53, 0.55);
