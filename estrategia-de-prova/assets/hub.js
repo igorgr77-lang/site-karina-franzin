@@ -30,7 +30,7 @@
         meta.appendChild(status);
       }
       var btn = card.querySelector(".hub-card-btn");
-      if (btn) btn.textContent = "Ver a estratégia →";
+      if (btn) btn.textContent = "Ver o percurso →";
       past.push(card);
     });
 

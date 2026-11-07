@@ -88,13 +88,8 @@
     "nome": "ZRun Night Run Fernandópolis",
     "nomeCurto": "ZRun",
     "nomePulseira": "ZRUN FERNANDÓPOLIS",
-    "seoTitulo": "ZRun Night Run Fernandópolis 2026: estratégia e pace | Karina Franzin",
-    "seoDescricao": "Estratégia da 2ª ZRun Night Run Fernandópolis (6 km): pace para cada subida e descida, parciais km a km e cola de pulso. Grátis, por Karina Franzin.",
-    "ogTitulo": "ZRun Night Run Fernandópolis 2026: estratégia e pace",
-    "ogDescricao": "Digite seu tempo alvo e receba o pace de cada subida e descida dos 6 km, as parciais km a km e uma cola de pulso pronta.",
     "ogAlt": "Banner da 2ª ZRun Night Run Fernandópolis 2026",
     "descricaoSchema": "Calculadora de pace por segmento de subida e descida e parciais km a km para a ZRun Night Run de Fernandópolis - SP.",
-    "subtitulo": "Digite o tempo em que deseja concluir a prova e receba sua estratégia tática dividida nos <strong>6 trechos de subida e descida</strong> do percurso da 2ª edição, além das parciais quilômetro a quilômetro para o seu relógio GPS.",
     "diagStatus": "Percurso Ondulado · Moderado",
     "destaques": [
       {
@@ -129,6 +124,7 @@
       "distancia": "6K · Night Run",
       "alt": "Banner da 2ª ZRun Night Run Fernandópolis",
       "tag": "Ondulado"
-    }
+    },
+    "subtituloPrefixo": "2ª edição da corrida noturna de Fernandópolis – SP."
   }
 }

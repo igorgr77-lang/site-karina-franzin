@@ -2532,3 +2532,128 @@ a.hub-card:hover .hub-card-btn {
     display: none !important;
   }
 }
+
+/* ===========================
+   PERCURSO (texto para quem busca "percurso da prova") + PERGUNTAS FREQUENTES
+=========================== */
+.hero-route-link {
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--accent-orange);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+}
+
+.hero-route-link:hover {
+  text-decoration: underline;
+}
+
+.route-section,
+.faq-section {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 26px;
+  margin-top: 24px;
+  scroll-margin-top: 80px;
+}
+
+.route-section h2,
+.faq-section h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.route-section h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 22px 0 10px;
+}
+
+.route-summary {
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 900px;
+}
+
+.route-figures {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+  margin-top: 18px;
+  align-items: start;
+}
+
+.route-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.route-figure figcaption {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  line-height: 1.45;
+}
+
+.route-steps {
+  margin-left: 20px;
+  display: grid;
+  gap: 8px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+.route-steps strong {
+  color: var(--text-primary);
+}
+
+.route-gpx {
+  margin-top: 18px;
+}
+
+.faq-item {
+  border-top: 1px solid var(--border-color);
+  padding: 12px 0;
+}
+
+.faq-item:first-of-type {
+  border-top: none;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text-primary);
+  list-style-position: outside;
+}
+
+.faq-item p {
+  margin-top: 8px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .route-section,
+  .faq-section {
+    padding: 18px;
+  }
+  .route-figures {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  .route-section,
+  .faq-section {
+    display: none !important;
+  }
+}

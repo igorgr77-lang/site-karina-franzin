@@ -12,6 +12,9 @@
  */
 "use strict";
 
+const NUM = ["zero", "uma", "duas", "três", "quatro", "cinco", "seis", "sete", "oito", "nove", "dez"];
+const num = (n, um, varios) => `${NUM[n] || n} ${n === 1 ? um : varios}`;
+
 const fmt = (v, d = 1) => Number(v).toFixed(d).replace(".", ",");
 const fmtSigned = (v, d = 1) => (v >= 0 ? "+" : "") + fmt(v, d);
 const lenTxt = (m) => (m >= 950 ? `${fmt(m / 1000, 1)} km` : `${Math.round(m / 10) * 10}m`);
@@ -195,7 +198,6 @@ function escreverPagina(segs, ctx, nomeCurto) {
   const downs = segs.filter((s) => s.type === "downhill");
   const totalGain = segs.reduce((x, s) => x + s.gain, 0);
   const big = climbs.slice().sort((x, y) => y.gain - x.gain)[0];
-  const num = (n, um, varios) => `${n === 1 ? "uma" : n === 2 ? "duas" : n === 3 ? "três" : n} ${n === 1 ? um : varios}`;
   if (!big) {
     return {
       intro: `A ${nomeCurto} tem um percurso sem subidas fortes. O segredo é manter o esforço constante do início ao fim. Siga o ritmo de cada segmento abaixo:`,

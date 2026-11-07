@@ -93,7 +93,7 @@ function analyze(data) {
 }
 
 // ---------- valores de cada marcador do template ----------
-function buildValues(slug, dir, config, data, a) {
+function buildValues(slug, dir, config, data, a, imagens = {}) {
   const p = config.pagina || {};
   const race = a.race;
   const nome = p.nome || (config.metadata && config.metadata.name) || slug;
@@ -103,6 +103,11 @@ function buildValues(slug, dir, config, data, a) {
   const target = race.defaultTargetSeconds || Math.round((km * 300) / 60) * 60;
   const nSeg = a.segs.length;
   const city = (p.cidade || (data.metadata && data.metadata.city) || "").replace(" - ", " – ");
+  const cityShort = city.split(/ [–-] /)[0].trim();
+  const year = String(validDate(race.date) || "").slice(0, 4);
+  const comCidade = cityShort && !nome.toLowerCase().includes(cityShort.toLowerCase()) ? ` ${cityShort}` : "";
+  const nomeBusca = `${nome}${comCidade}${year ? ` ${year}` : ""}`;   // ex.: "Corrida Passo a Passo 10K Novo Horizonte 2026"
+  const temKmNoNome = /\b\d+\s?k(m)?\b/i.test(nome);
 
   // Metas rápidas: config ou paces de referência de 3:40 a 7:30/km, arredondados a 30s
   const presetSecs = Array.isArray(p.metasRapidas) && p.metasRapidas.length
@@ -147,13 +152,13 @@ function buildValues(slug, dir, config, data, a) {
   const v = {
     SLUG: slug,
     GA: race.gaCategory || slug.replace(/-/g, "_"),
-    SEO_TITULO: p.seoTitulo || `${nome}: estratégia e pace | Karina Franzin`,
-    SEO_DESCRICAO: p.seoDescricao || `Estratégia da ${nome} (${kmLabel} km): pace para cada subida e descida, parciais km a km e cola de pulso. Grátis, por Karina Franzin.`,
-    NOME_BREADCRUMB: race.title || `Estratégia ${nome}`,
+    SEO_TITULO: p.seoTitulo || `Percurso ${nomeBusca}${temKmNoNome ? "" : ` (${kmLabel} km)`}: mapa, altimetria e GPX`,
+    SEO_DESCRICAO: p.seoDescricao || `Veja o percurso da ${nome}${comCidade ? ` em${comCidade}` : ""}: mapa, altimetria, subidas e descidas km a km e GPX para o relógio. Com estratégia de pace grátis.`,
+    NOME_BREADCRUMB: `Percurso ${nomeBusca}`,
     NOME_APP: `Estratégia de Prova ${nome}`,
     SCHEMA_DESCRICAO: p.descricaoSchema || `Calculadora de pace por segmento de subida e descida e parciais km a km para a ${nome}${city ? `, em ${city}` : ""}.`,
-    OG_TITULO: p.ogTitulo || `${nome}: estratégia e pace`,
-    OG_DESCRICAO: p.ogDescricao || `Digite seu tempo alvo e receba o pace de cada subida e descida dos ${kmLabel} km, as parciais km a km e uma cola de pulso pronta.`,
+    OG_TITULO: p.ogTitulo || `Percurso ${nomeBusca}: mapa, altimetria e GPX`,
+    OG_DESCRICAO: p.ogDescricao || `Mapa, altimetria e as subidas e descidas dos ${kmLabel} km, com GPX para o relógio e estratégia de pace grátis.`,
     OG_IMAGEM: ogFile,
     OG_ALT: p.ogAlt || `Banner da ${nome}`,
     META_TEMPO: fmtDuration(target),
@@ -163,8 +168,8 @@ function buildValues(slug, dir, config, data, a) {
     PACE_META: fmtPace(target / km),
     N_SEG: String(nSeg),
     N_KM: String(Math.round(km)),
-    H1_NOME: nome,
-    SUBTITULO: p.subtitulo || `Digite o tempo em que deseja concluir a prova e receba sua estratégia tática dividida nos <strong>${nSeg} trechos de subida e descida</strong> do percurso, além das parciais quilômetro a quilômetro para o seu relógio GPS.`,
+    H1: `Percurso da ${nomeBusca}`,
+    SUBTITULO: p.subtitulo || `${p.subtituloPrefixo ? `${p.subtituloPrefixo} ` : ""}Veja o percurso completo com mapa, altimetria e os <strong>${nSeg} trechos de subida e descida</strong>. Digite seu tempo alvo e receba o pace de cada trecho, as parciais km a km e o GPX para o relógio.`,
     DIAG_STATUS: diagStatus,
     ALT_MIN_MAX: `${fmt(a.minEle)}m / ${fmt(a.maxEle)}m`,
     D_MAIS: `+${fmt(a.gain)} m`,
@@ -194,8 +199,12 @@ function buildValues(slug, dir, config, data, a) {
     CTA_TITULO: p.ctaTitulo || `Quer correr a ${nomeCurto} na sua melhor performance?`,
     WA_TEXTO: encodeURIComponent(`Olá, Karina! Vi a página de Estratégia da ${p.nomeWhatsapp || nome} e quero saber mais sobre a assessoria de corrida.`)
   };
-  // Campos de texto puro vão escapados; SUBTITULO, INTRO, RECOMENDACAO e METAS_RAPIDAS aceitam HTML
-  const html = new Set(["SUBTITULO", "INTRO", "RECOMENDACAO", "METAS_RAPIDAS", "WA_TEXTO", "OG_IMAGEM"]);
+  const extra = require("./estrategia-percurso.js").percursoHtml({ slug, nome, nomeCurto, nomeBusca, city, cityShort, year, km, kmLabel, gpxLimpo, faixa, analysis: a, data, imagens, date: validDate(race.date) });
+  v.SECAO_PERCURSO = extra.secao;
+  v.SECAO_FAQ = extra.faq;
+  v.FAQ_JSONLD = extra.jsonld;
+  // Campos de texto puro vão escapados; os de HTML pronto ficam como estão
+  const html = new Set(["SUBTITULO", "INTRO", "RECOMENDACAO", "METAS_RAPIDAS", "WA_TEXTO", "OG_IMAGEM", "SECAO_PERCURSO", "SECAO_FAQ", "FAQ_JSONLD"]);
   for (const k of Object.keys(v)) if (!html.has(k)) v[k] = esc(v[k]);
   return { values: v, nome, city, km, kmLabel, target };
 }
@@ -271,7 +280,7 @@ function renderCard(r) {
               <span><strong>${r.values.N_SEG}</strong> segmentos</span>
               <span><strong>${esc(tag)}</strong></span>
             </div>
-            <span class="hub-card-btn">Montar minha estratégia →</span>
+            <span class="hub-card-btn">Ver percurso e estratégia →</span>
           </div>
         </a>
 `;
@@ -296,7 +305,9 @@ async function buildEstrategia({ rootDir, compilePageComponents }) {
       const data = loadCourseData(dir);
       await ensureOgImage(dir);
       const analysis = analyze(data);
-      const built = buildValues(slug, dir, config, data, analysis);
+      const nomeImg = (config.pagina && config.pagina.nome) || (config.metadata && config.metadata.name) || slug;
+      const imagens = await require("./estrategia-imagens.js").ensureRouteImages(dir, data, rootDir, `${nomeImg} ${String(validDate(data.race.date) || "").slice(0, 4)}`.trim());
+      const built = buildValues(slug, dir, config, data, analysis, imagens);
       const html = compilePageComponents(fill(template, built.values), false);
       fs.writeFileSync(path.join(dir, "index.html"), html, "utf8");
       if (!validDate(data.race.date)) console.warn(`   ⚠️ ${slug}: preencha race.date (AAAA-MM-DD) no estrategia.config.json para a data aparecer no card e o modo pós-prova funcionar`);

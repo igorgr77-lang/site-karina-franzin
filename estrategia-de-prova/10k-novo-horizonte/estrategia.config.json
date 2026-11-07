@@ -5,18 +5,13 @@
     "nome": "Corrida Passo a Passo 10K",
     "nomeCurto": "Passo a Passo",
     "nomePulseira": "PASSO A PASSO 10K",
-    "seoTitulo": "Passo a Passo 10K Novo Horizonte: estratégia e pace | Karina Franzin",
-    "seoDescricao": "Estratégia da Corrida Passo a Passo 10K do Novorizontino, em Novo Horizonte: pace para cada subida e descida, parciais km a km e cola de pulso. Grátis.",
-    "ogTitulo": "Corrida Passo a Passo 10K Novo Horizonte: estratégia e pace",
-    "ogDescricao": "Digite seu tempo alvo e receba o pace de cada subida e descida dos 10 km, as parciais km a km e uma cola de pulso pronta.",
     "ogAlt": "Banner da Corrida Passo a Passo 10K do Novorizontino",
     "descricaoSchema": "Calculadora de pace por segmento de subida e descida e parciais km a km para a Corrida Passo a Passo 10K do Novorizontino, em Novo Horizonte - SP.",
-    "subtitulo": "Prova do Novorizontino em Novo Horizonte – SP. Digite o tempo em que deseja concluir a prova e receba sua estratégia tática dividida nos <strong>8 segmentos de subida e descida</strong> do percurso, além das parciais quilômetro a quilômetro para o seu relógio GPS.",
     "diagStatus": "Percurso Ondulado · Exigente",
     "destaques": [
       {
         "rotulo": "Maior Escalada",
-        "valor": "Km 3,9 a 6,0 (+47,5m)"
+        "valor": "Km 3,9 a 6,0 (+47,6m)"
       },
       {
         "rotulo": "Paredão Final",
@@ -46,6 +41,7 @@
       "distancia": "10K",
       "alt": "Banner da Corrida Passo a Passo 10K do Novorizontino",
       "tag": "Ondulado"
-    }
+    },
+    "subtituloPrefixo": "Prova do Novorizontino em Novo Horizonte – SP."
   }
 }
