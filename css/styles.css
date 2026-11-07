@@ -186,8 +186,11 @@
 
 /* ── Responsivo Navbar ── */
 @media (max-width: 1180px) {
+    /* Fica acima do painel do menu (z-index 1001) para o ☰/X continuar tocável com o menu aberto */
     .navbar-toggle {
         display: flex;
+        position: relative;
+        z-index: 1002;
     }
 
     .navbar-links {
