@@ -107,6 +107,24 @@ const REDIRECTS = {
   '/cao-minhada-2026/': '/eventos/cao-minhada-2026/',
 };
 
+// Redirecionamentos 301 por prefixo: a seção Estratégia de Prova mudou para /percursos/ (SEO:
+// as pessoas buscam "percurso da prova"). Vale para a página e para tudo dentro da pasta
+// (imagens, GPX), e mantém os parâmetros do link (ex.: ?utm_source=instagram).
+// A ordem importa: os caminhos mais específicos vêm primeiro.
+const PREFIX_REDIRECTS = [
+  ['/estrategia-de-prova/2-zrun-fernandopolis/', '/percursos/zrun-night-run-fernandopolis/'],
+  ['/estrategia-de-prova/10k-novo-horizonte/', '/percursos/corrida-passo-a-passo-novo-horizonte/'],
+  ['/estrategia-de-prova/', '/percursos/'],
+];
+
+function prefixRedirect(url) {
+  const path = url.pathname === '/estrategia-de-prova' ? '/estrategia-de-prova/' : url.pathname;
+  for (const [from, to] of PREFIX_REDIRECTS) {
+    if (path.startsWith(from)) return to + path.slice(from.length) + url.search + url.hash;
+  }
+  return null;
+}
+
 // Arquivos do repositório que não fazem parte do site.
 const BLOCKED_PATHS = [
   /^\/\.(htaccess|gitignore)$/i,
@@ -175,6 +193,11 @@ async function handle(request) {
 
   if (REDIRECTS[url.pathname]) {
     return redirect(REDIRECTS[url.pathname], url.origin);
+  }
+
+  const moved = prefixRedirect(url);
+  if (moved) {
+    return redirect(moved, url.origin);
   }
 
   if (BLOCKED_PATHS.some((re) => re.test(url.pathname))) {

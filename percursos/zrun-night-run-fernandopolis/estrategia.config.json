@@ -125,6 +125,25 @@
       "alt": "Banner da 2ª ZRun Night Run Fernandópolis",
       "tag": "Ondulado"
     },
-    "subtituloPrefixo": "2ª edição da corrida noturna de Fernandópolis – SP."
+    "subtituloPrefixo": "2ª edição da corrida noturna de Fernandópolis – SP.",
+    "ruasCorrecoes": {
+      "Estrada Fernandópolis-Estrêla D'Oeste": "Estrada Fernandópolis–Estrela d'Oeste"
+    }
+  },
+  "evento": {
+    "nomeOficial": "2ª Corrida ZRun Night Run – Fernandópolis-SP",
+    "inicio": "2026-11-07T18:00:00-03:00",
+    "horario": "18h00",
+    "local": "Universidade Brasil",
+    "cidade": "Fernandópolis",
+    "uf": "SP",
+    "modalidades": [
+      "Corrida 6 km",
+      "Caminhada 3 km"
+    ],
+    "percursoDestaPagina": "corrida de 6 km",
+    "organizador": "Lucas Porte de Paula, com apoio da assessoria Time Run",
+    "cronometragem": "Equilíbrio Esportes",
+    "siteOficial": "https://equilibrio.esp.br/2a-corrida-zrun-night-run-fernandopolis-sp/"
   }
 }

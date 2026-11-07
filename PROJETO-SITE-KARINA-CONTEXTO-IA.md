@@ -344,12 +344,12 @@ O gerenciamento de eventos segue o modelo de Geração de Site Estático (SSG). 
 
 ---
 
-## 🏁 ESTRATÉGIA DE PROVA (calculadoras de pace por corrida) — atualizado 07/11/2026
+## 🏁 PERCURSOS / ESTRATÉGIA DE PROVA (/percursos/) — atualizado 07/11/2026
 
 Ferramenta gratuita: o corredor escolhe a prova, digita o tempo alvo e recebe o pace de cada trecho de subida/descida, parciais km a km e cola de pulso.
 
 ```
-estrategia-de-prova/
+percursos/
 ├── index.template.html             ← Página raiz (os cards das corridas são gerados pelo build)
 ├── assets/
 │   ├── corrida.template.html       ← Template ÚNICO de todas as páginas de corrida ({{MARCADORES}})
@@ -367,8 +367,8 @@ estrategia-de-prova/
 
 ### Como criar uma corrida nova (3 passos)
 
-1. **Criar a pasta e colocar o GPX.** Ex.: `estrategia-de-prova/corrida-x-catanduva-2026/` (use nome-da-prova-cidade-ano; o nome da pasta vira o endereço).
-2. **Rodar o gerador:** `node scripts/gerar-course-data.js estrategia-de-prova/<pasta>`. Ele limpa o GPX, divide em trechos e cria o `estrategia.config.json` modelo. Preencha no mínimo `metadata.name`, `metadata.city`, `race.title`, `race.date` (AAAA-MM-DD) e `pagina.nome`. Opcional: nomes e dicas de cada trecho em `segmentos[]` (o `ateKm` de cada um já vem preenchido). Rode o gerador de novo para levar os textos dos trechos ao `course-data.js`.
+1. **Criar a pasta e colocar o GPX.** Ex.: `percursos/corrida-x-catanduva-2026/` (use nome-da-prova-cidade-ano; o nome da pasta vira o endereço).
+2. **Rodar o gerador:** `node scripts/gerar-course-data.js percursos/<pasta>`. Ele limpa o GPX, divide em trechos e cria o `estrategia.config.json` modelo. Preencha no mínimo `metadata.name`, `metadata.city`, `race.title`, `race.date` (AAAA-MM-DD) e `pagina.nome`. Opcional: nomes e dicas de cada trecho em `segmentos[]` (o `ateKm` de cada um já vem preenchido). Rode o gerador de novo para levar os textos dos trechos ao `course-data.js`.
 3. **Rodar o build:** `node build-blog.js`. Gera a página da corrida, o card na página raiz (em ordem de data), a lista para o Google, a prévia de link e o sitemap.
 
 **Textos automáticos (scripts/estrategia-textos.js):** sem preencher nada, cada trecho já sai com nome, selo, título, dica e frase de foco escritos a partir do percurso: posição na prova (largada, meio, final), inclinação média e rampa mais íngreme (janela de 150m), o que vem antes/depois (ex.: "Guarde perna: em seguida vem a maior subida"), maior subida ("o trecho que decide a prova"), última subida, descida íngreme (cuidado com o quadríceps), metade da prova e ponto mais alto. A introdução e a recomendação da página também. São um rascunho bom para a Karina revisar; qualquer texto do config substitui o automático. O gerador também diferencia **erro de clique** (vai-e-vem que segue para outro lado, removido) de **retorno real** da prova (o traçado volta pelo mesmo caminho, mantido).
@@ -394,6 +394,10 @@ Se quiser banner, coloque `banner.webp` (1731×909 ou 1200×630) e as versões `
 
 - **Corridas atuais:** `2-zrun-fernandopolis/` (6 km, gerada pelo script; a Karina venceu a 1ª edição) e `10k-novo-horizonte/` (Corrida Passo a Passo 10K, Novorizontino). A Passo a Passo tem `"dadosManuais": true`: o `course-data.js` dela foi feito à mão, então o gerador se recusa a rodar nela (o bloco `race` e os textos dos trechos ficam no próprio `course-data.js`).
 - **SEO "percurso" (as pessoas pesquisam "percurso da prova X", não "estratégia"):** o build gera título, H1 e descrição começando por "Percurso <prova> <cidade> <ano>", a seção **"Como é o percurso"** escrita no HTML (resumo + km a km, `scripts/estrategia-percurso.js`), as **perguntas frequentes** com JSON-LD `FAQPage` e as imagens `percurso-mapa.webp` (traçado sobre o OpenStreetMap) e `percurso-altimetria.webp` (`scripts/estrategia-imagens.js`, refeitas só quando o `course-data.js` muda; blocos do mapa em cache em `.cache/`). Para trocar algum texto, use `seoTitulo`, `seoDescricao`, `subtitulo` ou `subtituloPrefixo` no config.
+- **Endereços:** `/percursos/` (página raiz) e `/percursos/<prova-cidade>/` **sem ano** (ex.: `/percursos/zrun-night-run-fernandopolis/`), para a mesma página servir as próximas edições e acumular relevância no Google. Os endereços antigos `/estrategia-de-prova/...` redirecionam com **301 no Worker do Cloudflare** (`PREFIX_REDIRECTS` em `cloudflare-worker/src/index.js`, mantém `?utm_...` e `#âncora`) e, como segurança, pelas páginas em `estrategia-de-prova/` (script `percursos/assets/redirect.js`). Não apagar essas páginas antigas.
+- **Bloco `evento` no config** (dados oficiais da prova): `nomeOficial`, `inicio` (ISO com fuso, ex.: `2026-11-07T18:00:00-03:00`), `horario`, `local`/`localCurto`, `cidade`, `uf`, `modalidades` [], `percursoDestaPagina`, `organizador`, `cronometragem`, `siteOficial`, `inscricoes`. Vira o quadro "Informações da prova", perguntas ("Onde é a largada?", "Que horas é a largada?") e o JSON-LD `SportsEvent`.
+- **Nomes das ruas** (`scripts/estrategia-ruas.js`): o GPX é amostrado a cada 150 m e o Nominatim (OpenStreetMap) diz a rua de cada ponto; o resultado fica em `<corrida>/ruas.json` (no git, para não consultar de novo). Aparecem em "Por onde passa o percurso", em cada trecho do km a km e na pergunta "Por quais ruas passa?". Para corrigir grafia: `pagina.ruasCorrecoes` { "Nome do OSM": "Nome certo" }.
+- **Página raiz:** além dos cards, a seção "Percursos por cidade" (gerada pelo build).
 - **Modo pós-prova:** depois de `race.date`, a página da corrida mostra "Esta prova já aconteceu" com chamada para os planos, e o card da raiz vira "Prova realizada". Para testar antes: `?simular=pos-prova` no endereço.
 - **Cache:** a versão (`?v=`) dos arquivos é automática para o site todo (veja "Versão automática dos arquivos" no Workflow).
 - **Layout de todas as corridas:** edite `assets/corrida.template.html` e rode o build. Nada de valor fixo de prova no `app.js`: tudo vem de `COURSE_DATA.race` (distância oficial, tempos, mapa, textos de estratégia e compartilhamento).

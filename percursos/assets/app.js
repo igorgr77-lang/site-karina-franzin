@@ -1,6 +1,6 @@
 /**
  * Motor de Estratégia de Prova (GAP Pacing Engine + Visualizações)
- * Compartilhado por todas as corridas de /estrategia-de-prova/.
+ * Compartilhado por todas as corridas de /percursos/.
  * Tudo que é específico de cada prova vem de window.COURSE_DATA (course-data.js da pasta da corrida),
  * principalmente do bloco COURSE_DATA.race.
  */
@@ -1314,7 +1314,7 @@
       </div>
       <div class="post-race-actions">
         <a href="/planos/" class="btn-primary" data-gtag-event="click_planos" data-gtag-category="${cat}">Quero me preparar para a próxima prova</a>
-        <a href="/estrategia-de-prova/" class="btn-secondary" data-gtag-event="estrategia_ver_outras_provas" data-gtag-category="${cat}">Ver outras provas</a>
+        <a href="/percursos/" class="btn-secondary" data-gtag-event="estrategia_ver_outras_provas" data-gtag-category="${cat}">Ver outras provas</a>
       </div>
     `;
     main.insertBefore(box, main.firstChild);

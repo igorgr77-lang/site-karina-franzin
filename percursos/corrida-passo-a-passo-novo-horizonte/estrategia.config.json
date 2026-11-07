@@ -43,5 +43,25 @@
       "tag": "Ondulado"
     },
     "subtituloPrefixo": "Prova do Novorizontino em Novo Horizonte – SP."
+  },
+  "evento": {
+    "nomeOficial": "Corrida Passo a Passo 2026",
+    "inicio": "2026-11-08T06:30:00-03:00",
+    "horario": "6h30",
+    "local": "em frente ao Estádio Doutor Jorge Ismael de Biasi (Jorjão)",
+    "localCurto": "Estádio Jorge Ismael de Biasi (Jorjão)",
+    "cidade": "Novo Horizonte",
+    "uf": "SP",
+    "modalidades": [
+      "Corrida 10 km",
+      "Corrida 5 km",
+      "Caminhada 3 km",
+      "Corrida kids"
+    ],
+    "percursoDestaPagina": "corrida de 10 km",
+    "organizador": "Instituto Life e Grêmio Novorizontino",
+    "cronometragem": "Myrunning (organização técnica)",
+    "siteOficial": "https://www.gremionovorizontino.com.br/2026/10/20/corrida-passo-a-passo-divulga-percursos-e-valores-das-premiacoes-por-categoria/",
+    "inscricoes": "https://www.myrunning.com.br/Corridas/DetalheEvento?nomeEvento=CORRIDA-PASSO-A-PASSO-2026%20-%20ADULTOS"
   }
 }

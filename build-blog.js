@@ -551,11 +551,13 @@ async function build() {
             console.log('💾 Página do Plano Performance compilada com sucesso em: plano-performance/index.html');
         }
 
-        // 3.1.8 Estratégia de Prova (estrategia-de-prova/) - escura
+        // 3.1.8 Percursos / Estratégia de Prova (percursos/) - escura
         // Cada corrida é gerada a partir do estrategia.config.json + course-data.js da sua pasta,
-        // usando o template único estrategia-de-prova/assets/corrida.template.html.
+        // usando o template único percursos/assets/corrida.template.html.
+        // Os endereços antigos (/estrategia-de-prova/...) redirecionam: Worker do Cloudflare (301)
+        // e, como segurança, páginas de redirecionamento em estrategia-de-prova/.
         // A página raiz recebe os cards das corridas em ordem de data. Ver scripts/estrategia-build.js.
-        const estrategiaDir = path.join(__dirname, "estrategia-de-prova");
+        const estrategiaDir = path.join(__dirname, "percursos");
         await require("./scripts/estrategia-build.js").buildEstrategia({ rootDir: __dirname, compilePageComponents });
 
         // 3.2 Planos Combo (planos/*.html) - escura
@@ -690,7 +692,7 @@ async function build() {
         // 1.5 Estratégia de Prova: página raiz + cada corrida
         if (fs.existsSync(estrategiaDir) && fs.existsSync(path.join(estrategiaDir, "index.html"))) {
             sitemapXml += `    <url>
-        <loc>https://karinafranzin.com.br/estrategia-de-prova/</loc>
+        <loc>https://karinafranzin.com.br/percursos/</loc>
         <lastmod>${hoje}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -700,7 +702,7 @@ async function build() {
                 const itemPath = path.join(estrategiaDir, item);
                 if (fs.statSync(itemPath).isDirectory() && fs.existsSync(path.join(itemPath, "index.html"))) {
                     sitemapXml += `    <url>
-        <loc>https://karinafranzin.com.br/estrategia-de-prova/${item}/</loc>
+        <loc>https://karinafranzin.com.br/percursos/${item}/</loc>
         <lastmod>${hoje}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
@@ -747,7 +749,7 @@ Karina Franzin é treinadora de corrida e fisioterapeuta, campeã da Meia Marato
 - [Portal do Atleta KF](https://karinafranzin.com.br/portal-do-atleta/): Biblioteca de vídeos de técnica, ativação muscular e mobilidade para corredores
 - [Plano Performance](https://karinafranzin.com.br/plano-performance/): Treino de corrida personalizado da Karina Franzin + acompanhamento nutricional com o nutricionista Renan Rodrigues (plano trimestral)
 - [Eventos](https://karinafranzin.com.br/eventos/): Treinões e provas de corrida organizados ou apoiados pela Karina Franzin
-- [Percursos e Estratégia de Prova](https://karinafranzin.com.br/estrategia-de-prova/): Percurso das corridas da região (mapa, altimetria, subidas e descidas km a km e GPX) com calculadora gratuita de pace por trecho (ex: ZRun Night Run Fernandópolis, Corrida Passo a Passo 10K Novo Horizonte), com parciais km a km e cola de pulso
+- [Percursos e Estratégia de Prova](https://karinafranzin.com.br/percursos/): Percurso das corridas da região (mapa, altimetria, subidas e descidas km a km e GPX) com calculadora gratuita de pace por trecho (ex: ZRun Night Run Fernandópolis, Corrida Passo a Passo 10K Novo Horizonte), com parciais km a km e cola de pulso
 - [Cupons e Benefícios](https://karinafranzin.com.br/cupons/): Descontos exclusivos para alunos em parceiros locais de Votuporanga
 
 ## Blog

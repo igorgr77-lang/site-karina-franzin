@@ -15,7 +15,7 @@ Karina Franzin é treinadora de corrida e fisioterapeuta, campeã da Meia Marato
 - [Portal do Atleta KF](https://karinafranzin.com.br/portal-do-atleta/): Biblioteca de vídeos de técnica, ativação muscular e mobilidade para corredores
 - [Plano Performance](https://karinafranzin.com.br/plano-performance/): Treino de corrida personalizado da Karina Franzin + acompanhamento nutricional com o nutricionista Renan Rodrigues (plano trimestral)
 - [Eventos](https://karinafranzin.com.br/eventos/): Treinões e provas de corrida organizados ou apoiados pela Karina Franzin
-- [Percursos e Estratégia de Prova](https://karinafranzin.com.br/estrategia-de-prova/): Percurso das corridas da região (mapa, altimetria, subidas e descidas km a km e GPX) com calculadora gratuita de pace por trecho (ex: ZRun Night Run Fernandópolis, Corrida Passo a Passo 10K Novo Horizonte), com parciais km a km e cola de pulso
+- [Percursos e Estratégia de Prova](https://karinafranzin.com.br/percursos/): Percurso das corridas da região (mapa, altimetria, subidas e descidas km a km e GPX) com calculadora gratuita de pace por trecho (ex: ZRun Night Run Fernandópolis, Corrida Passo a Passo 10K Novo Horizonte), com parciais km a km e cola de pulso
 - [Cupons e Benefícios](https://karinafranzin.com.br/cupons/): Descontos exclusivos para alunos em parceiros locais de Votuporanga
 
 ## Blog

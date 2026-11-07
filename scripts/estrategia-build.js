@@ -1,7 +1,7 @@
 /**
  * Build da seção Estratégia de Prova (chamado pelo build-blog.js).
  *
- * Para cada pasta em estrategia-de-prova/<corrida>/ que tenha um estrategia.config.json com o
+ * Para cada pasta em percursos/<corrida>/ que tenha um estrategia.config.json com o
  * bloco "pagina", gera o index.html a partir do template único assets/corrida.template.html,
  * usando o config e o course-data.js da pasta. Também gera os cards da página raiz, a lista
  * de corridas para o Google (JSON-LD) e a imagem de prévia de link (banner-og.jpg).
@@ -93,7 +93,7 @@ function analyze(data) {
 }
 
 // ---------- valores de cada marcador do template ----------
-function buildValues(slug, dir, config, data, a, imagens = {}) {
+function buildValues(slug, dir, config, data, a, imagens = {}, ruas = []) {
   const p = config.pagina || {};
   const race = a.race;
   const nome = p.nome || (config.metadata && config.metadata.name) || slug;
@@ -138,7 +138,7 @@ function buildValues(slug, dir, config, data, a, imagens = {}) {
   const faixa = p.faixaRelogio || `${fmt(minFaixa)} e ${fmt(maxFaixa)}`;
 
   const gpxLimpo = fs.readdirSync(dir).find((f) => /_LIMPO\.gpx$/i.test(f)) || "";
-  const ogFile = fs.existsSync(path.join(dir, "banner-og.jpg")) ? `${SITE}/estrategia-de-prova/${slug}/banner-og.jpg` : `${SITE}/assets/img/karina-hero.jpg`;
+  const ogFile = fs.existsSync(path.join(dir, "banner-og.jpg")) ? `${SITE}/percursos/${slug}/banner-og.jpg` : `${SITE}/assets/img/karina-hero.jpg`;
 
   const sumGain = (list) => list.reduce((x, s) => x + s.gain, 0);
   const sumLoss = (list) => list.reduce((x, s) => x + s.loss, 0);
@@ -199,7 +199,7 @@ function buildValues(slug, dir, config, data, a, imagens = {}) {
     CTA_TITULO: p.ctaTitulo || `Quer correr a ${nomeCurto} na sua melhor performance?`,
     WA_TEXTO: encodeURIComponent(`Olá, Karina! Vi a página de Estratégia da ${p.nomeWhatsapp || nome} e quero saber mais sobre a assessoria de corrida.`)
   };
-  const extra = require("./estrategia-percurso.js").percursoHtml({ slug, nome, nomeCurto, nomeBusca, city, cityShort, year, km, kmLabel, gpxLimpo, faixa, analysis: a, data, imagens, date: validDate(race.date) });
+  const extra = require("./estrategia-percurso.js").percursoHtml({ slug, nome, nomeCurto, nomeBusca, city, cityShort, year, km, kmLabel, gpxLimpo, faixa, analysis: a, data, imagens, ruas, evento: config.evento, ogImagem: ogFile, date: validDate(race.date) });
   v.SECAO_PERCURSO = extra.secao;
   v.SECAO_FAQ = extra.faq;
   v.FAQ_JSONLD = extra.jsonld;
@@ -258,13 +258,13 @@ function renderCard(r) {
   }
   const has = (f) => fs.existsSync(path.join(r.dir, f));
   const img = has("banner.webp")
-    ? `<img src="/estrategia-de-prova/${r.slug}/${has("banner-1024w.webp") ? "banner-1024w.webp" : "banner.webp"}"
-                 srcset="${[has("banner-640w.webp") && `/estrategia-de-prova/${r.slug}/banner-640w.webp 640w`, has("banner-1024w.webp") && `/estrategia-de-prova/${r.slug}/banner-1024w.webp 1024w`, `/estrategia-de-prova/${r.slug}/banner.webp 1731w`].filter(Boolean).join(", ")}"
+    ? `<img src="/percursos/${r.slug}/${has("banner-1024w.webp") ? "banner-1024w.webp" : "banner.webp"}"
+                 srcset="${[has("banner-640w.webp") && `/percursos/${r.slug}/banner-640w.webp 640w`, has("banner-1024w.webp") && `/percursos/${r.slug}/banner-1024w.webp 1024w`, `/percursos/${r.slug}/banner.webp 1731w`].filter(Boolean).join(", ")}"
                  sizes="(max-width: 768px) 100vw, 380px"
                  width="1024" height="538" alt="${esc(p.alt || `Banner da ${r.nome}`)}" decoding="async">`
     : profileSvg(r.data, r.slug.replace(/[^a-z0-9]/gi, ""));
   const tag = p.tag || r.values.DIAG_STATUS.replace(/^Percurso /, "").split(" · ")[0];
-  return `        <a href="/estrategia-de-prova/${r.slug}/" class="hub-card" data-gtag-event="estrategia_abrir_corrida" data-gtag-category="${r.values.GA}">
+  return `        <a href="/percursos/${r.slug}/" class="hub-card" data-gtag-event="estrategia_abrir_corrida" data-gtag-category="${r.values.GA}">
           <div class="hub-card-profile">
             ${img}
           </div>
@@ -288,7 +288,7 @@ function renderCard(r) {
 
 // ---------- build ----------
 async function buildEstrategia({ rootDir, compilePageComponents }) {
-  const base = path.join(rootDir, "estrategia-de-prova");
+  const base = path.join(rootDir, "percursos");
   if (!fs.existsSync(base)) return;
   const templatePath = path.join(base, "assets", "corrida.template.html");
   const template = fs.existsSync(templatePath) ? fs.readFileSync(templatePath, "utf8") : null;
@@ -307,17 +307,21 @@ async function buildEstrategia({ rootDir, compilePageComponents }) {
       const analysis = analyze(data);
       const nomeImg = (config.pagina && config.pagina.nome) || (config.metadata && config.metadata.name) || slug;
       const imagens = await require("./estrategia-imagens.js").ensureRouteImages(dir, data, rootDir, `${nomeImg} ${String(validDate(data.race.date) || "").slice(0, 4)}`.trim());
-      const built = buildValues(slug, dir, config, data, analysis, imagens);
+      // nomes de rua do OpenStreetMap; config.pagina.ruasCorrecoes corrige grafias (ex.: "Estrêla" -> "Estrela")
+      const correcoes = (config.pagina && config.pagina.ruasCorrecoes) || {};
+      const ruas = (await require("./estrategia-ruas.js").ruasDoPercurso(dir, data).catch(() => []))
+        .map((r) => ({ ...r, rua: correcoes[r.rua] || r.rua }));
+      const built = buildValues(slug, dir, config, data, analysis, imagens, ruas);
       const html = compilePageComponents(fill(template, built.values), false);
       fs.writeFileSync(path.join(dir, "index.html"), html, "utf8");
       if (!validDate(data.race.date)) console.warn(`   ⚠️ ${slug}: preencha race.date (AAAA-MM-DD) no estrategia.config.json para a data aparecer no card e o modo pós-prova funcionar`);
       races.push({ slug, dir, config, data, analysis, ...built });
-      console.log(`   💾 Estratégia de prova gerada pelo config: estrategia-de-prova/${slug}/index.html`);
+      console.log(`   💾 Estratégia de prova gerada pelo config: percursos/${slug}/index.html`);
     } else if (fs.existsSync(path.join(dir, "index.template.html"))) {
       // jeito antigo: template próprio da pasta
       const html = compilePageComponents(fs.readFileSync(path.join(dir, "index.template.html"), "utf8"), false);
       fs.writeFileSync(path.join(dir, "index.html"), html, "utf8");
-      console.log(`   💾 Estratégia de prova compilada (template próprio): estrategia-de-prova/${slug}/index.html`);
+      console.log(`   💾 Estratégia de prova compilada (template próprio): percursos/${slug}/index.html`);
     }
   }
 
@@ -327,10 +331,27 @@ async function buildEstrategia({ rootDir, compilePageComponents }) {
     races.sort((x, y) => String(validDate(x.data.race.date) || "9999").localeCompare(String(validDate(y.data.race.date) || "9999")));
     let hub = fs.readFileSync(hubTemplatePath, "utf8");
     hub = hub.replace("<!-- ESTRATEGIA_CARDS -->", races.map(renderCard).join("\n").trimEnd());
+    // Percursos agrupados por cidade (ajuda nas buscas "percurso corrida <cidade>")
+    const porCidade = {};
+    races.forEach((r) => { const k = r.city || "Outras cidades"; (porCidade[k] = porCidade[k] || []).push(r); });
+    const cidadesHtml = Object.keys(porCidade).sort((x, y) => x.localeCompare(y, "pt-BR")).map((cidade) => `      <div class="hub-city">
+        <h3>Percursos de corrida em ${esc(cidade)}</h3>
+        <ul>
+${porCidade[cidade].map((r) => {
+          const d = validDate(r.data.race.date);
+          const quando = d ? ` · ${d.slice(8, 10)}/${d.slice(5, 7)}/${d.slice(0, 4)}` : "";
+          return `          <li><a href="/percursos/${r.slug}/">Percurso da ${esc(r.nome)}</a> <span>${esc(r.kmLabel)} km${quando}</span></li>`;
+        }).join("\n")}
+        </ul>
+      </div>`).join("\n");
+    hub = hub.replace("<!-- ESTRATEGIA_CIDADES -->", races.length ? `    <section class="hub-cities" aria-labelledby="hubCidadesTitulo">
+      <h2 id="hubCidadesTitulo">Percursos por cidade</h2>
+${cidadesHtml}
+    </section>` : "");
     hub = hub.replace("<!-- ESTRATEGIA_ITEMLIST -->", races.map((r, i) =>
-      `{ "@type": "ListItem", "position": ${i + 1}, "name": "${esc(r.values.NOME_BREADCRUMB)}", "url": "${SITE}/estrategia-de-prova/${r.slug}/" }`).join(",\n      "));
+      `{ "@type": "ListItem", "position": ${i + 1}, "name": "${esc(r.values.NOME_BREADCRUMB)}", "url": "${SITE}/percursos/${r.slug}/" }`).join(",\n      "));
     fs.writeFileSync(path.join(base, "index.html"), compilePageComponents(hub, false), "utf8");
-    console.log(`💾 Página raiz da Estratégia de Prova gerada com ${races.length} corrida(s): estrategia-de-prova/index.html`);
+    console.log(`💾 Página raiz da Estratégia de Prova gerada com ${races.length} corrida(s): percursos/index.html`);
   }
 }
 

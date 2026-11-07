@@ -18,6 +18,9 @@ const num = (n, um, varios) => `${NUM[n] || n} ${n === 1 ? um : varios}`;
 
 function percursoHtml(o) {
   const { slug, nome, nomeCurto, nomeBusca, city, year, km, kmLabel, gpxLimpo, faixa, analysis: a, data, imagens, date } = o;
+  const ev = o.evento || {};
+  const ruas = o.ruas || [];
+  const localLargada = ev.localCurto || ev.local || "";
   const t = data.cleanTrack;
   const climbs = a.climbs;
   const downs = a.downs;
@@ -48,26 +51,50 @@ function percursoHtml(o) {
     const desc = s.type === "rolling"
       ? `sobe ${fmt(s.gain)} m e desce ${fmt(s.loss)} m em ${comp}`
       : `${tipoTxt[s.type]} de ${fmt(e1)} m para ${fmt(e2)} m em ${comp} (média de ${fmt(media)}%)`;
-    return `          <li><strong>Km ${fmt(s.kmIni)} a ${fmt(s.kmFim)} · ${esc(s.name)}</strong>: ${desc}.</li>`;
+    const ruasTrecho = [...new Set(ruas.filter((r) => r.kmFim >= s.kmIni - 0.05 && r.kmIni <= s.kmFim + 0.05).map((r) => r.rua))];
+    const pela = ruasTrecho.length ? `, pela ${ruasTrecho.slice(0, 3).join(", ").replace(/, ([^,]*)$/, " e $1")}` : "";
+    return `          <li><strong>Km ${fmt(s.kmIni)} a ${fmt(s.kmFim)} · ${esc(s.name)}</strong>: ${desc}${esc(pela)}.</li>`;
   }).join("\n");
 
   const altMapa = `Mapa do percurso da ${nomeBusca}, com largada, chegada e marcas de km`;
   const altAlt = `Altimetria do percurso da ${nomeBusca}: subidas e descidas km a km`;
   const figuras = [
     imagens.mapa && `        <figure class="route-figure">
-          <img src="/estrategia-de-prova/${slug}/percurso-mapa.webp?v=auto" width="1200" height="800" loading="lazy" decoding="async" alt="${esc(altMapa)}">
+          <img src="/percursos/${slug}/percurso-mapa.webp?v=auto" width="1200" height="800" loading="lazy" decoding="async" alt="${esc(altMapa)}">
           <figcaption>Mapa do percurso da ${esc(nome)}. Cores: verde = descida, laranja = subida moderada, vermelho = subida forte. Mapa © colaboradores do OpenStreetMap.</figcaption>
         </figure>`,
     imagens.altimetria && `        <figure class="route-figure">
-          <img src="/estrategia-de-prova/${slug}/percurso-altimetria.webp?v=auto" width="1200" height="440" loading="lazy" decoding="async" alt="${esc(altAlt)}">
+          <img src="/percursos/${slug}/percurso-altimetria.webp?v=auto" width="1200" height="440" loading="lazy" decoding="async" alt="${esc(altAlt)}">
           <figcaption>Altimetria do percurso da ${esc(nome)}, dividida nos ${a.segs.length} trechos da estratégia.</figcaption>
         </figure>`
   ].filter(Boolean).join("\n");
+
+  const [, hh = "", mm = ""] = (ev.inicio || "").match(/T(\d{2}):(\d{2})/) || [];
+  const horario = ev.horario || (hh ? `${hh}h${mm}` : "");
+  const linhas = [
+    dataTxt && ["Data", `${dataTxt}${horario ? `, largada às ${horario}` : ""}`],
+    localLargada && ["Largada e chegada", `${ev.local || localLargada}${ev.cidade ? `, ${ev.cidade}${ev.uf ? `/${ev.uf}` : ""}` : ""}`],
+    ev.modalidades && ev.modalidades.length && ["Modalidades", `${ev.modalidades.join(" · ")}${ev.percursoDestaPagina && ev.modalidades.length > 1 ? ` (esta página mostra o percurso da ${ev.percursoDestaPagina})` : ""}`],
+    ev.organizador && ["Organização", ev.organizador],
+    ev.cronometragem && ["Cronometragem / inscrições", ev.cronometragem]
+  ].filter(Boolean);
+  const links = [
+    ev.siteOficial && `<a href="${esc(ev.siteOficial)}" target="_blank" rel="noopener noreferrer">Site oficial da prova</a>`,
+    ev.inscricoes && `<a href="${esc(ev.inscricoes)}" target="_blank" rel="noopener noreferrer">Página de inscrição</a>`
+  ].filter(Boolean);
+  const infoHtml = linhas.length ? `      <dl class="race-info">
+${linhas.map(([k, v2]) => `        <div><dt>${esc(k)}</dt><dd>${esc(v2)}</dd></div>`).join("\n")}
+      </dl>${links.length ? `\n      <p class="race-links">${links.join(" · ")}</p>` : ""}` : "";
+  const ruasLista = ruas.map((r) => `${r.rua} (km ${fmt(r.kmIni)}${r.kmFim - r.kmIni >= 0.1 ? `–${fmt(r.kmFim)}` : ""})`);
+  const ruasHtml = ruas.length ? `      <h3>Por onde passa o percurso</h3>
+      <p class="route-streets">${localLargada ? `Largada: <strong>${esc(localLargada)}</strong>. ` : ""}${esc(ruasLista.join(" → "))}.${localLargada && loop ? ` Chegada no mesmo local da largada.` : ""} <span class="route-streets-note">Ruas aproximadas, identificadas pelo GPX no mapa do OpenStreetMap.</span></p>` : "";
 
   const secao = `    <!-- PERCURSO (texto escrito no HTML para o Google; gerado pelo build a partir do GPX) -->
     <section id="percurso" class="route-section" aria-labelledby="percursoTitulo">
       <h2 id="percursoTitulo">Como é o percurso da ${esc(nomeBusca)}</h2>
       <p class="route-summary">${resumo}</p>
+${infoHtml}
+${ruasHtml}
       <div class="route-figures">
 ${figuras}
       </div>
@@ -81,7 +108,10 @@ ${passos}
   // ---------- perguntas frequentes ----------
   const faqs = [
     [`Qual é o percurso da ${nomeBusca}?`, resumo],
-    [`Qual é a distância da ${nomeCurto}?`, `A prova tem ${kmLabel} km oficiais.${difere ? ` Pelo traçado do GPX, o percurso mede ${fmt(limpoKm, 2)} km, então é normal o relógio marcar entre ${faixa} km na chegada.` : ""}`],
+    [`Qual é a distância da ${nomeCurto}?`, `${ev.modalidades && ev.modalidades.length > 1 ? `A prova tem ${ev.modalidades.join(", ").replace(/, ([^,]*)$/, " e $1").toLowerCase()}. Esta página mostra o percurso da ${ev.percursoDestaPagina || `corrida de ${kmLabel} km`}.` : `A prova tem ${kmLabel} km oficiais.`}${difere ? ` Pelo traçado do GPX, o percurso mede ${fmt(limpoKm, 2)} km, então é normal o relógio marcar entre ${faixa} km na chegada.` : ""}`],
+    localLargada && [`Onde é a largada da ${nomeCurto}?`, `A largada e a chegada são ${/^em /.test(ev.local || "") ? "" : "na "}${ev.local || localLargada}${ev.cidade ? `, em ${ev.cidade}${ev.uf ? `/${ev.uf}` : ""}` : ""}.`],
+    horario && [`Que horas é a largada da ${nomeCurto}?`, `A largada é às ${horario}${dataTxt ? ` do dia ${dataTxt}` : ""}.`],
+    ruas.length && [`Por quais ruas passa o percurso da ${nomeCurto}?`, `${localLargada ? `Saindo ${/^em /.test(ev.local || "") ? "" : "da "}${ev.local || localLargada}, o` : "O"} percurso passa por: ${ruas.map((r) => r.rua).filter((r, i, arr) => arr.indexOf(r) === i).join(", ")}.`],
     [`O percurso da ${nomeCurto} tem subida?`, climbs.length
       ? `Sim. São ${num(climbs.length, "subida", "subidas")}, e a maior fica entre o Km ${fmt(big.kmIni)} e o Km ${fmt(big.kmFim)}, com +${fmt(big.gain)} m (${Math.round((big.gain / a.gain) * 100)}% de todo o desnível da prova). O ganho acumulado da prova é de +${fmt(a.gain)} m.`
       : `Quase nada: é um percurso praticamente plano, com +${fmt(a.gain)} m de ganho acumulado.`],
@@ -109,7 +139,26 @@ ${faqs.map(([q, r]) => `      <details class="faq-item">
   }, null, 2).replace(/\n/g, "\n  ")}
   </script>`;
 
-  return { secao, faq, jsonld };
+  const evento = (ev.inicio || date) && localLargada ? `
+
+  <!-- Evento esportivo (dados da organização da prova) -->
+  <script type="application/ld+json">
+  ${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "SportsEvent",
+    name: ev.nomeOficial || nome,
+    sport: "Corrida de rua",
+    startDate: ev.inicio || date,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: { "@type": "Place", name: localLargada, address: { "@type": "PostalAddress", addressLocality: ev.cidade || o.cityShort || "", addressRegion: ev.uf || "", addressCountry: "BR" } },
+    ...(ev.organizador ? { organizer: { "@type": "Organization", name: ev.organizador, ...(ev.siteOficial ? { url: ev.siteOficial } : {}) } } : {}),
+    ...(ev.siteOficial ? { url: ev.siteOficial } : {}),
+    image: o.ogImagem,
+    description: strip(resumo)
+  }, null, 2).replace(/\n/g, "\n  ")}
+  </script>` : "";
+  return { secao, faq, jsonld: jsonld + evento };
 }
 
 module.exports = { percursoHtml };

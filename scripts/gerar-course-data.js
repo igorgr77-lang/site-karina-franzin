@@ -3,7 +3,7 @@
  * Gera o course-data.js de uma corrida da Estratégia de Prova a partir do GPX.
  *
  * Uso:
- *   node scripts/gerar-course-data.js estrategia-de-prova/<pasta-da-corrida>
+ *   node scripts/gerar-course-data.js percursos/<pasta-da-corrida>
  *
  * A pasta precisa ter:
  *   - o arquivo .gpx da prova
@@ -105,7 +105,7 @@ function gainLoss(track) {
 // ---------- Programa ----------
 const dirArg = process.argv[2];
 if (!dirArg) {
-  console.error("Uso: node scripts/gerar-course-data.js estrategia-de-prova/<pasta-da-corrida>");
+  console.error("Uso: node scripts/gerar-course-data.js percursos/<pasta-da-corrida>");
   process.exit(1);
 }
 const dir = path.resolve(dirArg);
