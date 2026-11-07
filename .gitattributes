@@ -1,0 +1,19 @@
+# Quebra de linha padronizada em LF para todos os arquivos de texto, em qualquer computador.
+# Sem isso, o Git do Windows (core.autocrlf=true) entrega os arquivos com CRLF, o build
+# gera páginas com LF e dezenas de arquivos aparecem como "modificados" sem mudança real.
+* text=auto eol=lf
+
+# Binários: nunca converter
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ico binary
+*.avif binary
+*.pdf binary
+*.p12 binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.mp4 binary

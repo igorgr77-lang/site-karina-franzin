@@ -46,6 +46,7 @@ scratch/
 # Pastas ocultas e caches de ferramentas/agentes
 .*
 !/.gitignore
+!/.gitattributes
 !/.htaccess
 !/CNAME
 !/site.webmanifest
