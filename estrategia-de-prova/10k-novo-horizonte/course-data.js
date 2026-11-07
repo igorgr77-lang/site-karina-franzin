@@ -2,6 +2,8 @@
 window.COURSE_DATA = {
   // Configuração da página (lida pelo motor compartilhado /estrategia-de-prova/assets/app.js)
   race: {
+    date: "2026-11-08", // dia da prova: depois dele a página entra no modo pós-prova
+    gaCategory: "passo_a_passo_10k",
     title: "Estratégia Corrida Passo a Passo 10K",
     officialDistanceM: 10000,
     halfwayDistM: 5000,

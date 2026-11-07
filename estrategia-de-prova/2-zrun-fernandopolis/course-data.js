@@ -2,6 +2,8 @@
 // mude o estrategia.config.json desta pasta e rode o script de novo.
 window.COURSE_DATA = {
   race: {
+    "date": "2026-11-07",
+    "gaCategory": "zrun_fernandopolis",
     "title": "Estratégia ZRun Night Run Fernandópolis",
     "officialDistanceM": 6000,
     "halfwayDistM": 3000,

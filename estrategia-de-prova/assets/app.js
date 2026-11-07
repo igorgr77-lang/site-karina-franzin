@@ -1278,11 +1278,49 @@
   /**
    * Permite testar o upload de outro arquivo .GPX
    */
+
+  /**
+   * Data de hoje no fuso do visitante, no formato AAAA-MM-DD (para comparar com RACE.date)
+   * Para testar o modo pós-prova antes da data: adicione ?simular=pos-prova ao endereço.
+   */
+  function todayIso() {
+    if (new URLSearchParams(location.search).get("simular") === "pos-prova") return "9999-12-31";
+    const d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  }
+
+  /**
+   * Depois do dia da prova (RACE.date), mostra no topo que ela já aconteceu e convida para a próxima.
+   * No próprio dia da prova a página continua normal.
+   */
+  function renderPostRaceNotice() {
+    if (!RACE.date || todayIso() <= RACE.date) return;
+    const main = document.querySelector(".main-content");
+    if (!main || document.getElementById("postRaceNotice")) return;
+    const [y, m, d] = RACE.date.split("-");
+    const cat = (RACE.gaCategory || "estrategia") + "_pos_prova";
+    const box = document.createElement("section");
+    box.id = "postRaceNotice";
+    box.className = "post-race-notice";
+    box.innerHTML = `
+      <div class="post-race-text">
+        <strong>Esta prova já aconteceu em ${d}/${m}/${y}.</strong>
+        <p>A estratégia continua aqui para consulta: compare com o tempo que você fez e veja onde dá para melhorar na próxima.</p>
+      </div>
+      <div class="post-race-actions">
+        <a href="/planos/" class="btn-primary" data-gtag-event="click_planos" data-gtag-category="${cat}">Quero me preparar para a próxima prova</a>
+        <a href="/estrategia-de-prova/" class="btn-secondary" data-gtag-event="estrategia_ver_outras_provas" data-gtag-category="${cat}">Ver outras provas</a>
+      </div>
+    `;
+    main.insertBefore(box, main.firstChild);
+  }
+
   /**
    * Inicialização de Eventos
    */
   function init() {
     // O menu da navbar é controlado pelo /js/navbar.js do site.
+    renderPostRaceNotice();
     initMap();
     renderDiagnosisAnomalies();
     setupChartInteractions();
