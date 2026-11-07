@@ -241,22 +241,24 @@ async function build() {
         // Versão automática dos arquivos (cache): todo href/src local com "?v=" recebe um código
         // calculado pelo CONTEÚDO do arquivo. Mudou o arquivo, muda o código e o navegador baixa de
         // novo; não mudou, o código fica igual e o cache continua valendo. Não precisa subir à mão.
-        // Caminhos relativos (../css/styles.css) são resolvidos a partir da raiz do site.
+        // Caminhos relativos (../css/styles.css) são resolvidos a partir da pasta da página quando ela
+        // é conhecida (páginas estáticas, ex.: admin/) e, senão, a partir da raiz do site.
         const versionCache = new Map();
-        function fileVersion(assetPath) {
-            const clean = assetPath.replace(/^(\.\.?\/)+/, '').replace(/^\//, '');
-            if (versionCache.has(clean)) return versionCache.get(clean);
-            const full = path.join(__dirname, clean);
-            const v = fs.existsSync(full) && fs.statSync(full).isFile()
-                ? require('crypto').createHash('md5').update(fs.readFileSync(full)).digest('hex').slice(0, 8)
-                : null;
-            versionCache.set(clean, v);
+        function fileVersion(assetPath, baseDir) {
+            const candidates = [];
+            if (baseDir && !assetPath.startsWith('/')) candidates.push(path.resolve(baseDir, assetPath));
+            candidates.push(path.join(__dirname, assetPath.replace(/^(\.\.?\/)+/, '').replace(/^\//, '')));
+            const full = candidates.find((c) => fs.existsSync(c) && fs.statSync(c).isFile());
+            if (!full) return null;
+            if (versionCache.has(full)) return versionCache.get(full);
+            const v = require('crypto').createHash('md5').update(fs.readFileSync(full)).digest('hex').slice(0, 8);
+            versionCache.set(full, v);
             return v;
         }
-        function autoVersion(html) {
+        function autoVersion(html, baseDir) {
             return html.replace(/((?:href|src)=["'])([^"'?#]+)\?v=[^"'#]*(["'#])/g, (m, attr, assetPath, end) => {
                 if (/^(https?:)?\/\//i.test(assetPath)) return m; // arquivos de outros sites ficam como estão
-                const v = fileVersion(assetPath);
+                const v = fileVersion(assetPath, baseDir);
                 if (!v) {
                     console.warn(`   ⚠️ Versão automática: arquivo não encontrado para "${assetPath}" (mantido como está)`);
                     return m;
@@ -594,7 +596,30 @@ async function build() {
                 }
             }
         }
-        
+
+        // 5. Versão automática nas páginas que não saem de templates (editadas direto no arquivo).
+        // O build atualiza o ?v= no próprio arquivo, com o código do conteúdo de cada CSS/JS.
+        const STATIC_PAGES = [
+            'admin/index.html',
+            'admin/login.html',
+            'admin/editor.html',
+            'portifolio/index.html',
+            'links/index.html',
+            'estrategia-de-prova/index.html',
+            'estrategia-de-prova/2-zrun-fernandopolis/index.html',
+            'estrategia-de-prova/10k-novo-horizonte/index.html'
+        ];
+        for (const rel of STATIC_PAGES) {
+            const file = path.join(__dirname, rel);
+            if (!fs.existsSync(file)) continue;
+            const before = fs.readFileSync(file, 'utf8');
+            const after = autoVersion(before, path.dirname(file));
+            if (after !== before) {
+                fs.writeFileSync(file, after, 'utf8');
+                console.log(`   🔖 Versão dos arquivos atualizada: ${rel}`);
+            }
+        }
+
         // ============================================
         // GERAR SITEMAP.XML
         // ============================================

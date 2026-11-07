@@ -398,6 +398,7 @@ Se quiser banner, coloque `banner.webp` (1731×909 ou 1200×630) e as versões `
 - **Bloco `evento` no config** (dados oficiais da prova): `nomeOficial`, `inicio` (ISO com fuso, ex.: `2026-11-07T18:00:00-03:00`), `horario`, `local`/`localCurto`, `cidade`, `uf`, `modalidades` [], `percursoDestaPagina`, `organizador`, `cronometragem`, `siteOficial`, `inscricoes`. Vira o quadro "Informações da prova", perguntas ("Onde é a largada?", "Que horas é a largada?") e o JSON-LD `SportsEvent`.
 - **Nomes das ruas** (`scripts/estrategia-ruas.js`): o GPX é amostrado a cada 150 m e o Nominatim (OpenStreetMap) diz a rua de cada ponto; o resultado fica em `<corrida>/ruas.json` (no git, para não consultar de novo). Aparecem em "Por onde passa o percurso", em cada trecho do km a km e na pergunta "Por quais ruas passa?". Para corrigir grafia: `pagina.ruasCorrecoes` { "Nome do OSM": "Nome certo" }.
 - **Página raiz:** além dos cards, a seção "Percursos por cidade" (gerada pelo build).
+- **Depois da prova (texto do HTML):** quando o build roda depois de `race.date` (fuso de Brasília), as perguntas passam para o passado ("Quando foi…", "Onde foi a largada…"), sai a pergunta do horário, o quadro ganha "prova realizada" e o JSON-LD `SportsEvent` deixa de ser publicado. Por isso **rode o build e publique no dia seguinte a cada prova**. Para testar: `ESTRATEGIA_HOJE=AAAA-MM-DD node build-blog.js`.
 - **Modo pós-prova:** depois de `race.date`, a página da corrida mostra "Esta prova já aconteceu" com chamada para os planos, e o card da raiz vira "Prova realizada". Para testar antes: `?simular=pos-prova` no endereço.
 - **Cache:** a versão (`?v=`) dos arquivos é automática para o site todo (veja "Versão automática dos arquivos" no Workflow).
 - **Layout de todas as corridas:** edite `assets/corrida.template.html` e rode o build. Nada de valor fixo de prova no `app.js`: tudo vem de `COURSE_DATA.race` (distância oficial, tempos, mapa, textos de estratégia e compartilhamento).
@@ -434,6 +435,23 @@ python -m http.server 8080
 ### Versão automática dos arquivos (cache)
 
 Nos templates, todo arquivo do site é referenciado com `?v=auto` (ex.: `<link href="/css/styles.css?v=auto">`). No build, o `compilePageComponents` troca o `auto` por um código calculado pelo **conteúdo** do arquivo (ex.: `?v=1a462a4d`). Mudou o arquivo, muda o código e o navegador baixa a versão nova; não mudou, o código fica igual e o cache continua valendo. **Nunca é preciso subir versão à mão.** Ao adicionar um CSS/JS novo numa página, basta colocar `?v=auto` no fim do caminho.
+
+### Páginas fora dos templates (admin, portfólio, /links/)
+
+O build também atualiza o `?v=` dos CSS/JS nas páginas editadas direto no arquivo (`STATIC_PAGES` no `build-blog.js`: admin, portfólio, `/links/` e as páginas antigas de `estrategia-de-prova/`). Ao adicionar um arquivo novo nelas, use `?v=auto` e rode o build: o próprio arquivo passa a ter o código.
+
+### Verificação automática (rodar antes de publicar)
+
+```bash
+node build-blog.js
+npm test
+```
+
+O `npm test` (`scripts/test-estrategia.js`) abre cada página de corrida num navegador simulado (jsdom) e confere ~4.300 itens: em todas as combinações de distância × estratégia × sensibilidade × meta, os tempos somam a meta, pace × distância bate, não há buracos entre trechos, os acumulados crescem e não há "NaN"; também confere títulos com "Percurso", JSON-LD válido, arquivos citados existentes, erros de JavaScript e os redirecionamentos antigos. Se falhar, não publique.
+
+### Cloudflare Worker
+
+Fica em `cloudflare-worker/` (Wrangler fixo no `package.json`, versão 4.158). Para publicar: `cd cloudflare-worker && npm install && npx wrangler deploy`. Publique o site (push na main) **antes** do Worker quando os dois mudarem juntos. Para testar sem publicar: `npx wrangler deploy --dry-run`.
 
 ### Deploy
 

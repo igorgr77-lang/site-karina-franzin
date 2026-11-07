@@ -5,7 +5,8 @@
   "main": "build-blog.js",
   "scripts": {
     "dev": "python -m http.server 8080",
-    "build": "node build-blog.js"
+    "build": "node build-blog.js",
+    "test": "node scripts/test-estrategia.js"
   },
   "keywords": [
     "corrida",
@@ -17,5 +18,8 @@
   "license": "ISC",
   "dependencies": {
     "sharp": "^0.33.2"
+  },
+  "devDependencies": {
+    "jsdom": "^24.1.3"
   }
 }
