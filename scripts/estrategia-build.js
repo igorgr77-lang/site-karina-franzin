@@ -18,7 +18,6 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
-const crypto = require("crypto");
 
 const SITE = "https://karinafranzin.com.br";
 const WEEKDAYS = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
@@ -48,11 +47,6 @@ function presetLabel(sec) {
 // Data da prova no formato AAAA-MM-DD (o modelo do config vem com "AAAA-MM-DD" para preencher)
 function validDate(d) {
   return /^\d{4}-\d{2}-\d{2}$/.test(d || "") ? d : null;
-}
-function hashFiles(files) {
-  const h = crypto.createHash("md5");
-  files.forEach((f) => { if (fs.existsSync(f)) h.update(fs.readFileSync(f)); });
-  return h.digest("hex").slice(0, 8);
 }
 
 // ---------- leitura dos dados da corrida ----------
@@ -289,7 +283,7 @@ async function buildEstrategia({ rootDir, compilePageComponents }) {
   if (!fs.existsSync(base)) return;
   const templatePath = path.join(base, "assets", "corrida.template.html");
   const template = fs.existsSync(templatePath) ? fs.readFileSync(templatePath, "utf8") : null;
-  const assetsHash = hashFiles([path.join(base, "assets", "app.js"), path.join(base, "assets", "styles.css")]);
+  // A versão (?v=) dos arquivos é preenchida pelo compilePageComponents do build-blog.js, no site todo.
   const races = [];
 
   for (const slug of fs.readdirSync(base).sort()) {
@@ -303,7 +297,6 @@ async function buildEstrategia({ rootDir, compilePageComponents }) {
       await ensureOgImage(dir);
       const analysis = analyze(data);
       const built = buildValues(slug, dir, config, data, analysis);
-      built.values.VERSAO = `${assetsHash}${hashFiles([path.join(dir, "course-data.js")]).slice(0, 4)}`;
       const html = compilePageComponents(fill(template, built.values), false);
       fs.writeFileSync(path.join(dir, "index.html"), html, "utf8");
       if (!validDate(data.race.date)) console.warn(`   ⚠️ ${slug}: preencha race.date (AAAA-MM-DD) no estrategia.config.json para a data aparecer no card e o modo pós-prova funcionar`);
@@ -325,8 +318,6 @@ async function buildEstrategia({ rootDir, compilePageComponents }) {
     hub = hub.replace("<!-- ESTRATEGIA_CARDS -->", races.map(renderCard).join("\n").trimEnd());
     hub = hub.replace("<!-- ESTRATEGIA_ITEMLIST -->", races.map((r, i) =>
       `{ "@type": "ListItem", "position": ${i + 1}, "name": "${esc(r.values.NOME_BREADCRUMB)}", "url": "${SITE}/estrategia-de-prova/${r.slug}/" }`).join(",\n      "));
-    hub = hub.replace(/\/estrategia-de-prova\/assets\/styles\.css\?v=[0-9a-z.]+/, `/estrategia-de-prova/assets/styles.css?v=${assetsHash}`);
-    hub = hub.replace(/\/estrategia-de-prova\/assets\/hub\.js\?v=[0-9a-z.]+/, `/estrategia-de-prova/assets/hub.js?v=${hashFiles([path.join(base, "assets", "hub.js")])}`);
     fs.writeFileSync(path.join(base, "index.html"), compilePageComponents(hub, false), "utf8");
     console.log(`💾 Página raiz da Estratégia de Prova gerada com ${races.length} corrida(s): estrategia-de-prova/index.html`);
   }

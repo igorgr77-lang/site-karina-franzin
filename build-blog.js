@@ -235,7 +235,34 @@ async function build() {
             const compiledNavbar = navbarHtml.replace('{{NAVBAR_CLASS}}', navbarClass);
             compiled = compiled.replace('<!-- NAVBAR_PLACEHOLDER -->', compiledNavbar);
             compiled = compiled.replace('<!-- FOOTER_PLACEHOLDER -->', footerHtml);
-            return compiled;
+            return autoVersion(compiled);
+        }
+
+        // Versão automática dos arquivos (cache): todo href/src local com "?v=" recebe um código
+        // calculado pelo CONTEÚDO do arquivo. Mudou o arquivo, muda o código e o navegador baixa de
+        // novo; não mudou, o código fica igual e o cache continua valendo. Não precisa subir à mão.
+        // Caminhos relativos (../css/styles.css) são resolvidos a partir da raiz do site.
+        const versionCache = new Map();
+        function fileVersion(assetPath) {
+            const clean = assetPath.replace(/^(\.\.?\/)+/, '').replace(/^\//, '');
+            if (versionCache.has(clean)) return versionCache.get(clean);
+            const full = path.join(__dirname, clean);
+            const v = fs.existsSync(full) && fs.statSync(full).isFile()
+                ? require('crypto').createHash('md5').update(fs.readFileSync(full)).digest('hex').slice(0, 8)
+                : null;
+            versionCache.set(clean, v);
+            return v;
+        }
+        function autoVersion(html) {
+            return html.replace(/((?:href|src)=["'])([^"'?#]+)\?v=[^"'#]*(["'#])/g, (m, attr, assetPath, end) => {
+                if (/^(https?:)?\/\//i.test(assetPath)) return m; // arquivos de outros sites ficam como estão
+                const v = fileVersion(assetPath);
+                if (!v) {
+                    console.warn(`   ⚠️ Versão automática: arquivo não encontrado para "${assetPath}" (mantido como está)`);
+                    return m;
+                }
+                return `${attr}${assetPath}?v=${v}${end}`;
+            });
         }
 
         console.log('\n🚀 Iniciando carregamento de artigos do Supabase...');

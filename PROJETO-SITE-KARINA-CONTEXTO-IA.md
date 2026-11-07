@@ -394,7 +394,7 @@ Se quiser banner, coloque `banner.webp` (1731×909 ou 1200×630) e as versões `
 
 - **Corridas atuais:** `2-zrun-fernandopolis/` (6 km, gerada pelo script; a Karina venceu a 1ª edição) e `10k-novo-horizonte/` (Corrida Passo a Passo 10K, Novorizontino). A Passo a Passo tem `"dadosManuais": true`: o `course-data.js` dela foi feito à mão, então o gerador se recusa a rodar nela (o bloco `race` e os textos dos trechos ficam no próprio `course-data.js`).
 - **Modo pós-prova:** depois de `race.date`, a página da corrida mostra "Esta prova já aconteceu" com chamada para os planos, e o card da raiz vira "Prova realizada". Para testar antes: `?simular=pos-prova` no endereço.
-- **Cache:** o build coloca um código (hash) do `app.js`/`styles.css`/`course-data.js` no `?v=` das páginas de corrida e da raiz. Não precisa mais subir versão à mão.
+- **Cache:** a versão (`?v=`) dos arquivos é automática para o site todo (veja "Versão automática dos arquivos" no Workflow).
 - **Layout de todas as corridas:** edite `assets/corrida.template.html` e rode o build. Nada de valor fixo de prova no `app.js`: tudo vem de `COURSE_DATA.race` (distância oficial, tempos, mapa, textos de estratégia e compartilhamento).
 - **GA4:** eventos com `event_category` = `race.gaCategory` (ex.: `zrun_fernandopolis`). WhatsApp é rastreado sozinho pelo `navbar.js`; não colocar `data-gtag-event` em links `wa.me` (duplica o evento).
 - **Leaflet** vem do cdnjs; mapa do OpenStreetMap com filtro escuro (o CARTO passou a exigir chave). O menu mobile é do `/js/navbar.js`.
@@ -425,6 +425,10 @@ cd site-karina-franzin
 python -m http.server 8080
 # Acesse: http://localhost:8080/
 ```
+
+### Versão automática dos arquivos (cache)
+
+Nos templates, todo arquivo do site é referenciado com `?v=auto` (ex.: `<link href="/css/styles.css?v=auto">`). No build, o `compilePageComponents` troca o `auto` por um código calculado pelo **conteúdo** do arquivo (ex.: `?v=1a462a4d`). Mudou o arquivo, muda o código e o navegador baixa a versão nova; não mudou, o código fica igual e o cache continua valendo. **Nunca é preciso subir versão à mão.** Ao adicionar um CSS/JS novo numa página, basta colocar `?v=auto` no fim do caminho.
 
 ### Deploy
 
