@@ -364,25 +364,25 @@
     <section id="tabsSection" class="tabs-section">
       <div class="tabs-header">
         <div class="tabs-nav" role="tablist">
-          <button type="button" class="tab-btn active" data-tab="tab-segments" role="tab" aria-selected="true">
+          <button type="button" class="tab-btn active" data-tab="tab-segments" data-gtag-event="estrategia_aba_segmentos" data-gtag-category="passo_a_passo_10k" role="tab" aria-selected="true">
             <span class="tab-label-full">Estratégia em 8 Segmentos (Subidas e Descidas)</span>
             <span class="tab-label-short">8 Segmentos</span>
           </button>
-          <button type="button" class="tab-btn" data-tab="tab-kms" role="tab" aria-selected="false">
+          <button type="button" class="tab-btn" data-tab="tab-kms" data-gtag-event="estrategia_aba_km_a_km" data-gtag-category="passo_a_passo_10k" role="tab" aria-selected="false">
             <span class="tab-label-full">Parciais Km a Km (Relógio GPS)</span>
             <span class="tab-label-short">Km a Km (GPS)</span>
           </button>
-          <button type="button" class="tab-btn" data-tab="tab-wristband" role="tab" aria-selected="false">
+          <button type="button" class="tab-btn" data-tab="tab-wristband" data-gtag-event="estrategia_aba_cola" data-gtag-category="passo_a_passo_10k" role="tab" aria-selected="false">
             <span class="tab-label-full">Cola de Pulso / Imprimir</span>
             <span class="tab-label-short">Cola / Print</span>
           </button>
-          <button type="button" class="tab-btn" data-tab="tab-diagnosis" role="tab" aria-selected="false">
+          <button type="button" class="tab-btn" data-tab="tab-diagnosis" data-gtag-event="estrategia_aba_relogio" data-gtag-category="passo_a_passo_10k" role="tab" aria-selected="false">
             <span class="tab-label-full">Percurso para o Relógio (GPX)</span>
             <span class="tab-label-short">Relógio / GPX</span>
           </button>
         </div>
         <div class="tabs-actions">
-          <button type="button" id="printStrategyBtn" class="btn-primary btn-sm">
+          <button type="button" id="printStrategyBtn" class="btn-primary btn-sm" data-gtag-event="estrategia_imprimir" data-gtag-category="passo_a_passo_10k">
             Imprimir / Salvar PDF
           </button>
         </div>
@@ -444,13 +444,13 @@
               Leve as passagens exatas dos <strong>8 segmentos de subida e descida</strong> ou dos <strong>10 quilômetros</strong> com você. Tire um print da tela no celular, compartilhe no WhatsApp ou imprima para colar no antebraço/relógio.
             </p>
             <div class="wristband-actions">
-              <button type="button" id="shareMobileBtn" class="btn-primary">
+              <button type="button" id="shareMobileBtn" class="btn-primary" data-gtag-event="estrategia_compartilhar" data-gtag-category="passo_a_passo_10k">
                 Compartilhar / Enviar no WhatsApp
               </button>
-              <button type="button" id="copySummaryTextBtn" class="btn-secondary">
+              <button type="button" id="copySummaryTextBtn" class="btn-secondary" data-gtag-event="estrategia_copiar_texto" data-gtag-category="passo_a_passo_10k">
                 Copiar Texto
               </button>
-              <button type="button" id="printWristbandOnlyBtn" class="btn-secondary">
+              <button type="button" id="printWristbandOnlyBtn" class="btn-secondary" data-gtag-event="estrategia_imprimir_pulseiras" data-gtag-category="passo_a_passo_10k">
                 Imprimir Pulseiras
               </button>
             </div>
@@ -510,7 +510,7 @@
               Baixe o traçado da prova já corrigido e importe no relógio. Assim você segue o percurso durante a corrida e vê no mapa do relógio onde começa cada subida.
             </p>
             <div class="diag-actions-row">
-              <a href="10K_NOVO_HORIZONTE_LIMPO.gpx" download="10K_NOVO_HORIZONTE_LIMPO.gpx" class="btn-primary">
+              <a href="10K_NOVO_HORIZONTE_LIMPO.gpx" download="10K_NOVO_HORIZONTE_LIMPO.gpx" class="btn-primary" data-gtag-event="estrategia_baixar_gpx" data-gtag-category="passo_a_passo_10k">
                 Baixar percurso .GPX (10,31 km)
               </a>
             </div>
@@ -548,7 +548,7 @@
       <h2>Quer correr a Passo a Passo na sua melhor performance?</h2>
       <p>Treine com planilhas personalizadas no aplicativo Treinus e acompanhamento individual com a atleta de elite e treinadora Karina Franzin</p>
       <div class="cta-buttons-row">
-        <a href="https://karinafranzin.com.br/planos/" class="btn-cta-primary">
+        <a href="https://karinafranzin.com.br/planos/" class="btn-cta-primary" data-gtag-event="click_planos" data-gtag-category="passo_a_passo_10k">
           Conhecer os Planos de Treinamento
         </a>
         <a href="https://wa.me/5517996566908?text=Ol%C3%A1%2C%20Karina%21%20Vi%20a%20p%C3%A1gina%20de%20Estrat%C3%A9gia%20da%20Corrida%20Passo%20a%20Passo%2010K%20e%20quero%20saber%20mais%20sobre%20a%20assessoria%20de%20corrida."
@@ -571,7 +571,7 @@
                     </svg>
                     Blog
                 </a>
-                <a href="/estrategia-de-prova/">
+                <a href="/estrategia-de-prova/" data-gtag-event="click_estrategia_de_prova" data-gtag-category="footer">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path d="M3 20l5-9 4 5 3-4 6 8z"/>
                     </svg>
@@ -630,9 +630,7 @@
      class="whatsapp-float"
      target="_blank"
      rel="noopener noreferrer"
-     aria-label="Falar no WhatsApp com Karina Franzin"
-     data-gtag-event="click_whatsapp"
-     data-gtag-category="estrategia_10k_novo_horizonte">
+     aria-label="Falar no WhatsApp com Karina Franzin">
     <img src="/assets/icons/WhatsApp.svg.webp" alt="WhatsApp - Falar com a Karina Franzin" width="56" height="56" loading="lazy" decoding="async">
   </a>
 
