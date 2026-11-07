@@ -344,6 +344,28 @@ O gerenciamento de eventos segue o modelo de Geração de Site Estático (SSG). 
 
 ---
 
+## 🏁 ESTRATÉGIA DE PROVA (calculadoras de pace por corrida) — 06/11/2026
+
+Ferramenta gratuita: o corredor escolhe a prova, digita o tempo alvo e recebe o pace de cada trecho de subida/descida, parciais km a km e cola de pulso.
+
+```
+estrategia-de-prova/
+├── index.template.html          ← Página raiz: cards das corridas (adicionar um card por prova)
+├── assets/app.js                ← Motor ÚNICO compartilhado (GAP / Minetti, gráfico, mapa Leaflet)
+├── assets/styles.css            ← CSS ÚNICO compartilhado (inclui o da página raiz, prefixo .hub-)
+└── 10k-novo-horizonte/
+    ├── index.template.html      ← Textos/números da prova (hero, diagnóstico, metas rápidas)
+    ├── course-data.js           ← Dados da prova: bloco `race` (config), segmentos, trilhas do GPX
+    └── *.gpx                    ← GPX limpo (download) e original
+```
+
+- **Adicionar corrida:** criar a pasta com o `.gpx` e rodar `node scripts/gerar-course-data.js estrategia-de-prova/<pasta>`. O script lê o GPX, remove pontos duplicados e vai-e-vem de clique, suaviza o ruído de altitude, divide o percurso em segmentos de subida/descida e gera `course-data.js` + `<nome>_LIMPO.gpx`. Na 1ª rodada ele cria um `estrategia.config.json` (nome, distância oficial, cortes `ateKm` e textos de cada segmento). Preencher o config, rodar de novo, copiar o `index.template.html` de outra corrida trocando os textos, duplicar o card na página raiz (e no JSON-LD ItemList) e rodar `node build-blog.js`. Nunca editar o `course-data.js` à mão: ele é regerado a partir do config.
+- **Corridas:** `10k-novo-horizonte/` (dados antigos, feitos fora do gerador) e `2-zrun-fernandopolis/` (6 km, gerada pelo script; a Karina venceu a 1ª edição).
+- **Nada de valor fixo da prova no `app.js`:** distância oficial, tempo mínimo, centro do mapa, textos de estratégia/distância, marcadores de anomalia e textos do compartilhamento ficam em `COURSE_DATA.race`. Subidas/descidas dos KPIs vêm do `type` de cada segmento (`uphill`/`climb` × `downhill`).
+- **Leaflet** vem do cdnjs (já liberado na CSP do Worker). O menu mobile é do `/js/navbar.js`; não recriar no `app.js`.
+
+---
+
 ## 🚀 WORKFLOW DE DESENVOLVIMENTO
 
 ### Git

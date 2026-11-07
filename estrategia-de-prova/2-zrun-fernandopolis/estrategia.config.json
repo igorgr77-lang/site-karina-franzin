@@ -1,0 +1,85 @@
+{
+  "gpx": "ZRUN_FERNANDOPOLIS_ORIGINAL.gpx",
+  "nomeArquivoLimpo": "ZRUN_FERNANDOPOLIS",
+  "metadata": {
+    "name": "2ª ZRun Night Run Fernandópolis",
+    "city": "Fernandópolis - SP",
+    "author": "Garmin Connect (Course 515138086)"
+  },
+  "race": {
+    "title": "Estratégia ZRun Night Run Fernandópolis",
+    "officialDistanceM": 6000,
+    "halfwayDistM": 3000,
+    "defaultTargetSeconds": 1800,
+    "minTargetSeconds": 900,
+    "maxHours": 2,
+    "mapZoom": 15,
+    "summaryElevation": "+71,7m D+ (6 Segmentos Táticos)",
+    "summaryReminder": "Não queime a largada em descida: guarde perna para a Grande Subida (Km 0,9 a 2,1) e acelere na descida do Km 4 ao 5!",
+    "strategyDescriptions": {
+      "conservative": "Poupa energia na descida da largada para encarar a Grande Subida (Km 0,9–2,1) e fechar forte na descida do Km 4 ao 5.",
+      "aggressive-downhill": "Ataca forte as descidas (Seg 1, 3 e 5) e segura o esforço nas subidas (Seg 2, 4 e 6)."
+    },
+    "distanceHints": {
+      "official": "Escala os 6 segmentos para 6.000m exatos. Use se a prova tiver 6 km cravados no pórtico de chegada.",
+      "clean-gpx": "Usa os 5.952m reais do traçado, com a altitude suavizada (sem as inclinações falsas do arquivo). Mostra o pace que seu GPS vai marcar.",
+      "raw-gpx": "Usa o arquivo GPX original do Garmin, com o ruído de altitude em 17 trechos curtos (inclinações falsas de até -93%)."
+    }
+  },
+  "segmentos": [
+    {
+      "ateKm": 0.94,
+      "name": "Largada em Descida Forte",
+      "shortName": "Seg 1 · Descida da Largada",
+      "badge": "Descida Forte",
+      "tacticalTitle": "Desce 35m logo de cara (-3,7% de média)",
+      "tacticalTip": "Os primeiros 940m despencam de 518m para 483m, com um trecho de -10% perto do Km 0,4. Com a adrenalina da largada noturna, é fácil sair rápido demais. Deixe a gravidade trabalhar, mas sem forçar: o próximo trecho é a maior subida da prova.",
+      "mentalCue": "Passos curtos e rápidos na parte mais íngreme, sem bater o calcanhar."
+    },
+    {
+      "ateKm": 2.05,
+      "name": "Grande Subida do Km 1 ao Km 2",
+      "shortName": "Seg 2 · Grande Subida",
+      "badge": "Subida Forte",
+      "tacticalTitle": "+40,6m em 1,1 km: o trecho que decide a prova",
+      "tacticalTip": "Sobe sem descanso de 483m a 523m, com a parte mais dura perto do Km 1,7 (cerca de 7% em 150m). Quem desceu forte demais no Seg 1 paga aqui. Segure o esforço, não o pace: perder segundos por km neste trecho é normal e já está no plano. No Km 2,1 você passa de novo perto da largada.",
+      "mentalCue": "Braços ativos, tronco levemente à frente, olhar 10 metros adiante."
+    },
+    {
+      "ateKm": 2.96,
+      "name": "Descida Suave de Recuperação",
+      "shortName": "Seg 3 · Descida Suave",
+      "badge": "Descida Favorável",
+      "tacticalTitle": "-13,7m em 900m para respirar",
+      "tacticalTip": "Depois da grande subida vem uma descida longa e leve (média -1,5%). Use os primeiros 200m para baixar o batimento e depois volte ao ritmo de prova. No fim deste trecho você passa pela metade da prova (Km 3).",
+      "mentalCue": "Solte os ombros, respire fundo e reencaixe a passada."
+    },
+    {
+      "ateKm": 4.08,
+      "name": "Subida Longa até o Ponto Mais Alto",
+      "shortName": "Seg 4 · Subida Longa",
+      "badge": "Subida Constante",
+      "tacticalTitle": "+18,5m em 1,1 km até o topo (528m)",
+      "tacticalTip": "Subida gradual (média +1,6%) que não parece dura no começo, mas cansa pela duração. O ponto mais alto da prova fica no Km 4,1. Mantenha a cadência e não tente ganhar tempo aqui: a recompensa vem logo depois.",
+      "mentalCue": "Cadência alta e constante, um poste de cada vez."
+    },
+    {
+      "ateKm": 5.01,
+      "name": "Descida Rápida do Km 4 ao Km 5",
+      "shortName": "Seg 5 · Descida Rápida",
+      "badge": "Descida Rápida",
+      "tacticalTitle": "-20,1m em 920m para ganhar tempo",
+      "tacticalTip": "A melhor descida para acelerar: chega a -4% perto do Km 4,4 e vai até o Km 5. Se você seguiu o plano nas subidas, agora tem perna para recuperar os segundos perdidos.",
+      "mentalCue": "Incline levemente o corpo à frente e deixe a passada abrir."
+    },
+    {
+      "ateKm": 5.95,
+      "name": "Subida Final até a Chegada",
+      "shortName": "Seg 6 · Subida Final",
+      "badge": "Subida Moderada",
+      "tacticalTitle": "+9,4m no último quilômetro",
+      "tacticalTip": "O último quilômetro sobe de leve (média +1%, com um trecho de 2% perto do Km 5,5). Com as pernas cansadas, parece mais íngreme do que é. Mantenha o ritmo até avistar a chegada e solte tudo nos últimos 200m.",
+      "mentalCue": "Agora é cabeça: braços fortes e foco na chegada."
+    }
+  ]
+}

@@ -524,6 +524,29 @@ async function build() {
             console.log('💾 Página do Plano Performance compilada com sucesso em: plano-performance/index.html');
         }
 
+        // 3.1.8 Estratégia de Prova (estrategia-de-prova/) - escura
+        // Página raiz com a lista de corridas + uma subpasta por corrida (ex: estrategia-de-prova/10k-novo-horizonte/).
+        // Toda subpasta com index.template.html é compilada automaticamente. O motor (app.js) e o CSS
+        // ficam compartilhados em estrategia-de-prova/assets/; cada corrida tem só o seu course-data.js e GPX.
+        const estrategiaDir = path.join(__dirname, "estrategia-de-prova");
+        if (fs.existsSync(estrategiaDir)) {
+            const hubTemplatePath = path.join(estrategiaDir, "index.template.html");
+            if (fs.existsSync(hubTemplatePath)) {
+                const htmlHub = compilePageComponents(fs.readFileSync(hubTemplatePath, "utf8"), false);
+                fs.writeFileSync(path.join(estrategiaDir, "index.html"), htmlHub, "utf8");
+                console.log("💾 Página raiz da Estratégia de Prova compilada em: estrategia-de-prova/index.html");
+            }
+            for (const item of fs.readdirSync(estrategiaDir)) {
+                const itemPath = path.join(estrategiaDir, item);
+                const raceTemplatePath = path.join(itemPath, "index.template.html");
+                if (fs.statSync(itemPath).isDirectory() && fs.existsSync(raceTemplatePath)) {
+                    const htmlRace = compilePageComponents(fs.readFileSync(raceTemplatePath, "utf8"), false);
+                    fs.writeFileSync(path.join(itemPath, "index.html"), htmlRace, "utf8");
+                    console.log(`   💾 Estratégia de prova compilada: estrategia-de-prova/${item}/index.html`);
+                }
+            }
+        }
+
         // 3.2 Planos Combo (planos/*.html) - escura
         const planosComboDir = path.join(__dirname, 'planos');
         if (fs.existsSync(planosComboDir)) {
@@ -653,6 +676,29 @@ async function build() {
             }
         }
 
+        // 1.5 Estratégia de Prova: página raiz + cada corrida
+        if (fs.existsSync(estrategiaDir) && fs.existsSync(path.join(estrategiaDir, "index.html"))) {
+            sitemapXml += `    <url>
+        <loc>https://karinafranzin.com.br/estrategia-de-prova/</loc>
+        <lastmod>${hoje}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+`;
+            for (const item of fs.readdirSync(estrategiaDir)) {
+                const itemPath = path.join(estrategiaDir, item);
+                if (fs.statSync(itemPath).isDirectory() && fs.existsSync(path.join(itemPath, "index.html"))) {
+                    sitemapXml += `    <url>
+        <loc>https://karinafranzin.com.br/estrategia-de-prova/${item}/</loc>
+        <lastmod>${hoje}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+`;
+                }
+            }
+        }
+
         // 2. Adicionar artigos dinâmicos processados
         for (const artigo of artigos) {
             sitemapXml += `    <url>
@@ -690,6 +736,7 @@ Karina Franzin é treinadora de corrida e fisioterapeuta, campeã da Meia Marato
 - [Portal do Atleta KF](https://karinafranzin.com.br/portal-do-atleta/): Biblioteca de vídeos de técnica, ativação muscular e mobilidade para corredores
 - [Plano Performance](https://karinafranzin.com.br/plano-performance/): Treino de corrida personalizado da Karina Franzin + acompanhamento nutricional com o nutricionista Renan Rodrigues (plano trimestral)
 - [Eventos](https://karinafranzin.com.br/eventos/): Treinões e provas de corrida organizados ou apoiados pela Karina Franzin
+- [Estratégia de Prova](https://karinafranzin.com.br/estrategia-de-prova/): Calculadoras gratuitas de pace por trecho de subida e descida para corridas da região (ex: Corrida Passo a Passo 10K, ZRun Night Run), com parciais km a km e cola de pulso
 - [Cupons e Benefícios](https://karinafranzin.com.br/cupons/): Descontos exclusivos para alunos em parceiros locais de Votuporanga
 
 ## Blog
