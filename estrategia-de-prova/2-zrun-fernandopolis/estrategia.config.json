@@ -83,5 +83,52 @@
       "tacticalTip": "O último quilômetro sobe de leve (média +1%, com um trecho de 2% perto do Km 5,5). Com as pernas cansadas, parece mais íngreme do que é. Mantenha o ritmo até avistar a chegada e solte tudo nos últimos 200m.",
       "mentalCue": "Agora é cabeça: braços fortes e foco na chegada."
     }
-  ]
+  ],
+  "pagina": {
+    "nome": "ZRun Night Run Fernandópolis",
+    "nomeCurto": "ZRun",
+    "nomePulseira": "ZRUN FERNANDÓPOLIS",
+    "seoTitulo": "ZRun Night Run Fernandópolis 2026: estratégia e pace | Karina Franzin",
+    "seoDescricao": "Estratégia da 2ª ZRun Night Run Fernandópolis (6 km): pace para cada subida e descida, parciais km a km e cola de pulso. Grátis, por Karina Franzin.",
+    "ogTitulo": "ZRun Night Run Fernandópolis 2026: estratégia e pace",
+    "ogDescricao": "Digite seu tempo alvo e receba o pace de cada subida e descida dos 6 km, as parciais km a km e uma cola de pulso pronta.",
+    "ogAlt": "Banner da 2ª ZRun Night Run Fernandópolis 2026",
+    "descricaoSchema": "Calculadora de pace por segmento de subida e descida e parciais km a km para a ZRun Night Run de Fernandópolis - SP.",
+    "subtitulo": "Digite o tempo em que deseja concluir a prova e receba sua estratégia tática dividida nos <strong>6 trechos de subida e descida</strong> do percurso da 2ª edição, além das parciais quilômetro a quilômetro para o seu relógio GPS.",
+    "diagStatus": "Percurso Ondulado · Moderado",
+    "destaques": [
+      {
+        "rotulo": "Grande Subida",
+        "valor": "Km 0,9 a 2,1 (+40,6m)"
+      },
+      {
+        "rotulo": "Ponto Mais Alto",
+        "valor": "Km 4,1 (528,2m)"
+      }
+    ],
+    "intro": "A ZRun tem três subidas e três descidas alternadas. Olhar só para o pace médio faz o corredor descer rápido demais na largada e travar na <strong>Grande Subida (Km 0,9 a 2,1)</strong>, que concentra mais da metade de todo o desnível da prova. Siga o ritmo de cada segmento abaixo:",
+    "recomendacao": "Mais da metade de toda a subida da prova (<strong>+40,6m de 71,7m</strong>) está num único bloco: a <strong>Grande Subida (Segmento 2, Km 0,9 a 2,1)</strong>, logo no começo. Correr esse trecho mais lento que seu pace médio não é \"quebrar\": é o que mantém o esforço abaixo do limiar e deixa perna para acelerar nas descidas dos Segmentos 3 e 5!",
+    "ctaTitulo": "Quer correr a ZRun na sua melhor performance?",
+    "faixaRelogio": "5,9 e 6,2",
+    "metasRapidas": [
+      1320,
+      1500,
+      1650,
+      1800,
+      1980,
+      2160,
+      2400,
+      2700
+    ],
+    "rotuloLimpo": "Altitude suavizada",
+    "rotuloBruto": "Garmin",
+    "card": {
+      "titulo": "2ª ZRun Night Run",
+      "cidade": "Fernandópolis – SP",
+      "descricao": "Largada em descida e a Grande Subida logo no km 1. Estratégia da campeã geral da 1ª edição.",
+      "distancia": "6K · Night Run",
+      "alt": "Banner da 2ª ZRun Night Run Fernandópolis",
+      "tag": "Ondulado"
+    }
+  }
 }

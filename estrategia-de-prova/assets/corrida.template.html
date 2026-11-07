@@ -1,3 +1,9 @@
+<!--
+  TEMPLATE ÚNICO DAS PÁGINAS DE CORRIDA (Estratégia de Prova)
+  O build (scripts/estrategia-build.js) preenche os marcadores {{...}} com os dados do
+  estrategia.config.json e do course-data.js de cada pasta de corrida.
+  Para mudar o layout de TODAS as corridas, edite este arquivo e rode: node build-blog.js
+-->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,9 +11,9 @@
   <script src="/js/analytics.js?v=1.2.4"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Passo a Passo 10K Novo Horizonte: estratégia e pace | Karina Franzin</title>
-  <meta name="description" content="Estratégia da Corrida Passo a Passo 10K do Novorizontino, em Novo Horizonte: pace para cada subida e descida, parciais km a km e cola de pulso. Grátis." />
-  <link rel="canonical" href="https://karinafranzin.com.br/estrategia-de-prova/10k-novo-horizonte/" />
+  <title>{{SEO_TITULO}}</title>
+  <meta name="description" content="{{SEO_DESCRICAO}}" />
+  <link rel="canonical" href="https://karinafranzin.com.br/estrategia-de-prova/{{SLUG}}/" />
 
   <!-- Breadcrumb Schema -->
   <script type="application/ld+json">
@@ -17,7 +23,7 @@
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://karinafranzin.com.br/" },
       { "@type": "ListItem", "position": 2, "name": "Estratégia de Prova", "item": "https://karinafranzin.com.br/estrategia-de-prova/" },
-      { "@type": "ListItem", "position": 3, "name": "Estratégia Corrida Passo a Passo 10K", "item": "https://karinafranzin.com.br/estrategia-de-prova/10k-novo-horizonte/" }
+      { "@type": "ListItem", "position": 3, "name": "{{NOME_BREADCRUMB}}", "item": "https://karinafranzin.com.br/estrategia-de-prova/{{SLUG}}/" }
     ]
   }
   </script>
@@ -27,14 +33,14 @@
   {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Estratégia de Prova Corrida Passo a Passo 10K",
-    "url": "https://karinafranzin.com.br/estrategia-de-prova/10k-novo-horizonte/",
+    "name": "{{NOME_APP}}",
+    "url": "https://karinafranzin.com.br/estrategia-de-prova/{{SLUG}}/",
     "applicationCategory": "SportsApplication",
     "operatingSystem": "Web",
     "inLanguage": "pt-BR",
     "isAccessibleForFree": true,
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
-    "description": "Calculadora de pace por segmento de subida e descida e parciais km a km para a Corrida Passo a Passo 10K do Novorizontino, em Novo Horizonte - SP.",
+    "description": "{{SCHEMA_DESCRICAO}}",
     "author": { "@type": "Person", "name": "Karina Franzin", "url": "https://karinafranzin.com.br/" }
   }
   </script>
@@ -50,14 +56,14 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
   <meta property="og:site_name" content="Karina Franzin Assessoria de Corrida" />
-  <meta property="og:url" content="https://karinafranzin.com.br/estrategia-de-prova/10k-novo-horizonte/" />
-  <meta property="og:title" content="Corrida Passo a Passo 10K Novo Horizonte: estratégia e pace" />
-  <meta property="og:description" content="Digite seu tempo alvo e receba o pace de cada subida e descida dos 10 km, as parciais km a km e uma cola de pulso pronta." />
-  <meta property="og:image" content="https://karinafranzin.com.br/estrategia-de-prova/10k-novo-horizonte/banner-og.jpg" />
+  <meta property="og:url" content="https://karinafranzin.com.br/estrategia-de-prova/{{SLUG}}/" />
+  <meta property="og:title" content="{{OG_TITULO}}" />
+  <meta property="og:description" content="{{OG_DESCRICAO}}" />
+  <meta property="og:image" content="{{OG_IMAGEM}}" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Banner da Corrida Passo a Passo 10K do Novorizontino" />
+  <meta property="og:image:alt" content="{{OG_ALT}}" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- Google Fonts -->
@@ -70,7 +76,7 @@
 
   <!-- CSS global do site (navbar, rodapé, botão WhatsApp) + CSS da página -->
   <link rel="stylesheet" href="/css/styles.css?v=1.0.5" />
-  <link rel="stylesheet" href="/estrategia-de-prova/assets/styles.css?v=1.3.0" />
+  <link rel="stylesheet" href="/estrategia-de-prova/assets/styles.css?v={{VERSAO}}" />
   <script src="/js/navbar.js?v=1.0.4" defer></script>
 </head>
 <body>
@@ -80,12 +86,12 @@
   <!-- Sticky Mobile Quick Bar (visible on scroll on mobile, right below navbar) -->
   <div id="mobileStickyBar" class="mobile-sticky-bar" aria-hidden="true">
     <div class="msb-info">
-      <span class="msb-goal" id="msbGoalText">Meta: 50:00</span>
+      <span class="msb-goal" id="msbGoalText">Meta: {{META_TEMPO}}</span>
       <strong class="msb-pace" id="msbPaceText">5:00/km</strong>
     </div>
     <div class="msb-actions">
       <button type="button" id="msbEditGoalBtn" class="msb-btn">Meta</button>
-      <button type="button" id="msbSegmentsBtn" class="msb-btn">8 Seg</button>
+      <button type="button" id="msbSegmentsBtn" class="msb-btn">{{N_SEG}} Seg</button>
       <button type="button" id="msbSplitsBtn" class="msb-btn">Kms</button>
       <button type="button" id="msbWristbandBtn" class="msb-btn msb-btn-accent">Cola</button>
     </div>
@@ -96,32 +102,32 @@
     <div class="container hero-grid">
       <div class="hero-text">
         <a href="/estrategia-de-prova/" class="hero-back-link">← Todas as estratégias de prova</a>
-        <h1>Corrida Passo a Passo 10K — <span class="brand-highlight">Estratégia de Prova</span></h1>
+        <h1>{{H1_NOME}} — <span class="brand-highlight">Estratégia de Prova</span></h1>
         <p class="hero-subtitle">
-          Prova do Novorizontino em Novo Horizonte – SP. Digite o tempo em que deseja concluir a prova e receba sua estratégia tática dividida nos <strong>8 segmentos de subida e descida</strong> do percurso, além das parciais quilômetro a quilômetro para o seu relógio GPS.
+          {{SUBTITULO}}
         </p>
       </div>
       <div class="hero-DiagnosticCard">
         <div class="diag-header">
           <span class="diag-title">Diagnóstico Oficial do Percurso</span>
-          <span class="diag-status">Percurso Ondulado · Exigente</span>
+          <span class="diag-status">{{DIAG_STATUS}}</span>
         </div>
         <div class="diag-metrics">
           <div>
             <span class="dm-label">Alt. Mín / Máx</span>
-            <strong class="dm-val">416,6m / 469,2m</strong>
+            <strong class="dm-val">{{ALT_MIN_MAX}}</strong>
           </div>
           <div>
             <span class="dm-label">Ganho Acumulado</span>
-            <strong class="dm-val text-brand-orange">+115,8 m (D+)</strong>
+            <strong class="dm-val text-brand-orange">{{D_MAIS}} (D+)</strong>
           </div>
           <div>
-            <span class="dm-label">Maior Escalada</span>
-            <strong class="dm-val text-warning">Km 3,9 a 6,0 (+47,5m)</strong>
+            <span class="dm-label">{{DESTAQUE1_ROTULO}}</span>
+            <strong class="dm-val text-warning">{{DESTAQUE1_VALOR}}</strong>
           </div>
           <div>
-            <span class="dm-label">Paredão Final</span>
-            <strong class="dm-val text-climb">Km 7,8 a 9,0 (+32,7m)</strong>
+            <span class="dm-label">{{DESTAQUE2_ROTULO}}</span>
+            <strong class="dm-val text-climb">{{DESTAQUE2_VALOR}}</strong>
           </div>
         </div>
       </div>
@@ -148,37 +154,30 @@
           <div class="time-inputs-wrapper">
             <div class="time-fields-group">
               <div class="time-field">
-                <input type="number" id="timeHours" min="0" max="3" value="0" inputmode="numeric" pattern="[0-9]*" aria-label="Horas" />
+                <input type="number" id="timeHours" min="0" max="{{MAX_HORAS}}" value="{{META_H}}" inputmode="numeric" pattern="[0-9]*" aria-label="Horas" />
                 <span>h</span>
               </div>
               <span class="time-sep">:</span>
               <div class="time-field">
-                <input type="number" id="timeMinutes" min="0" max="59" value="50" inputmode="numeric" pattern="[0-9]*" aria-label="Minutos" />
+                <input type="number" id="timeMinutes" min="0" max="59" value="{{META_MIN}}" inputmode="numeric" pattern="[0-9]*" aria-label="Minutos" />
                 <span>min</span>
               </div>
               <span class="time-sep">:</span>
               <div class="time-field">
-                <input type="number" id="timeSeconds" min="0" max="59" value="00" inputmode="numeric" pattern="[0-9]*" aria-label="Segundos" />
+                <input type="number" id="timeSeconds" min="0" max="59" value="{{META_SEG}}" inputmode="numeric" pattern="[0-9]*" aria-label="Segundos" />
                 <span>seg</span>
               </div>
             </div>
             <div class="pace-direct-box">
               <span class="pace-direct-label">Pace Médio Base</span>
-              <strong id="basePacePreview" class="pace-direct-val">5:00 /km</strong>
+              <strong id="basePacePreview" class="pace-direct-val">{{PACE_META}} /km</strong>
             </div>
           </div>
 
           <div class="preset-row">
             <span class="preset-title">Metas rápidas:</span>
             <div class="preset-buttons-grid">
-              <button type="button" class="preset-btn" data-seconds="2280">38:00</button>
-              <button type="button" class="preset-btn" data-seconds="2400">40:00</button>
-              <button type="button" class="preset-btn" data-seconds="2700">45:00</button>
-              <button type="button" class="preset-btn active" data-seconds="3000">50:00</button>
-              <button type="button" class="preset-btn" data-seconds="3300">55:00</button>
-              <button type="button" class="preset-btn" data-seconds="3600">1h00</button>
-              <button type="button" class="preset-btn" data-seconds="3900">1h05</button>
-              <button type="button" class="preset-btn" data-seconds="4500">1h15</button>
+{{METAS_RAPIDAS}}
             </div>
           </div>
         </div>
@@ -189,7 +188,7 @@
             <label class="control-label" for="strategySelect">Perfil de Estratégia</label>
             <select id="strategySelect" class="custom-select">
               <option value="even-effort" selected>Esforço Constante (GAP Ideal - Recomendado)</option>
-              <option value="conservative">Conservadora (Poupa até o Km 3,9 e fecha forte)</option>
+              <option value="conservative">Conservadora (Poupa até o Km {{CONSERVADORA_KM}} e fecha forte)</option>
               <option value="aggressive-downhill">Agressiva nas Descidas (Ataca declives, segura subidas)</option>
             </select>
             <p id="strategyDescription" class="option-hint">
@@ -200,12 +199,12 @@
           <div class="option-block">
             <label class="control-label" for="distanceModeSelect">Referência de Distância do Percurso</label>
             <select id="distanceModeSelect" class="custom-select">
-              <option value="official" selected>10,00 km Oficial (Proporcionalizado para 10K)</option>
-              <option value="clean-gpx">10,31 km Percurso Real Limpo (Sem erros do GPX)</option>
-              <option value="raw-gpx">10,60 km Arquivo GPX Bruto Original</option>
+              <option value="official" selected>{{OPCAO_OFICIAL}}</option>
+              <option value="clean-gpx">{{OPCAO_LIMPO}}</option>
+              <option value="raw-gpx">{{OPCAO_BRUTO}}</option>
             </select>
             <p id="distanceModeHint" class="option-hint">
-              Escala os 8 segmentos para 10.000m exatos. Ideal se a organização ajustou o pórtico/retorno para 10K cravados.
+              {{DICA_DISTANCIA}}
             </p>
           </div>
 
@@ -229,23 +228,23 @@
     <section class="kpi-grid" aria-label="Resumo da Estratégia">
       <div class="kpi-card highlight">
         <span class="kpi-label">Pace Médio Necessário</span>
-        <strong id="kpiAvgPace" class="kpi-value">5:00<small>/km</small></strong>
-        <span id="kpiAvgSpeed" class="kpi-sub">12,00 km/h · Meta: 50:00</span>
+        <strong id="kpiAvgPace" class="kpi-value">{{PACE_META}}<small>/km</small></strong>
+        <span id="kpiAvgSpeed" class="kpi-sub">Meta: {{META_TEMPO}}</span>
       </div>
       <div class="kpi-card">
         <span class="kpi-label">Pace Médio nas Subidas</span>
         <strong id="kpiClimbPace" class="kpi-value text-climb">5:21<small>/km</small></strong>
-        <span id="kpiClimbInfo" class="kpi-sub">Seg 2, Seg 4 e Seg 7 (+102,5m)</span>
+        <span id="kpiClimbInfo" class="kpi-sub">{{KPI_SUBIDA_INFO}}</span>
       </div>
       <div class="kpi-card">
         <span class="kpi-label">Pace Médio nas Descidas</span>
         <strong id="kpiDownhillPace" class="kpi-value text-downhill">4:44<small>/km</small></strong>
-        <span id="kpiDownhillInfo" class="kpi-sub">Seg 1, Seg 3, Seg 5 e Seg 8 (-90,6m)</span>
+        <span id="kpiDownhillInfo" class="kpi-sub">{{KPI_DESCIDA_INFO}}</span>
       </div>
       <div class="kpi-card">
-        <span class="kpi-label">Passagem nos 5,0 km</span>
+        <span class="kpi-label">Passagem nos {{PASSAGEM_KM}} km</span>
         <strong id="kpiHalfwayTime" class="kpi-value">24:48</strong>
-        <span id="kpiSplitDiff" class="kpi-sub">No meio da Grande Escalada</span>
+        <span id="kpiSplitDiff" class="kpi-sub">Comparação das duas metades</span>
       </div>
       <div class="kpi-card">
         <span class="kpi-label">Faixa de Ritmo (Min – Máx)</span>
@@ -306,8 +305,8 @@
         <div id="courseMap" class="course-map"></div>
         <div class="map-footer-legend">
           <span>Largada/Chegada</span>
-          <span>Topo: 469,2m (Seg 4)</span>
-          <span>Vale: 416,6m (Seg 1)</span>
+          <span>{{LEGENDA_TOPO}}</span>
+          <span>{{LEGENDA_VALE}}</span>
         </div>
       </div>
     </section>
@@ -316,37 +315,37 @@
     <section id="tabsSection" class="tabs-section">
       <div class="tabs-header">
         <div class="tabs-nav" role="tablist">
-          <button type="button" class="tab-btn active" data-tab="tab-segments" data-gtag-event="estrategia_aba_segmentos" data-gtag-category="passo_a_passo_10k" role="tab" aria-selected="true">
-            <span class="tab-label-full">Estratégia em 8 Segmentos (Subidas e Descidas)</span>
-            <span class="tab-label-short">8 Segmentos</span>
+          <button type="button" class="tab-btn active" data-tab="tab-segments" data-gtag-event="estrategia_aba_segmentos" data-gtag-category="{{GA}}" role="tab" aria-selected="true">
+            <span class="tab-label-full">Estratégia em {{N_SEG}} Segmentos (Subidas e Descidas)</span>
+            <span class="tab-label-short">{{N_SEG}} Segmentos</span>
           </button>
-          <button type="button" class="tab-btn" data-tab="tab-kms" data-gtag-event="estrategia_aba_km_a_km" data-gtag-category="passo_a_passo_10k" role="tab" aria-selected="false">
+          <button type="button" class="tab-btn" data-tab="tab-kms" data-gtag-event="estrategia_aba_km_a_km" data-gtag-category="{{GA}}" role="tab" aria-selected="false">
             <span class="tab-label-full">Parciais Km a Km (Relógio GPS)</span>
             <span class="tab-label-short">Km a Km (GPS)</span>
           </button>
-          <button type="button" class="tab-btn" data-tab="tab-wristband" data-gtag-event="estrategia_aba_cola" data-gtag-category="passo_a_passo_10k" role="tab" aria-selected="false">
+          <button type="button" class="tab-btn" data-tab="tab-wristband" data-gtag-event="estrategia_aba_cola" data-gtag-category="{{GA}}" role="tab" aria-selected="false">
             <span class="tab-label-full">Cola de Pulso / Imprimir</span>
             <span class="tab-label-short">Cola / Print</span>
           </button>
-          <button type="button" class="tab-btn" data-tab="tab-diagnosis" data-gtag-event="estrategia_aba_relogio" data-gtag-category="passo_a_passo_10k" role="tab" aria-selected="false">
+          <button type="button" class="tab-btn" data-tab="tab-diagnosis" data-gtag-event="estrategia_aba_relogio" data-gtag-category="{{GA}}" role="tab" aria-selected="false">
             <span class="tab-label-full">Percurso para o Relógio (GPX)</span>
             <span class="tab-label-short">Relógio / GPX</span>
           </button>
         </div>
         <div class="tabs-actions">
-          <button type="button" id="printStrategyBtn" class="btn-primary btn-sm" data-gtag-event="estrategia_imprimir" data-gtag-category="passo_a_passo_10k">
+          <button type="button" id="printStrategyBtn" class="btn-primary btn-sm" data-gtag-event="estrategia_imprimir" data-gtag-category="{{GA}}">
             Imprimir / Salvar PDF
           </button>
         </div>
       </div>
 
-      <!-- TAB 1: 8 TACTICAL SEGMENTS -->
+      <!-- TAB 1: SEGMENTOS TÁTICOS -->
       <div id="tab-segments" class="tab-content active">
         <div class="section-intro">
           <div>
-            <h3>Divisão Tática Inteligente: Os 8 Blocos da Prova</h3>
+            <h3>Divisão Tática Inteligente: Os {{N_SEG}} Blocos da Prova</h3>
             <p>
-              Em um percurso ondulado como o da Corrida Passo a Passo, olhar apenas para o pace médio faz o corredor abrir forte demais nos 2 primeiros quilômetros (descida) e quebrar na <strong>Grande Escalada (Km 3,9 a 6,0)</strong> ou no <strong>Paredão Final (Km 7,8 a 9,0)</strong>. Siga o ritmo de cada segmento abaixo:
+              {{INTRO}}
             </p>
           </div>
         </div>
@@ -393,16 +392,16 @@
           <div class="wristband-instructions">
             <h3>Gerador de "Cola de Pulso" e Card p/ Celular</h3>
             <p>
-              Leve as passagens exatas dos <strong>8 segmentos de subida e descida</strong> ou dos <strong>10 quilômetros</strong> com você. Tire um print da tela no celular, compartilhe no WhatsApp ou imprima para colar no antebraço/relógio.
+              Leve as passagens exatas dos <strong>{{N_SEG}} segmentos de subida e descida</strong> ou dos <strong>{{N_KM}} quilômetros</strong> com você. Tire um print da tela no celular, compartilhe no WhatsApp ou imprima para colar no antebraço/relógio.
             </p>
             <div class="wristband-actions">
-              <button type="button" id="shareMobileBtn" class="btn-primary" data-gtag-event="estrategia_compartilhar" data-gtag-category="passo_a_passo_10k">
+              <button type="button" id="shareMobileBtn" class="btn-primary" data-gtag-event="estrategia_compartilhar" data-gtag-category="{{GA}}">
                 Compartilhar / Enviar no WhatsApp
               </button>
-              <button type="button" id="copySummaryTextBtn" class="btn-secondary" data-gtag-event="estrategia_copiar_texto" data-gtag-category="passo_a_passo_10k">
+              <button type="button" id="copySummaryTextBtn" class="btn-secondary" data-gtag-event="estrategia_copiar_texto" data-gtag-category="{{GA}}">
                 Copiar Texto
               </button>
-              <button type="button" id="printWristbandOnlyBtn" class="btn-secondary" data-gtag-event="estrategia_imprimir_pulseiras" data-gtag-category="passo_a_passo_10k">
+              <button type="button" id="printWristbandOnlyBtn" class="btn-secondary" data-gtag-event="estrategia_imprimir_pulseiras" data-gtag-category="{{GA}}">
                 Imprimir Pulseiras
               </button>
             </div>
@@ -413,8 +412,8 @@
             <!-- Wristband 1: By Segments -->
             <div class="wristband-card">
               <div class="wb-header">
-                <strong>PASSO A PASSO 10K</strong>
-                <span id="wbSegGoal">META: 50:00 (5:00/km)</span>
+                <strong>{{NOME_PULSEIRA}}</strong>
+                <span id="wbSegGoal">META: {{META_TEMPO}} ({{PACE_META}}/km)</span>
               </div>
               <div class="wb-sub">POR SEGMENTO (SUBIDAS / DESCIDAS)</div>
               <table class="wb-table" id="wbSegmentsTable">
@@ -434,8 +433,8 @@
             <!-- Wristband 2: By Km -->
             <div class="wristband-card">
               <div class="wb-header">
-                <strong>PASSO A PASSO 10K</strong>
-                <span id="wbKmGoal">META: 50:00 (5:00/km)</span>
+                <strong>{{NOME_PULSEIRA}}</strong>
+                <span id="wbKmGoal">META: {{META_TEMPO}} ({{PACE_META}}/km)</span>
               </div>
               <div class="wb-sub">PARCIAIS KM A KM (AUTOLAP)</div>
               <table class="wb-table" id="wbKmTable">
@@ -464,8 +463,8 @@
               Baixe o traçado da prova já corrigido e importe no relógio. Assim você segue o percurso durante a corrida e vê no mapa do relógio onde começa cada subida.
             </p>
             <div class="diag-actions-row">
-              <a href="10K_NOVO_HORIZONTE_LIMPO.gpx" download="10K_NOVO_HORIZONTE_LIMPO.gpx" class="btn-primary" data-gtag-event="estrategia_baixar_gpx" data-gtag-category="passo_a_passo_10k">
-                Baixar percurso .GPX (10,31 km)
+              <a href="{{GPX_LIMPO}}" download="{{GPX_LIMPO}}" class="btn-primary" data-gtag-event="estrategia_baixar_gpx" data-gtag-category="{{GA}}">
+                Baixar percurso .GPX ({{DIST_LIMPA}} km)
               </a>
             </div>
             <ol class="watch-steps">
@@ -476,9 +475,9 @@
           </div>
 
           <div class="diag-detail-card">
-            <h3>Por que o relógio pode marcar mais que 10 km?</h3>
+            <h3>Por que o relógio pode marcar mais que {{DIST_OFICIAL}} km?</h3>
             <p>
-              O GPS mede o caminho que você realmente corre, com curvas, desvios e pequenas variações de sinal. Pelo traçado, este percurso tem <strong>10,31 km</strong>, então é normal o relógio marcar algo entre <strong>10,1 e 10,4 km</strong> na chegada.
+              O GPS mede o caminho que você realmente corre, com curvas, desvios e pequenas variações de sinal. Pelo traçado, este percurso tem <strong>{{DIST_LIMPA}} km</strong>, então é normal o relógio marcar algo entre <strong>{{FAIXA_RELOGIO}} km</strong> na chegada.
             </p>
             <p>
               Por isso as dicas da estratégia usam os km das placas da prova. Se preferir calcular pelo que o relógio vai marcar, troque a <strong>Referência de Distância do Percurso</strong> no topo da página.
@@ -487,7 +486,7 @@
             <div class="diag-callout">
               <strong>Recomendação Tática Principal:</strong>
               <p>
-                Mais de <strong>69% de toda a subida da prova (+80,2m)</strong> está concentrada em apenas dois blocos: o <strong>Segmento 4 (Km 3,9 a 6,0)</strong> e o <strong>Segmento 7 (Km 7,8 a 9,0)</strong>. Correr esses dois trechos de 15 a 25 segundos/km mais lento que seu pace médio não é "quebrar": é o que mantém o esforço abaixo do limiar e deixa perna para recuperar tudo nas descidas dos Segmentos 5 e 8!
+                {{RECOMENDACAO}}
               </p>
             </div>
           </div>
@@ -499,13 +498,13 @@
   <!-- CTA Strong Section (Identidade Karina Franzin) -->
   <section class="cta-strong">
     <div class="container">
-      <h2>Quer correr a Passo a Passo na sua melhor performance?</h2>
+      <h2>{{CTA_TITULO}}</h2>
       <p>Treine com planilhas personalizadas no aplicativo Treinus e acompanhamento individual com a atleta de elite e treinadora Karina Franzin</p>
       <div class="cta-buttons-row">
-        <a href="https://karinafranzin.com.br/planos/" class="btn-cta-primary" data-gtag-event="click_planos" data-gtag-category="passo_a_passo_10k">
+        <a href="https://karinafranzin.com.br/planos/" class="btn-cta-primary" data-gtag-event="click_planos" data-gtag-category="{{GA}}">
           Conhecer os Planos de Treinamento
         </a>
-        <a href="https://wa.me/5517996566908?text=Ol%C3%A1%2C%20Karina%21%20Vi%20a%20p%C3%A1gina%20de%20Estrat%C3%A9gia%20da%20Corrida%20Passo%20a%20Passo%2010K%20e%20quero%20saber%20mais%20sobre%20a%20assessoria%20de%20corrida."
+        <a href="https://wa.me/5517996566908?text={{WA_TEXTO}}"
            class="btn-cta-secondary"
            target="_blank"
            rel="noopener noreferrer">
@@ -518,7 +517,7 @@
   <!-- FOOTER_PLACEHOLDER -->
 
   <!-- Botão flutuante do WhatsApp (padrão do site) -->
-  <a href="https://wa.me/5517996566908?text=Ol%C3%A1%2C%20Karina%21%20Vi%20a%20p%C3%A1gina%20de%20Estrat%C3%A9gia%20da%20Corrida%20Passo%20a%20Passo%2010K%20e%20quero%20saber%20mais%20sobre%20a%20assessoria%20de%20corrida."
+  <a href="https://wa.me/5517996566908?text={{WA_TEXTO}}"
      class="whatsapp-float"
      target="_blank"
      rel="noopener noreferrer"
@@ -527,7 +526,7 @@
   </a>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="/estrategia-de-prova/10k-novo-horizonte/course-data.js?v=1.3.0"></script>
-  <script src="/estrategia-de-prova/assets/app.js?v=1.3.0"></script>
+  <script src="/estrategia-de-prova/{{SLUG}}/course-data.js?v={{VERSAO}}"></script>
+  <script src="/estrategia-de-prova/assets/app.js?v={{VERSAO}}"></script>
 </body>
 </html>

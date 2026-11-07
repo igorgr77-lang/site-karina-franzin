@@ -62,9 +62,9 @@
 
   <!-- CSS global do site + CSS compartilhado das estratégias -->
   <link rel="stylesheet" href="/css/styles.css?v=1.0.5" />
-  <link rel="stylesheet" href="/estrategia-de-prova/assets/styles.css?v=1.3.0" />
+  <link rel="stylesheet" href="/estrategia-de-prova/assets/styles.css?v=7742c3e1" />
   <script src="/js/navbar.js?v=1.0.4" defer></script>
-  <script src="/estrategia-de-prova/assets/hub.js?v=1.0.0" defer></script>
+  <script src="/estrategia-de-prova/assets/hub.js?v=71dcc1c8" defer></script>
 </head>
 <body>
 
@@ -138,16 +138,9 @@
       </div>
 
       <div class="hub-grid">
-        <!--
-          COMO ADICIONAR UMA CORRIDA NOVA:
-          1. Crie a pasta /estrategia-de-prova/<nome-da-prova>/ e coloque o .gpx dentro
-          2. Rode: node scripts/gerar-course-data.js estrategia-de-prova/<nome-da-prova>
-             (gera course-data.js, o GPX limpo e um estrategia.config.json para os textos dos trechos)
-          3. Preencha o estrategia.config.json e rode o script de novo
-          4. Copie o index.template.html de outra corrida e troque os textos/números da prova
-          5. Duplique um card abaixo (e o item do JSON-LD ItemList) e rode: node build-blog.js
-        -->
-        <a href="/estrategia-de-prova/2-zrun-fernandopolis/" class="hub-card" data-gtag-event="estrategia_abrir_corrida" data-gtag-category="zrun_fernandopolis">
+        <!-- Corrida nova: pasta com o GPX + estrategia.config.json e rodar node build-blog.js (veja PROJETO-SITE-KARINA-CONTEXTO-IA.md) -->
+        <!-- Cards gerados pelo build a partir do estrategia.config.json de cada corrida (scripts/estrategia-build.js) -->
+                <a href="/estrategia-de-prova/2-zrun-fernandopolis/" class="hub-card" data-gtag-event="estrategia_abrir_corrida" data-gtag-category="zrun_fernandopolis">
           <div class="hub-card-profile">
             <img src="/estrategia-de-prova/2-zrun-fernandopolis/banner-1024w.webp"
                  srcset="/estrategia-de-prova/2-zrun-fernandopolis/banner-640w.webp 640w, /estrategia-de-prova/2-zrun-fernandopolis/banner-1024w.webp 1024w, /estrategia-de-prova/2-zrun-fernandopolis/banner.webp 1731w"

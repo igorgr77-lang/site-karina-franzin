@@ -28,8 +28,7 @@
     "@type": "ItemList",
     "name": "Estratégias de Prova - Karina Franzin",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Estratégia ZRun Night Run Fernandópolis", "url": "https://karinafranzin.com.br/estrategia-de-prova/2-zrun-fernandopolis/" },
-      { "@type": "ListItem", "position": 2, "name": "Estratégia Corrida Passo a Passo 10K", "url": "https://karinafranzin.com.br/estrategia-de-prova/10k-novo-horizonte/" }
+      <!-- ESTRATEGIA_ITEMLIST -->
     ]
   }
   </script>
@@ -90,62 +89,9 @@
       </div>
 
       <div class="hub-grid">
-        <!--
-          COMO ADICIONAR UMA CORRIDA NOVA:
-          1. Crie a pasta /estrategia-de-prova/<nome-da-prova>/ e coloque o .gpx dentro
-          2. Rode: node scripts/gerar-course-data.js estrategia-de-prova/<nome-da-prova>
-             (gera course-data.js, o GPX limpo e um estrategia.config.json para os textos dos trechos)
-          3. Preencha o estrategia.config.json e rode o script de novo
-          4. Copie o index.template.html de outra corrida e troque os textos/números da prova
-          5. Duplique um card abaixo (e o item do JSON-LD ItemList) e rode: node build-blog.js
-        -->
-        <a href="/estrategia-de-prova/2-zrun-fernandopolis/" class="hub-card" data-gtag-event="estrategia_abrir_corrida" data-gtag-category="zrun_fernandopolis">
-          <div class="hub-card-profile">
-            <img src="/estrategia-de-prova/2-zrun-fernandopolis/banner-1024w.webp"
-                 srcset="/estrategia-de-prova/2-zrun-fernandopolis/banner-640w.webp 640w, /estrategia-de-prova/2-zrun-fernandopolis/banner-1024w.webp 1024w, /estrategia-de-prova/2-zrun-fernandopolis/banner.webp 1731w"
-                 sizes="(max-width: 768px) 100vw, 380px"
-                 width="1024" height="538" alt="Banner da 2ª ZRun Night Run Fernandópolis" decoding="async">
-          </div>
-          <div class="hub-card-body">
-            <div class="hub-card-meta">
-              <span class="hub-card-distance">6K · Night Run</span>
-              <span class="hub-card-date"><time datetime="2026-11-07">Sáb · 07/11/2026</time></span>
-            </div>
-            <span class="hub-card-city">Fernandópolis – SP</span>
-            <h3 class="hub-card-title">2ª ZRun Night Run</h3>
-            <p class="hub-card-desc">Largada em descida e a Grande Subida logo no km 1. Estratégia da campeã geral da 1ª edição.</p>
-            <div class="hub-card-stats">
-              <span><strong>+72 m</strong> D+</span>
-              <span><strong>6</strong> segmentos</span>
-              <span><strong>Ondulado</strong></span>
-            </div>
-            <span class="hub-card-btn">Montar minha estratégia →</span>
-          </div>
-        </a>
-
-        <a href="/estrategia-de-prova/10k-novo-horizonte/" class="hub-card" data-gtag-event="estrategia_abrir_corrida" data-gtag-category="passo_a_passo_10k">
-          <div class="hub-card-profile">
-            <img src="/estrategia-de-prova/10k-novo-horizonte/banner-1024w.webp"
-                 srcset="/estrategia-de-prova/10k-novo-horizonte/banner-640w.webp 640w, /estrategia-de-prova/10k-novo-horizonte/banner-1024w.webp 1024w, /estrategia-de-prova/10k-novo-horizonte/banner.webp 1731w"
-                 sizes="(max-width: 768px) 100vw, 380px"
-                 width="1024" height="538" alt="Banner da Corrida Passo a Passo 10K do Novorizontino" decoding="async">
-          </div>
-          <div class="hub-card-body">
-            <div class="hub-card-meta">
-              <span class="hub-card-distance">10K</span>
-              <span class="hub-card-date"><time datetime="2026-11-08">Dom · 08/11/2026</time></span>
-            </div>
-            <span class="hub-card-city">Novo Horizonte – SP · Novorizontino</span>
-            <h3 class="hub-card-title">Corrida Passo a Passo 10K</h3>
-            <p class="hub-card-desc">Percurso ondulado e exigente, com a Grande Escalada perto do km 4 e o Paredão Final perto do km 8.</p>
-            <div class="hub-card-stats">
-              <span><strong>+116 m</strong> D+</span>
-              <span><strong>8</strong> segmentos</span>
-              <span><strong>Ondulado</strong></span>
-            </div>
-            <span class="hub-card-btn">Montar minha estratégia →</span>
-          </div>
-        </a>
+        <!-- Corrida nova: pasta com o GPX + estrategia.config.json e rodar node build-blog.js (veja PROJETO-SITE-KARINA-CONTEXTO-IA.md) -->
+        <!-- Cards gerados pelo build a partir do estrategia.config.json de cada corrida (scripts/estrategia-build.js) -->
+        <!-- ESTRATEGIA_CARDS -->
 
         <!-- Card "em breve": mostra que outras provas estão chegando -->
         <div class="hub-card hub-card-soon">

@@ -112,6 +112,11 @@ const dir = path.resolve(dirArg);
 const configPath = path.join(dir, "estrategia.config.json");
 let config = {};
 if (fs.existsSync(configPath)) config = JSON.parse(fs.readFileSync(configPath, "utf8"));
+if (config.dadosManuais) {
+  console.error("❌ Esta corrida tem dadosManuais: true no estrategia.config.json (o course-data.js foi feito à mão).");
+  console.error("   Rodar o gerador apagaria os textos dos trechos. Edite o course-data.js direto ou remova a flag.");
+  process.exit(1);
+}
 const P = Object.assign({}, DEFAULTS, config.limpeza || {});
 
 const gpxName =
@@ -143,7 +148,13 @@ while (changed) {
     const a = haversine(kept[i - 1], kept[i]);
     const b = haversine(kept[i], kept[i + 1]);
     const c = haversine(kept[i - 1], kept[i + 1]);
-    if (a + b > P.vaiEVemMinM && c < P.vaiEVemRazao * (a + b)) {
+    // Retorno de verdade (prova de ida e volta): o traçado volta pelo mesmo caminho, então os
+    // pontos antes e depois do retorno ficam no mesmo lugar. Erro de clique: volta e segue por outro lado.
+    const before2 = kept[i - 2];
+    const after2 = kept[i + 2];
+    const retornoReal = before2 && after2 &&
+      haversine(before2, after2) < Math.max(8, 0.35 * (haversine(before2, kept[i - 1]) + haversine(kept[i + 1], after2)));
+    if (a + b > P.vaiEVemMinM && c < P.vaiEVemRazao * (a + b) && !retornoReal) {
       const raw = rawTrack[kept[i].origIdx];
       anomalies.push({
         id: `vai-e-vem-${kept[i].origIdx}`,
@@ -253,44 +264,50 @@ function classify(netEle, distM, gain) {
   if (g <= -0.8) return "downhill";
   return "rolling";
 }
-const DEFAULT_TEXT = {
-  downhill: { badge: "Descida", name: "Descida", cue: "Passada solta, quadril alto, sem frear." },
-  uphill: { badge: "Subida Moderada", name: "Subida", cue: "Encurte a passada e mantenha o esforço, não o pace." },
-  climb: { badge: "Subida Forte", name: "Subida forte", cue: "Braços ativos, olhar à frente, aceite perder segundos." },
-  rolling: { badge: "Ondulado", name: "Trecho ondulado", cue: "Ritmo estável e respiração controlada." }
-};
-
-const segmentDefinitions = [];
+// 1ª passada: números de cada trecho
+const segStats = [];
 let startIdx = 0;
 cutIdx.forEach((endIdx, i) => {
-  const s = cleanTrack[startIdx];
-  const e = cleanTrack[endIdx];
   const slice = cleanTrack.slice(startIdx + 1, endIdx + 1);
-  const gain = slice.reduce((a, p) => a + Math.max(0, p.de), 0);
-  const loss = slice.reduce((a, p) => a + Math.max(0, -p.de), 0);
-  const distM = e.dist - s.dist;
-  const netEle = e.ele - s.ele;
-  const type = classify(netEle, distM, gain);
+  const gain = slice.reduce((x, p) => x + Math.max(0, p.de), 0);
+  const loss = slice.reduce((x, p) => x + Math.max(0, -p.de), 0);
+  const distM = cleanTrack[endIdx].dist - cleanTrack[startIdx].dist;
+  const netEle = cleanTrack[endIdx].ele - cleanTrack[startIdx].ele;
   const txt = (config.segmentos && config.segmentos[i]) || {};
-  const def = DEFAULT_TEXT[type];
-  const id = i + 1;
-  segmentDefinitions.push({
-    id,
-    name: txt.name || `${def.name} (Km ${fmt(s.dist / 1000)}–${fmt(e.dist / 1000)})`,
-    shortName: txt.shortName || `Seg ${id} · ${def.name}`,
-    type: txt.type || type,
-    badge: txt.badge || def.badge,
-    color: COLORS[txt.type || type],
+  segStats.push({ id: i + 1, a: startIdx, b: endIdx, gain, loss, distM, netEle, type: txt.type || classify(netEle, distM, gain) });
+  startIdx = endIdx;
+});
+
+// 2ª passada: textos automáticos com contexto (posição, rampa, vizinhos). O config tem prioridade.
+const officialForText = (config.race && config.race.officialDistanceM) || Math.round(totalM / 1000) * 1000;
+const topIdx = cleanTrack.reduce((best, p, i) => (p.ele > cleanTrack[best].ele ? i : best), 0);
+const autoTxt = require("./estrategia-textos.js").escreverTrechos(segStats, {
+  track: cleanTrack,
+  officialM: officialForText,
+  cleanM: totalM,
+  halfwayM: config.race && config.race.halfwayDistM,
+  topIdx
+});
+
+const segmentDefinitions = segStats.map((st, i) => {
+  const txt = (config.segmentos && config.segmentos[i]) || {};
+  const auto = autoTxt[i];
+  const s = cleanTrack[st.a];
+  const e = cleanTrack[st.b];
+  return {
+    id: st.id,
+    name: txt.name || auto.name,
+    shortName: txt.shortName || auto.shortName,
+    type: st.type,
+    badge: txt.badge || auto.badge,
+    color: COLORS[st.type],
     startOrigIdx: s.origIdx,
     endOrigIdx: e.origIdx,
-    tacticalTitle: txt.tacticalTitle || `${fmtSigned(netEle)}m em ${Math.round(distM)}m`,
-    tacticalTip:
-      txt.tacticalTip ||
-      `Do Km ${fmt(s.dist / 1000, 2)} ao ${fmt(e.dist / 1000, 2)}: sobe ${fmt(gain)}m e desce ${fmt(loss)}m (média ${fmtSigned((netEle / distM) * 100)}%).`,
-    mentalCue: txt.mentalCue || def.cue,
-    _resumo: { kmIni: s.dist / 1000, kmFim: e.dist / 1000, distM, netEle, gain, loss }
-  });
-  startIdx = endIdx;
+    tacticalTitle: txt.tacticalTitle || auto.tacticalTitle,
+    tacticalTip: txt.tacticalTip || auto.tacticalTip,
+    mentalCue: txt.mentalCue || auto.mentalCue,
+    _resumo: { kmIni: s.dist / 1000, kmFim: e.dist / 1000, distM: st.distM, netEle: st.netEle, gain: st.gain, loss: st.loss }
+  };
 });
 
 // 4. Saída
@@ -354,7 +371,27 @@ if (!fs.existsSync(configPath)) {
   const modelo = {
     gpx: gpxName,
     metadata: { name: "", city: "", author: "" },
-    race: { title: "", officialDistanceM: Math.round(totalM / 1000) * 1000, halfwayDistM: Math.round(totalM / 2000) * 1000 },
+    race: {
+      title: "",
+      date: "AAAA-MM-DD",
+      gaCategory: path.basename(dir).replace(/^[0-9]+-/, "").replace(/-/g, "_"),
+      officialDistanceM: Math.round(totalM / 1000) * 1000,
+      defaultTargetSeconds: Math.round(totalM / 1000) * 300, // 5:00/km
+      minTargetSeconds: Math.round(totalM / 1000) * 150, // 2:30/km
+      maxHours: Math.max(2, Math.ceil(Math.round(totalM / 1000) / 5)),
+      halfwayDistM: Math.round(totalM / 2000) * 1000
+    },
+    pagina: {
+      _leia: "Textos da página. Campo vazio = texto automático calculado pelo percurso. Veja PROJETO-SITE-KARINA-CONTEXTO-IA.md",
+      nome: "",
+      nomeCurto: "",
+      subtitulo: "",
+      intro: "",
+      recomendacao: "",
+      seoTitulo: "",
+      seoDescricao: "",
+      card: { titulo: "", cidade: "", descricao: "", distancia: "" }
+    },
     segmentos: segmentDefinitions.map((d) => ({
       ateKm: r2(d._resumo.kmFim),
       name: "",

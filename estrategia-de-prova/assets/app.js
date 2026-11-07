@@ -23,6 +23,11 @@
     },
     (window.COURSE_DATA && window.COURSE_DATA.race) || {}
   );
+  // Sem tempo inicial no config: usa 5:00/km na distância oficial (e mínimo de 2:30/km)
+  const RACE_SRC = (window.COURSE_DATA && window.COURSE_DATA.race) || {};
+  if (RACE_SRC.defaultTargetSeconds == null) RACE.defaultTargetSeconds = Math.round((RACE.officialDistanceM / 1000) * 300 / 60) * 60;
+  if (RACE_SRC.minTargetSeconds == null) RACE.minTargetSeconds = Math.round((RACE.officialDistanceM / 1000) * 150);
+  if (RACE_SRC.halfwayDistM == null) RACE.halfwayDistM = RACE.officialDistanceM / 2;
   const formatEle = (v) => v.toFixed(1).replace(".", ",") + "m";
 
   const state = {
@@ -1294,7 +1299,7 @@
    * No próprio dia da prova a página continua normal.
    */
   function renderPostRaceNotice() {
-    if (!RACE.date || todayIso() <= RACE.date) return;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(RACE.date || "") || todayIso() <= RACE.date) return;
     const main = document.querySelector(".main-content");
     if (!main || document.getElementById("postRaceNotice")) return;
     const [y, m, d] = RACE.date.split("-");

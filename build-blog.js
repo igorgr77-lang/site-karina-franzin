@@ -525,27 +525,11 @@ async function build() {
         }
 
         // 3.1.8 Estratégia de Prova (estrategia-de-prova/) - escura
-        // Página raiz com a lista de corridas + uma subpasta por corrida (ex: estrategia-de-prova/10k-novo-horizonte/).
-        // Toda subpasta com index.template.html é compilada automaticamente. O motor (app.js) e o CSS
-        // ficam compartilhados em estrategia-de-prova/assets/; cada corrida tem só o seu course-data.js e GPX.
+        // Cada corrida é gerada a partir do estrategia.config.json + course-data.js da sua pasta,
+        // usando o template único estrategia-de-prova/assets/corrida.template.html.
+        // A página raiz recebe os cards das corridas em ordem de data. Ver scripts/estrategia-build.js.
         const estrategiaDir = path.join(__dirname, "estrategia-de-prova");
-        if (fs.existsSync(estrategiaDir)) {
-            const hubTemplatePath = path.join(estrategiaDir, "index.template.html");
-            if (fs.existsSync(hubTemplatePath)) {
-                const htmlHub = compilePageComponents(fs.readFileSync(hubTemplatePath, "utf8"), false);
-                fs.writeFileSync(path.join(estrategiaDir, "index.html"), htmlHub, "utf8");
-                console.log("💾 Página raiz da Estratégia de Prova compilada em: estrategia-de-prova/index.html");
-            }
-            for (const item of fs.readdirSync(estrategiaDir)) {
-                const itemPath = path.join(estrategiaDir, item);
-                const raceTemplatePath = path.join(itemPath, "index.template.html");
-                if (fs.statSync(itemPath).isDirectory() && fs.existsSync(raceTemplatePath)) {
-                    const htmlRace = compilePageComponents(fs.readFileSync(raceTemplatePath, "utf8"), false);
-                    fs.writeFileSync(path.join(itemPath, "index.html"), htmlRace, "utf8");
-                    console.log(`   💾 Estratégia de prova compilada: estrategia-de-prova/${item}/index.html`);
-                }
-            }
-        }
+        await require("./scripts/estrategia-build.js").buildEstrategia({ rootDir: __dirname, compilePageComponents });
 
         // 3.2 Planos Combo (planos/*.html) - escura
         const planosComboDir = path.join(__dirname, 'planos');

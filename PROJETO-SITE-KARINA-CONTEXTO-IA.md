@@ -344,25 +344,60 @@ O gerenciamento de eventos segue o modelo de Geração de Site Estático (SSG). 
 
 ---
 
-## 🏁 ESTRATÉGIA DE PROVA (calculadoras de pace por corrida) — 06/11/2026
+## 🏁 ESTRATÉGIA DE PROVA (calculadoras de pace por corrida) — atualizado 07/11/2026
 
 Ferramenta gratuita: o corredor escolhe a prova, digita o tempo alvo e recebe o pace de cada trecho de subida/descida, parciais km a km e cola de pulso.
 
 ```
 estrategia-de-prova/
-├── index.template.html          ← Página raiz: cards das corridas (adicionar um card por prova)
-├── assets/app.js                ← Motor ÚNICO compartilhado (GAP / Minetti, gráfico, mapa Leaflet)
-├── assets/styles.css            ← CSS ÚNICO compartilhado (inclui o da página raiz, prefixo .hub-)
-└── 10k-novo-horizonte/
-    ├── index.template.html      ← Textos/números da prova (hero, diagnóstico, metas rápidas)
-    ├── course-data.js           ← Dados da prova: bloco `race` (config), segmentos, trilhas do GPX
-    └── *.gpx                    ← GPX limpo (download) e original
+├── index.template.html             ← Página raiz (os cards das corridas são gerados pelo build)
+├── assets/
+│   ├── corrida.template.html       ← Template ÚNICO de todas as páginas de corrida ({{MARCADORES}})
+│   ├── app.js                      ← Motor compartilhado (GAP / Minetti, gráfico, mapa, pós-prova)
+│   ├── hub.js                      ← Página raiz: marca "Prova realizada" depois da data
+│   └── styles.css                  ← CSS compartilhado (corridas + página raiz)
+└── <corrida>/                      ← Uma pasta por prova (o nome da pasta vira o endereço)
+    ├── <arquivo>.gpx               ← GPX original
+    ├── estrategia.config.json      ← Textos e dados da prova (você edita)
+    ├── course-data.js              ← Gerado pelo scripts/gerar-course-data.js (não editar)
+    ├── <arquivo>_LIMPO.gpx         ← Gerado (download para o relógio)
+    ├── banner.webp (+ -1024w, -640w) ← Opcional: card da página raiz; o build gera o banner-og.jpg
+    └── index.html                  ← Gerado pelo build (não editar)
 ```
 
-- **Adicionar corrida:** criar a pasta com o `.gpx` e rodar `node scripts/gerar-course-data.js estrategia-de-prova/<pasta>`. O script lê o GPX, remove pontos duplicados e vai-e-vem de clique, suaviza o ruído de altitude, divide o percurso em segmentos de subida/descida e gera `course-data.js` + `<nome>_LIMPO.gpx`. Na 1ª rodada ele cria um `estrategia.config.json` (nome, distância oficial, cortes `ateKm` e textos de cada segmento). Preencher o config, rodar de novo, copiar o `index.template.html` de outra corrida trocando os textos, duplicar o card na página raiz (e no JSON-LD ItemList) e rodar `node build-blog.js`. Nunca editar o `course-data.js` à mão: ele é regerado a partir do config.
-- **Corridas:** `10k-novo-horizonte/` (dados antigos, feitos fora do gerador) e `2-zrun-fernandopolis/` (6 km, gerada pelo script; a Karina venceu a 1ª edição).
-- **Nada de valor fixo da prova no `app.js`:** distância oficial, tempo mínimo, centro do mapa, textos de estratégia/distância, marcadores de anomalia e textos do compartilhamento ficam em `COURSE_DATA.race`. Subidas/descidas dos KPIs vêm do `type` de cada segmento (`uphill`/`climb` × `downhill`).
-- **Leaflet** vem do cdnjs (já liberado na CSP do Worker). O menu mobile é do `/js/navbar.js`; não recriar no `app.js`.
+### Como criar uma corrida nova (3 passos)
+
+1. **Criar a pasta e colocar o GPX.** Ex.: `estrategia-de-prova/corrida-x-catanduva-2026/` (use nome-da-prova-cidade-ano; o nome da pasta vira o endereço).
+2. **Rodar o gerador:** `node scripts/gerar-course-data.js estrategia-de-prova/<pasta>`. Ele limpa o GPX, divide em trechos e cria o `estrategia.config.json` modelo. Preencha no mínimo `metadata.name`, `metadata.city`, `race.title`, `race.date` (AAAA-MM-DD) e `pagina.nome`. Opcional: nomes e dicas de cada trecho em `segmentos[]` (o `ateKm` de cada um já vem preenchido). Rode o gerador de novo para levar os textos dos trechos ao `course-data.js`.
+3. **Rodar o build:** `node build-blog.js`. Gera a página da corrida, o card na página raiz (em ordem de data), a lista para o Google, a prévia de link e o sitemap.
+
+**Textos automáticos (scripts/estrategia-textos.js):** sem preencher nada, cada trecho já sai com nome, selo, título, dica e frase de foco escritos a partir do percurso: posição na prova (largada, meio, final), inclinação média e rampa mais íngreme (janela de 150m), o que vem antes/depois (ex.: "Guarde perna: em seguida vem a maior subida"), maior subida ("o trecho que decide a prova"), última subida, descida íngreme (cuidado com o quadríceps), metade da prova e ponto mais alto. A introdução e a recomendação da página também. São um rascunho bom para a Karina revisar; qualquer texto do config substitui o automático. O gerador também diferencia **erro de clique** (vai-e-vem que segue para outro lado, removido) de **retorno real** da prova (o traçado volta pelo mesmo caminho, mantido).
+
+Se quiser banner, coloque `banner.webp` (1731×909 ou 1200×630) e as versões `-1024w`/`-640w` na pasta. Sem banner, o card mostra a silhueta da altimetria.
+
+### Campos do bloco `pagina` (todos opcionais: vazio = texto automático)
+
+| Campo | O que é | Automático |
+|---|---|---|
+| `nome` | Nome da prova no título e no H1 | `metadata.name` |
+| `nomeCurto` | Usado em "Quer correr a ___ …" | igual a `nome` |
+| `nomePulseira` | Cabeçalho da pulseira impressa | `nomeCurto` em maiúsculas |
+| `subtitulo` | Texto do topo (aceita HTML) | frase padrão com nº de trechos |
+| `intro` / `recomendacao` | Texto da aba de trechos e quadro tático (HTML) | gerados pela maior subida |
+| `destaques` | 2 itens `{rotulo, valor}` do quadro do topo | maior subida + ponto mais alto |
+| `diagStatus` | Ex.: "Percurso Ondulado · Exigente" | pelo desnível por km |
+| `metasRapidas` | Lista de segundos dos botões de meta | paces de 3:40 a 7:30/km |
+| `faixaRelogio` | Ex.: "10,1 e 10,4" | calculada pela distância |
+| `rotuloLimpo` / `rotuloBruto` | Texto entre parênteses das opções de distância | "Altitude suavizada" / nenhum |
+| `seoTitulo`, `seoDescricao`, `ogTitulo`, `ogDescricao`, `ogAlt`, `descricaoSchema`, `ctaTitulo`, `nomeWhatsapp` | SEO, prévia e chamadas | gerados pelo `nome` |
+| `card` | `{titulo, cidade, descricao, distancia, alt, tag}` do card da página raiz | gerados |
+
+- **Corridas atuais:** `2-zrun-fernandopolis/` (6 km, gerada pelo script; a Karina venceu a 1ª edição) e `10k-novo-horizonte/` (Corrida Passo a Passo 10K, Novorizontino). A Passo a Passo tem `"dadosManuais": true`: o `course-data.js` dela foi feito à mão, então o gerador se recusa a rodar nela (o bloco `race` e os textos dos trechos ficam no próprio `course-data.js`).
+- **Modo pós-prova:** depois de `race.date`, a página da corrida mostra "Esta prova já aconteceu" com chamada para os planos, e o card da raiz vira "Prova realizada". Para testar antes: `?simular=pos-prova` no endereço.
+- **Cache:** o build coloca um código (hash) do `app.js`/`styles.css`/`course-data.js` no `?v=` das páginas de corrida e da raiz. Não precisa mais subir versão à mão.
+- **Layout de todas as corridas:** edite `assets/corrida.template.html` e rode o build. Nada de valor fixo de prova no `app.js`: tudo vem de `COURSE_DATA.race` (distância oficial, tempos, mapa, textos de estratégia e compartilhamento).
+- **GA4:** eventos com `event_category` = `race.gaCategory` (ex.: `zrun_fernandopolis`). WhatsApp é rastreado sozinho pelo `navbar.js`; não colocar `data-gtag-event` em links `wa.me` (duplica o evento).
+- **Leaflet** vem do cdnjs; mapa do OpenStreetMap com filtro escuro (o CARTO passou a exigir chave). O menu mobile é do `/js/navbar.js`.
 
 ---
 

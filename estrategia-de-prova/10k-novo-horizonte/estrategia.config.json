@@ -1,0 +1,51 @@
+{
+  "dadosManuais": true,
+  "_leia": "course-data.js desta corrida foi feito à mão (antes do gerador). Não rode scripts/gerar-course-data.js aqui: os textos dos trechos e o bloco race ficam no course-data.js.",
+  "pagina": {
+    "nome": "Corrida Passo a Passo 10K",
+    "nomeCurto": "Passo a Passo",
+    "nomePulseira": "PASSO A PASSO 10K",
+    "seoTitulo": "Passo a Passo 10K Novo Horizonte: estratégia e pace | Karina Franzin",
+    "seoDescricao": "Estratégia da Corrida Passo a Passo 10K do Novorizontino, em Novo Horizonte: pace para cada subida e descida, parciais km a km e cola de pulso. Grátis.",
+    "ogTitulo": "Corrida Passo a Passo 10K Novo Horizonte: estratégia e pace",
+    "ogDescricao": "Digite seu tempo alvo e receba o pace de cada subida e descida dos 10 km, as parciais km a km e uma cola de pulso pronta.",
+    "ogAlt": "Banner da Corrida Passo a Passo 10K do Novorizontino",
+    "descricaoSchema": "Calculadora de pace por segmento de subida e descida e parciais km a km para a Corrida Passo a Passo 10K do Novorizontino, em Novo Horizonte - SP.",
+    "subtitulo": "Prova do Novorizontino em Novo Horizonte – SP. Digite o tempo em que deseja concluir a prova e receba sua estratégia tática dividida nos <strong>8 segmentos de subida e descida</strong> do percurso, além das parciais quilômetro a quilômetro para o seu relógio GPS.",
+    "diagStatus": "Percurso Ondulado · Exigente",
+    "destaques": [
+      {
+        "rotulo": "Maior Escalada",
+        "valor": "Km 3,9 a 6,0 (+47,5m)"
+      },
+      {
+        "rotulo": "Paredão Final",
+        "valor": "Km 7,8 a 9,0 (+32,7m)"
+      }
+    ],
+    "intro": "Em um percurso ondulado como o da Corrida Passo a Passo, olhar apenas para o pace médio faz o corredor abrir forte demais nos 2 primeiros quilômetros (descida) e quebrar na <strong>Grande Escalada (Km 3,9 a 6,0)</strong> ou no <strong>Paredão Final (Km 7,8 a 9,0)</strong>. Siga o ritmo de cada segmento abaixo:",
+    "recomendacao": "Mais de <strong>69% de toda a subida da prova (+80,2m)</strong> está concentrada em apenas dois blocos: o <strong>Segmento 4 (Km 3,9 a 6,0)</strong> e o <strong>Segmento 7 (Km 7,8 a 9,0)</strong>. Correr esses dois trechos de 15 a 25 segundos/km mais lento que seu pace médio não é \"quebrar\": é o que mantém o esforço abaixo do limiar e deixa perna para recuperar tudo nas descidas dos Segmentos 5 e 8!",
+    "ctaTitulo": "Quer correr a Passo a Passo na sua melhor performance?",
+    "faixaRelogio": "10,1 e 10,4",
+    "metasRapidas": [
+      2280,
+      2400,
+      2700,
+      3000,
+      3300,
+      3600,
+      3900,
+      4500
+    ],
+    "rotuloLimpo": "Sem erros do GPX",
+    "rotuloBruto": "",
+    "card": {
+      "titulo": "Corrida Passo a Passo 10K",
+      "cidade": "Novo Horizonte – SP · Novorizontino",
+      "descricao": "Percurso ondulado e exigente, com a Grande Escalada perto do km 4 e o Paredão Final perto do km 8.",
+      "distancia": "10K",
+      "alt": "Banner da Corrida Passo a Passo 10K do Novorizontino",
+      "tag": "Ondulado"
+    }
+  }
+}
