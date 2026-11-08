@@ -144,6 +144,12 @@
     "percursoDestaPagina": "corrida de 6 km",
     "organizador": "Lucas Porte de Paula, com apoio da assessoria Time Run",
     "cronometragem": "Equilíbrio Esportes",
-    "siteOficial": "https://equilibrio.esp.br/2a-corrida-zrun-night-run-fernandopolis-sp/"
+    "siteOficial": "https://equilibrio.esp.br/2a-corrida-zrun-night-run-fernandopolis-sp/",
+    "duracaoHoras": 2,
+    "inscricao": {
+      "preco": 119.9,
+      "url": "https://equilibrio.esp.br/2a-corrida-zrun-night-run-fernandopolis-sp/",
+      "disponibilidade": "SoldOut"
+    }
   }
 }

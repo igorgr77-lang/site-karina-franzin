@@ -155,9 +155,13 @@ ${faqs.map(([q, r]) => `      <details class="faq-item">
     name: ev.nomeOficial || nome,
     sport: "Corrida de rua",
     startDate: ev.inicio || date,
+    endDate: fimEvento(ev, date),
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: { "@type": "Place", name: localLargada, address: { "@type": "PostalAddress", addressLocality: ev.cidade || o.cityShort || "", addressRegion: ev.uf || "", addressCountry: "BR" } },
+    // Quem participa: os atletas inscritos na prova
+    performer: { "@type": "PerformingGroup", name: ev.participantes || `Atletas da ${ev.nomeOficial || nome}` },
+    ...(ofertaEvento(ev) ? { offers: ofertaEvento(ev) } : {}),
     ...(ev.organizador ? { organizer: { "@type": "Organization", name: ev.organizador, ...(ev.siteOficial ? { url: ev.siteOficial } : {}) } } : {}),
     ...(ev.siteOficial ? { url: ev.siteOficial } : {}),
     image: o.ogImagem,
@@ -167,4 +171,35 @@ ${faqs.map(([q, r]) => `      <details class="faq-item">
   return { secao, faq, jsonld: jsonld + evento };
 }
 
-module.exports = { percursoHtml };
+/**
+ * Fim do evento: evento.fim (ISO) ou início + evento.duracaoHoras (padrão 2 h), no mesmo fuso.
+ * Sem horário de início, usa só a data.
+ */
+function fimEvento(ev, date) {
+  if (ev.fim) return ev.fim;
+  const m = (ev.inicio || "").match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::\d{2})?([+-]\d{2}:\d{2}|Z)?$/);
+  if (!m) return ev.inicio || date;
+  const [, y, mo, d, hh, mm, tz = "-03:00"] = m;
+  const t = new Date(Date.UTC(+y, +mo - 1, +d, +hh, +mm) + (ev.duracaoHoras || 2) * 3600e3);
+  const p = (n) => String(n).padStart(2, "0");
+  return `${t.getUTCFullYear()}-${p(t.getUTCMonth() + 1)}-${p(t.getUTCDate())}T${p(t.getUTCHours())}:${p(t.getUTCMinutes())}:00${tz}`;
+}
+
+/**
+ * Inscrição (offers) a partir de evento.inscricao: { preco, url, disponibilidade, desde }.
+ * disponibilidade: "InStock" (aberta), "SoldOut" (encerrada/esgotada) ou "PreOrder".
+ */
+function ofertaEvento(ev) {
+  const i = ev.inscricao;
+  if (!i || i.preco == null) return null;
+  return {
+    "@type": "Offer",
+    price: Number(i.preco).toFixed(2),
+    priceCurrency: i.moeda || "BRL",
+    url: i.url || ev.inscricoes || ev.siteOficial,
+    availability: `https://schema.org/${i.disponibilidade || "InStock"}`,
+    ...(i.desde ? { validFrom: i.desde } : {})
+  };
+}
+
+module.exports = { percursoHtml, fimEvento, ofertaEvento };

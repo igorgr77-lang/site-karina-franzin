@@ -62,6 +62,12 @@
     "organizador": "Instituto Life e Grêmio Novorizontino",
     "cronometragem": "Myrunning (organização técnica)",
     "siteOficial": "https://www.gremionovorizontino.com.br/2026/10/20/corrida-passo-a-passo-divulga-percursos-e-valores-das-premiacoes-por-categoria/",
-    "inscricoes": "https://www.myrunning.com.br/Corridas/DetalheEvento?nomeEvento=CORRIDA-PASSO-A-PASSO-2026%20-%20ADULTOS"
+    "inscricoes": "https://www.myrunning.com.br/Corridas/DetalheEvento?nomeEvento=CORRIDA-PASSO-A-PASSO-2026%20-%20ADULTOS",
+    "duracaoHoras": 2,
+    "inscricao": {
+      "preco": 0,
+      "url": "https://www.myrunning.com.br/Corridas/DetalheEvento?nomeEvento=CORRIDA-PASSO-A-PASSO-2026%20-%20ADULTOS",
+      "disponibilidade": "SoldOut"
+    }
   }
 }
