@@ -7,23 +7,17 @@
  * - faz os redirecionamentos 301 (links antigos do blog, Cãominhada);
  * - esconde arquivos internos do repositório (404);
  * - adiciona os headers de segurança em todas as respostas;
- * - recebe os relatórios de violação da CSP (aparecem nos logs do Worker).
+ * - aplica a CSP (lista de domínios externos permitidos) e recebe os relatórios
+ *   do que ela bloqueou (aparecem nos logs do Worker).
  */
 
 const CSP_REPORT_PATH = '/__csp-report';
 
-// Partes da CSP que não quebram nada: aplicadas de verdade.
-const CSP_ENFORCED = [
-  "object-src 'none'",
-  "base-uri 'self'",
-  "frame-ancestors 'self'",
-  'upgrade-insecure-requests',
-].join('; ');
-
-// CSP completa em modo "só relatório": nada é bloqueado, as violações
-// são enviadas para CSP_REPORT_PATH. Quando os logs ficarem limpos,
-// dá para trocar para Content-Security-Policy.
-const CSP_REPORT_ONLY = [
+// CSP do site, APLICADA (bloqueia o que não está na lista). As violações continuam indo
+// para CSP_REPORT_PATH (logs do Worker). Ao incluir um serviço externo novo no site
+// (script, API, iframe), acrescente o domínio aqui antes de publicar, senão ele é bloqueado.
+// Para testar localmente com o bloqueio ligado, veja PROJETO-SITE-KARINA-CONTEXTO-IA.md (CSP).
+const CSP_SITE = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://www.googletagmanager.com https://*.clarity.ms https://news.google.com https://challenges.cloudflare.com https://static.cloudflareinsights.com https://device.clearsale.com.br",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com",
@@ -37,6 +31,7 @@ const CSP_REPORT_ONLY = [
   "object-src 'none'",
   "base-uri 'self'",
   "frame-ancestors 'self'",
+  'upgrade-insecure-requests',
   `report-uri ${CSP_REPORT_PATH}`,
   'report-to csp',
 ].join('; ');
@@ -72,8 +67,7 @@ const SECURITY_HEADERS = {
   'X-Frame-Options': 'SAMEORIGIN',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
   'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), usb=(), payment=()',
-  'Content-Security-Policy': CSP_ENFORCED,
-  'Content-Security-Policy-Report-Only': CSP_REPORT_ONLY,
+  'Content-Security-Policy': CSP_SITE,
   'Reporting-Endpoints': `csp="https://karinafranzin.com.br${CSP_REPORT_PATH}"`,
 };
 
@@ -142,7 +136,6 @@ function withSecurityHeaders(response, pathname) {
   }
   if (STRICT_CSP_PATHS.has(pathname)) {
     res.headers.set('Content-Security-Policy', CSP_STRICT);
-    res.headers.delete('Content-Security-Policy-Report-Only');
   }
   return res;
 }
