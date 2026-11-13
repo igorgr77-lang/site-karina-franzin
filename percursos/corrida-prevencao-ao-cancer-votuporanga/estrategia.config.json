@@ -1,0 +1,142 @@
+{
+  "gpx": "PREVENCAO_CANCER_VOTUPORANGA_ORIGINAL.gpx",
+  "nomeArquivoLimpo": "PREVENCAO_CANCER_VOTUPORANGA",
+  "metadata": {
+    "name": "4ª Corrida em Prevenção ao Câncer Votuporanga",
+    "city": "Votuporanga - SP",
+    "author": "Strava (rota publicada pela organização)"
+  },
+  "race": {
+    "title": "Estratégia Corrida em Prevenção ao Câncer Votuporanga",
+    "date": "2026-11-22",
+    "gaCategory": "corrida_prevencao_ao_cancer_votuporanga",
+    "officialDistanceM": 6000,
+    "defaultTargetSeconds": 1800,
+    "minTargetSeconds": 900,
+    "maxHours": 2,
+    "halfwayDistM": 3000,
+    "summaryElevation": "+80,0m D+ (7 Segmentos Táticos)",
+    "summaryReminder": "Não gaste na descida até a rotatória (Km 2): guarde perna para a Grande Subida da Vilar Horta e para a chegada em subida!",
+    "strategyDescriptions": {
+      "conservative": "Poupa energia na descida dos Km 0,8 a 2,0 para encarar a Grande Subida da Vilar Horta e ainda ter perna para as duas subidas finais.",
+      "aggressive-downhill": "Ataca forte as descidas (Seg 2, 4 e 6) e segura o esforço nas subidas (Seg 3, 5 e 7)."
+    }
+  },
+  "segmentos": [
+    {
+      "ateKm": 0.69,
+      "name": "Largada pela Av. Pansani",
+      "shortName": "Seg 1 · Av. Pansani",
+      "badge": "Quase Plano",
+      "tacticalTitle": "+6,7m em 700m: só para encaixar o ritmo",
+      "tacticalTip": "A largada segue pela Av. Pansani numa subida tão leve (média +1%) que nem parece subida. Use estes 700m para sair do aperto do pelotão e achar o seu ritmo, sem disparar. Logo à frente, no Km 0,8, vem o primeiro retorno: comece a se posicionar pelo lado de dentro.",
+      "mentalCue": "Respiração solta: o plano é chegar inteiro ao Km 2."
+    },
+    {
+      "ateKm": 1.95,
+      "name": "Retorno e Descida pela Av. dos Bancários",
+      "shortName": "Seg 2 · Retorno e Descida",
+      "badge": "Descida Favorável",
+      "tacticalTitle": "Retorno no Km 0,8 e -23,6m até o ponto mais baixo",
+      "tacticalTip": "Logo no começo do trecho vem o 1º retorno, no fim da Av. Pansani: reduza, faça a curva por dentro e retome o ritmo em poucos passos. A volta passa de novo pela largada e segue pela Av. dos Bancários, descendo até a rotatória do ponto mais baixo da prova (470,6m, Km 2,0), com a parte mais inclinada no fim (cerca de 6%). Desça solto, mas sem gastar: logo depois da rotatória começa a Grande Subida.",
+      "mentalCue": "Deixe a descida trabalhar e guarde perna para a subida."
+    },
+    {
+      "ateKm": 2.96,
+      "name": "Grande Subida da Av. Francisco de Vilar Horta",
+      "shortName": "Seg 3 · Grande Subida",
+      "badge": "Subida Forte",
+      "tacticalTitle": "+36,3m em 1 km: o trecho que decide a prova",
+      "tacticalTip": "Depois da rotatória, a Av. Francisco de Vilar Horta sobe sem descanso de 470,6m até 506,9m, o ponto mais alto da prova. É quase metade de todo o desnível (45%), e o começo é o mais duro: cerca de 8% perto do Km 2,1. Segure o esforço, não o pace: perder segundos aqui é normal e já está no plano. No topo (Km 3,1) vem o 2º retorno, bem na metade da prova.",
+      "mentalCue": "Paciência: quem segura aqui ultrapassa na descida."
+    },
+    {
+      "ateKm": 3.72,
+      "name": "Descida da Vilar Horta e da Rua Guanabara",
+      "shortName": "Seg 4 · Descida Íngreme",
+      "badge": "Descida Forte",
+      "tacticalTitle": "Retorno no topo e -29,7m em 800m",
+      "tacticalTip": "Feito o retorno do topo, você desce de volta pela Vilar Horta e vira para a Rua Guanabara, que é a parte mais íngreme (cerca de 7% perto do Km 3,7). É a descida mais forte da prova: passos curtos e rápidos, sem frear com o calcanhar. Ganhe tempo, mas sem castigar o quadríceps: ainda faltam duas subidas.",
+      "mentalCue": "Incline levemente o corpo à frente e deixe a passada abrir."
+    },
+    {
+      "ateKm": 4.41,
+      "name": "Subida da Av. Vale do Sol",
+      "shortName": "Seg 5 · Subida Vale do Sol",
+      "badge": "Subida Forte",
+      "tacticalTitle": "+20,9m em 700m até o 3º retorno",
+      "tacticalTip": "A Av. Vale do Sol sobe de 477,3m para 498,1m (média +3%, com cerca de 6% perto do Km 4,4). É aqui que o cansaço da Grande Subida aparece. Encurte a passada, mantenha a cadência e não tente recuperar agora os segundos que perdeu antes. No fim da avenida (Km 4,6) vem o 3º e último retorno.",
+      "mentalCue": "Segure o esforço, não o pace: um poste de cada vez."
+    },
+    {
+      "ateKm": 5.41,
+      "name": "Descida da Av. Vale do Sol",
+      "shortName": "Seg 6 · Descida Vale do Sol",
+      "badge": "Descida Rápida",
+      "tacticalTitle": "-26,4m em 1 km para ganhar tempo",
+      "tacticalTip": "Depois do último retorno, você volta pela mesma Av. Vale do Sol, agora descendo (média -2,6%) até a rotatória do ponto mais baixo. É o melhor trecho para acelerar e recuperar os segundos investidos nas subidas. Só não chegue na rotatória sem fôlego: a chegada é em subida.",
+      "mentalCue": "Solte os ombros, abra a passada e acelere com controle."
+    },
+    {
+      "ateKm": 5.79,
+      "name": "Subida Final pela Av. dos Bancários",
+      "shortName": "Seg 7 · Subida Final",
+      "badge": "Subida Forte",
+      "tacticalTitle": "+15,6m nos últimos 400m",
+      "tacticalTip": "Depois da rotatória, a Av. dos Bancários sobe até a chegada, na mesma região da largada. É a subida mais inclinada da prova em média (+4,2%, com rampa de cerca de 7% perto do Km 5,7), e chega quando as pernas estão mais cansadas. Mantenha os braços fortes e solte tudo quando avistar o pórtico.",
+      "mentalCue": "Agora é cabeça: braços fortes e foco na chegada."
+    }
+  ],
+  "pagina": {
+    "nome": "Corrida em Prevenção ao Câncer Votuporanga",
+    "nomeCurto": "Corrida em Prevenção ao Câncer",
+    "nomePulseira": "PREVENÇÃO AO CÂNCER",
+    "subtituloPrefixo": "4ª edição da corrida do Instituto de Cancerologia de Votuporanga – SP.",
+    "ogAlt": "Percurso da 4ª Corrida em Prevenção ao Câncer de Votuporanga 2026",
+    "card": {
+      "titulo": "4ª Corrida em Prevenção ao Câncer",
+      "cidade": "Votuporanga – SP",
+      "descricao": "6 km de ida e volta: a maior subida vai do km 2 ao 3 e a chegada é em subida. Saiba onde poupar e onde acelerar.",
+      "distancia": "6K",
+      "alt": "Percurso da 4ª Corrida em Prevenção ao Câncer de Votuporanga",
+      "tag": "Ondulado"
+    },
+    "diagStatus": "Percurso Ondulado · Moderado",
+    "destaques": [
+      {
+        "rotulo": "Grande Subida",
+        "valor": "Km 2,0 a 3,1 (+36,3m)"
+      },
+      {
+        "rotulo": "Retornos",
+        "valor": "Km 0,8 · 3,1 · 4,6"
+      }
+    ],
+    "intro": "A Corrida em Prevenção ao Câncer é um percurso de ida e volta com <strong>três retornos</strong> e quatro subidas. Olhar só para o pace médio faz o corredor descer rápido demais até a rotatória do Km 2 e travar na <strong>Grande Subida da Av. Francisco de Vilar Horta (Km 2,0 a 3,1)</strong>, que concentra quase metade de todo o desnível. Siga o ritmo de cada segmento abaixo:",
+    "recomendacao": "A prova se decide em dois blocos. O primeiro é a <strong>Grande Subida da Vilar Horta (Segmento 3, +36,3m)</strong>, logo depois da descida até a rotatória. O segundo vem no fim: as subidas da <strong>Av. Vale do Sol e da chegada pela Av. dos Bancários (Segmentos 5 e 7, +36,5m juntas)</strong>. Correr as subidas mais devagar que o pace médio não é \"quebrar\": é o que deixa perna para acelerar nas descidas dos Segmentos 4 e 6. E atenção aos três retornos: em cada um você perde alguns segundos na curva. Retome o ritmo aos poucos, sem tentar recuperar tudo de uma vez na reta seguinte.",
+    "ctaTitulo": "Quer correr a Corrida em Prevenção ao Câncer na sua melhor performance?"
+  },
+  "evento": {
+    "nomeOficial": "4ª Corrida e Caminhada em Prevenção ao Câncer 2026",
+    "inicio": "2026-11-22T07:00:00-03:00",
+    "horario": "7h00",
+    "local": "em frente ao Instituto de Cancerologia de Votuporanga (Rua Tietê, 4985 – Santa Eliza)",
+    "localCurto": "Instituto de Cancerologia de Votuporanga",
+    "cidade": "Votuporanga",
+    "uf": "SP",
+    "modalidades": [
+      "Corrida 6 km",
+      "Caminhada 2 km"
+    ],
+    "percursoDestaPagina": "corrida de 6 km",
+    "organizador": "Instituto de Cancerologia de Votuporanga e Equilíbrio Esportes",
+    "siteOficial": "https://prevencaoaocancer.com.br/",
+    "inscricoes": "https://www.sympla.com.br/evento/4-caminhada-e-corrida-em-prevencao-ao-cancer---votuporanga-sp/3487020",
+    "duracaoHoras": 2,
+    "inscricao": {
+      "preco": 120,
+      "url": "https://www.sympla.com.br/evento/4-caminhada-e-corrida-em-prevencao-ao-cancer---votuporanga-sp/3487020",
+      "disponibilidade": "SoldOut"
+    }
+  }
+}
