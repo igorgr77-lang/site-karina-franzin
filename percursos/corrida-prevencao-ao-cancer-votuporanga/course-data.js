@@ -13,7 +13,7 @@ window.COURSE_DATA = {
     "summaryElevation": "+80,0m D+ (7 Segmentos Táticos)",
     "summaryReminder": "Não gaste na descida até a rotatória (Km 2): guarde perna para a Grande Subida da Vilar Horta e para a chegada em subida!",
     "strategyDescriptions": {
-      "conservative": "Poupa energia na descida dos Km 0,8 a 2,0 para encarar a Grande Subida da Vilar Horta e ainda ter perna para as duas subidas finais.",
+      "conservative": "Corre os primeiros 2,3 km (largada, 1º retorno e descida até a rotatória) um pouco abaixo do ritmo e usa a energia guardada para fechar forte a partir do Km 4,1, nas subidas da Vale do Sol e da chegada.",
       "aggressive-downhill": "Ataca forte as descidas (Seg 2, 4 e 6) e segura o esforço nas subidas (Seg 3, 5 e 7)."
     },
     "mapCenter": [
@@ -64,7 +64,7 @@ window.COURSE_DATA = {
     },
     {
       "id": 2,
-      "name": "Retorno e Descida pela Av. dos Bancários",
+      "name": "Retorno e Descida até a Rotatória",
       "shortName": "Seg 2 · Retorno e Descida",
       "type": "downhill",
       "badge": "Descida Favorável",
@@ -84,8 +84,8 @@ window.COURSE_DATA = {
       "color": "#ef4444",
       "startOrigIdx": 38,
       "endOrigIdx": 60,
-      "tacticalTitle": "+36,3m em 1 km: o trecho que decide a prova",
-      "tacticalTip": "Depois da rotatória, a Av. Francisco de Vilar Horta sobe sem descanso de 470,6m até 506,9m, o ponto mais alto da prova. É quase metade de todo o desnível (45%), e o começo é o mais duro: cerca de 8% perto do Km 2,1. Segure o esforço, não o pace: perder segundos aqui é normal e já está no plano. No topo (Km 3,1) vem o 2º retorno, bem na metade da prova.",
+      "tacticalTitle": "Quase metade do desnível em 1 km: o trecho que decide a prova",
+      "tacticalTip": "Depois da rotatória, a Av. Francisco de Vilar Horta sobe sem descanso de 470,6m até 506,9m, o ponto mais alto da prova. É quase metade de todo o desnível (45%), e o começo é o mais duro: cerca de 8% perto do Km 2,1. Segure o esforço, não o pace: perder segundos aqui é normal e já está no plano. No topo (Km 3,1) vem o 2º retorno, logo depois da metade da prova.",
       "mentalCue": "Paciência: quem segura aqui ultrapassa na descida."
     },
     {
@@ -99,7 +99,7 @@ window.COURSE_DATA = {
       "endOrigIdx": 77,
       "tacticalTitle": "Retorno no topo e -29,7m em 800m",
       "tacticalTip": "Feito o retorno do topo, você desce de volta pela Vilar Horta e vira para a Rua Guanabara, que é a parte mais íngreme (cerca de 7% perto do Km 3,7). É a descida mais forte da prova: passos curtos e rápidos, sem frear com o calcanhar. Ganhe tempo, mas sem castigar o quadríceps: ainda faltam duas subidas.",
-      "mentalCue": "Incline levemente o corpo à frente e deixe a passada abrir."
+      "mentalCue": "Passos curtos e rápidos, quadril alto, sem frear com o calcanhar."
     },
     {
       "id": 5,
@@ -124,7 +124,7 @@ window.COURSE_DATA = {
       "startOrigIdx": 89,
       "endOrigIdx": 108,
       "tacticalTitle": "-26,4m em 1 km para ganhar tempo",
-      "tacticalTip": "Depois do último retorno, você volta pela mesma Av. Vale do Sol, agora descendo (média -2,6%) até a rotatória do ponto mais baixo. É o melhor trecho para acelerar e recuperar os segundos investidos nas subidas. Só não chegue na rotatória sem fôlego: a chegada é em subida.",
+      "tacticalTip": "Depois do último retorno, você volta pela mesma Av. Vale do Sol, agora descendo (média -2,6%) até a rotatória do ponto mais baixo. É a descida mais constante da prova, sem rampas fortes: o trecho mais seguro para acelerar e recuperar os segundos investidos nas subidas. Só não chegue na rotatória sem fôlego: a chegada é em subida.",
       "mentalCue": "Solte os ombros, abra a passada e acelere com controle."
     },
     {

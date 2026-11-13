@@ -18,7 +18,7 @@
     "summaryElevation": "+80,0m D+ (7 Segmentos Táticos)",
     "summaryReminder": "Não gaste na descida até a rotatória (Km 2): guarde perna para a Grande Subida da Vilar Horta e para a chegada em subida!",
     "strategyDescriptions": {
-      "conservative": "Poupa energia na descida dos Km 0,8 a 2,0 para encarar a Grande Subida da Vilar Horta e ainda ter perna para as duas subidas finais.",
+      "conservative": "Corre os primeiros 2,3 km (largada, 1º retorno e descida até a rotatória) um pouco abaixo do ritmo e usa a energia guardada para fechar forte a partir do Km 4,1, nas subidas da Vale do Sol e da chegada.",
       "aggressive-downhill": "Ataca forte as descidas (Seg 2, 4 e 6) e segura o esforço nas subidas (Seg 3, 5 e 7)."
     }
   },
@@ -34,7 +34,7 @@
     },
     {
       "ateKm": 1.95,
-      "name": "Retorno e Descida pela Av. dos Bancários",
+      "name": "Retorno e Descida até a Rotatória",
       "shortName": "Seg 2 · Retorno e Descida",
       "badge": "Descida Favorável",
       "tacticalTitle": "Retorno no Km 0,8 e -23,6m até o ponto mais baixo",
@@ -46,8 +46,8 @@
       "name": "Grande Subida da Av. Francisco de Vilar Horta",
       "shortName": "Seg 3 · Grande Subida",
       "badge": "Subida Forte",
-      "tacticalTitle": "+36,3m em 1 km: o trecho que decide a prova",
-      "tacticalTip": "Depois da rotatória, a Av. Francisco de Vilar Horta sobe sem descanso de 470,6m até 506,9m, o ponto mais alto da prova. É quase metade de todo o desnível (45%), e o começo é o mais duro: cerca de 8% perto do Km 2,1. Segure o esforço, não o pace: perder segundos aqui é normal e já está no plano. No topo (Km 3,1) vem o 2º retorno, bem na metade da prova.",
+      "tacticalTitle": "Quase metade do desnível em 1 km: o trecho que decide a prova",
+      "tacticalTip": "Depois da rotatória, a Av. Francisco de Vilar Horta sobe sem descanso de 470,6m até 506,9m, o ponto mais alto da prova. É quase metade de todo o desnível (45%), e o começo é o mais duro: cerca de 8% perto do Km 2,1. Segure o esforço, não o pace: perder segundos aqui é normal e já está no plano. No topo (Km 3,1) vem o 2º retorno, logo depois da metade da prova.",
       "mentalCue": "Paciência: quem segura aqui ultrapassa na descida."
     },
     {
@@ -57,7 +57,7 @@
       "badge": "Descida Forte",
       "tacticalTitle": "Retorno no topo e -29,7m em 800m",
       "tacticalTip": "Feito o retorno do topo, você desce de volta pela Vilar Horta e vira para a Rua Guanabara, que é a parte mais íngreme (cerca de 7% perto do Km 3,7). É a descida mais forte da prova: passos curtos e rápidos, sem frear com o calcanhar. Ganhe tempo, mas sem castigar o quadríceps: ainda faltam duas subidas.",
-      "mentalCue": "Incline levemente o corpo à frente e deixe a passada abrir."
+      "mentalCue": "Passos curtos e rápidos, quadril alto, sem frear com o calcanhar."
     },
     {
       "ateKm": 4.41,
@@ -74,7 +74,7 @@
       "shortName": "Seg 6 · Descida Vale do Sol",
       "badge": "Descida Rápida",
       "tacticalTitle": "-26,4m em 1 km para ganhar tempo",
-      "tacticalTip": "Depois do último retorno, você volta pela mesma Av. Vale do Sol, agora descendo (média -2,6%) até a rotatória do ponto mais baixo. É o melhor trecho para acelerar e recuperar os segundos investidos nas subidas. Só não chegue na rotatória sem fôlego: a chegada é em subida.",
+      "tacticalTip": "Depois do último retorno, você volta pela mesma Av. Vale do Sol, agora descendo (média -2,6%) até a rotatória do ponto mais baixo. É a descida mais constante da prova, sem rampas fortes: o trecho mais seguro para acelerar e recuperar os segundos investidos nas subidas. Só não chegue na rotatória sem fôlego: a chegada é em subida.",
       "mentalCue": "Solte os ombros, abra a passada e acelere com controle."
     },
     {
@@ -112,7 +112,7 @@
         "valor": "Km 0,8 · 3,1 · 4,6"
       }
     ],
-    "intro": "A Corrida em Prevenção ao Câncer é um percurso de ida e volta com <strong>três retornos</strong> e quatro subidas. Olhar só para o pace médio faz o corredor descer rápido demais até a rotatória do Km 2 e travar na <strong>Grande Subida da Av. Francisco de Vilar Horta (Km 2,0 a 3,1)</strong>, que concentra quase metade de todo o desnível. Siga o ritmo de cada segmento abaixo:",
+    "intro": "A Corrida em Prevenção ao Câncer é um percurso de ida e volta com <strong>três retornos</strong> e quatro subidas. Correr tudo no mesmo pace médio faz o corredor desperdiçar as descidas e gastar demais na <strong>Grande Subida da Av. Francisco de Vilar Horta (Km 2,0 a 3,1)</strong>, que concentra quase metade de todo o desnível. Siga o ritmo de cada segmento abaixo:",
     "recomendacao": "A prova se decide em dois blocos. O primeiro é a <strong>Grande Subida da Vilar Horta (Segmento 3, +36,3m)</strong>, logo depois da descida até a rotatória. O segundo vem no fim: as subidas da <strong>Av. Vale do Sol e da chegada pela Av. dos Bancários (Segmentos 5 e 7, +36,5m juntas)</strong>. Correr as subidas mais devagar que o pace médio não é \"quebrar\": é o que deixa perna para acelerar nas descidas dos Segmentos 4 e 6. E atenção aos três retornos: em cada um você perde alguns segundos na curva. Retome o ritmo aos poucos, sem tentar recuperar tudo de uma vez na reta seguinte.",
     "ctaTitulo": "Quer correr a Corrida em Prevenção ao Câncer na sua melhor performance?"
   },
