@@ -25,7 +25,7 @@ window.COURSE_DATA = {
   metadata: {
     "name": "4ª Corrida em Prevenção ao Câncer Votuporanga",
     "city": "Votuporanga - SP",
-    "author": "Strava (rota publicada pela organização)",
+    "author": "Site oficial da prova (prevencaoaocancer.com.br)",
     "startElevation": 487.48,
     "minElevation": 470.57,
     "maxElevation": 506.94,
@@ -59,7 +59,7 @@ window.COURSE_DATA = {
       "startOrigIdx": 0,
       "endOrigIdx": 11,
       "tacticalTitle": "+6,7m em 700m: só para encaixar o ritmo",
-      "tacticalTip": "A largada segue pela Av. Pansani numa subida tão leve (média +1%) que nem parece subida. Use estes 700m para sair do aperto do pelotão e achar o seu ritmo, sem disparar. Logo à frente, no Km 0,8, vem o primeiro retorno: comece a se posicionar pelo lado de dentro.",
+      "tacticalTip": "A largada, na Av. dos Bancários em frente ao Instituto, logo entra na Av. Pansani numa subida tão leve (média +1%) que nem parece subida. Use estes 700m para sair do aperto do pelotão e achar o seu ritmo, sem disparar. Logo à frente, no Km 0,8, vem o primeiro retorno: comece a se posicionar pelo lado de dentro.",
       "mentalCue": "Respiração solta: o plano é chegar inteiro ao Km 2."
     },
     {
@@ -137,7 +137,7 @@ window.COURSE_DATA = {
       "startOrigIdx": 108,
       "endOrigIdx": 115,
       "tacticalTitle": "+15,6m nos últimos 400m",
-      "tacticalTip": "Depois da rotatória, a Av. dos Bancários sobe até a chegada, na mesma região da largada. É a subida mais inclinada da prova em média (+4,2%, com rampa de cerca de 7% perto do Km 5,7), e chega quando as pernas estão mais cansadas. Mantenha os braços fortes e solte tudo quando avistar o pórtico.",
+      "tacticalTip": "Depois da rotatória, a Av. dos Bancários sobe até a chegada, em frente ao Instituto de Cancerologia. É a subida mais inclinada da prova em média (+4,2%, com rampa de cerca de 7% perto do Km 5,7), e chega quando as pernas estão mais cansadas. Mantenha os braços fortes e solte tudo quando avistar o pórtico.",
       "mentalCue": "Agora é cabeça: braços fortes e foco na chegada."
     }
   ],

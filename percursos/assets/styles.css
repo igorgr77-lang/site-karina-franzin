@@ -2691,6 +2691,7 @@ a.hub-card:hover .hub-card-btn {
 }
 
 .race-links a,
+.race-info dd a,
 .route-streets a {
   color: var(--accent-orange);
   font-weight: 700;

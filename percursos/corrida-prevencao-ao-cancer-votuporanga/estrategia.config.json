@@ -4,7 +4,7 @@
   "metadata": {
     "name": "4ª Corrida em Prevenção ao Câncer Votuporanga",
     "city": "Votuporanga - SP",
-    "author": "Strava (rota publicada pela organização)"
+    "author": "Site oficial da prova (prevencaoaocancer.com.br)"
   },
   "race": {
     "title": "Estratégia Corrida em Prevenção ao Câncer Votuporanga",
@@ -29,7 +29,7 @@
       "shortName": "Seg 1 · Av. Pansani",
       "badge": "Quase Plano",
       "tacticalTitle": "+6,7m em 700m: só para encaixar o ritmo",
-      "tacticalTip": "A largada segue pela Av. Pansani numa subida tão leve (média +1%) que nem parece subida. Use estes 700m para sair do aperto do pelotão e achar o seu ritmo, sem disparar. Logo à frente, no Km 0,8, vem o primeiro retorno: comece a se posicionar pelo lado de dentro.",
+      "tacticalTip": "A largada, na Av. dos Bancários em frente ao Instituto, logo entra na Av. Pansani numa subida tão leve (média +1%) que nem parece subida. Use estes 700m para sair do aperto do pelotão e achar o seu ritmo, sem disparar. Logo à frente, no Km 0,8, vem o primeiro retorno: comece a se posicionar pelo lado de dentro.",
       "mentalCue": "Respiração solta: o plano é chegar inteiro ao Km 2."
     },
     {
@@ -83,7 +83,7 @@
       "shortName": "Seg 7 · Subida Final",
       "badge": "Subida Forte",
       "tacticalTitle": "+15,6m nos últimos 400m",
-      "tacticalTip": "Depois da rotatória, a Av. dos Bancários sobe até a chegada, na mesma região da largada. É a subida mais inclinada da prova em média (+4,2%, com rampa de cerca de 7% perto do Km 5,7), e chega quando as pernas estão mais cansadas. Mantenha os braços fortes e solte tudo quando avistar o pórtico.",
+      "tacticalTip": "Depois da rotatória, a Av. dos Bancários sobe até a chegada, em frente ao Instituto de Cancerologia. É a subida mais inclinada da prova em média (+4,2%, com rampa de cerca de 7% perto do Km 5,7), e chega quando as pernas estão mais cansadas. Mantenha os braços fortes e solte tudo quando avistar o pórtico.",
       "mentalCue": "Agora é cabeça: braços fortes e foco na chegada."
     }
   ],
@@ -120,7 +120,7 @@
     "nomeOficial": "4ª Corrida e Caminhada em Prevenção ao Câncer 2026",
     "inicio": "2026-11-22T07:00:00-03:00",
     "horario": "7h00",
-    "local": "em frente ao Instituto de Cancerologia de Votuporanga (Rua Tietê, 4985 – Santa Eliza)",
+    "local": "em frente ao Instituto de Cancerologia de Votuporanga, na Av. dos Bancários",
     "localCurto": "Instituto de Cancerologia de Votuporanga",
     "cidade": "Votuporanga",
     "uf": "SP",
@@ -137,6 +137,11 @@
       "preco": 120,
       "url": "https://www.sympla.com.br/evento/4-caminhada-e-corrida-em-prevencao-ao-cancer---votuporanga-sp/3487020",
       "disponibilidade": "SoldOut"
+    },
+    "mapaLargada": "https://maps.app.goo.gl/zVmkYiG6MeKKi7Vw7",
+    "fontePercurso": {
+      "texto": "Site oficial da prova",
+      "url": "https://prevencaoaocancer.com.br/"
     }
   }
 }

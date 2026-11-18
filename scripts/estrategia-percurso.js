@@ -74,19 +74,27 @@ function percursoHtml(o) {
 
   const [, hh = "", mm = ""] = (ev.inicio || "").match(/T(\d{2}):(\d{2})/) || [];
   const horario = ev.horario || (hh ? `${hh}h${mm}` : "");
+  // Fonte do traçado (ex.: site oficial) e link do mapa do local de largada, se o config tiver
+  const fonte = ev.fontePercurso && ev.fontePercurso.url
+    ? `${esc(ev.fontePercurso.texto || "Site oficial da prova")} (<a href="${esc(ev.fontePercurso.url)}" target="_blank" rel="noopener noreferrer">${esc(ev.fontePercurso.url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, ""))}</a>)`
+    : "";
+  const mapaLargada = ev.mapaLargada
+    ? ` · <a href="${esc(ev.mapaLargada)}" target="_blank" rel="noopener noreferrer" data-gtag-event="estrategia_mapa_largada" data-gtag-category="${esc(data.race.gaCategory || slug)}">ver no mapa</a>`
+    : "";
   const linhas = [
     dataTxt && ["Data", `${dataTxt}${horario ? `, largada às ${horario}` : ""}${jaFoi ? " · prova realizada" : ""}`],
-    localLargada && ["Largada e chegada", `${ev.local || localLargada}${ev.cidade ? `, ${ev.cidade}${ev.uf ? `/${ev.uf}` : ""}` : ""}`],
+    localLargada && ["Largada e chegada", `${esc(ev.local || localLargada)}${ev.cidade ? `, ${esc(ev.cidade)}${ev.uf ? `/${esc(ev.uf)}` : ""}` : ""}${mapaLargada}`, true],
     ev.modalidades && ev.modalidades.length && ["Modalidades", `${ev.modalidades.join(" · ")}${ev.percursoDestaPagina && ev.modalidades.length > 1 ? ` (esta página mostra o percurso da ${ev.percursoDestaPagina})` : ""}`],
     ev.organizador && ["Organização", ev.organizador],
-    ev.cronometragem && ["Cronometragem / inscrições", ev.cronometragem]
+    ev.cronometragem && ["Cronometragem / inscrições", ev.cronometragem],
+    fonte && ["Fonte do percurso", fonte, true]
   ].filter(Boolean);
   const links = [
     ev.siteOficial && `<a href="${esc(ev.siteOficial)}" target="_blank" rel="noopener noreferrer">Site oficial da prova</a>`,
     ev.inscricoes && `<a href="${esc(ev.inscricoes)}" target="_blank" rel="noopener noreferrer">Página de inscrição</a>`
   ].filter(Boolean);
   const infoHtml = linhas.length ? `      <dl class="race-info">
-${linhas.map(([k, v2]) => `        <div><dt>${esc(k)}</dt><dd>${esc(v2)}</dd></div>`).join("\n")}
+${linhas.map(([k, v2, html]) => `        <div><dt>${esc(k)}</dt><dd>${html ? v2 : esc(v2)}</dd></div>`).join("\n")}
       </dl>${links.length ? `\n      <p class="race-links">${links.join(" · ")}</p>` : ""}` : "";
   const ruasLista = ruas.map((r) => `${r.rua} (km ${fmt(r.kmIni)}${r.kmFim - r.kmIni >= 0.1 ? `–${fmt(r.kmFim)}` : ""})`);
   const ruasHtml = ruas.length ? `      <h3>Por onde passa o percurso</h3>
@@ -119,7 +127,7 @@ ${passos}
       ? `Sim. São ${num(climbs.length, "subida", "subidas")}, e a maior fica entre o Km ${fmt(big.kmIni)} e o Km ${fmt(big.kmFim)}, com +${fmt(big.gain)} m (${Math.round((big.gain / a.gain) * 100)}% de todo o desnível da prova). O ganho acumulado da prova é de +${fmt(a.gain)} m.`
       : `Quase nada: é um percurso praticamente plano, com +${fmt(a.gain)} m de ganho acumulado.`],
     [`Qual é a altimetria do percurso da ${nomeCurto}?`, `A altitude vai de ${fmt(a.minEle)} m a ${fmt(a.maxEle)} m, com +${fmt(a.gain)} m de subida acumulada e -${fmt(a.loss)} m de descida. O ponto mais alto fica no Km ${fmt(topKm)}.`],
-    gpxLimpo && [`Onde baixar o GPX do percurso da ${nomeCurto}?`, `Nesta página: no botão "Baixar o GPX do percurso" ou na aba "Percurso para o Relógio". É o traçado já corrigido (${fmt(limpoKm, 2)} km), pronto para importar no Garmin, Coros, Polar ou Suunto.`],
+    gpxLimpo && [`Onde baixar o GPX do percurso da ${nomeCurto}?`, `Nesta página: no botão "Baixar o GPX do percurso" ou na aba "Percurso para o Relógio". É o traçado já corrigido (${fmt(limpoKm, 2)} km)${ev.fontePercurso && ev.fontePercurso.url ? ", feito a partir do percurso divulgado no site oficial da prova" : ""}, pronto para importar no Garmin, Coros, Polar ou Suunto.`],
     [`Qual pace usar em cada trecho da ${nomeCurto}?`, `Digite seu tempo alvo no topo desta página: a calculadora mostra o pace de cada um dos ${a.segs.length} trechos de subida e descida, as parciais km a km e uma cola de pulso para imprimir.`],
     dataTxt && (jaFoi
       ? [`Quando foi a ${nome}?`, `A prova foi no dia ${dataTxt}${city ? `, em ${city}` : ""}. O percurso e a estratégia continuam aqui para consulta e para quem vai correr a próxima edição.`]
