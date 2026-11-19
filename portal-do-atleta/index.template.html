@@ -108,7 +108,7 @@
                     "price": "47.99",
                     "priceCurrency": "BRL",
                     "priceValidUntil": "2027-12-31",
-                    "availability": "https://schema.org/InStock",
+                    "availability": "https://schema.org/PreOrder",
                     "url": "https://karinafranzin.com.br/portal-do-atleta/",
                     "hasMerchantReturnPolicy": {
                         "@type": "MerchantReturnPolicy",
@@ -143,7 +143,23 @@
                         "name": "O acesso é feito pelo celular?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Sim! A plataforma é totalmente otimizada para dispositivos móveis. Você receberá um link no seu e-mail após a compra. Basta abrir no celular, fazer o login e criar um atalho na tela inicial (Adicionar à tela de início) para usá-lo como um aplicativo comum."
+                            "text": "Sim! A plataforma é totalmente otimizada para dispositivos móveis. Depois da compra você recebe o link de acesso no seu e-mail. Basta abrir no celular, fazer o login e criar um atalho na tela inicial (Adicionar à tela de início) para usá-lo como um aplicativo comum."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Quando o Portal do Atleta KF será lançado?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "O aplicativo está na reta final de desenvolvimento. Quem entra na lista de espera recebe o aviso por e-mail e WhatsApp antes de todo mundo, no dia da liberação."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Entrar na lista de espera custa alguma coisa?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Não. A inscrição é gratuita e não obriga a nenhuma compra. Você só recebe o aviso do lançamento com a condição especial reservada para a lista."
                         }
                     },
                     {
@@ -151,7 +167,7 @@
                         "name": "Como funciona o pagamento? Tem mensalidade?",
                         "acceptedAnswer": {
                             "@type": "Answer",
-                            "text": "Não há mensalidades ou assinaturas recorrentes para este produto! Trata-se de uma compra única. Você paga apenas R$ 47,99 via Pix ou Cartão e tem acesso livre à biblioteca de vídeos do Portal do Atleta KF, sem futuras faturas automáticas."
+                            "text": "Não há mensalidades nem assinaturas. Será uma compra única: quem está na lista de espera garante o preço de lançamento de R$ 47,99 via Pix ou cartão, com acesso livre à biblioteca de vídeos, sem faturas automáticas."
                         }
                     },
                     {
@@ -168,11 +184,8 @@
     }
     </script>
     
-    <!-- SDK Efí Bank Tokenização -->
-    <script src="https://cdn.jsdelivr.net/npm/payment-token-efi@3.5.0/dist/payment-token-efi-umd.min.js" integrity="sha384-GQKHIxjxtj1krOaJgm1KW5YlVHD0SEHP71lKggvYu6kJA1wIUSiKwGc4Dxauucvw" crossorigin="anonymous"></script>
-    
-    <!-- JavaScript de Integração de Checkout (Efí Bank) -->
-    <script src="/js/checkout.js?v=auto" defer></script>
+    <!-- Lista de espera (pré-lançamento) -->
+    <script src="/js/waitlist.js?v=auto" defer></script>
 </head>
 
 <body class="bg-dark-bg text-white font-sans antialiased">
@@ -202,7 +215,7 @@
                 <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
                     <span class="inline-flex items-center gap-2 bg-karina-orange/10 border border-karina-orange/30 text-karina-orange px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">
                         <i data-lucide="smartphone" class="w-4 h-4"></i>
-                        A academia de corrida no seu bolso
+                        Em breve · A academia de corrida no seu bolso
                     </span>
                     
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-oswald font-black uppercase italic leading-[1.05] tracking-tight text-white">
@@ -214,8 +227,8 @@
                     </p>
                     
                     <div class="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                        <a href="#oferta" class="group inline-flex items-center justify-center gap-3 bg-karina-orange hover:bg-[#e0531f] text-white px-8 py-4 rounded-xl font-bold font-display uppercase tracking-wide text-sm transition-all duration-300 hover:shadow-[0_4px_25px_rgba(255,107,53,0.4)] hover:-translate-y-0.5">
-                            Quero acessar o Portal do Atleta KF
+                        <a href="#lista-de-espera" class="group inline-flex items-center justify-center gap-3 bg-karina-orange hover:bg-[#e0531f] text-white px-8 py-4 rounded-xl font-bold font-display uppercase tracking-wide text-sm transition-all duration-300 hover:shadow-[0_4px_25px_rgba(255,107,53,0.4)] hover:-translate-y-0.5">
+                            Quero entrar na lista de espera
                             <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
                         </a>
                     </div>
@@ -223,7 +236,7 @@
                     <!-- Mini Provas Sociais/Badges -->
                     <div class="pt-6 border-t border-white/5">
                         <div class="w-fit mx-auto lg:mx-0 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-6 text-xs text-gray-400">
-                            <span class="flex items-center gap-1.5"><i data-lucide="check-circle" class="w-4 h-4 text-karina-orange"></i> Acesso Imediato</span>
+                            <span class="flex items-center gap-1.5"><i data-lucide="bell-ring" class="w-4 h-4 text-karina-orange"></i> Aviso antes de todos</span>
                             <span class="flex items-center gap-1.5"><i data-lucide="credit-card" class="w-4 h-4 text-karina-orange"></i> Pagamento Único</span>
                             <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-karina-orange"></i> Assista no seu ritmo</span>
                         </div>
@@ -444,8 +457,8 @@
                     <div class="w-16 h-16 rounded-2xl bg-dark-card border border-white/10 flex items-center justify-center text-karina-orange font-oswald text-2xl font-bold mx-auto shadow-lg">
                         1
                     </div>
-                    <h3 class="text-lg font-bold text-white font-display">Garanta seu acesso</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed max-w-[200px] mx-auto">Garanta o acesso permanente de compra única via Pix ou Cartão de Crédito.</p>
+                    <h3 class="text-lg font-bold text-white font-display">Entre na lista</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed max-w-[200px] mx-auto">Inscreva-se grátis e receba o aviso do lançamento antes de todo mundo, com o preço especial garantido.</p>
                 </div>
 
                 <!-- Step 2 -->
@@ -454,7 +467,7 @@
                         2
                     </div>
                     <h3 class="text-lg font-bold text-white font-display">Acesse o Portal</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed max-w-[200px] mx-auto">Receba na hora os dados de login e senha no seu e-mail para acessar pelo celular ou computador.</p>
+                    <p class="text-gray-400 text-xs leading-relaxed max-w-[200px] mx-auto">No lançamento, garanta seu acesso e receba o login no e-mail para usar no celular ou computador.</p>
                 </div>
 
                 <!-- Step 3 -->
@@ -581,7 +594,7 @@
                     </div>
 
                     <p class="text-gray-400 text-sm leading-relaxed">
-                        O **Portal do Atleta KF** é o compilado visual desse método. Desenvolvi cada tutorial em vídeo para que você execute de forma perfeita a técnica de educativos, a ativação articular e os exercícios de força que eu mesma aplico nos meus atletas todos os dias.
+                        O <strong>Portal do Atleta KF</strong> é o compilado visual desse método. Desenvolvi cada tutorial em vídeo para que você execute de forma perfeita a técnica de educativos, a ativação articular e os exercícios de força que eu mesma aplico nos meus atletas todos os dias.
                     </p>
                 </div>
             </div>
@@ -668,46 +681,77 @@
         </div>
     </section>
 
-    <!-- ===== SECTION 9: OFERTA ===== -->
-    <section id="oferta" class="py-20 bg-dark-bg border-b border-white/5 relative">
+    <!-- ===== SECTION 9: LISTA DE ESPERA (pré-lançamento; o checkout volta no lançamento) ===== -->
+    <section id="lista-de-espera" class="py-20 bg-dark-bg border-b border-white/5 relative scroll-mt-24">
+        <span id="oferta" class="absolute -top-24" aria-hidden="true"></span>
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-karina-orange/10 rounded-full blur-[100px] pointer-events-none"></div>
 
         <div class="container mx-auto px-4 max-w-md relative z-10">
-            <div class="bg-dark-card border border-karina-orange/30 rounded-3xl p-8 text-center shadow-2xl relative overflow-hidden">
-                <!-- Popular Badge -->
+            <div class="bg-dark-card border border-karina-orange/30 rounded-3xl p-6 sm:p-8 text-center shadow-2xl relative overflow-hidden">
                 <div class="absolute top-6 -right-12 bg-karina-orange text-white text-[9px] uppercase font-bold tracking-widest py-1.5 px-12 rotate-45 select-none shadow">
-                    Compra Única
+                    Em breve
                 </div>
 
-                <span class="text-xs text-gray-500 uppercase tracking-widest font-bold">Oferta de Lançamento</span>
-                <h3 class="text-2xl font-oswald font-black uppercase italic text-white mt-3 mb-1">Acesso ao Portal do Atleta KF</h3>
-                <p class="text-xs text-gray-400">Tenha uma treinadora e uma metodologia de corrida sempre com você.</p>
-                
-                <div class="my-8">
+                <span class="text-xs text-gray-500 uppercase tracking-widest font-bold">Pré-lançamento</span>
+                <h2 class="text-2xl font-oswald font-black uppercase italic text-white mt-3 mb-1">Entre na lista de espera</h2>
+                <p class="text-xs text-gray-400">O aplicativo está na reta final. Inscreva-se grátis e seja avisado(a) antes de todo mundo.</p>
+
+                <div class="my-7">
                     <span class="text-xs text-gray-500 line-through">De R$ 150,00</span>
                     <div class="flex items-center justify-center gap-1.5 mt-1">
                         <span class="text-sm text-gray-400 font-bold uppercase">Por</span>
                         <span class="text-4xl font-oswald font-black text-white italic">R$ 47,99</span>
                     </div>
-                    <span class="text-[10px] text-karina-orange bg-karina-orange/10 px-3 py-1 rounded-full font-bold inline-block mt-3 uppercase tracking-wider">Acesso Vitalício / Sem Mensalidades</span>
-                    <p class="text-[10px] text-emerald-400 font-bold mt-2.5">🔥 Condição especial de lançamento para os primeiros 100 atletas</p>
+                    <p class="text-[11px] text-emerald-400 font-bold mt-2.5">🔥 Preço de lançamento garantido para quem está na lista</p>
                 </div>
 
-                <ul class="text-left space-y-3 text-xs text-gray-300 border-t border-white/5 pt-6 mb-8">
-                    <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange"></i> Biblioteca completa de vídeos</li>
-                    <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange"></i> Exercícios de técnica e postura</li>
-                    <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange"></i> Fortalecimento articular seguro</li>
-                    <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange"></i> Rotinas de aquecimento e mobilidade</li>
-                    <li class="flex items-center gap-2.5"><i data-lucide="check" class="w-4 h-4 text-karina-orange"></i> Acesso imediato após aprovação</li>
+                <ul class="text-left space-y-3 text-xs text-gray-300 border-t border-white/5 pt-6 mb-6">
+                    <li class="flex items-center gap-2.5"><i data-lucide="bell-ring" class="w-4 h-4 text-karina-orange"></i> Aviso do lançamento por e-mail e WhatsApp</li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="badge-percent" class="w-4 h-4 text-karina-orange"></i> Condição especial reservada para a lista</li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="credit-card" class="w-4 h-4 text-karina-orange"></i> Compra única, sem mensalidades</li>
+                    <li class="flex items-center gap-2.5"><i data-lucide="gift" class="w-4 h-4 text-karina-orange"></i> Inscrição gratuita e sem compromisso</li>
                 </ul>
 
-                <button onclick="openCheckout('portal_atleta')" class="w-full py-4 bg-karina-orange hover:bg-[#e0531f] text-white font-bold font-display uppercase tracking-wider text-xs rounded-xl shadow-lg hover:shadow-[0_4px_20px_rgba(255,107,53,0.3)] transition duration-300">
-                    Começar agora
-                </button>
-                
-                <div class="mt-4 flex items-center justify-center gap-1.5 text-[10px] text-gray-500">
-                    <i data-lucide="lock" class="w-3.5 h-3.5"></i>
-                    Pagamento processado de forma 100% segura
+                <form id="waitlist-form" class="space-y-3 text-left" novalidate>
+                    <!-- Honeypot contra robôs -->
+                    <div style="display:none !important;" aria-hidden="true">
+                        <input type="text" id="wl-website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+                    <div>
+                        <label for="wl-name" class="block text-xs text-gray-400 mb-1">Nome</label>
+                        <input type="text" id="wl-name" name="name" required maxlength="120" autocomplete="name" placeholder="Seu nome" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                    </div>
+                    <div>
+                        <label for="wl-email" class="block text-xs text-gray-400 mb-1">E-mail</label>
+                        <input type="email" id="wl-email" name="email" required maxlength="160" autocomplete="email" inputmode="email" placeholder="seu@email.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                    </div>
+                    <div>
+                        <label for="wl-phone" class="block text-xs text-gray-400 mb-1">WhatsApp</label>
+                        <input type="tel" id="wl-phone" name="phone" required autocomplete="tel-national" inputmode="numeric" placeholder="(17) 99999-9999" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                    </div>
+                    <label class="flex items-start gap-2.5 cursor-pointer text-[11px] text-gray-400 leading-normal pt-1">
+                        <input type="checkbox" id="wl-consent" required class="mt-0.5 accent-[#ff6b35]">
+                        <span>Quero receber o aviso de lançamento do Portal do Atleta KF por e-mail e WhatsApp. Li a <a href="/planos/privacidade.html" target="_blank" class="text-karina-orange hover:underline font-bold">Política de Privacidade</a>.</span>
+                    </label>
+
+                    <div id="waitlist-turnstile" class="flex justify-center"></div>
+                    <div id="waitlist-error" class="hidden text-xs text-red-400 bg-red-400/10 border border-red-400/20 p-3 rounded-xl" role="alert"></div>
+
+                    <button type="submit" id="waitlist-submit" class="w-full py-4 bg-karina-orange hover:bg-[#e0531f] text-white font-bold font-display uppercase tracking-wider text-xs rounded-xl shadow-lg hover:shadow-[0_4px_20px_rgba(255,107,53,0.3)] transition duration-300 flex items-center justify-center gap-2">
+                        <i data-lucide="bell" class="w-4 h-4"></i>
+                        <span>Quero ser avisado(a)</span>
+                    </button>
+                </form>
+
+                <div id="waitlist-success" class="hidden py-4 space-y-3" role="status">
+                    <div class="w-14 h-14 rounded-full bg-emerald-400/10 text-emerald-400 flex items-center justify-center mx-auto">
+                        <i data-lucide="check" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-oswald font-black uppercase italic text-white">Você está na lista!</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Mandamos uma confirmação para o seu e-mail. No dia do lançamento você recebe o aviso com a condição especial antes de todo mundo.</p>
+                    <a href="https://www.instagram.com/karina_franzin/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-karina-orange hover:underline">
+                        <i data-lucide="external-link" class="w-4 h-4"></i> Acompanhe os bastidores no Instagram
+                    </a>
                 </div>
             </div>
         </div>
@@ -757,7 +801,33 @@
                     </button>
                     <div id="faq-ans-3" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
                         <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
-                            Sim! A plataforma é totalmente otimizada para dispositivos móveis. Você receberá um link no seu e-mail após a compra. Basta abrir no celular, fazer o login e criar um atalho na tela inicial (Adicionar à tela de início) para usá-lo como um aplicativo comum.
+                            Sim! A plataforma é totalmente otimizada para dispositivos móveis. Depois da compra você recebe o link de acesso no seu e-mail. Basta abrir no celular, fazer o login e criar um atalho na tela inicial (Adicionar à tela de início) para usá-lo como um aplicativo comum.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 6 (pré-lançamento) -->
+                <div class="bg-dark-card border border-white/5 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(6)" class="w-full p-6 text-left flex justify-between items-center font-bold text-base hover:bg-white/5 transition">
+                        <span>Quando o Portal do Atleta KF será lançado?</span>
+                        <i id="faq-icon-6" data-lucide="plus" class="w-5 h-5 text-karina-orange transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-6" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
+                        <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
+                            O aplicativo está na reta final de desenvolvimento. Quem entra na lista de espera recebe o aviso por e-mail e WhatsApp antes de todo mundo, no dia da liberação.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 7 (pré-lançamento) -->
+                <div class="bg-dark-card border border-white/5 rounded-2xl overflow-hidden transition-all duration-300">
+                    <button onclick="toggleFaq(7)" class="w-full p-6 text-left flex justify-between items-center font-bold text-base hover:bg-white/5 transition">
+                        <span>Entrar na lista de espera custa alguma coisa?</span>
+                        <i id="faq-icon-7" data-lucide="plus" class="w-5 h-5 text-karina-orange transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-7" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
+                        <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
+                            Não. A inscrição é gratuita e não obriga a nenhuma compra. Você só recebe o aviso do lançamento com a condição especial reservada para a lista.
                         </p>
                     </div>
                 </div>
@@ -770,7 +840,7 @@
                     </button>
                     <div id="faq-ans-4" class="max-h-0 overflow-hidden transition-all duration-300 bg-white/[0.02]">
                         <p class="p-6 text-gray-400 text-xs leading-relaxed border-t border-white/5">
-                            Não há mensalidades ou assinaturas recorrentes para este produto! Trata-se de uma compra única. Você paga apenas R$ 47,99 via Pix ou Cartão e tem acesso livre à biblioteca de vídeos do Portal do Atleta KF, sem futuras faturas automáticas.
+                            Não há mensalidades nem assinaturas. Será uma compra única: quem está na lista de espera garante o preço de lançamento de R$ 47,99 via Pix ou cartão, com acesso livre à biblioteca de vídeos, sem faturas automáticas.
                         </p>
                     </div>
                 </div>
@@ -802,277 +872,19 @@
                 Sua evolução começa com um passo.
             </h2>
             <p class="text-gray-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-                Tenha acesso ao Portal do Atleta KF e transforme sua forma de treinar corrida de rua hoje mesmo.
+                Entre na lista de espera do Portal do Atleta KF e seja um dos primeiros a treinar com o aplicativo.
             </p>
             <div class="pt-6">
-                <button onclick="openCheckout('portal_atleta')" class="inline-flex items-center justify-center gap-3 bg-karina-orange hover:bg-[#e0531f] text-white px-8 py-4 rounded-xl font-bold font-display uppercase tracking-wide text-xs transition duration-300 hover:shadow-[0_4px_25px_rgba(255,107,53,0.35)]">
-                    Quero entrar para o Portal KF
+                <a href="#lista-de-espera" class="inline-flex items-center justify-center gap-3 bg-karina-orange hover:bg-[#e0531f] text-white px-8 py-4 rounded-xl font-bold font-display uppercase tracking-wide text-xs transition duration-300 hover:shadow-[0_4px_25px_rgba(255,107,53,0.35)]">
+                    Quero entrar na lista de espera
                     <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </button>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- ===== MODAL DE CHECKOUT TRANSPARENTE ===== -->
-    <div id="checkout-modal" class="fixed inset-0 z-[2000] overflow-y-auto hidden">
-        <!-- Backdrop -->
-        <div class="fixed inset-0 bg-black/80 backdrop-blur-md" onclick="closeCheckout()"></div>
-        
-        <!-- Conteúdo do Modal -->
-        <div class="relative min-h-screen flex items-start justify-center p-4 md:py-12">
-            <div class="relative bg-dark-card border border-white/10 rounded-3xl w-full max-w-lg p-6 md:p-8 text-left shadow-2xl z-10">
-                
-                <!-- Botão de Fechar -->
-                <button onclick="closeCheckout()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-all p-1.5 hover:bg-white/10 rounded-full flex items-center justify-center" aria-label="Fechar checkout">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
-
-                <!-- Cabeçalho do Modal -->
-                <div class="mb-6">
-                    <span class="text-[10px] uppercase font-bold tracking-widest text-karina-orange bg-karina-orange/10 px-3 py-1 rounded-full">Checkout Seguro</span>
-                    <h3 id="checkout-plan-name" class="text-2xl font-oswald font-black uppercase italic mt-3">Portal do Atleta KF</h3>
-                    <p id="checkout-plan-price" class="text-sm text-gray-400 mt-1">Total de R$ 47,99</p>
-                </div>
-
-                <!-- Seletor de Método de Pagamento -->
-                <div id="payment-method-selector" class="mb-6 grid grid-cols-2 gap-3 bg-white/5 p-1 rounded-xl border border-white/5 hidden">
-                    <button type="button" id="pay-method-pix" onclick="setPaymentMethod('pix')" class="py-2.5 text-xs font-bold rounded-lg flex items-center justify-center gap-2 transition-all">
-                        <i data-lucide="qr-code" class="w-4 h-4"></i>
-                        Pix
-                    </button>
-                    <button type="button" id="pay-method-card" onclick="setPaymentMethod('card')" class="py-2.5 text-xs font-bold rounded-lg flex items-center justify-center gap-2 transition-all">
-                        <i data-lucide="credit-card" class="w-4 h-4"></i>
-                        Cartão de Crédito
-                    </button>
-                </div>
-
-                <!-- Formulário de Pagamento -->
-                <form id="checkout-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
-                    <!-- Informações do Combo Selecionado (Hidden) -->
-                    <input type="hidden" id="form-combo-key" name="comboKey">
-
-                    <!-- Honeypot (Campos Armadilha contra Bots) -->
-                    <div style="display:none !important;" aria-hidden="true">
-                        <input type="text" id="honey_field_name" name="honey_field_name" tabindex="-1" autocomplete="off">
-                        <input type="email" id="honey_field_email" name="honey_field_email" tabindex="-1" autocomplete="off">
-                    </div>
-
-                    <!-- Aba 1: Dados Pessoais -->
-                    <div id="step-1" class="space-y-3">
-                        <h4 class="text-sm font-bold text-gray-300 border-b border-white/5 pb-2">1. Dados do Aluno</h4>
-                        <div>
-                            <label class="block text-xs text-gray-400 mb-1">Nome Completo</label>
-                            <input type="text" id="cust-name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div>
-                                <label class="block text-xs text-gray-400 mb-1">E-mail</label>
-                                <input type="email" id="cust-email" required placeholder="seu@email.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-gray-400 mb-1">Confirmar E-mail</label>
-                                <input type="email" id="cust-email-confirm" required placeholder="seu@email.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                                <span id="email-match-error" class="hidden text-[10px] text-red-400 mt-1 block">Os e-mails informados não são idênticos.</span>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="block text-xs text-gray-400 mb-1">CPF</label>
-                                <input type="text" id="cust-cpf" required placeholder="000.000.000-00" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                                <span id="cpf-validation-error" class="hidden text-[10px] text-red-400 mt-1 block">CPF inválido.</span>
-                            </div>
-                            <div>
-                                <label class="block text-xs text-gray-400 mb-1">Data Nascimento</label>
-                                <input type="tel" id="cust-birth" required placeholder="DD/MM/AAAA" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                                <span id="birth-validation-error" class="hidden text-[10px] text-red-400 mt-1 block">Idade mínima de 16 anos.</span>
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-xs text-gray-400 mb-1">WhatsApp (Celular)</label>
-                            <input type="tel" id="cust-phone" required placeholder="(17) 99999-9999" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                        </div>
-                    </div>
-
-                    <!-- Aba 2: Endereço de Cobrança -->
-                    <div id="step-2" class="space-y-3">
-                        <h4 class="text-sm font-bold text-gray-300 border-b border-white/5 pb-2">2. Endereço de Cobrança</h4>
-                        <div class="grid grid-cols-3 gap-3">
-                            <div class="col-span-2">
-                                <label class="block text-xs text-gray-400 mb-1">CEP</label>
-                                <input type="text" id="addr-zipcode" required placeholder="00000-000" onblur="buscarCEP()" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-gray-400 mb-1">Número</label>
-                                <input type="text" id="addr-number" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-xs text-gray-400 mb-1">Rua/Logradouro</label>
-                            <input type="text" id="addr-street" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                        </div>
-                        <div class="grid grid-cols-3 gap-3">
-                            <div class="col-span-1">
-                                <label class="block text-xs text-gray-400 mb-1">Bairro</label>
-                                <input type="text" id="addr-neighborhood" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                            </div>
-                            <div class="col-span-1">
-                                <label class="block text-xs text-gray-400 mb-1">Cidade</label>
-                                <input type="text" id="addr-city" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                            </div>
-                            <div>
-                                <label class="block text-xs text-gray-400 mb-1">Estado (UF)</label>
-                                <input type="text" id="addr-state" required placeholder="SP" maxlength="2" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition text-center text-white">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Aba 3: Dados do Cartão -->
-                    <div id="step-3" class="space-y-3">
-                        <h4 class="text-sm font-bold text-gray-300 border-b border-white/5 pb-2">3. Dados do Cartão de Crédito</h4>
-                        <div>
-                            <label class="block text-xs text-gray-400 mb-1">Nome Impresso no Cartão</label>
-                            <input type="text" id="card-name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block text-xs text-gray-400 mb-1">Número do Cartão</label>
-                            <div class="relative">
-                                <input type="text" id="card-number" required placeholder="0000 0000 0000 0000" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                                <span id="card-brand-badge" class="absolute right-3 top-3.5 text-[9px] uppercase font-bold text-karina-orange"></span>
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="block text-xs text-gray-400 mb-1">Validade (MM/AA)</label>
-                                <input type="text" id="card-expiry" required placeholder="MM/AA" maxlength="5" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                                <span id="card-expiry-error" class="hidden text-[10px] text-red-400 mt-1 block">Validade inválida.</span>
-                            </div>
-                            <div>
-                                <label class="block text-xs text-gray-400 mb-1">CVV (Cód. Segurança)</label>
-                                <input type="text" id="card-cvv" required placeholder="123" maxlength="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                            </div>
-                        </div>
-                        <div>
-                            <label class="block text-xs text-gray-400 mb-1">Opções de Parcelamento</label>
-                            <select id="card-installments" required class="w-full bg-[#141414] border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition text-white">
-                                <option value="1">1x de R$ 47,99 sem juros</option>
-                            </select>
-                        </div>
-
-                        <!-- CPF do Titular do Cartão -->
-                        <div>
-                            <label class="block text-xs text-gray-400 mb-1">CPF do Titular do Cartão</label>
-                            <input type="text" id="card-holder-cpf" required placeholder="000.000.000-00" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
-                            <span id="holder-cpf-validation-error" class="hidden text-[10px] text-red-400 mt-1 block">CPF do titular inválido.</span>
-                        </div>
-
-                        <!-- Resumo do Pedido -->
-                        <div class="mt-4 bg-white/[0.02] border border-white/5 p-4 rounded-xl text-xs space-y-1.5">
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">Produto:</span>
-                                <span class="font-bold text-white" id="summary-plan-name">Portal do Atleta KF</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-gray-400">Pagamento:</span>
-                                <span class="font-bold text-white" id="summary-payment-installment">1x de R$ 47,99</span>
-                            </div>
-                            <div class="flex justify-between border-t border-white/5 pt-2 mt-2">
-                                <span class="text-gray-400">Total a pagar:</span>
-                                <span class="font-bold text-white" id="summary-plan-total">R$ 47,99</span>
-                            </div>
-                            <div class="flex justify-between items-center text-[10px] text-emerald-400 font-bold border-t border-white/5 pt-2">
-                                <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5"></i> Acesso Imediato</span>
-                                <span>Garantia de 7 dias</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Mensagem de Termos (LGPD) -->
-                    <div id="checkout-terms-container" class="pt-2 text-[10px] text-gray-400 leading-normal">
-                        <label class="flex items-start cursor-pointer">
-                            <input type="checkbox" id="accept-terms" required class="rounded bg-white/5 border-white/10 text-karina-orange focus:ring-karina-orange/50 mr-2.5 mt-0.5">
-                            <span>Ao finalizar, declaro que li e concordo com os <a href="/planos/termos.html" target="_blank" class="text-karina-orange hover:underline font-bold">Termos de Serviço</a> e com a <a href="/planos/privacidade.html" target="_blank" class="text-karina-orange hover:underline font-bold">Política de Privacidade</a> de conformidade com a LGPD.</span>
-                        </label>
-                    </div>
-
-                    <!-- Mensagem de Erro Geral -->
-                    <div id="checkout-error" class="hidden text-xs text-red-400 bg-red-400/10 border border-red-400/20 p-3.5 rounded-xl"></div>
-
-                    <!-- Botão de Enviar -->
-                    <button type="submit" id="submit-btn" class="w-full py-4 bg-karina-orange hover:bg-[#e0531f] text-white font-bold font-display uppercase tracking-wider text-xs rounded-xl flex items-center justify-center gap-2 hover:shadow-[0_4px_20px_rgba(255,107,53,0.35)] transition-all">
-                        <i data-lucide="lock" class="w-4 h-4"></i>
-                        <span>FINALIZAR MATRÍCULA</span>
-                    </button>
-
-                    <!-- Tela do PIX (Exibida dinamicamente) -->
-                    <div id="step-pix" class="hidden space-y-4 text-center">
-                        <h4 class="text-sm font-bold text-gray-300 border-b border-white/5 pb-2">Efetue o pagamento via PIX</h4>
-                        
-                        <!-- Loading Spinner -->
-                        <div id="pix-qrcode-loading" class="flex flex-col items-center py-6 space-y-3">
-                            <svg class="animate-spin h-8 w-8 text-karina-orange" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                            <span class="text-xs text-gray-400">Gerando QR Code Pix seguro...</span>
-                        </div>
-
-                        <!-- Imagem do QR Code -->
-                        <img id="pix-qrcode-img" src="" alt="QR Code Pix" class="mx-auto border border-white/10 rounded-2xl w-48 h-48 bg-white p-2 hidden shadow-lg">
-
-                        <!-- Copia e Cola -->
-                        <div class="space-y-1.5 text-left">
-                            <label class="block text-[10px] text-gray-500 uppercase tracking-wider font-bold">PIX Copia e Cola</label>
-                            <div class="flex gap-2">
-                                <input type="text" id="pix-copia-cola" readonly class="flex-grow bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white outline-none select-all">
-                                <button type="button" onclick="copyPixCode()" class="bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-4 text-xs font-bold text-karina-orange transition-all">
-                                    Copiar
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="text-[10px] text-gray-500 space-y-1 leading-normal">
-                            <p class="font-bold text-gray-400">✓ O acesso é liberado automaticamente após o pagamento.</p>
-                            <p>Após pagar, você receberá suas instruções de login no e-mail informado.</p>
-                        </div>
-                </form>
-
-                <!-- Selos de Segurança e Confiança -->
-                <div class="mt-6 pt-6 border-t border-white/5 flex flex-col items-center gap-4 text-center">
-                    <!-- Ícones de Cartões de Crédito Aceitos -->
-                    <div class="flex items-center justify-center gap-2.5" id="brand-logos-container">
-                        <img id="brand-logo-visa" src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/visa.svg" alt="Visa" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
-                        <img id="brand-logo-mastercard" src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/mastercard.svg" alt="Mastercard" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
-                        <img id="brand-logo-elo" src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/elo.svg" alt="Elo" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
-                        <img id="brand-logo-amex" src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/american-express.svg" alt="Amex" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
-                        <img id="brand-logo-hipercard" src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@master/assets/cards/hipercard.svg" alt="Hipercard" width="36" height="24" class="grayscale hover:grayscale-0 transition duration-300">
-                    </div>
-                    
-                    <!-- Texto e Selo de Ambiente Seguro -->
-                    <div class="flex items-center justify-center gap-2 text-gray-500 text-[10px] uppercase font-bold tracking-wider">
-                        <i data-lucide="shield-check" class="w-4 h-4 text-green-500"></i>
-                        <span>Ambiente 100% Criptografado &amp; Seguro</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- ===== FOOTER_PLACEHOLDER ===== -->
 
-    <!-- Script de validação e controle de visualização do checkout -->
-    <script>
-        function copyPixCode() {
-            const input = document.getElementById('pix-copia-cola');
-            input.select();
-            input.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(input.value)
-                .then(() => alert('Código PIX copiado com sucesso!'))
-                .catch(() => alert('Falha ao copiar código.'));
-        }
-    </script>
 </body>
 
 </html>
