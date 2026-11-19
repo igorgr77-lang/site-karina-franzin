@@ -271,6 +271,43 @@
         }
         .perf-body .more svg { width: 14px; height: 14px; }
 
+        /* Portal do Atleta KF (pré-lançamento) */
+        .portal { background: var(--card); padding: 14px; }
+        .portal-top { display: flex; gap: 14px; align-items: stretch; }
+        .portal-media { position: relative; width: 108px; flex-shrink: 0; min-height: 150px; border-radius: 14px; overflow: hidden; }
+        .portal-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; }
+        .portal-body { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+        .portal-tag {
+            align-self: flex-start;
+            font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--orange); background: rgba(255, 107, 53, 0.14);
+            padding: 4px 9px; border-radius: 999px;
+        }
+        .portal-body h3 {
+            font-family: 'Oswald', sans-serif; font-weight: 700; font-size: 1.2rem;
+            text-transform: uppercase; line-height: 1.1; margin-top: 8px;
+        }
+        .portal-body p { font-size: 0.8rem; color: var(--muted); margin-top: 6px; }
+        .portal-price { font-size: 0.78rem; color: var(--muted); margin-top: 10px; }
+        .portal-price strong { display: block; font-size: 1.15rem; color: var(--text); font-weight: 800; white-space: nowrap; }
+        .portal-perks {
+            list-style: none; margin-top: 12px; padding: 12px 14px;
+            background: rgba(255, 255, 255, 0.05); border-radius: 14px;
+            display: flex; flex-direction: column; gap: 9px; font-size: 0.82rem;
+        }
+        .portal-perks li { display: flex; align-items: center; gap: 9px; }
+        .portal-perks svg { width: 16px; height: 16px; flex-shrink: 0; color: #4ade80; }
+        .portal-cta {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            margin-top: 12px; padding: 15px 12px; border-radius: 14px;
+            background: var(--orange); color: #fff;
+            font-weight: 800; font-size: 0.8rem; letter-spacing: 0; text-transform: uppercase; text-align: center; white-space: nowrap;
+            transition: background 0.2s ease;
+        }
+        .portal-cta svg { width: 16px; height: 16px; flex-shrink: 0; }
+        @media (hover: hover) { .portal:hover .portal-cta { background: var(--orange-dark); } }
+        @media (max-width: 359px) { .portal-cta { white-space: normal; } }
+
         /* Resultados */
         .section-title {
             font-family: 'Oswald', sans-serif;
@@ -401,19 +438,26 @@
             </a>
 
             <!-- Portal do Atleta KF (pré-lançamento: lista de espera) -->
-            <a class="card perf" data-track="portal_atleta_lista_espera" href="/portal-do-atleta/?origem=links#lista-de-espera">
-                <div class="perf-media">
-                    <img src="/assets/img/Portal-atleta-fk/TODOS-VIDEOS-KARINA-FRANZIN.webp" alt="Tela do aplicativo Portal do Atleta KF com a biblioteca de vídeos" loading="lazy">
+            <a class="card portal" data-track="portal_atleta_lista_espera" href="/portal-do-atleta/?origem=links#lista-de-espera">
+                <div class="portal-top">
+                    <div class="portal-media">
+                        <img src="/assets/img/Portal-atleta-fk/TODOS-VIDEOS-KARINA-FRANZIN.webp" alt="Tela do aplicativo Portal do Atleta KF com a biblioteca de vídeos" loading="lazy">
+                    </div>
+                    <div class="portal-body">
+                        <span class="portal-tag">Pré-lançamento</span>
+                        <h3>Portal do Atleta KF</h3>
+                        <p>Técnica, fortalecimento e mobilidade para complementar sua rotina de corrida.</p>
+                        <span class="portal-price">Preço de lançamento <strong>R$ 47,99</strong></span>
+                    </div>
                 </div>
-                <div class="perf-body">
-                    <span class="mini">Em breve</span>
-                    <h3>Portal do Atleta KF</h3>
-                    <p>O app de vídeos de técnica, fortalecimento e mobilidade da Karina. Entre na lista e garanta o preço de lançamento.</p>
-                    <span class="more">
-                        Entrar na lista de espera
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </span>
-                </div>
+                <ul class="portal-perks">
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12.5 11 15.5 16 9.5"></polyline></svg>Inscrição gratuita e sem compromisso</li>
+                    <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>Receba o aviso de lançamento</li>
+                </ul>
+                <span class="portal-cta">
+                    Garantir meu preço de lançamento
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </span>
             </a>
         </div>
 
