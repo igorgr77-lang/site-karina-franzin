@@ -1,6 +1,6 @@
-// Lista de espera do Portal do Atleta KF (pré-lançamento).
+// Formulário da Lista VIP (pré-lançamento). A lista vem do atributo data-list do <form>.
 // Envia nome, e-mail e WhatsApp para o backend (Render), que salva no banco e aparece na
-// aba "Lista de Espera" da Central de Comando. Protegido pelo CAPTCHA invisível (Turnstile).
+// aba "Listas VIP" da Central de Comando. Protegido pelo CAPTCHA invisível (Turnstile).
 (function () {
     const API_BASE_URL = (location.hostname === 'localhost' || location.hostname === '127.0.0.1')
         ? 'http://localhost:3000'
@@ -70,6 +70,8 @@
     function init() {
         const form = document.getElementById('waitlist-form');
         if (!form) return;
+        // Lista VIP desta página (cadastrada na Central de Comando), ex.: data-list="presencial_iniciante"
+        const listKey = form.dataset.list || 'portal_atleta';
 
         const phone = document.getElementById('wl-phone');
         const errorBox = document.getElementById('waitlist-error');
@@ -113,14 +115,14 @@
                 const res = await fetch(`${API_BASE_URL}/api/waitlist`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ product: 'portal_atleta', name, email, phone: phoneDigits, consent, source: getSource(), captchaToken })
+                    body: JSON.stringify({ product: listKey, name, email, phone: phoneDigits, consent, source: getSource(), captchaToken })
                 });
                 const data = await res.json().catch(() => ({}));
                 if (!res.ok || data.success === false) throw new Error(data.message || 'Não foi possível concluir sua inscrição agora.');
 
                 form.classList.add('hidden');
                 success.classList.remove('hidden');
-                if (typeof gtag === 'function') gtag('event', 'generate_lead', { lead_source: 'lista_espera_portal_atleta' });
+                if (typeof gtag === 'function') gtag('event', 'generate_lead', { lead_source: `lista_vip_${listKey}` });
             } catch (err) {
                 const offline = err instanceof TypeError; // falha de rede (servidor acordando, sem internet)
                 showError(offline
