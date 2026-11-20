@@ -543,6 +543,16 @@ async function build() {
             console.log('💾 Página do Portal do Atleta KF compilada com sucesso em: portal-do-atleta/index.html');
         }
 
+        // 3.1.6b Página de Vendas da turma Presencial Iniciante (corrida-iniciante-votuporanga/index.html) - escura
+        // Pré-lançamento: formulário da Lista VIP "presencial_iniciante" (js/waitlist.js)
+        const presencialIniciantePath = path.join(__dirname, 'corrida-iniciante-votuporanga', 'index.template.html');
+        if (fs.existsSync(presencialIniciantePath)) {
+            let htmlPresencialIniciante = fs.readFileSync(presencialIniciantePath, 'utf8');
+            htmlPresencialIniciante = compilePageComponents(htmlPresencialIniciante, false);
+            fs.writeFileSync(path.join(__dirname, 'corrida-iniciante-votuporanga', 'index.html'), htmlPresencialIniciante, 'utf8');
+            console.log('💾 Página da turma Presencial Iniciante compilada com sucesso em: corrida-iniciante-votuporanga/index.html');
+        }
+
         // 3.1.7 Página de Vendas do Plano Performance (plano-performance/index.html) - escura
         // Parceria Karina Franzin + nutricionista Renan Rodrigues (treino + nutrição, trimestral no cartão)
         const planoPerformanceTemplatePath = path.join(__dirname, 'plano-performance', 'index.template.html');
@@ -666,6 +676,12 @@ async function build() {
         <priority>0.9</priority>
     </url>
     <url>
+        <loc>https://karinafranzin.com.br/corrida-iniciante-votuporanga/</loc>
+        <lastmod>${hoje}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
         <loc>https://karinafranzin.com.br/corrida-tres-lagoas/</loc>
         <lastmod>${hoje}</lastmod>
         <changefreq>monthly</changefreq>
@@ -769,6 +785,7 @@ Karina Franzin é treinadora de corrida e fisioterapeuta, campeã da Meia Marato
 - [Minha História](https://karinafranzin.com.br/minha-historia/): Trajetória completa de Karina Franzin, de jogadora de futebol a atleta de elite e treinadora, com linha do tempo de conquistas e reconhecimento da imprensa
 - [Planos e Valores](https://karinafranzin.com.br/planos/): Planos Bronze, Prata e Ouro de assessoria de corrida 100% online, com opções mensal e combo
 - [Assessoria em Votuporanga](https://karinafranzin.com.br/corrida-votuporanga/): Assessoria de corrida 100% online com conhecimento local, focada em moradores de Votuporanga e região
+- [Corrida para Iniciantes em Votuporanga](https://karinafranzin.com.br/corrida-iniciante-votuporanga/): Turma presencial para iniciantes (Presencial Iniciante) com treino toda quarta às 18h30 + 2 treinos online pelo Treinus e acesso ao Portal do Atleta KF; início em 11/01/2027, Lista VIP aberta
 - [Assessoria em Três Lagoas](https://karinafranzin.com.br/corrida-tres-lagoas/): Assessoria de corrida 100% online com conhecimento local, focada em moradores de Três Lagoas e região
 - [Assessoria no Mato Grosso](https://karinafranzin.com.br/corrida-mato-grosso/): Assessoria de corrida 100% online para corredores de Cuiabá, Várzea Grande e demais cidades do Mato Grosso
 - [Portal do Atleta KF](https://karinafranzin.com.br/portal-do-atleta/): Biblioteca de vídeos de técnica, ativação muscular e mobilidade para corredores

@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <!-- Google Analytics -->
+    <script src="/js/analytics.js?v=auto"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino de Corrida para Iniciantes em Votuporanga | Karina Franzin</title>
+    <meta name="description"
+        content="Turma presencial de corrida para iniciantes em Votuporanga com a treinadora Karina Franzin: toda quarta às 18h30 + 2 treinos online. Início em 11/01/2027. Vagas limitadas, entre na Lista VIP.">
+    <meta name="keywords"
+        content="corrida para iniciantes votuporanga, treino de corrida presencial votuporanga, grupo de corrida votuporanga, começar a correr votuporanga, assessoria de corrida presencial, karina franzin">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Turma de corrida para iniciantes em Votuporanga | Lista VIP">
+    <meta property="og:description"
+        content="Treino presencial toda quarta às 18h30 + 2 treinos online com a Karina Franzin. Início em 11/01/2027. Vagas limitadas: entre na Lista VIP.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://karinafranzin.com.br/corrida-iniciante-votuporanga/">
+    <meta property="og:image" content="https://karinafranzin.com.br/assets/img/presencial-iniciante/og-presencial-iniciante.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Turma presencial de corrida para iniciantes em Votuporanga com Karina Franzin">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Karina Franzin - Assessoria de Corrida">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Turma de corrida para iniciantes em Votuporanga | Lista VIP">
+    <meta name="twitter:description"
+        content="Treino presencial toda quarta às 18h30 + 2 treinos online com a Karina Franzin. Início em 11/01/2027. Vagas limitadas: entre na Lista VIP.">
+    <meta name="twitter:image" content="https://karinafranzin.com.br/assets/img/presencial-iniciante/og-presencial-iniciante.jpg">
+
+    <link rel="canonical" href="https://karinafranzin.com.br/corrida-iniciante-votuporanga/">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#ff6b35">
+
+    <!-- Google Fonts & Tailwind & Lucide Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;700;900&family=Oswald:wght@500;700;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://unpkg.com/lucide@1.55.0/dist/umd/lucide.min.js" integrity="sha384-SZUFq9Dx112fyzY/iIBEjyd2gu3jY4XVhp+LUNXSpEMB2IEm/TOoMTNH4BHtQ6Hz" crossorigin="anonymous"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'karina-orange': '#ff6b35',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#141414',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'display': ['Montserrat', 'sans-serif'],
+                        'oswald': ['Oswald', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="../css/styles.css?v=auto">
+    <script src="/js/navbar.js?v=auto" defer></script>
+    <script src="/js/main.js?v=auto" defer></script>
+
+    <!-- Lista VIP (pré-lançamento): formulário envia para a lista "presencial_iniciante" -->
+    <script src="/js/waitlist.js?v=auto" defer></script>
+
+    <!-- Estilos Inline Críticos -->
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(20, 20, 20, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Acordeões escuros do FAQ (mesmo visual da página de Votuporanga) */
+        #faq .faq-item {
+            background: rgba(255, 255, 255, 0.02) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            border-radius: 16px !important;
+            margin-bottom: 1.25rem !important;
+            box-shadow: none !important;
+            transition: all 0.3s ease !important;
+        }
+
+        #faq .faq-item:hover {
+            border-color: rgba(255, 107, 53, 0.25) !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+        }
+
+        #faq .faq-question {
+            color: #ffffff !important;
+            font-size: 1.05rem !important;
+            font-weight: 700 !important;
+            font-family: 'Oswald', sans-serif !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.025em !important;
+            padding: 1.5rem !important;
+            transition: all 0.3s ease !important;
+        }
+
+        #faq .faq-question:hover {
+            color: #ff6b35 !important;
+        }
+
+        #faq .faq-question::after {
+            color: #ff6b35 !important;
+            font-weight: 400 !important;
+        }
+
+        #faq .faq-answer p {
+            color: #a3a3a3 !important;
+            padding: 0 1.5rem 1.5rem 1.5rem !important;
+            font-size: 0.875rem !important;
+            line-height: 1.625 !important;
+        }
+    </style>
+
+    <!-- Dados estruturados -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Home",
+                        "item": "https://karinafranzin.com.br/"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Corrida para Iniciantes em Votuporanga",
+                        "item": "https://karinafranzin.com.br/corrida-iniciante-votuporanga/"
+                    }
+                ]
+            },
+            {
+                "@type": "Service",
+                "@id": "https://karinafranzin.com.br/corrida-iniciante-votuporanga/#servico",
+                "name": "Presencial Iniciante - Turma de corrida em Votuporanga",
+                "serviceType": "Treino de corrida presencial para iniciantes",
+                "description": "Treino presencial de corrida toda quarta-feira às 18h30 em Votuporanga, mais 2 treinos online por semana pelo aplicativo Treinus e acesso ao Portal do Atleta KF. Início em 11/01/2027.",
+                "url": "https://karinafranzin.com.br/corrida-iniciante-votuporanga/",
+                "image": "https://karinafranzin.com.br/assets/img/presencial-iniciante/og-presencial-iniciante.jpg",
+                "provider": {
+                    "@id": "https://karinafranzin.com.br/#person"
+                },
+                "areaServed": {
+                    "@type": "City",
+                    "name": "Votuporanga"
+                },
+                "offers": {
+                    "@type": "Offer",
+                    "price": "200.00",
+                    "priceCurrency": "BRL",
+                    "availability": "https://schema.org/PreOrder",
+                    "url": "https://karinafranzin.com.br/corrida-iniciante-votuporanga/",
+                    "description": "Mensalidade de R$ 200,00; a primeira mensalidade sai por R$ 150,00."
+                }
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Nunca corri. Posso entrar na turma?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sim. A turma é feita para quem está começando do zero. Os treinos alternam caminhada e corrida leve e a evolução é gradual, para o corpo se adaptar com segurança."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Quando e onde são os treinos?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "O treino presencial é toda quarta-feira às 18h30, em Votuporanga, começando em 11/01/2027. O ponto de encontro é informado aos inscritos antes do início da turma. Além dele, você faz mais 2 treinos online por semana no seu horário."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Quanto custa?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "A mensalidade é de R$ 200,00. A primeira mensalidade sai por R$ 150,00 e as demais por R$ 200,00."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Como funcionam os treinos online?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Além do treino presencial, você recebe 2 treinos por semana no aplicativo Treinus, com as instruções da Karina para fazer no horário que preferir."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "O que é o Portal do Atleta KF?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "É a biblioteca de vídeos da Karina com exercícios de técnica, fortalecimento e mobilidade para corredores. Alunos da turma presencial têm acesso incluído."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Entrar na Lista VIP garante minha vaga?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "A Lista VIP não garante a vaga nem obriga a nenhuma compra, mas quem está na lista é avisado primeiro quando as matrículas abrirem, com a primeira mensalidade por R$ 150,00. Como as vagas são limitadas, quem chega antes tem prioridade."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Preciso de relógio GPS ou equipamento especial?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Não. Para começar basta um tênis confortável, roupa leve e uma garrafa de água. O celular com um aplicativo gratuito já serve para registrar os treinos online."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+</head>
+
+<body class="bg-dark-bg text-white font-sans antialiased">
+
+    <!-- NAVBAR_PLACEHOLDER -->
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5517996566908?text=Olá,%20Karina!%20Vi%20a%20página%20da%20turma%20presencial%20para%20iniciantes%20em%20Votuporanga%20e%20quero%20saber%20mais."
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+        aria-label="Falar no WhatsApp com Karina Franzin sobre a turma presencial para iniciantes"
+        onclick="gtag('event', 'click_whatsapp')">
+        <img src="/assets/icons/WhatsApp.svg.webp" alt="Ícone WhatsApp - Contato direto com treinadora de corrida"
+            width="60" height="60" loading="eager" decoding="async">
+    </a>
+
+    <!-- ===== 1. HERO ===== -->
+    <header
+        class="relative overflow-hidden pt-32 pb-20 border-b border-white/5 bg-gradient-to-b from-[#141414] via-[#0f0f0f] to-dark-bg">
+        <div
+            class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-karina-orange/10 rounded-full blur-[130px] pointer-events-none">
+        </div>
+
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="flex flex-wrap gap-2 justify-center lg:justify-start mb-6">
+                        <span
+                            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-karina-orange/10 border border-karina-orange/20 text-karina-orange text-xs font-semibold tracking-wider uppercase">
+                            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Votuporanga · Presencial
+                        </span>
+                        <span
+                            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-gray-300 text-xs font-semibold tracking-wider uppercase">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Início 11/01/2027
+                        </span>
+                    </div>
+
+                    <h1
+                        class="text-4xl md:text-6xl font-oswald font-black uppercase tracking-tight leading-none text-white mb-6">
+                        Comece a correr <br class="hidden md:inline">em <span
+                            class="text-karina-orange">Votuporanga</span> com a Karina
+                    </h1>
+
+                    <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">
+                        Turma presencial para iniciantes: treino em grupo toda quarta às 18h30, mais 2 treinos online
+                        por semana. Você aprende a correr do jeito certo, com acompanhamento de perto e sem se
+                        machucar.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#lista-vip"
+                            class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-karina-orange hover:bg-[#e0531f] text-white font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-[0_4px_20px_rgba(255,107,53,0.3)]">
+                            <i data-lucide="crown" class="w-5 h-5"></i> Quero entrar na Lista VIP
+                        </a>
+                        <a href="#como-funciona"
+                            class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-xl border border-white/10 transition-all duration-300">
+                            Ver como funciona
+                        </a>
+                    </div>
+
+                    <div
+                        class="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-6 text-xs text-gray-400 justify-center lg:justify-start items-center">
+                        <span class="flex items-center gap-1.5"><i data-lucide="users" class="w-4 h-4 text-karina-orange"></i> Vagas limitadas</span>
+                        <span class="flex items-center gap-1.5"><i data-lucide="footprints" class="w-4 h-4 text-karina-orange"></i> Do zero, no seu ritmo</span>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 relative flex justify-center">
+                    <div class="absolute -inset-1 bg-gradient-to-tr from-karina-orange to-[#ff8c5a] rounded-3xl blur opacity-25"></div>
+                    <div class="relative rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl bg-dark-card w-full max-w-[420px]">
+                        <img src="/assets/img/karina-hero.jpg" alt="Treinadora Karina Franzin correndo em prova de rua"
+                            width="1500" height="1000" class="w-full aspect-[4/5] object-cover object-[55%_center]" loading="eager">
+                        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-5">
+                            <p class="text-xs text-gray-300">Toda quarta-feira</p>
+                            <p class="text-2xl font-oswald font-black uppercase italic text-white">18h30 · Presencial</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== 2. PARA QUEM É ===== -->
+    <section class="py-20 bg-dark-bg border-b border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <span
+                    class="text-xs uppercase font-bold text-karina-orange tracking-widest bg-karina-orange/10 px-3.5 py-1 rounded-full">Para
+                    quem é</span>
+                <h2 class="text-3xl md:text-5xl font-oswald font-extrabold uppercase italic mt-4 mb-4">Feita para quem
+                    está começando</h2>
+                <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">Você não precisa já correr, ter
+                    preparo ou equipamento caro. Precisa só querer começar.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                <div class="bg-dark-card border border-white/5 p-5 rounded-2xl flex items-start gap-4">
+                    <i data-lucide="check" class="w-5 h-5 text-karina-orange shrink-0 mt-0.5"></i>
+                    <p class="text-sm text-gray-200">Nunca correu, ou parou há muito tempo, e quer começar do jeito certo.</p>
+                </div>
+                <div class="bg-dark-card border border-white/5 p-5 rounded-2xl flex items-start gap-4">
+                    <i data-lucide="check" class="w-5 h-5 text-karina-orange shrink-0 mt-0.5"></i>
+                    <p class="text-sm text-gray-200">Já tentou correr sozinho(a), cansou rápido ou sentiu dor e desistiu.</p>
+                </div>
+                <div class="bg-dark-card border border-white/5 p-5 rounded-2xl flex items-start gap-4">
+                    <i data-lucide="check" class="w-5 h-5 text-karina-orange shrink-0 mt-0.5"></i>
+                    <p class="text-sm text-gray-200">Quer a motivação de treinar em grupo, com hora marcada e gente no mesmo momento que você.</p>
+                </div>
+                <div class="bg-dark-card border border-white/5 p-5 rounded-2xl flex items-start gap-4">
+                    <i data-lucide="check" class="w-5 h-5 text-karina-orange shrink-0 mt-0.5"></i>
+                    <p class="text-sm text-gray-200">Quer ter uma treinadora olhando sua postura de perto e corrigindo na hora.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 3. COMO FUNCIONA A SEMANA ===== -->
+    <section class="py-20 bg-[#0c0c0c] border-b border-white/5" id="como-funciona">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <span
+                    class="text-xs uppercase font-bold text-karina-orange tracking-widest bg-karina-orange/10 px-3.5 py-1 rounded-full">Como
+                    funciona</span>
+                <h2 class="text-3xl md:text-5xl font-oswald font-extrabold uppercase italic mt-4 mb-4">3 treinos por
+                    semana, 1 deles com a Karina</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base">O presencial dá a base e a técnica; os
+                    treinos online garantem a constância; o Portal fortalece o corpo para aguentar a evolução.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-dark-card border border-karina-orange/30 p-7 rounded-3xl relative overflow-hidden">
+                    <div class="w-12 h-12 rounded-xl bg-karina-orange text-white flex items-center justify-center mb-5">
+                        <i data-lucide="users" class="w-6 h-6"></i>
+                    </div>
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-karina-orange">Quarta · 18h30</span>
+                    <h3 class="text-xl font-oswald font-black uppercase italic text-white mt-1 mb-3">Treino presencial</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Treino em grupo com a Karina em Votuporanga:
+                        aquecimento, educativos de técnica e corrida guiada, com correção de postura ao vivo.</p>
+                </div>
+
+                <div class="bg-dark-card border border-white/5 p-7 rounded-3xl">
+                    <div class="w-12 h-12 rounded-xl bg-karina-orange/10 text-karina-orange flex items-center justify-center mb-5">
+                        <i data-lucide="smartphone" class="w-6 h-6"></i>
+                    </div>
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-karina-orange">2x por semana · seu horário</span>
+                    <h3 class="text-xl font-oswald font-black uppercase italic text-white mt-1 mb-3">Treinos online</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Mais 2 treinos no aplicativo Treinus, com as
+                        instruções da Karina passo a passo para você fazer quando puder.</p>
+                </div>
+
+                <div class="bg-dark-card border border-white/5 p-7 rounded-3xl">
+                    <div class="w-12 h-12 rounded-xl bg-karina-orange/10 text-karina-orange flex items-center justify-center mb-5">
+                        <i data-lucide="play-circle" class="w-6 h-6"></i>
+                    </div>
+                    <span class="text-[10px] uppercase font-bold tracking-widest text-karina-orange">Incluído</span>
+                    <h3 class="text-xl font-oswald font-black uppercase italic text-white mt-1 mb-3">Portal do Atleta KF</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">Acesso à biblioteca de vídeos da Karina com
+                        técnica, fortalecimento e mobilidade, para correr com menos risco de lesão.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 4. POR QUE PRESENCIAL ===== -->
+    <section class="py-20 bg-dark-bg border-b border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <span
+                    class="text-xs uppercase font-bold text-karina-orange tracking-widest bg-karina-orange/10 px-3.5 py-1 rounded-full">Por
+                    que em grupo</span>
+                <h2 class="text-3xl md:text-5xl font-oswald font-extrabold uppercase italic mt-4 mb-4">Começar
+                    acompanhado faz diferença</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="flex items-start gap-4">
+                    <div class="w-11 h-11 rounded-xl bg-karina-orange/10 text-karina-orange flex items-center justify-center shrink-0"><i data-lucide="eye" class="w-5 h-5"></i></div>
+                    <div>
+                        <h3 class="font-oswald font-bold uppercase text-white mb-1">Técnica corrigida na hora</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">A Karina vê sua passada, postura e respiração e
+                            ajusta ali mesmo, antes de um vício virar dor.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-11 h-11 rounded-xl bg-karina-orange/10 text-karina-orange flex items-center justify-center shrink-0"><i data-lucide="flame" class="w-5 h-5"></i></div>
+                    <div>
+                        <h3 class="font-oswald font-bold uppercase text-white mb-1">Motivação de turma</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">Hora marcada e um grupo te esperando: é mais
+                            difícil faltar e mais gostoso continuar.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-11 h-11 rounded-xl bg-karina-orange/10 text-karina-orange flex items-center justify-center shrink-0"><i data-lucide="trending-up" class="w-5 h-5"></i></div>
+                    <div>
+                        <h3 class="font-oswald font-bold uppercase text-white mb-1">Evolução gradual</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">Começa alternando caminhada e corrida leve e
+                            aumenta aos poucos, no tempo do seu corpo.</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-11 h-11 rounded-xl bg-karina-orange/10 text-karina-orange flex items-center justify-center shrink-0"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
+                    <div>
+                        <h3 class="font-oswald font-bold uppercase text-white mb-1">Menos risco de lesão</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">Aquecimento, educativos e fortalecimento do
+                            Portal preparam o corpo para o impacto da corrida.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 5. QUEM É A KARINA ===== -->
+    <section class="py-20 bg-[#0c0c0c] border-b border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-5 relative flex justify-center">
+                    <div class="absolute -inset-1 bg-gradient-to-tr from-karina-orange to-[#ff8c5a] rounded-3xl blur opacity-30"></div>
+                    <div class="relative rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl bg-dark-card">
+                        <img src="/assets/img/karina-profile.jpg" alt="Karina Franzin, treinadora de corrida" class="w-full max-w-[340px] aspect-[4/5] object-cover" loading="lazy">
+                    </div>
+                </div>
+                <div class="md:col-span-7 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-wider text-karina-orange">Sua treinadora</span>
+                    <h2 class="text-3xl sm:text-5xl font-oswald font-black uppercase italic leading-none">Aprenda com quem
+                        vive a corrida</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Sou a <strong class="text-white">Karina Franzin</strong>, graduada em Educação Física e
+                        Fisioterapia, com especialidade em biomecânica e periodização esportiva. São 14 anos como
+                        atleta de elite e treinadora, ajudando corredores a evoluir com segurança.
+                    </p>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Na turma presencial, eu acompanho cada aluno de perto para que o primeiro passo na corrida seja
+                        o começo de um hábito, e não de uma lesão.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 border-t border-b border-white/5 py-4">
+                        <div>
+                            <span class="text-2xl font-oswald font-bold text-karina-orange">14 anos</span>
+                            <p class="text-[10px] text-gray-500 uppercase font-semibold">Experiência no esporte</p>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-oswald font-bold text-karina-orange">CREF ativo</span>
+                            <p class="text-[10px] text-gray-500 uppercase font-semibold">Registro profissional</p>
+                        </div>
+                    </div>
+                    <a href="/minha-historia/" class="inline-flex items-center gap-1.5 text-sm font-bold text-karina-orange hover:underline">
+                        Conheça minha história <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 6. RESULTADOS E DEPOIMENTOS (mesmo bloco da página de Votuporanga) ===== -->
+    <section class="py-20 bg-[#0a0a0a] border-b border-white/5" id="depoimentos">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span
+                    class="text-xs uppercase font-bold text-karina-orange tracking-widest bg-karina-orange/10 px-3.5 py-1 rounded-full">Quem
+                    Treina Aprova</span>
+                <h3 class="text-3xl md:text-5xl font-oswald font-extrabold uppercase italic text-white mt-4 mb-2">
+                    Resultados de quem treina com a Karina</h3>
+                <p class="text-xs text-gray-400 mt-1">Corredores que transformaram seus resultados com treinamento
+                    personalizado e planilhas semanais</p>
+            </div>
+
+            <!-- Carrossel de Resultados (Alunos no Pódio) -->
+            <section class="results-carousel mb-16">
+                <div class="carousel-container">
+                    <button class="carousel-btn prev" aria-label="Resultado anterior">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+
+                    <div class="carousel-track-wrapper">
+                        <div class="carousel-track">
+                            <!-- Slide 1 -->
+                            <div class="carousel-slide active">
+                                <div class="result-card">
+                                    <img src="/assets/img/resultados/aluna-primeiro-lugar-corrida-karina-franzin-3.webp"
+                                        alt="Aluna conquista o primeiro lugar no pódio com treinamento de corrida de Karina Franzin"
+                                        loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="carousel-slide">
+                                <div class="result-card">
+                                    <picture>
+                                        <source media="(max-width: 600px)"
+                                            srcset="/assets/img/resultados/aluna-podio-geral-assessoria-corrida-karina-franzin-2-640w.webp">
+                                        <source media="(max-width: 1024px)"
+                                            srcset="/assets/img/resultados/aluna-podio-geral-assessoria-corrida-karina-franzin-2-1024w.webp">
+                                        <img src="/assets/img/resultados/aluna-podio-geral-assessoria-corrida-karina-franzin-2.webp"
+                                            alt="Aluna conquistando pódio geral em corrida de rua sob supervisão de Karina Franzin"
+                                            loading="lazy">
+                                    </picture>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="carousel-slide">
+                                <div class="result-card">
+                                    <img src="/assets/img/resultados/aluna-primeiro-lugar-corrida-karina-franzin-2.webp"
+                                        alt="Aluna conquista primeiro lugar geral em corrida de rua com assessoria personalizada"
+                                        loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 4 -->
+                            <div class="carousel-slide">
+                                <div class="result-card">
+                                    <img src="/assets/img/resultados/podio-aluna-corrida-karina-franzin-2.webp"
+                                        alt="Aluna no pódio celebrando resultado com assessoria esportiva Karina Franzin"
+                                        loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 5 -->
+                            <div class="carousel-slide">
+                                <div class="result-card">
+                                    <img src="/assets/img/resultados/alunos-assessoria-corrida-karina-franzin-1.webp"
+                                        alt="Corredores da equipe Karina Franzin Assessoria Esportiva comemorando resultados"
+                                        loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 6 -->
+                            <div class="carousel-slide">
+                                <div class="result-card">
+                                    <img src="/assets/img/resultados/alunas-assessoria-corrida-karina-franzin-1.webp"
+                                        alt="Grupo de alunas da assessoria de corrida Karina Franzin unidas após treino"
+                                        loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 7 -->
+                            <div class="carousel-slide">
+                                <div class="result-card">
+                                    <picture>
+                                        <source media="(max-width: 600px)"
+                                            srcset="/assets/img/resultados/podio-aluno-assessoria-corrida-karina-franzin-2-640w.webp">
+                                        <source media="(max-width: 1024px)"
+                                            srcset="/assets/img/resultados/podio-aluno-assessoria-corrida-karina-franzin-2-1024w.webp">
+                                        <img src="/assets/img/resultados/podio-aluno-assessoria-corrida-karina-franzin-2.webp"
+                                            alt="Aluno de corrida da assessoria esportiva Karina Franzin no pódio de premiação"
+                                            loading="lazy">
+                                    </picture>
+                                </div>
+                            </div>
+
+                            <!-- Slide 8 -->
+                            <div class="carousel-slide">
+                                <div class="result-card">
+                                    <img src="/assets/img/resultados/primeiro-lugar-aluno-assessoria-corrida-karina-franzin-2.webp"
+                                        alt="Atleta com troféu de primeiro lugar comemora resultado de treinamento de corrida"
+                                        loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 9 -->
+                            <div class="carousel-slide">
+                                <div class="result-card">
+                                    <img src="/assets/img/resultados/primeiro-lugar-aluna-assessoria-corrida-karina-franzin-1.webp"
+                                        alt="Aluna conquista primeiro lugar em corrida de rua com treinamento de Karina Franzin"
+                                        loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 10 -->
+                            <div class="carousel-slide">
+                                <div class="result-card">
+                                    <picture>
+                                        <source media="(max-width: 600px)"
+                                            srcset="/assets/img/resultados/woss-brasil-aluno-assessoria-corrida-karina-franzin-1-640w.webp">
+                                        <source media="(max-width: 1024px)"
+                                            srcset="/assets/img/resultados/woss-brasil-aluno-assessoria-corrida-karina-franzin-1-1024w.webp">
+                                        <img src="/assets/img/resultados/woss-brasil-aluno-assessoria-corrida-karina-franzin-1.webp"
+                                            alt="Atleta treinado por Karina Franzin em pódio de prova de corrida no evento WOS Brasil"
+                                            loading="lazy">
+                                    </picture>
+                                </div>
+                            </div>
+
+                            <!-- Slide 11 -->
+                            <div class="carousel-slide">
+                                <div class="result-card">
+                                    <img src="/assets/img/resultados/primeiro-lugar-aluno-assessoria-corrida-karina-franzin-1.webp"
+                                        alt="Corredor conquista o primeiro lugar na linha de chegada com assessoria de corrida"
+                                        loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 12 -->
+                            <div class="carousel-slide">
+                                <div class="result-card">
+                                    <picture>
+                                        <source media="(max-width: 600px)"
+                                            srcset="/assets/img/resultados/trofeu-aluno-assessoria-corrida-karina-franzin-1-640w.webp">
+                                        <source media="(max-width: 1024px)"
+                                            srcset="/assets/img/resultados/trofeu-aluno-assessoria-corrida-karina-franzin-1-1024w.webp">
+                                        <img src="/assets/img/resultados/trofeu-aluno-assessoria-corrida-karina-franzin-1.webp"
+                                            alt="Aluno treinado por Karina Franzin segurando troféu conquistado na corrida"
+                                            loading="lazy">
+                                    </picture>
+                                </div>
+                            </div>
+
+                            <!-- Slide 13 -->
+                            <div class="carousel-slide">
+                                <div class="result-card">
+                                    <img src="/assets/img/resultados/wos-brasil-aluno-assessoria-corrida-karina-franzin-2.webp"
+                                        alt="Aluno da assessoria Karina Franzin participando de corrida de rua em evento WOS Brasil"
+                                        loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn next" aria-label="Próximo resultado">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="carousel-indicators"></div>
+            </section>
+
+            <!-- Carrossel de Feedbacks do WhatsApp -->
+            <div class="text-center mb-8">
+                <h4 class="text-2xl font-oswald font-bold uppercase italic text-white">O que nossos alunos dizem no
+                    WhatsApp</h4>
+                <p class="text-xs text-gray-400 mt-1">Clique ou deslize para ver depoimentos reais de quem evoluiu com a
+                    Karina</p>
+            </div>
+
+            <section class="feedbacks-carousel relative">
+                <div class="carousel-container">
+                    <button class="carousel-btn prev" aria-label="Feedback anterior">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+
+                    <div class="carousel-track-wrapper">
+                        <div class="carousel-track">
+                            <!-- Slide 1 -->
+                            <div class="carousel-slide active">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/1.jpg"
+                                        alt="Feedback de aluno da assessoria de corrida Karina Franzin" loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/2.jpg"
+                                        alt="Depoimento de corredor treinado pela Karina Franzin" loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/3.jpg"
+                                        alt="Testemunho de aluno sobre assessoria esportiva de corrida" loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 4 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/4.jpg"
+                                        alt="Avaliação positiva de assessoria de corrida online" loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 5 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/5.jpg"
+                                        alt="Relato de transformação com treinamento personalizado de corrida"
+                                        loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 6 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/6.jpg"
+                                        alt="Comentário de aluno sobre planilhas de treino personalizadas"
+                                        loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 7 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/7.jpg"
+                                        alt="Opinião de corredor sobre acompanhamento individual da Karina"
+                                        loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 8 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/8.jpg"
+                                        alt="Feedback sobre evolução na corrida com assessoria profissional"
+                                        loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 9 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/9.jpg"
+                                        alt="Depoimento de aluno satisfeito com treinamento de corrida" loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Slide 10 -->
+                            <div class="carousel-slide">
+                                <div class="feedback-card">
+                                    <img src="/assets/img/feedbacks/10.jpg"
+                                        alt="Testemunho sobre resultados alcançados com assessoria esportiva"
+                                        loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn next" aria-label="Próximo feedback">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Indicadores (dots) -->
+                <div class="carousel-indicators"></div>
+            </section>
+
+            <!-- Botão de CTA pós-depoimentos (Ponto 1) -->
+            <div class="mt-12 text-center">
+                <a href="#lista-vip"
+                    class="inline-flex items-center gap-2 bg-karina-orange hover:bg-karina-orange/95 text-white font-bold font-oswald uppercase italic px-8 py-4 rounded-full text-sm tracking-wider shadow-lg shadow-karina-orange/20 transition-all duration-300 transform hover:-translate-y-0.5">
+                    Quero começar a correr
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ===== 7. OFERTA + LISTA VIP ===== -->
+    <section id="lista-vip" class="py-20 bg-dark-bg border-b border-white/5 relative scroll-mt-24">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] bg-karina-orange/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-12">
+                <span
+                    class="text-xs uppercase font-bold text-karina-orange tracking-widest bg-karina-orange/10 px-3.5 py-1 rounded-full">Pré-lançamento</span>
+                <h2 class="text-3xl md:text-5xl font-oswald font-extrabold uppercase italic mt-4 mb-4">Garanta sua
+                    prioridade na turma</h2>
+                <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base">As vagas são limitadas. Entre na Lista
+                    VIP e seja avisado(a) primeiro quando as matrículas abrirem.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <!-- Resumo da oferta -->
+                <div class="bg-dark-card border border-white/10 rounded-3xl p-7">
+                    <h3 class="text-2xl font-oswald font-black uppercase italic text-white">Presencial Iniciante</h3>
+                    <p class="text-xs text-gray-400 mt-1">Turma de corrida em Votuporanga</p>
+
+                    <div class="my-6 border-y border-white/5 py-6">
+                        <span class="text-xs text-gray-500 uppercase tracking-widest font-bold">1ª mensalidade</span>
+                        <div class="flex items-baseline gap-2 mt-1">
+                            <span class="text-5xl font-oswald font-black text-white italic">R$ 150</span>
+                        </div>
+                        <p class="text-sm text-gray-400 mt-2">Depois, <strong class="text-white">R$ 200/mês</strong>.</p>
+                    </div>
+
+                    <ul class="space-y-3 text-sm text-gray-300">
+                        <li class="flex items-start gap-2.5"><i data-lucide="users" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i> Treino presencial toda quarta às 18h30</li>
+                        <li class="flex items-start gap-2.5"><i data-lucide="smartphone" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i> 2 treinos online por semana no Treinus</li>
+                        <li class="flex items-start gap-2.5"><i data-lucide="play-circle" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i> Acesso ao Portal do Atleta KF</li>
+                        <li class="flex items-start gap-2.5"><i data-lucide="calendar" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i> Início dos treinos em 11/01/2027</li>
+                        <li class="flex items-start gap-2.5"><i data-lucide="map-pin" class="w-4 h-4 text-karina-orange shrink-0 mt-0.5"></i> Em Votuporanga (local informado aos inscritos)</li>
+                    </ul>
+
+                    <p class="mt-6 text-[11px] font-bold text-emerald-400 flex items-center gap-1.5"><i data-lucide="alert-circle" class="w-4 h-4"></i> Vagas limitadas: quem está na Lista VIP tem prioridade</p>
+                </div>
+
+                <!-- Formulário da Lista VIP -->
+                <div class="bg-dark-card border border-karina-orange/30 rounded-3xl p-7 shadow-2xl">
+                    <form id="waitlist-form" data-list="presencial_iniciante" class="space-y-3 text-left" novalidate>
+                        <h3 class="text-xl font-oswald font-black uppercase italic text-white mb-1">Entre na Lista VIP</h3>
+                        <p class="text-xs text-gray-400 mb-4">Grátis e sem compromisso. Você recebe o aviso por e-mail e WhatsApp.</p>
+
+                        <!-- Honeypot contra robôs -->
+                        <div style="display:none !important;" aria-hidden="true">
+                            <input type="text" id="wl-website" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+                        <div>
+                            <label for="wl-name" class="block text-xs text-gray-400 mb-1">Nome</label>
+                            <input type="text" id="wl-name" name="name" required maxlength="120" autocomplete="name" placeholder="Seu nome" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                        </div>
+                        <div>
+                            <label for="wl-email" class="block text-xs text-gray-400 mb-1">E-mail</label>
+                            <input type="email" id="wl-email" name="email" required maxlength="160" autocomplete="email" inputmode="email" placeholder="seu@email.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                        </div>
+                        <div>
+                            <label for="wl-phone" class="block text-xs text-gray-400 mb-1">WhatsApp</label>
+                            <input type="tel" id="wl-phone" name="phone" required autocomplete="tel-national" inputmode="numeric" placeholder="(17) 99999-9999" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm focus:border-karina-orange outline-none transition">
+                        </div>
+                        <label class="flex items-start gap-2.5 cursor-pointer text-[11px] text-gray-400 leading-normal pt-1">
+                            <input type="checkbox" id="wl-consent" required class="mt-0.5 accent-[#ff6b35]">
+                            <span>Quero receber o aviso de abertura das matrículas da turma Presencial Iniciante por e-mail e WhatsApp. Li a <a href="/planos/privacidade.html" target="_blank" class="text-karina-orange hover:underline font-bold">Política de Privacidade</a>.</span>
+                        </label>
+
+                        <div id="waitlist-turnstile" class="flex justify-center"></div>
+                        <div id="waitlist-error" class="hidden text-xs text-red-400 bg-red-400/10 border border-red-400/20 p-3 rounded-xl" role="alert"></div>
+
+                        <button type="submit" id="waitlist-submit" class="w-full py-4 bg-karina-orange hover:bg-[#e0531f] text-white font-bold font-display uppercase tracking-wider text-xs rounded-xl shadow-lg hover:shadow-[0_4px_20px_rgba(255,107,53,0.3)] transition duration-300 flex items-center justify-center gap-2">
+                            <i data-lucide="crown" class="w-4 h-4"></i>
+                            <span>Entrar na Lista VIP</span>
+                        </button>
+                    </form>
+
+                    <div id="waitlist-success" class="hidden py-6 space-y-3 text-center" role="status">
+                        <div class="w-14 h-14 rounded-full bg-emerald-400/10 text-emerald-400 flex items-center justify-center mx-auto">
+                            <i data-lucide="check" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-oswald font-black uppercase italic text-white">Você está na Lista VIP!</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">Mandamos uma confirmação para o seu e-mail. Quando as matrículas abrirem, você recebe o aviso antes de todo mundo.</p>
+                        <a href="https://www.instagram.com/karina_franzin/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-karina-orange hover:underline">
+                            <i data-lucide="external-link" class="w-4 h-4"></i> Acompanhe a Karina no Instagram
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 8. FAQ ===== -->
+    <section class="py-20 bg-[#0c0c0c] border-b border-white/5" id="faq">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span
+                    class="text-xs uppercase font-bold text-karina-orange tracking-widest bg-karina-orange/10 px-3.5 py-1 rounded-full">Dúvidas
+                    Frequentes</span>
+                <h2 class="text-3xl md:text-5xl font-oswald font-extrabold uppercase italic mt-4 mb-4">Perguntas
+                    Frequentes</h2>
+            </div>
+
+            <div class="faq-container space-y-4">
+                <div class="faq-item">
+                    <button class="faq-question text-left text-white" aria-expanded="false">Nunca corri. Posso entrar na turma?</button>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 text-sm leading-relaxed">Sim. A turma é feita para quem está começando do zero. Os treinos alternam caminhada e corrida leve e a evolução é gradual, para o corpo se adaptar com segurança.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question text-left text-white" aria-expanded="false">Quando e onde são os treinos?</button>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 text-sm leading-relaxed">O treino presencial é toda quarta-feira às 18h30, em Votuporanga, começando em 11/01/2027. O ponto de encontro é informado aos inscritos antes do início da turma. Além dele, você faz mais 2 treinos online por semana no seu horário.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question text-left text-white" aria-expanded="false">Quanto custa?</button>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 text-sm leading-relaxed">A mensalidade é de R$ 200,00. A primeira mensalidade sai por R$ 150,00 e as demais por R$ 200,00.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question text-left text-white" aria-expanded="false">Como funcionam os treinos online?</button>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 text-sm leading-relaxed">Além do treino presencial, você recebe 2 treinos por semana no aplicativo Treinus, com as instruções da Karina para fazer no horário que preferir.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question text-left text-white" aria-expanded="false">O que é o Portal do Atleta KF?</button>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 text-sm leading-relaxed">É a biblioteca de vídeos da Karina com exercícios de técnica, fortalecimento e mobilidade para corredores. Alunos da turma presencial têm acesso incluído.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question text-left text-white" aria-expanded="false">Entrar na Lista VIP garante minha vaga?</button>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 text-sm leading-relaxed">A Lista VIP não garante a vaga nem obriga a nenhuma compra, mas quem está na lista é avisado primeiro quando as matrículas abrirem, com a primeira mensalidade por R$ 150,00. Como as vagas são limitadas, quem chega antes tem prioridade.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question text-left text-white" aria-expanded="false">Preciso de relógio GPS ou equipamento especial?</button>
+                    <div class="faq-answer">
+                        <p class="text-gray-400 text-sm leading-relaxed">Não. Para começar basta um tênis confortável, roupa leve e uma garrafa de água. O celular com um aplicativo gratuito já serve para registrar os treinos online.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 9. CTA FINAL ===== -->
+    <section class="py-20 bg-gradient-to-b from-dark-bg to-[#141414] text-center border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-3xl md:text-5xl font-oswald font-black uppercase tracking-tight text-white mb-6">
+                Seu primeiro passo é em 11/01/2027
+            </h2>
+            <p class="text-gray-400 max-w-xl mx-auto mb-10 leading-relaxed text-sm md:text-base">
+                Entre na Lista VIP agora e seja avisado(a) primeiro. As vagas da primeira turma são limitadas.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#lista-vip"
+                    class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-karina-orange hover:bg-[#e0531f] text-white font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-[0_4px_20px_rgba(255,107,53,0.3)]">
+                    <i data-lucide="crown" class="w-5 h-5"></i> Entrar na Lista VIP
+                </a>
+                <a href="https://wa.me/5517996566908?text=Olá,%20Karina!%20Vi%20a%20página%20da%20turma%20presencial%20para%20iniciantes%20em%20Votuporanga%20e%20tenho%20uma%20dúvida."
+                    target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-xl border border-white/10 transition-all duration-300">
+                    <i data-lucide="message-square" class="w-5 h-5"></i> Tirar dúvidas no WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox para ampliar feedbacks -->
+    <div id="feedbackLightbox" class="lightbox" aria-hidden="true">
+        <div class="lightbox-overlay"></div>
+        <div class="lightbox-content">
+            <button class="lightbox-close" aria-label="Fechar imagem ampliada">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <img id="lightboxImage" src="" alt="Feedback ampliado" />
+        </div>
+    </div>
+
+
+    <!-- FOOTER_PLACEHOLDER -->
+</body>
+
+</html>
