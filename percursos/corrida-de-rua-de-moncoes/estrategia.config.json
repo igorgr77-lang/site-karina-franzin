@@ -1,0 +1,150 @@
+{
+  "gpx": "MONCOES_RUN_ORIGINAL.gpx",
+  "nomeArquivoLimpo": "MONCOES_RUN",
+  "metadata": {
+    "name": "1ª Corrida de Rua de Monções – Monções Run",
+    "city": "Monções - SP",
+    "author": "Strava (rota publicada pela organização)"
+  },
+  "race": {
+    "title": "Estratégia Corrida de Rua de Monções",
+    "date": "2026-11-29",
+    "gaCategory": "corrida_de_rua_de_moncoes",
+    "officialDistanceM": 5000,
+    "defaultTargetSeconds": 1500,
+    "minTargetSeconds": 780,
+    "maxHours": 2,
+    "halfwayDistM": 2500,
+    "summaryElevation": "+68,1m D+ (6 Segmentos Táticos)",
+    "summaryReminder": "Não gaste na descida até o retorno do Km 1,5: a subida da Rio Grande do Sul e da Rua Paraná vem logo depois. A chegada é em descida, guarde o sprint para o fim!",
+    "strategyDescriptions": {
+      "conservative": "Corre os primeiros 2 km (zigue-zague, descida e retorno no vale) um pouco abaixo do ritmo e usa a energia guardada para fechar forte a partir do Km 3,4: fim da Av. Rondônia, subida ao topo e descida final até a chegada.",
+      "aggressive-downhill": "Ataca forte as descidas (Seg 2 e 6) e segura o esforço nas subidas (Seg 1, 3 e 5)."
+    }
+  },
+  "segmentos": [
+    {
+      "ateKm": 0.67,
+      "name": "Largada e Zigue-Zague pelo Bairro",
+      "shortName": "Seg 1 · Zigue-Zague",
+      "badge": "Subida Leve",
+      "tacticalTitle": "+11m em 640m, com quatro curvas fechadas",
+      "tacticalTip": "A largada sai pela Av. Rondônia e logo entra num zigue-zague pelas quadras (Rua Rui Barbosa, Rua Bernardino Pinto, Rua Mato Grosso), sempre subindo de leve (média +1,6%). São quatro curvas de 90° em 600m: não brigue por posição em cada esquina, faça a curva por dentro e procure o seu ritmo. O ponto alto deste começo é o Km 0,6, de onde começa a grande descida.",
+      "mentalCue": "Calma nas curvas: o ritmo se acha depois do Km 0,6.",
+      "ruas": [
+        "Avenida Rondônia",
+        "Rua Rui Barbosa",
+        "Rua Bernardino Pinto",
+        "Rua Mato Grosso"
+      ]
+    },
+    {
+      "ateKm": 1.68,
+      "name": "Grande Descida e Retorno no Vale",
+      "shortName": "Seg 2 · Descida e Retorno",
+      "badge": "Descida Forte",
+      "tacticalTitle": "-37m até o ponto mais baixo, com retorno no Km 1,5",
+      "tacticalTip": "Do Km 0,6 o percurso desce firme até a Rua Rio Grande do Sul (cerca de 8% perto do Km 1,1) e chega ao ponto mais baixo da prova (421,7m) na Rodovia Vicinal Fernando Ramirez. Ali vem o 1º retorno (Km 1,5), depois de uma pequena subida. Desça rápido, mas com passos curtos: logo depois do retorno começa a subida mais dura da prova.",
+      "mentalCue": "Passos curtos e rápidos, sem frear com o calcanhar."
+    },
+    {
+      "ateKm": 2.44,
+      "name": "Grande Subida da Rio Grande do Sul e da Rua Paraná",
+      "shortName": "Seg 3 · Grande Subida",
+      "badge": "Subida Forte",
+      "tacticalTitle": "Sobe 34m em 730m: o trecho que decide a prova",
+      "tacticalTip": "Na volta do retorno, a Rua Rio Grande do Sul tem a rampa mais íngreme da prova: cerca de 9% perto do Km 1,8. Depois de um respiro curto, a subida continua pela Rua Paraná (média de quase 5%) até o Km 2,3. Segure o esforço, não o pace: perder segundos aqui é normal e já está no plano. Quem desceu forte demais no Seg 2 sente aqui.",
+      "mentalCue": "Braços ativos e passada curta: um quarteirão de cada vez.",
+      "ruas": [
+        "Rodovia Vicinal Fernando Ramirez",
+        "Rua Rio Grande do Sul",
+        "Rua Paraná"
+      ]
+    },
+    {
+      "ateKm": 3.65,
+      "name": "Av. Rondônia e Passagem pela Largada",
+      "shortName": "Seg 4 · Av. Rondônia",
+      "badge": "Quase Plano",
+      "tacticalTitle": "1,2 km quase plano para voltar ao ritmo",
+      "tacticalTip": "O fim da Rua Paraná já é plano: use esses primeiros 200m para soltar as pernas depois da Grande Subida. No Km 2,6 você chega à Av. Rondônia com uma curva bem fechada, quase um retorno, e segue pela avenida passando em frente à largada (perto do Km 2,9). A metade da prova (Km 2,5) fica neste trecho. A avenida desce de leve até o Km 3,0 e depois sobe de leve (cerca de 1,5%) até a curva do Km 3,5: aqui o pace fica um pouco mais rápido que a média, porque a média da prova inclui as subidas. Acelere de forma controlada, sem se empolgar com o público na largada: ainda falta a subida ao topo.",
+      "mentalCue": "Respire fundo e reencaixe a passada.",
+      "ruas": [
+        "Rua Paraná",
+        "Avenida Rondônia"
+      ]
+    },
+    {
+      "ateKm": 4.09,
+      "name": "Subida da Rua Lidia Genaro Gonçalves",
+      "shortName": "Seg 5 · Subida ao Topo",
+      "badge": "Subida com Rampa",
+      "tacticalTitle": "Sobe 10m em 420m até o ponto mais alto e o 2º retorno",
+      "tacticalTip": "No Km 3,5 uma curva fechada leva da Av. Rondônia para a Rua Lidia Genaro Gonçalves, e logo depois vem uma rampa curta e forte (cerca de 8% em 100m). Depois dela a rua fica quase plana e sobe de leve até o ponto mais alto da prova (462m, Km 3,8). O 2º e último retorno fica logo depois do topo (Km 3,9). Encurte a passada na rampa e não tente recuperar agora os segundos perdidos.",
+      "mentalCue": "Rampa curta: segure só até o topo."
+    },
+    {
+      "ateKm": 5.21,
+      "name": "Descida Final pela Av. Rondônia",
+      "shortName": "Seg 6 · Descida Final",
+      "badge": "Descida Favorável",
+      "tacticalTitle": "-13m em 1,1 km até a chegada",
+      "tacticalTip": "Logo depois do retorno você passa de novo pelo topo (Km 4,0) e a Rua Lidia Genaro Gonçalves fica plana por 200m. Perto do Km 4,3 ela desce forte (cerca de 6%) até a curva fechada que devolve você à Av. Rondônia. Dali faltam 650m, sempre descendo de leve, até a chegada em frente ao Supermercado Rede Mais. É o trecho para acelerar e recuperar os segundos investidos nas subidas: solte tudo no último quilômetro.",
+      "mentalCue": "Incline levemente o corpo à frente e deixe a passada abrir."
+    }
+  ],
+  "pagina": {
+    "nome": "Corrida de Rua de Monções",
+    "nomeCurto": "Monções Run",
+    "nomePulseira": "MONÇÕES RUN",
+    "subtituloPrefixo": "1ª edição da corrida de rua de Monções – SP.",
+    "ogAlt": "Percurso da 1ª Corrida de Rua de Monções – Monções Run 2026",
+    "card": {
+      "titulo": "1ª Corrida de Rua de Monções",
+      "cidade": "Monções – SP",
+      "descricao": "5 km com dois retornos: grande descida no começo, a subida mais dura no km 2 e chegada em descida.",
+      "distancia": "5K",
+      "alt": "Percurso da 1ª Corrida de Rua de Monções – Monções Run",
+      "tag": "Ondulado"
+    },
+    "diagStatus": "Percurso Ondulado · Moderado",
+    "destaques": [
+      {
+        "rotulo": "Grande Subida",
+        "valor": "Km 1,6 a 2,3 (+34,2m)"
+      },
+      {
+        "rotulo": "Retornos",
+        "valor": "Km 1,5 · 3,9"
+      }
+    ],
+    "intro": "A Monções Run tem <strong>dois retornos</strong>: um no ponto mais baixo (Km 1,5) e outro no ponto mais alto (Km 3,9). Correr tudo no mesmo pace médio faz o corredor desperdiçar a grande descida do começo e gastar demais na <strong>Grande Subida da Rua Rio Grande do Sul e da Rua Paraná (Km 1,6 a 2,3)</strong>, que concentra metade de todo o desnível. Siga o ritmo de cada segmento abaixo:",
+    "recomendacao": "Metade de toda a subida da prova (<strong>+34,2m de 68,1m</strong>) está num único bloco: a <strong>Grande Subida (Segmento 3, Km 1,6 a 2,3)</strong>, logo depois do retorno no vale, com uma rampa de cerca de 9%. Correr esse trecho mais devagar que o pace médio não é \"quebrar\": é o que deixa perna para a subida ao topo (Segmento 5) e para acelerar na descida final pela Av. Rondônia (Segmento 6), já que a prova termina descendo. Nos dois retornos você perde alguns segundos na curva: retome o ritmo aos poucos.",
+    "ctaTitulo": "Quer correr a Monções Run na sua melhor performance?"
+  },
+  "evento": {
+    "nomeOficial": "1ª Corrida de Rua de Monções-SP – Monções Run",
+    "inicio": "2026-11-29T06:30:00-03:00",
+    "horario": "6h30",
+    "local": "em frente ao Supermercado Rede Mais Buissa & Buissa (Av. Rondônia, 485 – Jardim Ramires)",
+    "localCurto": "Supermercado Rede Mais Buissa & Buissa",
+    "cidade": "Monções",
+    "uf": "SP",
+    "modalidades": [
+      "Corrida 5 km",
+      "Caminhada 3 km",
+      "Kids"
+    ],
+    "percursoDestaPagina": "corrida de 5 km",
+    "organizador": "Equilíbrio Esportes, com apoio da Prefeitura e da Câmara Municipal de Monções",
+    "cronometragem": "Equilíbrio Esportes",
+    "siteOficial": "https://equilibrio.esp.br/1a-corrida-de-rua-de-moncoes-sp-moncoes-run/",
+    "inscricoes": "https://sportpulse.pro/prova/1-corrida-pedestre-de-moncoes-2026",
+    "duracaoHoras": 2,
+    "inscricao": {
+      "preco": 95,
+      "url": "https://sportpulse.pro/prova/1-corrida-pedestre-de-moncoes-2026",
+      "disponibilidade": "InStock"
+    }
+  }
+}

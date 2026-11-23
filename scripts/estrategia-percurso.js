@@ -46,7 +46,9 @@ function percursoHtml(o) {
 
   // ---------- km a km ----------
   const tipoTxt = { climb: "subida forte", uphill: "subida", downhill: "descida", rolling: "trecho ondulado" };
-  const passos = a.segs.map((s) => {
+  // segmentos[].ruas no config substitui a lista automática do trecho (o OSM pula ruas curtas)
+  const segRuas = (o.segRuas || []).length === a.segs.length ? o.segRuas : [];
+  const passos = a.segs.map((s, i) => {
     const e1 = t[s.a].ele, e2 = t[s.b].ele;
     const len = (s.distM * a.sc);
     const media = (s.netEle / s.distM) * 100;
@@ -54,8 +56,9 @@ function percursoHtml(o) {
     const desc = s.type === "rolling"
       ? `sobe ${fmt(s.gain)} m e desce ${fmt(s.loss)} m em ${comp}`
       : `${tipoTxt[s.type]} de ${fmt(e1)} m para ${fmt(e2)} m em ${comp} (média de ${fmt(media)}%)`;
-    const ruasTrecho = [...new Set(ruas.filter((r) => r.kmFim >= s.kmIni - 0.05 && r.kmIni <= s.kmFim + 0.05).map((r) => r.rua))];
-    const pela = ruasTrecho.length ? `, pela ${ruasTrecho.slice(0, 3).join(", ").replace(/, ([^,]*)$/, " e $1")}` : "";
+    const manual = Array.isArray(segRuas[i]) && segRuas[i].length ? segRuas[i] : null;
+    const ruasTrecho = manual || [...new Set(ruas.filter((r) => r.kmFim >= s.kmIni - 0.05 && r.kmIni <= s.kmFim + 0.05).map((r) => r.rua))];
+    const pela = ruasTrecho.length ? `, pela ${ruasTrecho.slice(0, manual ? manual.length : 3).join(", ").replace(/, ([^,]*)$/, " e $1")}` : "";
     return `          <li><strong>Km ${fmt(s.kmIni)} a ${fmt(s.kmFim)} · ${esc(s.name)}</strong>: ${desc}${esc(pela)}.</li>`;
   }).join("\n");
 

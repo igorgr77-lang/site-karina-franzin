@@ -199,7 +199,7 @@ function buildValues(slug, dir, config, data, a, imagens = {}, ruas = []) {
     CTA_TITULO: p.ctaTitulo || `Quer correr a ${nomeCurto} na sua melhor performance?`,
     WA_TEXTO: encodeURIComponent(`Olá, Karina! Vi a página de Estratégia da ${p.nomeWhatsapp || nome} e quero saber mais sobre a assessoria de corrida.`)
   };
-  const extra = require("./estrategia-percurso.js").percursoHtml({ slug, nome, nomeCurto, nomeBusca, city, cityShort, year, km, kmLabel, gpxLimpo, faixa, analysis: a, data, imagens, ruas, evento: config.evento, ogImagem: ogFile, date: validDate(race.date) });
+  const extra = require("./estrategia-percurso.js").percursoHtml({ slug, nome, nomeCurto, nomeBusca, city, cityShort, year, km, kmLabel, gpxLimpo, faixa, analysis: a, data, imagens, ruas, segRuas: (config.segmentos || []).map((s) => s.ruas), evento: config.evento, ogImagem: ogFile, date: validDate(race.date) });
   v.SECAO_PERCURSO = extra.secao;
   v.SECAO_FAQ = extra.faq;
   v.FAQ_JSONLD = extra.jsonld;
