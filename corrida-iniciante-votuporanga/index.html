@@ -1086,6 +1086,29 @@
     </div>
 
 
+    <!-- Reancora na seção do hash (ex.: #lista-vip) enquanto imagens lazy e o Tailwind alteram o layout -->
+    <script>
+    (function () {
+        var id = decodeURIComponent((location.hash || '').slice(1));
+        if (!id) return;
+        var stop = false, start = Date.now();
+        function align() {
+            if (stop) return;
+            var el = document.getElementById(id);
+            if (el) el.scrollIntoView({ block: 'start', behavior: 'instant' });
+        }
+        ['touchstart', 'wheel', 'mousedown', 'keydown'].forEach(function (ev) {
+            window.addEventListener(ev, function () { stop = true; }, { passive: true, once: true });
+        });
+        document.addEventListener('DOMContentLoaded', align);
+        window.addEventListener('load', align);
+        var timer = setInterval(function () {
+            align();
+            if (stop || Date.now() - start > 4000) clearInterval(timer);
+        }, 250);
+    })();
+    </script>
+
     <footer class="footer">
     <div class="container">
         <div class="footer-content">
