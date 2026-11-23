@@ -1047,7 +1047,11 @@
         function align() {
             if (stop) return;
             var el = document.getElementById(id);
-            if (el) el.scrollIntoView({ block: 'start', behavior: 'instant' });
+            if (!el) return;
+            // alinha no título da seção (pula o padding superior), logo abaixo do menu fixo
+            var alvo = el.querySelector('h2') || el;
+            var topo = alvo.getBoundingClientRect().top + window.pageYOffset - 72;
+            window.scrollTo({ top: Math.max(topo, 0), behavior: 'instant' });
         }
         ['touchstart', 'wheel', 'mousedown', 'keydown'].forEach(function (ev) {
             window.addEventListener(ev, function () { stop = true; }, { passive: true, once: true });
@@ -1056,7 +1060,7 @@
         window.addEventListener('load', align);
         var timer = setInterval(function () {
             align();
-            if (stop || Date.now() - start > 4000) clearInterval(timer);
+            if (stop || Date.now() - start > 8000) clearInterval(timer);
         }, 250);
     })();
     </script>
