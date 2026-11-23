@@ -247,14 +247,15 @@ function profileSvg(data, id) {
             </svg>`;
 }
 
-function renderCard(r) {
+function renderCard(r, realizada = false) {
   const p = r.config.pagina.card || {};
   const date = validDate(r.data.race.date);
   let dateHtml = "";
   if (date) {
     const [y, m, d] = date.split("-");
     const wd = WEEKDAYS[new Date(Number(y), Number(m) - 1, Number(d)).getDay()];
-    dateHtml = `\n              <span class="hub-card-date"><time datetime="${date}">${wd} · ${d}/${m}/${y}</time></span>`;
+    dateHtml = `\n              <span class="hub-card-date"><time datetime="${date}">${wd} · ${d}/${m}/${y}</time></span>`
+      + (realizada ? `\n              <span class="hub-card-done">Prova realizada</span>` : "");
   }
   const has = (f) => fs.existsSync(path.join(r.dir, f));
   const img = has("banner.webp")
@@ -264,7 +265,7 @@ function renderCard(r) {
                  width="1024" height="538" alt="${esc(p.alt || `Banner da ${r.nome}`)}" decoding="async">`
     : profileSvg(r.data, r.slug.replace(/[^a-z0-9]/gi, ""));
   const tag = p.tag || r.values.DIAG_STATUS.replace(/^Percurso /, "").split(" · ")[0];
-  return `        <a href="/percursos/${r.slug}/" class="hub-card" data-gtag-event="estrategia_abrir_corrida" data-gtag-category="${r.values.GA}">
+  return `        <a href="/percursos/${r.slug}/" class="hub-card${realizada ? " hub-card-past" : ""}" data-gtag-event="estrategia_abrir_corrida" data-gtag-category="${r.values.GA}">
           <div class="hub-card-profile">
             ${img}
           </div>
@@ -328,9 +329,24 @@ async function buildEstrategia({ rootDir, compilePageComponents }) {
   // Página raiz: cards e lista para o Google em ordem de data
   const hubTemplatePath = path.join(base, "index.template.html");
   if (fs.existsSync(hubTemplatePath)) {
-    races.sort((x, y) => String(validDate(x.data.race.date) || "9999").localeCompare(String(validDate(y.data.race.date) || "9999")));
+    // Próximas provas primeiro (a mais perto no topo). As que já aconteceram vão para uma seção
+    // própria, da mais recente para a mais antiga. "Hoje" no fuso de Brasília (ESTRATEGIA_HOJE simula outra data).
+    const hoje = process.env.ESTRATEGIA_HOJE || new Intl.DateTimeFormat("en-CA", { timeZone: "America/Sao_Paulo" }).format(new Date());
+    const dataDe = (r) => String(validDate(r.data.race.date) || "9999-99-99");
+    races.sort((x, y) => dataDe(x).localeCompare(dataDe(y)));
+    const proximas = races.filter((r) => dataDe(r) >= hoje);
+    const realizadas = races.filter((r) => dataDe(r) < hoje).reverse();
     let hub = fs.readFileSync(hubTemplatePath, "utf8");
-    hub = hub.replace("<!-- ESTRATEGIA_CARDS -->", races.map(renderCard).join("\n").trimEnd());
+    hub = hub.replace("<!-- ESTRATEGIA_CARDS -->", proximas.map((r) => renderCard(r)).join("\n").trimEnd());
+    hub = hub.replace("<!-- ESTRATEGIA_REALIZADAS -->", realizadas.length ? `    <section class="hub-past" aria-labelledby="hubPastTitle">
+      <div class="hub-section-head">
+        <h2 id="hubPastTitle">Provas que já aconteceram</h2>
+        <p>O percurso e a estratégia continuam aqui para rever a prova ou se preparar para a próxima edição.</p>
+      </div>
+      <div class="hub-grid">
+${realizadas.map((r) => renderCard(r, true)).join("\n").trimEnd()}
+      </div>
+    </section>` : "");
     // Percursos agrupados por cidade (ajuda nas buscas "percurso corrida <cidade>")
     const porCidade = {};
     races.forEach((r) => { const k = r.city || "Outras cidades"; (porCidade[k] = porCidade[k] || []).push(r); });
@@ -348,7 +364,7 @@ ${porCidade[cidade].map((r) => {
       <h2 id="hubCidadesTitulo">Percursos por cidade</h2>
 ${cidadesHtml}
     </section>` : "");
-    hub = hub.replace("<!-- ESTRATEGIA_ITEMLIST -->", races.map((r, i) =>
+    hub = hub.replace("<!-- ESTRATEGIA_ITEMLIST -->", [...proximas, ...realizadas].map((r, i) =>
       `{ "@type": "ListItem", "position": ${i + 1}, "name": "${esc(r.values.NOME_BREADCRUMB)}", "url": "${SITE}/percursos/${r.slug}/" }`).join(",\n      "));
     fs.writeFileSync(path.join(base, "index.html"), compilePageComponents(hub, false), "utf8");
     console.log(`💾 Página raiz da Estratégia de Prova gerada com ${races.length} corrida(s): percursos/index.html`);

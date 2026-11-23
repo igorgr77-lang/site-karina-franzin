@@ -2755,3 +2755,22 @@ a.hub-card:hover .hub-card-btn {
   font-size: 0.85rem;
   margin-left: 6px;
 }
+
+/* Provas que já aconteceram (página raiz) */
+.hub-past {
+  margin-top: 48px;
+}
+
+.hub-card-meta .hub-card-done {
+  background: var(--light-gray);
+  border: 1px dashed var(--medium-gray);
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.hub-card-past .hub-card-profile {
+  filter: grayscale(0.6);
+}
