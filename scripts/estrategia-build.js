@@ -105,6 +105,9 @@ function buildValues(slug, dir, config, data, a, imagens = {}, ruas = []) {
   const city = (p.cidade || (data.metadata && data.metadata.city) || "").replace(" - ", " – ");
   const cityShort = city.split(/ [–-] /)[0].trim();
   const year = String(validDate(race.date) || "").slice(0, 4);
+  // Prova já aconteceu? (data do build no fuso de Brasília; ESTRATEGIA_HOJE=AAAA-MM-DD simula outra data)
+  const hoje = process.env.ESTRATEGIA_HOJE || new Intl.DateTimeFormat("en-CA", { timeZone: "America/Sao_Paulo" }).format(new Date());
+  const jaFoi = Boolean(validDate(race.date)) && hoje > validDate(race.date);
   const comCidade = cityShort && !nome.toLowerCase().includes(cityShort.toLowerCase()) ? ` ${cityShort}` : "";
   const nomeBusca = `${nome}${comCidade}${year ? ` ${year}` : ""}`;   // ex.: "Corrida Passo a Passo 10K Novo Horizonte 2026"
   const temKmNoNome = /\b\d+\s?k(m)?\b/i.test(nome);
@@ -196,8 +199,16 @@ function buildValues(slug, dir, config, data, a, imagens = {}, ruas = []) {
     DIST_OFICIAL: kmLabel,
     FAIXA_RELOGIO: faixa,
     RECOMENDACAO: recomendacao,
-    CTA_TITULO: p.ctaTitulo || `Quer correr a ${nomeCurto} na sua melhor performance?`,
-    WA_TEXTO: encodeURIComponent(`Olá, Karina! Vi a página de Estratégia da ${p.nomeWhatsapp || nome} e quero saber mais sobre a assessoria de corrida.`)
+    // CTA: a página nasce poucos dias antes da prova, então não dá tempo de "se preparar para ela".
+    // Antes da prova o convite é para a próxima prova; depois, para a próxima meta.
+    // pagina.ctaTitulo / pagina.ctaTexto no config substituem o padrão.
+    CTA_TITULO: p.ctaTitulo || (jaFoi
+      ? `Correu a ${nomeCurto}? Agora defina a sua próxima meta.`
+      : `A ${nomeCurto} é só o começo. Qual é a sua próxima prova?`),
+    CTA_TEXTO: p.ctaTexto || (jaFoi
+      ? "Use o resultado desta prova como ponto de partida. Com planilha personalizada no aplicativo Treinus e acompanhamento individual da atleta de elite e treinadora Karina Franzin, você chega mais forte na próxima."
+      : "A estratégia desta página resolve o dia da prova. Para chegar mais forte nas próximas, treine com planilha personalizada no aplicativo Treinus e acompanhamento individual da atleta de elite e treinadora Karina Franzin."),
+    WA_TEXTO: encodeURIComponent(`Olá, Karina! Vi a página do percurso da ${p.nomeWhatsapp || nome} e quero treinar para as minhas próximas provas.`)
   };
   const extra = require("./estrategia-percurso.js").percursoHtml({ slug, nome, nomeCurto, nomeBusca, city, cityShort, year, km, kmLabel, gpxLimpo, faixa, analysis: a, data, imagens, ruas, segRuas: (config.segmentos || []).map((s) => s.ruas), evento: config.evento, ogImagem: ogFile, date: validDate(race.date) });
   v.SECAO_PERCURSO = extra.secao;
