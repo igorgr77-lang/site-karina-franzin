@@ -206,8 +206,8 @@ function buildValues(slug, dir, config, data, a, imagens = {}, ruas = []) {
       ? `Correu a ${nomeCurto}? Agora defina a sua próxima meta.`
       : `A ${nomeCurto} é só o começo. Qual é a sua próxima prova?`),
     CTA_TEXTO: p.ctaTexto || (jaFoi
-      ? "Use o resultado desta prova como ponto de partida. Com planilha personalizada no aplicativo Treinus e acompanhamento individual da atleta de elite e treinadora Karina Franzin, você chega mais forte na próxima."
-      : "A estratégia desta página resolve o dia da prova. Para chegar mais forte nas próximas, treine com planilha personalizada no aplicativo Treinus e acompanhamento individual da atleta de elite e treinadora Karina Franzin."),
+      ? "Use o resultado desta prova como ponto de partida. Para chegar mais forte na próxima, faça um treinamento personalizado e acompanhamento individual com a atleta e treinadora Karina Franzin."
+      : "A estratégia desta página te ajuda no dia da prova. Para chegar mais forte nas próximas, faça um treinamento personalizado e acompanhamento individual com a atleta e treinadora Karina Franzin."),
     WA_TEXTO: encodeURIComponent(`Olá, Karina! Vi a página do percurso da ${p.nomeWhatsapp || nome} e quero treinar para as minhas próximas provas.`)
   };
   const extra = require("./estrategia-percurso.js").percursoHtml({ slug, nome, nomeCurto, nomeBusca, city, cityShort, year, km, kmLabel, gpxLimpo, faixa, analysis: a, data, imagens, ruas, segRuas: (config.segmentos || []).map((s) => s.ruas), evento: config.evento, ogImagem: ogFile, date: validDate(race.date) });
