@@ -223,6 +223,26 @@ function buildValues(slug, dir, config, data, a, imagens = {}, ruas = []) {
       <a href="/corrida-iniciante-votuporanga/?utm_source=percursos&amp;utm_medium=percurso_vip&amp;utm_campaign=${slug}#lista-vip" class="btn-cta-primary race-vip-btn" data-gtag-event="click_lista_vip_percurso" data-gtag-category="${race.gaCategory || slug.replace(/-/g, "_")}">Quero entrar na Lista VIP</a>
     </div>
   </aside>` : "",
+    // Banner de um evento ligado à prova (ex.: treinão no percurso), só até o fim do evento.
+    // Sai no próximo build depois da data e some no navegador assim que passa o horário de fim.
+    BANNER_EVENTO: (() => {
+      const b = p.bannerEvento;
+      if (!b || !b.url || !b.fim || hoje > b.fim.slice(0, 10)) return "";
+      const sep = b.url.includes("?") ? "&amp;" : "?";
+      const href = `${b.url}${sep}utm_source=percursos&amp;utm_medium=percurso_evento&amp;utm_campaign=${slug}`;
+      return `  <aside class="race-vip race-evento" aria-label="${esc(b.titulo)}" data-fim="${esc(b.fim)}">
+    <div class="race-vip-media">
+      <img src="${esc(b.imagem)}"${b.srcset ? ` srcset="${esc(b.srcset)}" sizes="(max-width: 700px) 100vw, 400px"` : ""} alt="${esc(b.alt || b.titulo)}" width="${b.largura || 1200}" height="${b.altura || 675}" loading="lazy" decoding="async">
+    </div>
+    <div class="race-vip-body">
+      <span class="race-vip-tag">${esc(b.tag || "Evento gratuito")}</span>
+      <h2>${esc(b.titulo)}</h2>
+      <p>${b.texto}</p>
+      <a href="${href}" class="btn-cta-primary race-vip-btn" data-gtag-event="click_evento_percurso" data-gtag-category="${race.gaCategory || slug.replace(/-/g, "_")}">${esc(b.botao || "Ver detalhes")}</a>
+    </div>
+  </aside>
+  <script>(function(){var e=document.querySelector(".race-evento");if(e&&Date.now()>Date.parse(e.dataset.fim))e.remove();})();</script>`;
+    })(),
     WA_TEXTO: encodeURIComponent(`Olá, Karina! Vi a página do percurso da ${p.nomeWhatsapp || nome} e quero treinar para as minhas próximas provas.`)
   };
   const extra = require("./estrategia-percurso.js").percursoHtml({ slug, nome, nomeCurto, nomeBusca, city, cityShort, year, km, kmLabel, gpxLimpo, faixa, analysis: a, data, imagens, ruas, segRuas: (config.segmentos || []).map((s) => s.ruas), evento: config.evento, ogImagem: ogFile, date: validDate(race.date) });
@@ -230,7 +250,7 @@ function buildValues(slug, dir, config, data, a, imagens = {}, ruas = []) {
   v.SECAO_FAQ = extra.faq;
   v.FAQ_JSONLD = extra.jsonld;
   // Campos de texto puro vão escapados; os de HTML pronto ficam como estão
-  const html = new Set(["SUBTITULO", "INTRO", "RECOMENDACAO", "METAS_RAPIDAS", "WA_TEXTO", "OG_IMAGEM", "SECAO_PERCURSO", "SECAO_FAQ", "FAQ_JSONLD", "VIP_INICIANTE"]);
+  const html = new Set(["SUBTITULO", "INTRO", "RECOMENDACAO", "METAS_RAPIDAS", "WA_TEXTO", "OG_IMAGEM", "SECAO_PERCURSO", "SECAO_FAQ", "FAQ_JSONLD", "VIP_INICIANTE", "BANNER_EVENTO"]);
   for (const k of Object.keys(v)) if (!html.has(k)) v[k] = esc(v[k]);
   return { values: v, nome, city, km, kmLabel, target };
 }

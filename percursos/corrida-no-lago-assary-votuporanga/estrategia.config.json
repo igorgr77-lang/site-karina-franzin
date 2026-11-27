@@ -138,7 +138,20 @@
     "intro": "A Corrida no Lago contorna a Represa do Assary, com largada e chegada dentro do clube. A primeira metade começa plana, com um retorno no Km 0,6, tem uma subida curta entre o Km 1,1 e o Km 1,6 e termina em descida. A prova se decide na <strong>Grande Subida do Km 3,3 ao 4,3</strong>, que concentra quase metade de todo o desnível e termina no ponto mais alto. Depois dela vem a descida mais forte da prova, até a represa, e os 300m finais dentro do clube. Correr tudo no mesmo pace médio faz o corredor chegar sem perna nessa subida. Siga o ritmo de cada segmento abaixo:",
     "recomendacao": "Quase metade de toda a subida da prova (<strong>+23,0m de 53,9m</strong>) está num único bloco: a <strong>Grande Subida (Segmento 5, Km 3,3 a 4,3)</strong>, que começa com uma rampa de cerca de 7% e segue subindo de leve por quase 1 km. Correr esse trecho mais devagar que o pace médio não é \"quebrar\": é o que deixa perna para a descida forte até a represa (Segmento 6) e para a reta final dentro do clube (Segmento 7). No retorno do Km 0,6 você perde alguns segundos na curva: retome o ritmo aos poucos.",
     "ogDescricao": "5 km em volta da Represa do Assary: mapa, altimetria, a Grande Subida do km 3,3 ao 4,3, GPX para o relógio e estratégia de pace grátis.",
-    "vipIniciante": true
+    "vipIniciante": true,
+    "bannerEvento": {
+      "url": "/eventos/treinao-percurso-lago-assary/",
+      "imagem": "/assets/img/treinao-percurso-lago-assary/card_treinao-640w.webp",
+      "srcset": "/assets/img/treinao-percurso-lago-assary/card_treinao-640w.webp 640w, /assets/img/treinao-percurso-lago-assary/card_treinao-1024w.webp 1024w, /assets/img/treinao-percurso-lago-assary/card_treinao.webp 1200w",
+      "largura": 640,
+      "altura": 360,
+      "alt": "Arte do Treinão no percurso da Corrida no Lago Assary com a Karina Franzin",
+      "tag": "Treinão gratuito · Terça, 01/12",
+      "titulo": "Treinão no percurso da Corrida no Lago",
+      "texto": "Conheça o percurso antes da prova correndo em grupo com a Karina. Concentração às 18h30 na lagoa atrás do Assary e largada às <strong>19h</strong>.",
+      "botao": "Quero participar do treinão",
+      "fim": "2026-12-01T21:00:00-03:00"
+    }
   },
   "evento": {
     "nomeOficial": "7ª Corrida e Caminhada no Lago – Assary Clube de Campo – Votuporanga-SP",

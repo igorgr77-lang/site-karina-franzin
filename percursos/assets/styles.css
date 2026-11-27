@@ -2797,6 +2797,22 @@ a.hub-card:hover .hub-card-btn {
   flex: 0 0 260px;
 }
 
+/* Banner de evento (ex.: treinão) no topo da página, com arte horizontal */
+.race-evento {
+  margin: 0 auto 28px;
+}
+
+.race-evento .race-vip-media {
+  flex-basis: 400px;
+}
+
+.race-evento .race-vip-media img {
+  min-height: 0;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-position: 50% 50%;
+}
+
 .race-vip-media img {
   width: 100%;
   height: 100%;
@@ -2849,7 +2865,8 @@ a.hub-card:hover .hub-card-btn {
     padding: 1.25rem;
   }
 
-  .race-vip-media {
+  .race-vip-media,
+  .race-evento .race-vip-media {
     flex-basis: auto;
   }
 
