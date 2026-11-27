@@ -301,7 +301,10 @@
 
     for (let k = 1; k <= totalKmCount; k++) {
       const startD = (k - 1) * 1000.0;
-      const endD = Math.min(k * 1000.0, targetTotalDistM);
+      let endD = Math.min(k * 1000.0, targetTotalDistM);
+      // Sobra menor que 25m no fim (ex.: GPX de 5,02 km): entra no último km, senão o
+      // acumulado da tabela não chega à meta
+      if (targetTotalDistM - endD < 25) endD = targetTotalDistM;
       const lenM = endD - startD;
       if (lenM < 25) continue;
 

@@ -123,9 +123,9 @@ ${passos}
   const faqs = [
     [`Qual é o percurso da ${nomeBusca}?`, resumo],
     [`Qual é a distância da ${nomeCurto}?`, `${ev.modalidades && ev.modalidades.length > 1 ? `A prova tem ${ev.modalidades.join(", ").replace(/, ([^,]*)$/, " e $1").toLowerCase()}. Esta página mostra o percurso da ${ev.percursoDestaPagina || `corrida de ${kmLabel} km`}.` : `A prova tem ${kmLabel} km oficiais.`}${difere ? ` Pelo traçado do GPX, o percurso mede ${fmt(limpoKm, 2)} km, então é normal o relógio marcar entre ${faixa} km na chegada.` : ""}`],
-    localLargada && [`Onde ${jaFoi ? "foi" : "é"} a largada da ${nomeCurto}?`, `A largada e a chegada ${jaFoi ? "foram" : "são"} ${/^em /.test(ev.local || "") ? "" : "na "}${ev.local || localLargada}${ev.cidade ? `, em ${ev.cidade}${ev.uf ? `/${ev.uf}` : ""}` : ""}.`],
+    localLargada && [`Onde ${jaFoi ? "foi" : "é"} a largada da ${nomeCurto}?`, `A largada e a chegada ${jaFoi ? "foram" : "são"} ${ev.local && /^(em|no|na|nos|nas) /.test(ev.local) ? "" : "na "}${ev.local || localLargada}${ev.cidade ? `, em ${ev.cidade}${ev.uf ? `/${ev.uf}` : ""}` : ""}.`],
     horario && !jaFoi && [`Que horas é a largada da ${nomeCurto}?`, `A largada é às ${horario}${dataTxt ? ` do dia ${dataTxt}` : ""}.`],
-    ruas.length && [`Por quais ruas passa o percurso da ${nomeCurto}?`, `${localLargada ? `Saindo ${/^em /.test(ev.local || "") ? "" : "da "}${ev.local || localLargada}, o` : "O"} percurso passa por: ${ruas.map((r) => r.rua).filter((r, i, arr) => arr.indexOf(r) === i).join(", ")}.`],
+    ruas.length && [`Por quais ruas passa o percurso da ${nomeCurto}?`, `${localLargada ? `Saindo ${ev.local && /^(no|na|nos|nas) /.test(ev.local) ? ev.local.replace(/^n/, "d") : `${/^em /.test(ev.local || "") ? "" : "da "}${ev.local || localLargada}`}, o` : "O"} percurso passa por: ${ruas.map((r) => r.rua).filter((r, i, arr) => arr.indexOf(r) === i).join(", ")}.`],
     [`O percurso da ${nomeCurto} tem subida?`, climbs.length
       ? `Sim. São ${num(climbs.length, "subida", "subidas")}, e a maior fica entre o Km ${fmt(big.kmIni)} e o Km ${fmt(big.kmFim)}, com +${fmt(big.gain)} m (${Math.round((big.gain / a.gain) * 100)}% de todo o desnível da prova). O ganho acumulado da prova é de +${fmt(a.gain)} m.`
       : `Quase nada: é um percurso praticamente plano, com +${fmt(a.gain)} m de ganho acumulado.`],

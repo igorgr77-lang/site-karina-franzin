@@ -110,30 +110,6 @@
         </p>
         <a href="#percurso" class="hero-route-link">Ver como é o percurso, km a km ↓</a>
       </div>
-      <div class="hero-DiagnosticCard">
-        <div class="diag-header">
-          <span class="diag-title">Diagnóstico Oficial do Percurso</span>
-          <span class="diag-status">{{DIAG_STATUS}}</span>
-        </div>
-        <div class="diag-metrics">
-          <div>
-            <span class="dm-label">Alt. Mín / Máx</span>
-            <strong class="dm-val">{{ALT_MIN_MAX}}</strong>
-          </div>
-          <div>
-            <span class="dm-label">Ganho Acumulado</span>
-            <strong class="dm-val text-brand-orange">{{D_MAIS}} (D+)</strong>
-          </div>
-          <div>
-            <span class="dm-label">{{DESTAQUE1_ROTULO}}</span>
-            <strong class="dm-val text-warning">{{DESTAQUE1_VALOR}}</strong>
-          </div>
-          <div>
-            <span class="dm-label">{{DESTAQUE2_ROTULO}}</span>
-            <strong class="dm-val text-climb">{{DESTAQUE2_VALOR}}</strong>
-          </div>
-        </div>
-      </div>
     </div>
   </header>
 
@@ -478,7 +454,7 @@
           </div>
 
           <div class="diag-detail-card">
-            <h3>Por que o relógio pode marcar mais que {{DIST_OFICIAL}} km?</h3>
+            <h3>{{RELOGIO_PERGUNTA}}</h3>
             <p>
               O GPS mede o caminho que você realmente corre, com curvas, desvios e pequenas variações de sinal. Pelo traçado, este percurso tem <strong>{{DIST_LIMPA}} km</strong>, então é normal o relógio marcar algo entre <strong>{{FAIXA_RELOGIO}} km</strong> na chegada.
             </p>
@@ -500,6 +476,7 @@
 {{SECAO_PERCURSO}}
 
 {{SECAO_FAQ}}
+{{VIP_INICIANTE}}
   </main>
 
   <!-- CTA Strong Section (Identidade Karina Franzin) -->

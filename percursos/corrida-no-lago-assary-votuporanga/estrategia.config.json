@@ -1,0 +1,168 @@
+{
+  "gpx": "LAGO_ASSARY_ORIGINAL.gpx",
+  "nomeArquivoLimpo": "LAGO_ASSARY",
+  "metadata": {
+    "name": "7ª Corrida e Caminhada no Lago – Assary Clube de Campo",
+    "city": "Votuporanga - SP",
+    "author": "Strava"
+  },
+  "race": {
+    "title": "Estratégia Corrida no Lago Assary",
+    "date": "2026-12-06",
+    "gaCategory": "corrida_no_lago_assary",
+    "officialDistanceM": 5000,
+    "defaultTargetSeconds": 1500,
+    "minTargetSeconds": 780,
+    "maxHours": 1,
+    "halfwayDistM": 2500,
+    "summaryElevation": "+53,9m D+ (7 Segmentos Táticos)",
+    "summaryReminder": "A prova se decide na Grande Subida do Km 3,3 ao 4,3, que começa com uma rampa forte. Use a beira da represa (Km 2,3 a 3,3) para respirar, ataque a descida até a represa e guarde o sprint para os últimos metros dentro do clube!",
+    "strategyDescriptions": {
+      "conservative": "Corre os primeiros 2 km (ida e volta, retorno e a primeira subida) um pouco abaixo do ritmo e usa a energia guardada para fechar forte a partir do Km 3,4: Grande Subida, descida até a represa e reta final dentro do clube.",
+      "aggressive-downhill": "Ataca forte as descidas (Seg 3 e 6) e segura o esforço nas subidas (Seg 2, 5 e 7)."
+    }
+  },
+  "segmentos": [
+    {
+      "ateKm": 1.11,
+      "name": "Largada e Ida e Volta na Beira da Represa",
+      "shortName": "Seg 1 · Ida e Volta",
+      "badge": "Plano",
+      "tacticalTitle": "1,1 km plano, com retorno no Km 0,6",
+      "tacticalTip": "A largada sai de dentro do Assary, vira à esquerda na Av. João Gonçalves Leite e logo entra na Av. Francisco Ramalho de Mendonça, na beira da represa, até o retorno do Km 0,6. A volta é pelo mesmo caminho, quase sem desnível. Com o pelotão ainda junto, não gaste energia trocando de posição: chegue ao retorno no seu ritmo e use a volta para encaixar a passada. Por ser plano, o pace aqui fica um pouco mais rápido que a média da prova.",
+      "mentalCue": "Largada controlada: o ritmo se acha na volta do retorno.",
+      "ruas": [
+        "Avenida João Gonçalves Leite",
+        "Avenida Francisco Ramalho de Mendonça"
+      ]
+    },
+    {
+      "ateKm": 1.56,
+      "name": "Subida da João Gonçalves Leite",
+      "shortName": "Seg 2 · 1ª Subida",
+      "badge": "Subida Curta e Forte",
+      "tacticalTitle": "+14m em 450m: o primeiro aviso",
+      "tacticalTip": "No fim da volta o percurso vira à direita na Av. João Gonçalves Leite, passa perto da largada e começa a subir. A parte mais inclinada (cerca de 5%) fica em volta da curva à direita para a Rua João da Cruz Oliveira, no Km 1,4, e a rua ainda sobe até o topo deste trecho (484m, Km 1,6). É uma subida curta: segure o esforço, não force o pace, porque a subida que decide a prova ainda está por vir (Km 3,3).",
+      "mentalCue": "Subida curta: segure o esforço, não o pace.",
+      "ruas": [
+        "Avenida João Gonçalves Leite",
+        "Rua João da Cruz Oliveira"
+      ]
+    },
+    {
+      "ateKm": 2.34,
+      "name": "Descida da Paschoalino Pedrazzoli",
+      "shortName": "Seg 3 · Descida",
+      "badge": "Descida",
+      "tacticalTitle": "-9m em 780m para recuperar",
+      "tacticalTip": "Do topo (Km 1,6) a Rua João da Cruz Oliveira desce bem de leve até a curva à direita para a Av. Paschoalino Pedrazzoli (Km 1,8). A avenida segue plana por uns 200m e depois desce (cerca de 4% perto do Km 2,1) até a curva à direita do Km 2,3. Aproveite a descida para soltar as pernas e ganhar alguns segundos, sem exagerar.",
+      "mentalCue": "Passos curtos e rápidos, sem frear com o calcanhar.",
+      "ruas": [
+        "Rua João da Cruz Oliveira",
+        "Avenida Paschoalino Pedrazzoli"
+      ]
+    },
+    {
+      "ateKm": 3.27,
+      "name": "Beira da Represa",
+      "shortName": "Seg 4 · Beira da Represa",
+      "badge": "Quase Plano",
+      "tacticalTitle": "930m quase plano na beira da represa",
+      "tacticalTip": "De volta à Av. Francisco Ramalho de Mendonça, agora no sentido norte, você corre pela beira da represa, passa de novo pelo ponto do retorno e pelo cruzamento da Av. João Gonçalves Leite. A metade da prova (Km 2,5) fica logo no começo deste trecho. A avenida desce bem de leve até cerca de 470m perto do Km 3,0 e segue plana até o fim da represa. Por ser plano e levemente em descida, o pace aqui fica um pouco mais rápido que a média, mas sem passar do ponto: no Km 3,3 começa a Grande Subida.",
+      "mentalCue": "Ritmo firme, mas guarde perna para o Km 3,3.",
+      "ruas": [
+        "Avenida Francisco Ramalho de Mendonça"
+      ]
+    },
+    {
+      "ateKm": 4.36,
+      "name": "Grande Subida da Emílio Nogueira, Bancários e Pansani",
+      "shortName": "Seg 5 · Grande Subida",
+      "badge": "Subida Forte",
+      "tacticalTitle": "+23m em 1,1 km: o trecho que decide a prova",
+      "tacticalTip": "No fim da represa o percurso vira à esquerda (Km 3,3) e encara a rampa mais forte da prova, na Rua Emílio Nogueira: cerca de 7% logo depois da curva, subindo forte até a curva à esquerda do Km 3,5. Dali a subida fica longa e suave (cerca de 1%) pela Av. dos Bancários e pela Av. Pansani, até o ponto mais alto da prova (494m, Km 4,3). Este trecho tem quase metade de toda a subida da prova. Segure o esforço na rampa e mantenha um ritmo firme na parte longa: perder alguns segundos aqui já está no plano.",
+      "mentalCue": "Rampa forte e curta, depois ritmo firme até o topo.",
+      "ruas": [
+        "Rua Emílio Nogueira",
+        "Avenida dos Bancários",
+        "Avenida Pansani"
+      ]
+    },
+    {
+      "ateKm": 4.72,
+      "name": "Descida da Av. Campo Grande até a Represa",
+      "shortName": "Seg 6 · Descida",
+      "badge": "Descida Forte",
+      "tacticalTitle": "-25m em 360m: a descida mais forte da prova",
+      "tacticalTip": "Logo depois do ponto mais alto, uma curva fechada à esquerda (Km 4,3) leva à Av. Campo Grande, que desce sem parar até a ponta sul da represa (Km 4,7), a parte mais baixa da prova. A descida fica mais forte no final. Deixe a gravidade trabalhar e ganhe os segundos que você investiu na Grande Subida, mas com passos curtos e controle: logo depois vem a curva para entrar no clube.",
+      "mentalCue": "Incline o corpo à frente e deixe a passada abrir.",
+      "ruas": [
+        "Avenida Campo Grande"
+      ]
+    },
+    {
+      "ateKm": 5.02,
+      "name": "Reta Final Dentro do Clube",
+      "shortName": "Seg 7 · Reta Final",
+      "badge": "Subida Leve",
+      "tacticalTitle": "300m finais até a chegada",
+      "tacticalTip": "Na ponta sul da represa o percurso vira à esquerda (Km 4,8) e entra no Assary, subindo de leve (cerca de 3m) até a chegada, no mesmo lugar da largada. Logo depois da descida, essa subidinha pesa: por isso o pace deste trecho fica mais lento que a média. Mantenha os braços ativos e a passada firme, e dispare tudo o que sobrou só quando avistar o pórtico.",
+      "mentalCue": "Passada firme na subidinha, sprint ao avistar o pórtico."
+    }
+  ],
+  "pagina": {
+    "nome": "Corrida no Lago Assary",
+    "nomeCurto": "Corrida no Lago",
+    "nomePulseira": "CORRIDA NO LAGO",
+    "subtituloPrefixo": "7ª edição da corrida e caminhada no lago do Assary Clube de Campo, em Votuporanga – SP.",
+    "ogAlt": "Percurso da 7ª Corrida e Caminhada no Lago – Assary Clube de Campo 2026",
+    "card": {
+      "titulo": "7ª Corrida no Lago Assary",
+      "cidade": "Votuporanga – SP",
+      "descricao": "5 km em volta da represa: começo plano com retorno, a Grande Subida do km 3,3 ao 4,3 e descida forte antes da reta final no clube.",
+      "distancia": "5K",
+      "alt": "Percurso da 7ª Corrida e Caminhada no Lago – Assary Clube de Campo",
+      "tag": "Ondulado"
+    },
+    "diagStatus": "Percurso Ondulado · Moderado",
+    "destaques": [
+      {
+        "rotulo": "Grande Subida",
+        "valor": "Km 3,3 a 4,3 (+23,0m)"
+      },
+      {
+        "rotulo": "Retorno",
+        "valor": "Km 0,6"
+      }
+    ],
+    "intro": "A Corrida no Lago contorna a Represa do Assary, com largada e chegada dentro do clube. A primeira metade começa plana, com um retorno no Km 0,6, tem uma subida curta entre o Km 1,1 e o Km 1,6 e termina em descida. A prova se decide na <strong>Grande Subida do Km 3,3 ao 4,3</strong>, que concentra quase metade de todo o desnível e termina no ponto mais alto. Depois dela vem a descida mais forte da prova, até a represa, e os 300m finais dentro do clube. Correr tudo no mesmo pace médio faz o corredor chegar sem perna nessa subida. Siga o ritmo de cada segmento abaixo:",
+    "recomendacao": "Quase metade de toda a subida da prova (<strong>+23,0m de 53,9m</strong>) está num único bloco: a <strong>Grande Subida (Segmento 5, Km 3,3 a 4,3)</strong>, que começa com uma rampa de cerca de 7% e segue subindo de leve por quase 1 km. Correr esse trecho mais devagar que o pace médio não é \"quebrar\": é o que deixa perna para a descida forte até a represa (Segmento 6) e para a reta final dentro do clube (Segmento 7). No retorno do Km 0,6 você perde alguns segundos na curva: retome o ritmo aos poucos.",
+    "ogDescricao": "5 km em volta da Represa do Assary: mapa, altimetria, a Grande Subida do km 3,3 ao 4,3, GPX para o relógio e estratégia de pace grátis.",
+    "vipIniciante": true
+  },
+  "evento": {
+    "nomeOficial": "7ª Corrida e Caminhada no Lago – Assary Clube de Campo – Votuporanga-SP",
+    "inicio": "2026-12-06T07:30:00-03:00",
+    "horario": "7h30",
+    "local": "no Assary Clube de Campo, em volta da represa do clube",
+    "localCurto": "Assary Clube de Campo",
+    "cidade": "Votuporanga",
+    "uf": "SP",
+    "modalidades": [
+      "Corrida 5 km",
+      "Caminhada 2 km",
+      "Kids"
+    ],
+    "percursoDestaPagina": "corrida de 5 km",
+    "organizador": "Assary Clube de Campo",
+    "cronometragem": "Equilíbrio Esportes",
+    "siteOficial": "https://equilibrio.esp.br/7a-corrida-e-caminhada-no-lago-assary-clube-de-campo-votuporanga-sp/",
+    "inscricoes": "https://sportpulse.pro/prova/7-corrida-e-caminhada-do-lago-assary-clube-de-campo-2026",
+    "duracaoHoras": 1,
+    "inscricao": {
+      "preco": 100,
+      "url": "https://sportpulse.pro/prova/7-corrida-e-caminhada-do-lago-assary-clube-de-campo-2026",
+      "disponibilidade": "InStock"
+    }
+  }
+}

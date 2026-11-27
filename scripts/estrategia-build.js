@@ -197,6 +197,8 @@ function buildValues(slug, dir, config, data, a, imagens = {}, ruas = []) {
     GPX_LIMPO: gpxLimpo,
     DIST_LIMPA: fmt(a.cleanM / 1000, 2),
     DIST_OFICIAL: kmLabel,
+    // GPX mais curto que a distância oficial (ex.: traçado de outra edição): a pergunta muda de sentido
+    RELOGIO_PERGUNTA: `Por que o relógio pode marcar ${a.cleanM < a.officialM - 50 ? "menos" : "mais"} que ${kmLabel} km?`,
     FAIXA_RELOGIO: faixa,
     RECOMENDACAO: recomendacao,
     // CTA: a página nasce poucos dias antes da prova, então não dá tempo de "se preparar para ela".
@@ -208,6 +210,19 @@ function buildValues(slug, dir, config, data, a, imagens = {}, ruas = []) {
     CTA_TEXTO: p.ctaTexto || (jaFoi
       ? "Use o resultado desta prova como ponto de partida. Para chegar mais forte na próxima, faça um treinamento personalizado e acompanhamento individual com a atleta e treinadora Karina Franzin."
       : "A estratégia desta página te ajuda no dia da prova. Para chegar mais forte nas próximas, faça um treinamento personalizado e acompanhamento individual com a atleta e treinadora Karina Franzin."),
+    // Chamada da Lista VIP do Presencial Iniciante (mesmo layout da home e do blog), só nas provas
+    // com pagina.vipIniciante: true no config
+    VIP_INICIANTE: p.vipIniciante ? `  <aside class="race-vip" aria-label="Lista VIP da turma presencial de iniciantes">
+    <div class="race-vip-media">
+      <img src="/assets/img/presencial-iniciante/treino-grupo-votuporanga.webp" alt="Karina Franzin com a turma de corrida em um treino noturno em Votuporanga" width="800" height="798" loading="lazy" decoding="async">
+    </div>
+    <div class="race-vip-body">
+      <span class="race-vip-tag">Lista VIP · Vagas limitadas</span>
+      <h2>Corrida para Iniciantes em Votuporanga</h2>
+      <p>Treino presencial com a Karina toda quarta às 18h30, do zero e no seu ritmo. A turma começa em <strong>11/01/2027</strong>: entre na Lista VIP e seja avisado antes de abrir as vagas.</p>
+      <a href="/corrida-iniciante-votuporanga/?utm_source=percursos&amp;utm_medium=percurso_vip&amp;utm_campaign=${slug}#lista-vip" class="btn-cta-primary race-vip-btn" data-gtag-event="click_lista_vip_percurso" data-gtag-category="${race.gaCategory || slug.replace(/-/g, "_")}">Quero entrar na Lista VIP</a>
+    </div>
+  </aside>` : "",
     WA_TEXTO: encodeURIComponent(`Olá, Karina! Vi a página do percurso da ${p.nomeWhatsapp || nome} e quero treinar para as minhas próximas provas.`)
   };
   const extra = require("./estrategia-percurso.js").percursoHtml({ slug, nome, nomeCurto, nomeBusca, city, cityShort, year, km, kmLabel, gpxLimpo, faixa, analysis: a, data, imagens, ruas, segRuas: (config.segmentos || []).map((s) => s.ruas), evento: config.evento, ogImagem: ogFile, date: validDate(race.date) });
@@ -215,7 +230,7 @@ function buildValues(slug, dir, config, data, a, imagens = {}, ruas = []) {
   v.SECAO_FAQ = extra.faq;
   v.FAQ_JSONLD = extra.jsonld;
   // Campos de texto puro vão escapados; os de HTML pronto ficam como estão
-  const html = new Set(["SUBTITULO", "INTRO", "RECOMENDACAO", "METAS_RAPIDAS", "WA_TEXTO", "OG_IMAGEM", "SECAO_PERCURSO", "SECAO_FAQ", "FAQ_JSONLD"]);
+  const html = new Set(["SUBTITULO", "INTRO", "RECOMENDACAO", "METAS_RAPIDAS", "WA_TEXTO", "OG_IMAGEM", "SECAO_PERCURSO", "SECAO_FAQ", "FAQ_JSONLD", "VIP_INICIANTE"]);
   for (const k of Object.keys(v)) if (!html.has(k)) v[k] = esc(v[k]);
   return { values: v, nome, city, km, kmLabel, target };
 }
