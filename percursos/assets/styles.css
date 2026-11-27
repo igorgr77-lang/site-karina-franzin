@@ -2560,6 +2560,10 @@ a.hub-card:hover .hub-card-btn {
   scroll-margin-top: 80px;
 }
 
+#mapPanelCard {
+  scroll-margin-top: 80px;
+}
+
 .route-section h2,
 .faq-section h2 {
   font-size: 1.4rem;
