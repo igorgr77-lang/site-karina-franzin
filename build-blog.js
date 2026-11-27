@@ -656,6 +656,11 @@ async function build() {
         const estrategiaDir = path.join(__dirname, "percursos");
         await require("./scripts/estrategia-build.js").buildEstrategia({ rootDir: __dirname, compilePageComponents });
 
+        // 3.1.9 Onde correr em Votuporanga (onde-correr-votuporanga/) - escura
+        // Hub dos locais de treino + uma página por local (local.json + GPX de cada pasta).
+        // Só os locais com "publicado": true entram no hub, no sitemap e no llms.txt. Ver onde-correr-votuporanga/LEIA-ME.md.
+        const ondeCorrer = await require("./scripts/onde-correr-build.js").buildOndeCorrer({ rootDir: __dirname, compilePageComponents });
+
         // 3.2 Planos Combo (planos/*.html) - escura
         const planosComboDir = path.join(__dirname, 'planos');
         if (fs.existsSync(planosComboDir)) {
@@ -849,6 +854,19 @@ async function build() {
             }
         }
 
+        // 1.6 Onde correr em Votuporanga: hub (quando já há local publicado) + locais publicados
+        if (ondeCorrer.hubIndexavel) {
+            for (const loc of ["", ...ondeCorrer.publicados.map((l) => `${l.slug}/`)]) {
+                sitemapXml += `    <url>
+        <loc>https://karinafranzin.com.br/onde-correr-votuporanga/${loc}</loc>
+        <lastmod>${hoje}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>${loc ? '0.7' : '0.8'}</priority>
+    </url>
+`;
+            }
+        }
+
         // 2. Adicionar artigos dinâmicos processados
         for (const artigo of artigos) {
             sitemapXml += `    <url>
@@ -889,7 +907,9 @@ Karina Franzin é treinadora de corrida e fisioterapeuta, campeã da Meia Marato
 - [Plano Performance](https://karinafranzin.com.br/plano-performance/): Treino de corrida personalizado da Karina Franzin + acompanhamento nutricional com o nutricionista Renan Rodrigues (plano trimestral)
 - [Eventos](https://karinafranzin.com.br/eventos/): Treinões e provas de corrida organizados ou apoiados pela Karina Franzin
 - [Percursos e Estratégia de Prova](https://karinafranzin.com.br/percursos/): Percurso das corridas da região (mapa, altimetria, subidas e descidas km a km e GPX) com calculadora gratuita de pace por trecho (ex: ZRun Night Run Fernandópolis, Corrida Passo a Passo 10K Novo Horizonte), com parciais km a km e cola de pulso
-- [Cupons e Benefícios](https://karinafranzin.com.br/cupons/): Descontos exclusivos para alunos em parceiros locais de Votuporanga
+${ondeCorrer.hubIndexavel ? `- [Onde correr em Votuporanga](https://karinafranzin.com.br/onde-correr-votuporanga/): Lugares para correr em Votuporanga escolhidos pela treinadora, com percursos de treino (tiro, 5 km, 10 km, longão), mapa, altimetria, GPX e informações de piso, sombra, água e melhor horário
+${ondeCorrer.publicados.map((l) => `  - [${l.nome}](https://karinafranzin.com.br/onde-correr-votuporanga/${l.slug}/): ${l.resumo}${l.percursos.length ? ` Percursos: ${l.percursos.join(", ")}.` : ""}`).join("\n")}
+` : ""}- [Cupons e Benefícios](https://karinafranzin.com.br/cupons/): Descontos exclusivos para alunos em parceiros locais de Votuporanga
 
 ## Blog
 

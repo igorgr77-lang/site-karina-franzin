@@ -1,0 +1,46 @@
+{
+  "publicado": false,
+  "nome": "Avenida Emílio Arroyo Hernandes",
+  "artigo": "na",
+  "bairro": "",
+  "resumo": "",
+  "tags": [],
+  "mapsUrl": "",
+  "info": {
+    "endereco": "",
+    "volta": "",
+    "piso": "",
+    "iluminacao": "",
+    "sombra": "",
+    "agua": "",
+    "banheiro": "",
+    "estacionamento": "",
+    "melhorHorario": "",
+    "seguranca": ""
+  },
+  "introducao": [],
+  "percursos": [
+    {
+      "id": "tiro",
+      "tipo": "tiro",
+      "titulo": "Reta para treino de tiro",
+      "gpx": "tiro.gpx",
+      "texto": "",
+      "dicas": [],
+      "sugestaoTreino": ""
+    },
+    {
+      "id": "5km",
+      "tipo": "5km",
+      "titulo": "Percurso de 5 km",
+      "gpx": "5km.gpx",
+      "texto": "",
+      "dicas": []
+    }
+  ],
+  "faq": [],
+  "seo": {
+    "titulo": "",
+    "descricao": ""
+  }
+}

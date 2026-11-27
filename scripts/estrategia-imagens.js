@@ -102,7 +102,7 @@ async function renderMap(sharp, data, out, rootDir, legenda) {
     .filter(([k]) => pieces.some((p) => p.color === COLORS[k]));
   const legend = `<rect x="20" y="20" width="${Math.max(360, legenda.length * 10 + 40)}" height="${46 + legendItems.length * 0}" rx="10" fill="#141414" fill-opacity="0.85"/>
     <text x="38" y="51" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#fff">${legenda.replace(/&/g, "&amp;")}</text>
-    <g transform="translate(20 ${H - 54})"><rect width="${legendItems.length * 175 + 20}" height="34" rx="8" fill="#141414" fill-opacity="0.85"/>${legendItems.map(([k, n], i) => `<rect x="${14 + i * 175}" y="12" width="22" height="10" rx="3" fill="${COLORS[k]}"/><text x="${42 + i * 175}" y="22" font-family="Arial, sans-serif" font-size="15" fill="#fff">${n}</text>`).join("")}</g>
+    ${legendItems.length ? `<g transform="translate(20 ${H - 54})"><rect width="${legendItems.length * 175 + 20}" height="34" rx="8" fill="#141414" fill-opacity="0.85"/>${legendItems.map(([k, n], i) => `<rect x="${14 + i * 175}" y="12" width="22" height="10" rx="3" fill="${COLORS[k]}"/><text x="${42 + i * 175}" y="22" font-family="Arial, sans-serif" font-size="15" fill="#fff">${n}</text>`).join("")}</g>` : ""}
     <rect x="${W - 300}" y="${H - 30}" width="290" height="22" rx="4" fill="#ffffff" fill-opacity="0.85"/><text x="${W - 16}" y="${H - 14}" font-family="Arial, sans-serif" font-size="13" fill="#333" text-anchor="end">© colaboradores do OpenStreetMap</text>`;
   const svg = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">${outline}${lines}${kms}${markers}${legend}</svg>`);
   await sharp({ create: { width: W, height: H, channels: 3, background: "#e5e7eb" } })
@@ -163,4 +163,4 @@ async function ensureRouteImages(dir, data, rootDir, nomeAno) {
   return res;
 }
 
-module.exports = { ensureRouteImages, fmt };
+module.exports = { ensureRouteImages, renderMap, fmt };

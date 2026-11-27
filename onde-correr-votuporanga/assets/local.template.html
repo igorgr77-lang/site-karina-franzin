@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Página de um local de treino. Gerada por scripts/onde-correr-build.js a partir do local.json da pasta. -->
+  <script src="/js/analytics.js?v=auto"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{TITULO}} | Karina Franzin</title>
+  <meta name="description" content="{{DESCRICAO}}" />
+  <meta name="robots" content="{{ROBOTS}}" />
+  <link rel="canonical" href="{{URL}}" />
+
+{{SCHEMAS}}
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#FF6B35" />
+
+  <!-- Open Graph / WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Karina Franzin Assessoria de Corrida" />
+  <meta property="og:url" content="{{URL}}" />
+  <meta property="og:title" content="{{TITULO}}" />
+  <meta property="og:description" content="{{DESCRICAO}}" />
+  <meta property="og:image" content="{{OG_IMAGE}}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/css/styles.css?v=auto" />
+  <link rel="stylesheet" href="/percursos/assets/styles.css?v=auto" />
+  <link rel="stylesheet" href="/onde-correr-votuporanga/assets/styles.css?v=auto" />
+  <script src="/js/navbar.js?v=auto" defer></script>
+</head>
+<body>
+
+  <!-- NAVBAR_PLACEHOLDER -->
+
+  <header class="hero-header">
+    <div class="container hub-hero">
+      <a href="/onde-correr-votuporanga/" class="hero-back-link">← Onde correr em Votuporanga</a>
+      <div class="badge-row">
+        <span class="location-pill">{{BAIRRO}}</span>
+      </div>
+      <h1 class="hub-title">{{H1}}</h1>
+      <p class="hero-subtitle">{{RESUMO}}</p>
+      <div class="oc-tags oc-tags-hero">{{TAGS}}</div>
+      {{AVISO_RASCUNHO}}
+    </div>
+  </header>
+
+  <main class="container hub-main">
+    <section class="route-section" aria-labelledby="sobreTitulo">
+      <h2 id="sobreTitulo">Como é correr {{NO_NOME}}</h2>
+{{INTRODUCAO}}
+{{INFO}}
+      {{INDICE}}
+    </section>
+
+{{PERCURSOS}}
+
+{{FAQ}}
+
+{{OUTROS}}
+  </main>
+
+  <section class="cta-strong">
+    <div class="container">
+      <h2>Quer saber qual treino fazer {{NO_NOME}}?</h2>
+      <p>Na assessoria da Karina Franzin você recebe o treino da semana pronto: quantos tiros, em que ritmo e onde fazer, de acordo com o seu objetivo.</p>
+      <div class="cta-buttons-row">
+        <a href="/corrida-votuporanga/" class="btn-cta-primary" data-gtag-event="click_assessoria_votuporanga" data-gtag-category="onde_correr_local">Conhecer a assessoria em Votuporanga</a>
+        <a href="/corrida-iniciante-votuporanga/" class="btn-cta-secondary" data-gtag-event="click_presencial_iniciante" data-gtag-category="onde_correr_local">Estou começando a correr</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER_PLACEHOLDER -->
+
+  <a href="https://wa.me/5517996566908?text=Ol%C3%A1%2C%20Karina%21%20Vi%20os%20lugares%20para%20correr%20em%20Votuporanga%20no%20seu%20site%20e%20quero%20saber%20mais%20sobre%20a%20assessoria."
+     class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+     aria-label="Falar no WhatsApp com Karina Franzin">
+    <img src="/assets/icons/WhatsApp.svg.webp" alt="WhatsApp - Falar com a Karina Franzin" width="56" height="56" loading="lazy" decoding="async">
+  </a>
+</body>
+</html>
