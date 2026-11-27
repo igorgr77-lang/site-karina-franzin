@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <!-- Google Analytics -->
+    <script src="/js/analytics.js?v=auto"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área do Atleta | Karina Franzin</title>
+    <meta name="description"
+        content="Área do Atleta da assessoria Karina Franzin: entre no Treinus para ver seus treinos da semana ou no Portal do Atleta KF para os vídeos de técnica, fortalecimento e mobilidade.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Área do Atleta | Karina Franzin">
+    <meta property="og:description" content="Acesse seus treinos no Treinus ou os vídeos do Portal do Atleta KF.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://karinafranzin.com.br/area-do-atleta/">
+    <meta property="og:image" content="https://karinafranzin.com.br/assets/img/karina-hero.jpg">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Karina Franzin - Assessoria de Corrida">
+
+    <link rel="canonical" href="https://karinafranzin.com.br/area-do-atleta/">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#ff6b35">
+
+    <!-- Google Fonts & Tailwind & Lucide Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;700;900&family=Oswald:wght@500;700;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://unpkg.com/lucide@1.55.0/dist/umd/lucide.min.js" integrity="sha384-SZUFq9Dx112fyzY/iIBEjyd2gu3jY4XVhp+LUNXSpEMB2IEm/TOoMTNH4BHtQ6Hz" crossorigin="anonymous"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'karina-orange': '#ff6b35',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#141414',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'display': ['Montserrat', 'sans-serif'],
+                        'oswald': ['Oswald', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="../css/styles.css?v=auto">
+    <script src="/js/navbar.js?v=auto" defer></script>
+    <script src="/js/main.js?v=auto" defer></script>
+
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(20, 20, 20, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://karinafranzin.com.br/" },
+            { "@type": "ListItem", "position": 2, "name": "Área do Atleta", "item": "https://karinafranzin.com.br/area-do-atleta/" }
+        ]
+    }
+    </script>
+</head>
+
+<body class="bg-dark-bg text-white font-sans antialiased">
+
+    <!-- NAVBAR_PLACEHOLDER -->
+
+    <main class="relative overflow-hidden min-h-[80vh] pt-32 pb-20 bg-gradient-to-b from-[#141414] via-[#0f0f0f] to-dark-bg">
+        <div
+            class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-karina-orange/10 rounded-full blur-[130px] pointer-events-none">
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-12">
+                <span
+                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-karina-orange/10 border border-karina-orange/20 text-karina-orange text-xs font-semibold tracking-wider uppercase mb-6">
+                    <i data-lucide="user-round" class="w-3.5 h-3.5"></i> Para alunos
+                </span>
+                <h1 class="text-4xl md:text-6xl font-oswald font-black uppercase tracking-tight leading-none text-white mb-4">
+                    Área do <span class="text-karina-orange">Atleta</span>
+                </h1>
+                <p class="text-gray-400 text-lg max-w-xl mx-auto">Escolha onde você quer entrar.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Treinus -->
+                <a href="https://karinafranzin.treinus.com.br/" target="_blank" rel="noopener noreferrer"
+                    data-portal="treinus"
+                    class="portal-card group flex flex-col rounded-3xl bg-dark-card border border-white/10 hover:border-karina-orange/60 p-7 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(255,107,53,0.15)]">
+                    <span class="w-14 h-14 rounded-2xl bg-karina-orange/15 text-karina-orange grid place-items-center mb-6">
+                        <i data-lucide="calendar-check" class="w-7 h-7"></i>
+                    </span>
+                    <h2 class="font-oswald text-3xl uppercase text-white mb-2">Treinus</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-1">Seus treinos da semana: planilha montada pela Karina e registro das suas corridas.</p>
+                    <span class="inline-flex items-center justify-center gap-2 px-6 py-4 bg-karina-orange group-hover:bg-[#e0531f] text-white font-bold rounded-xl transition shadow-[0_4px_20px_rgba(255,107,53,0.3)]">
+                        Entrar no Treinus <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </span>
+                </a>
+
+                <!-- Portal do Atleta KF -->
+                <a href="https://gestao.karinafranzin.com.br/" target="_blank" rel="noopener noreferrer"
+                    data-portal="portal_atleta_kf"
+                    class="portal-card group flex flex-col rounded-3xl bg-dark-card border border-white/10 hover:border-karina-orange/60 p-7 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(255,107,53,0.15)]">
+                    <span class="w-14 h-14 rounded-2xl bg-karina-orange/15 text-karina-orange grid place-items-center mb-6">
+                        <i data-lucide="play-circle" class="w-7 h-7"></i>
+                    </span>
+                    <h2 class="font-oswald text-3xl uppercase text-white mb-2">Portal do Atleta KF</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8 flex-1">Vídeos de técnica de corrida, fortalecimento e mobilidade para treinar melhor e sem lesão.</p>
+                    <span class="inline-flex items-center justify-center gap-2 px-6 py-4 bg-white/5 group-hover:bg-white/10 text-white font-bold rounded-xl border border-white/10 transition">
+                        Entrar no Portal <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </span>
+                </a>
+            </div>
+
+            <div class="mt-10 flex flex-col sm:flex-row gap-3 sm:gap-8 justify-center items-center text-sm text-gray-400">
+                <a href="https://wa.me/5517996566908?text=Ol%C3%A1%2C%20Karina!%20Estou%20com%20problema%20para%20acessar%20a%20%C3%A1rea%20do%20atleta."
+                    target="_blank" rel="noopener noreferrer" data-portal="whatsapp_suporte"
+                    class="portal-card inline-flex items-center gap-2 hover:text-white">
+                    <i data-lucide="message-circle" class="w-4 h-4 text-karina-orange"></i> Problemas para acessar? Fale no WhatsApp
+                </a>
+                <a href="/planos/?origem=area-do-atleta" data-portal="planos"
+                    class="portal-card inline-flex items-center gap-2 hover:text-white">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-karina-orange"></i> Ainda não é aluno(a)? Conheça os planos
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+    (function () {
+        document.querySelectorAll('.portal-card').forEach(function (a) {
+            a.addEventListener('click', function () {
+                if (typeof window.gtag === 'function') {
+                    window.gtag('event', 'click_area_do_atleta', { destino: a.getAttribute('data-portal') });
+                }
+            });
+        });
+        function icones() {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') window.lucide.createIcons();
+        }
+        icones();
+        window.addEventListener('load', icones);
+    })();
+    </script>
+
+    <!-- FOOTER_PLACEHOLDER -->
+</body>
+
+</html>

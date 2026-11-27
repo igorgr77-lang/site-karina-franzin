@@ -627,6 +627,16 @@ async function build() {
             console.log('💾 Página Comece a Correr compilada com sucesso em: comece-a-correr/index.html');
         }
 
+        // 3.1.6d Área do Atleta (area-do-atleta/index.html) - escura
+        // Escolha entre o Treinus (treinos) e o Portal do Atleta KF (vídeos); substitui os 2 itens de portal no menu
+        const areaDoAtletaPath = path.join(__dirname, 'area-do-atleta', 'index.template.html');
+        if (fs.existsSync(areaDoAtletaPath)) {
+            let htmlAreaDoAtleta = fs.readFileSync(areaDoAtletaPath, 'utf8');
+            htmlAreaDoAtleta = compilePageComponents(htmlAreaDoAtleta, false);
+            fs.writeFileSync(path.join(__dirname, 'area-do-atleta', 'index.html'), htmlAreaDoAtleta, 'utf8');
+            console.log('💾 Página Área do Atleta compilada com sucesso em: area-do-atleta/index.html');
+        }
+
         // 3.1.7 Página de Vendas do Plano Performance (plano-performance/index.html) - escura
         // Parceria Karina Franzin + nutricionista Renan Rodrigues (treino + nutrição, trimestral no cartão)
         const planoPerformanceTemplatePath = path.join(__dirname, 'plano-performance', 'index.template.html');
@@ -754,6 +764,12 @@ async function build() {
         <lastmod>${hoje}</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://karinafranzin.com.br/area-do-atleta/</loc>
+        <lastmod>${hoje}</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.4</priority>
     </url>
     <url>
         <loc>https://karinafranzin.com.br/corrida-iniciante-votuporanga/</loc>
