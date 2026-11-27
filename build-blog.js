@@ -220,6 +220,67 @@ function limparConteudoArtigo(html) {
 // carrega /js/analytics.js, que só ativa o Clarity depois do aceite de cookies (LGPD).
 
 // ============================================
+// BLOCOS DOS POSTS DE INICIANTE
+// ============================================
+// Inseridos no build (e não no Supabase) para levar quem chega pelo Google até /comece-a-correr/
+// e deixar claro que o plano gratuito é genérico. Se o texto âncora mudar no editor, o bloco
+// daquele ponto deixa de entrar e o build avisa.
+const UTM_PLANO_5KM = 'utm_source=blog&amp;utm_medium=article_aviso&amp;utm_campaign=plano-de-treino-para-correr-5km-em-8-semanas-iniciantes';
+
+function notaComeceACorrer(texto, linkTexto, origem) {
+    return `<p class="article-nota">👟 ${texto} <a href="/comece-a-correr/?origem=${origem}">${linkTexto}</a></p>\n`;
+}
+
+const BLOCOS_INICIANTE = {
+    'como-comecar-a-correr-do-zero': {
+        inicio: notaComeceACorrer('Quer um caminho guiado?', 'Veja o guia Comece a Correr e descubra por onde começar', 'blog-correr-do-zero')
+    },
+    'erros-comuns-corrida-iniciantes': {
+        inicio: notaComeceACorrer('Novo na corrida?', 'Comece por aqui: descubra o melhor caminho para você', 'blog-erros-comuns')
+    },
+    'plano-de-treino-para-correr-5km-em-8-semanas-iniciantes': {
+        inicio: notaComeceACorrer('Novo na corrida?', 'Comece por aqui: descubra o melhor caminho para você', 'blog-plano-5km'),
+        depois: [
+            {
+                ancora: '<h2>Planilha Completa de 8 Semanas</h2>',
+                html: `
+<div class="article-aviso">
+    <p class="article-aviso-titulo">⚠️ Antes de começar: este é um plano genérico</p>
+    <p>Ele foi pensado para um iniciante "médio". Na prática, cada corpo responde de um jeito: tem quem precise repetir semanas, quem sinta dor na canela ou no joelho e quem precise encaixar os treinos numa rotina apertada. Use o plano como guia e respeite os sinais do seu corpo.</p>
+</div>`
+            },
+            {
+                ancora: '<p><em>Esta semana é mais leve para permitir recuperação e adaptação!</em></p>',
+                html: `
+<div class="article-aviso">
+    <p class="article-aviso-titulo">Travou em alguma semana? Isso é normal.</p>
+    <p>Muita gente empaca entre a semana 3 e a 5: o fôlego não acompanha, aparece uma dor ou a rotina aperta e os treinos começam a falhar. É exatamente nessa hora que ter uma treinadora faz diferença: o plano é ajustado para você, em vez de você tentar se encaixar no plano.</p>
+    <p>Em Votuporanga, a <a href="/corrida-iniciante-votuporanga/?${UTM_PLANO_5KM}#lista-vip" onclick="if (typeof gtag === 'function') gtag('event', 'click_lista_vip_blog', { lista: 'presencial_iniciante', content_id: 'plano-5km-aviso-meio' })">turma presencial para iniciantes</a> começa em 11/01/2027. De qualquer cidade, conheça a <a href="/planos/?${UTM_PLANO_5KM}">assessoria online</a>.</p>
+</div>`
+            }
+        ],
+        fim: `
+<p>E lembre: este plano é um ponto de partida. Se quiser chegar aos 5km com um treino ajustado à sua rotina, ao seu corpo e ao seu ritmo, e com alguém acompanhando cada semana, é para isso que existe a assessoria. Se ainda está em dúvida sobre por onde começar, <a href="/comece-a-correr/?origem=blog-plano-5km#quiz">faça o quiz "Por onde eu começo?"</a>.</p>`
+    }
+};
+
+function aplicarBlocosIniciante(slug, html) {
+    const blocos = BLOCOS_INICIANTE[slug];
+    if (!blocos) return html;
+    let out = html;
+    for (const { ancora, html: bloco } of (blocos.depois || [])) {
+        if (out.includes(ancora)) {
+            out = out.replace(ancora, ancora + bloco);
+        } else {
+            console.warn(`   ⚠️ Bloco de iniciante não inserido em "${slug}": texto âncora não encontrado (${ancora.slice(0, 50)}...)`);
+        }
+    }
+    if (blocos.inicio) out = blocos.inicio + out;
+    if (blocos.fim) out = out + blocos.fim;
+    return out;
+}
+
+// ============================================
 // CORE BUILD PIPELINE
 // ============================================
 async function build() {
@@ -317,6 +378,9 @@ async function build() {
                 }
             }
             
+            // 2b. Blocos extras dos posts de iniciante (link para /comece-a-correr/ e avisos do plano)
+            conteudoProcessado = aplicarBlocosIniciante(artigo.slug, conteudoProcessado);
+
             // 3. Informações de Data e Leitura
             const dataFormatada = formatarData(artigo.data_publicacao);
             const tempoLeitura = calcularTempoLeitura(conteudoProcessado);
@@ -553,6 +617,16 @@ async function build() {
             console.log('💾 Página da turma Presencial Iniciante compilada com sucesso em: corrida-iniciante-votuporanga/index.html');
         }
 
+        // 3.1.6c Hub para iniciantes (comece-a-correr/index.html) - escura
+        // Quiz "Por onde eu começo?", caminho até os 5 km, checklist e CTAs para o Presencial e /planos/
+        const comeceACorrerPath = path.join(__dirname, 'comece-a-correr', 'index.template.html');
+        if (fs.existsSync(comeceACorrerPath)) {
+            let htmlComeceACorrer = fs.readFileSync(comeceACorrerPath, 'utf8');
+            htmlComeceACorrer = compilePageComponents(htmlComeceACorrer, false);
+            fs.writeFileSync(path.join(__dirname, 'comece-a-correr', 'index.html'), htmlComeceACorrer, 'utf8');
+            console.log('💾 Página Comece a Correr compilada com sucesso em: comece-a-correr/index.html');
+        }
+
         // 3.1.7 Página de Vendas do Plano Performance (plano-performance/index.html) - escura
         // Parceria Karina Franzin + nutricionista Renan Rodrigues (treino + nutrição, trimestral no cartão)
         const planoPerformanceTemplatePath = path.join(__dirname, 'plano-performance', 'index.template.html');
@@ -676,6 +750,12 @@ async function build() {
         <priority>0.9</priority>
     </url>
     <url>
+        <loc>https://karinafranzin.com.br/comece-a-correr/</loc>
+        <lastmod>${hoje}</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
         <loc>https://karinafranzin.com.br/corrida-iniciante-votuporanga/</loc>
         <lastmod>${hoje}</lastmod>
         <changefreq>weekly</changefreq>
@@ -785,6 +865,7 @@ Karina Franzin é treinadora de corrida e fisioterapeuta, campeã da Meia Marato
 - [Minha História](https://karinafranzin.com.br/minha-historia/): Trajetória completa de Karina Franzin, de jogadora de futebol a atleta de elite e treinadora, com linha do tempo de conquistas e reconhecimento da imprensa
 - [Planos e Valores](https://karinafranzin.com.br/planos/): Planos Bronze, Prata e Ouro de assessoria de corrida 100% online, com opções mensal e combo
 - [Assessoria em Votuporanga](https://karinafranzin.com.br/corrida-votuporanga/): Assessoria de corrida 100% online com conhecimento local, focada em moradores de Votuporanga e região
+- [Comece a Correr](https://karinafranzin.com.br/comece-a-correr/): Guia para quem quer começar a correr do zero, com quiz "Por onde eu começo?", caminho em 3 etapas até os primeiros 5 km, checklist da 1ª semana e dúvidas comuns de iniciantes
 - [Corrida para Iniciantes em Votuporanga](https://karinafranzin.com.br/corrida-iniciante-votuporanga/): Turma presencial para iniciantes (Presencial Iniciante) com treino toda quarta às 18h30 + 2 treinos online pelo Treinus e acesso ao Portal do Atleta KF; início em 11/01/2027, Lista VIP aberta
 - [Assessoria em Três Lagoas](https://karinafranzin.com.br/corrida-tres-lagoas/): Assessoria de corrida 100% online com conhecimento local, focada em moradores de Três Lagoas e região
 - [Assessoria no Mato Grosso](https://karinafranzin.com.br/corrida-mato-grosso/): Assessoria de corrida 100% online para corredores de Cuiabá, Várzea Grande e demais cidades do Mato Grosso

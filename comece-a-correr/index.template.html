@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <!-- Google Analytics -->
+    <script src="/js/analytics.js?v=auto"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como Começar a Correr do Zero: Guia para Iniciantes | Karina Franzin</title>
+    <meta name="description"
+        content="Guia da treinadora Karina Franzin para quem quer começar a correr do zero: descubra por onde começar, o que é normal sentir nas primeiras semanas e como chegar aos seus primeiros 5 km sem se machucar.">
+    <meta name="keywords"
+        content="como começar a correr, corrida para iniciantes, começar a correr do zero, primeiros 5 km, corrida de rua iniciante, treino de corrida iniciante, karina franzin">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Comece a correr do zero | Guia para iniciantes da Karina Franzin">
+    <meta property="og:description"
+        content="Descubra por onde começar, o que é normal sentir nas primeiras semanas e como chegar aos seus primeiros 5 km sem se machucar.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://karinafranzin.com.br/comece-a-correr/">
+    <meta property="og:image" content="https://karinafranzin.com.br/assets/img/presencial-iniciante/og-presencial-iniciante.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Karina Franzin com uma turma de corrida para iniciantes">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Karina Franzin - Assessoria de Corrida">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Comece a correr do zero | Guia para iniciantes">
+    <meta name="twitter:description"
+        content="Descubra por onde começar e como chegar aos seus primeiros 5 km sem se machucar.">
+    <meta name="twitter:image" content="https://karinafranzin.com.br/assets/img/presencial-iniciante/og-presencial-iniciante.jpg">
+
+    <link rel="canonical" href="https://karinafranzin.com.br/comece-a-correr/">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#ff6b35">
+
+    <!-- Google Fonts & Tailwind & Lucide Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;700;900&family=Oswald:wght@500;700;900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <script src="https://unpkg.com/lucide@1.55.0/dist/umd/lucide.min.js" integrity="sha384-SZUFq9Dx112fyzY/iIBEjyd2gu3jY4XVhp+LUNXSpEMB2IEm/TOoMTNH4BHtQ6Hz" crossorigin="anonymous"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'karina-orange': '#ff6b35',
+                        'dark-bg': '#0a0a0a',
+                        'dark-card': '#141414',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'sans-serif'],
+                        'display': ['Montserrat', 'sans-serif'],
+                        'oswald': ['Oswald', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- CSS Global -->
+    <link rel="stylesheet" href="../css/styles.css?v=auto">
+    <script src="/js/navbar.js?v=auto" defer></script>
+    <script src="/js/main.js?v=auto" defer></script>
+
+    <!-- Estilos Inline Críticos -->
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(20, 20, 20, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Acordeões escuros do FAQ (mesmo visual da página do Presencial) */
+        #faq .faq-item {
+            background: rgba(255, 255, 255, 0.02) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            border-radius: 16px !important;
+            margin-bottom: 1.25rem !important;
+            box-shadow: none !important;
+            transition: all 0.3s ease !important;
+        }
+        #faq .faq-item:hover {
+            border-color: rgba(255, 107, 53, 0.25) !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+        }
+        #faq .faq-question {
+            color: #ffffff !important;
+            font-size: 1.05rem !important;
+            font-weight: 700 !important;
+            font-family: 'Oswald', sans-serif !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.025em !important;
+            padding: 1.5rem !important;
+            transition: all 0.3s ease !important;
+        }
+        #faq .faq-question:hover { color: #ff6b35 !important; }
+        #faq .faq-question::after { color: #ff6b35 !important; font-weight: 400 !important; }
+        #faq .faq-answer p {
+            color: #a3a3a3 !important;
+            padding: 0 1.5rem 1.5rem 1.5rem !important;
+            font-size: 0.875rem !important;
+            line-height: 1.625 !important;
+        }
+
+        /* Quiz */
+        .quiz-option {
+            width: 100%;
+            text-align: left;
+            padding: 1rem 1.25rem;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.02);
+            color: #e5e5e5;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .quiz-option:hover,
+        .quiz-option:focus-visible {
+            border-color: rgba(255, 107, 53, 0.5);
+            background: rgba(255, 107, 53, 0.08);
+            outline: none;
+        }
+        .quiz-option .quiz-dot {
+            width: 18px; height: 18px; flex: none;
+            border-radius: 999px;
+            border: 2px solid rgba(255, 255, 255, 0.25);
+        }
+        .quiz-step { animation: quizIn 0.3s ease; }
+        @keyframes quizIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+        /* Abas do caminho */
+        .etapa-tab {
+            flex: 1;
+            padding: 0.9rem 0.75rem;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.02);
+            color: #a3a3a3;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+        .etapa-tab[aria-selected="true"] {
+            color: #fff;
+            border-color: rgba(255, 107, 53, 0.6);
+            background: rgba(255, 107, 53, 0.12);
+        }
+        .etapa-tab .etapa-num { display: block; font-size: 0.7rem; color: #ff6b35; letter-spacing: 0.15em; }
+
+        /* Checklist */
+        .check-item input { accent-color: #ff6b35; width: 20px; height: 20px; flex: none; margin-top: 2px; }
+        .check-item input:checked + span { color: #737373; text-decoration: line-through; }
+    </style>
+
+    <!-- Dados estruturados -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://karinafranzin.com.br/" },
+                    { "@type": "ListItem", "position": 2, "name": "Comece a Correr", "item": "https://karinafranzin.com.br/comece-a-correr/" }
+                ]
+            },
+            {
+                "@type": "WebPage",
+                "@id": "https://karinafranzin.com.br/comece-a-correr/#pagina",
+                "name": "Como começar a correr do zero: guia para iniciantes",
+                "url": "https://karinafranzin.com.br/comece-a-correr/",
+                "inLanguage": "pt-BR",
+                "author": { "@id": "https://karinafranzin.com.br/#person" }
+            },
+            {
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Fico sem fôlego em 1 minuto de corrida. É normal?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "É normal no começo, e quase sempre é sinal de que você está correndo rápido demais. Diminua o ritmo até conseguir falar frases curtas enquanto corre e alterne corrida com caminhada. Em 3 a 4 semanas de treino constante a respiração melhora bastante." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Sinto dor na canela quando corro. O que faço?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "Dor na canela no começo costuma vir de aumentar o volume rápido demais. Reduza o tempo de corrida, aumente as pausas de caminhada e faça fortalecimento de panturrilha. Se a dor for pontual, piorar durante o treino ou não passar com descanso, pare e procure um profissional de saúde." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Preciso de um tênis caro para começar?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "Não. O melhor tênis para começar é um tênis de corrida confortável no seu pé, que não aperte nem deixe o pé solto. Evite começar com tênis de academia, de caminhada muito duro ou já gasto." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Quantas vezes por semana devo correr no início?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "Três vezes por semana, em dias alternados, é suficiente para evoluir com segurança. O descanso entre os treinos faz parte do processo, porque é quando o corpo se adapta." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Preciso fazer exames antes de começar a correr?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "É recomendado passar por uma avaliação médica antes de começar, principalmente se você tem mais de 35 anos, está sedentário há muito tempo, tem pressão alta, diabetes, histórico de problemas cardíacos ou sente dor no peito, tontura ou falta de ar fora do normal." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Estou acima do peso. Posso começar a correr?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "Pode, com uma progressão mais cuidadosa. Começar com caminhada e trechos curtos de trote protege as articulações enquanto o corpo se fortalece. Ter alguém ajustando a progressão faz muita diferença nessa fase." }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Em quanto tempo consigo correr 5 km?",
+                        "acceptedAnswer": { "@type": "Answer", "text": "Para quem começa do zero, algo entre 8 e 12 semanas treinando 3 vezes por semana é um prazo realista. Cada corpo tem seu ritmo, e o mais importante é chegar lá sem lesão." }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
+</head>
+
+<body class="bg-dark-bg text-white font-sans antialiased">
+
+    <!-- NAVBAR_PLACEHOLDER -->
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5517996566908?text=Olá,%20Karina!%20Vi%20a%20página%20Comece%20a%20Correr%20e%20quero%20começar%20a%20correr."
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+        aria-label="Falar no WhatsApp com Karina Franzin sobre começar a correr"
+        onclick="gtag('event', 'click_whatsapp', { pagina: 'comece_a_correr' })">
+        <img src="/assets/icons/WhatsApp.svg.webp" alt="Ícone WhatsApp - Contato direto com treinadora de corrida"
+            width="60" height="60" loading="eager" decoding="async">
+    </a>
+
+    <!-- ===== 1. HERO ===== -->
+    <header
+        class="relative overflow-hidden pt-32 pb-20 border-b border-white/5 bg-gradient-to-b from-[#141414] via-[#0f0f0f] to-dark-bg">
+        <div
+            class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-karina-orange/10 rounded-full blur-[130px] pointer-events-none">
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center">
+            <span
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-karina-orange/10 border border-karina-orange/20 text-karina-orange text-xs font-semibold tracking-wider uppercase mb-6">
+                <i data-lucide="footprints" class="w-3.5 h-3.5"></i> Guia para iniciantes
+            </span>
+
+            <h1 class="text-4xl md:text-6xl font-oswald font-black uppercase tracking-tight leading-none text-white mb-6">
+                Você não precisa estar em forma <br class="hidden md:inline">para <span class="text-karina-orange">começar a correr</span>
+            </h1>
+
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                Precisa começar do jeito certo. Aqui você descobre por onde começar, o que é normal sentir nas
+                primeiras semanas e como chegar aos seus primeiros 5 km sem se machucar e sem desistir.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#quiz"
+                    class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-karina-orange hover:bg-[#e0531f] text-white font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 shadow-[0_4px_20px_rgba(255,107,53,0.3)]">
+                    <i data-lucide="compass" class="w-5 h-5"></i> Descobrir por onde começar
+                </a>
+                <a href="#caminho"
+                    class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-xl border border-white/10 transition-all duration-300">
+                    Ver o caminho até os 5 km
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== 2. MEDOS COMUNS ===== -->
+    <section class="py-20 bg-dark-bg border-b border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <span class="text-xs uppercase font-bold text-karina-orange tracking-widest bg-karina-orange/10 px-3.5 py-1 rounded-full">Se você pensa assim</span>
+                <h2 class="text-3xl md:text-5xl font-oswald font-extrabold uppercase italic mt-4">Ninguém começa pronto</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+                    <p class="font-oswald text-xl uppercase text-white mb-2">"Não aguento nem 1 minuto"</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">Quase todo iniciante começa assim. O treino começa alternando caminhada e trote leve, e o tempo de corrida aumenta aos poucos.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+                    <p class="font-oswald text-xl uppercase text-white mb-2">"Sou muito lento(a)"</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">No começo, devagar é o certo. Correr num ritmo em que dá para conversar é o que constrói a base sem lesão.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+                    <p class="font-oswald text-xl uppercase text-white mb-2">"Já tentei e parei"</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">Geralmente a pessoa para por dor, por exagero ou por falta de rotina. Com um plano e alguém acompanhando, isso muda.</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+                    <p class="font-oswald text-xl uppercase text-white mb-2">"Não tenho tempo"</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">Três treinos de 30 a 40 minutos por semana já bastam para evoluir. É menos tempo do que parece.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 3. QUIZ ===== -->
+    <section id="quiz" class="py-20 bg-[#0c0c0c] border-b border-white/5 scroll-mt-24">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="text-center mb-10">
+                <span class="text-xs uppercase font-bold text-karina-orange tracking-widest bg-karina-orange/10 px-3.5 py-1 rounded-full">1 minuto</span>
+                <h2 class="text-3xl md:text-5xl font-oswald font-extrabold uppercase italic mt-4 mb-3">Por onde eu começo?</h2>
+                <p class="text-gray-400 text-sm md:text-base">Responda 4 perguntas rápidas e veja o melhor caminho para você.</p>
+            </div>
+
+            <div class="rounded-3xl bg-dark-card border border-white/10 p-6 md:p-8 shadow-2xl">
+                <div class="flex items-center justify-between text-xs text-gray-500 mb-2">
+                    <span id="quiz-contador">Pergunta 1 de 4</span>
+                    <button type="button" id="quiz-voltar" class="hidden items-center gap-1 text-gray-400 hover:text-white">
+                        <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Voltar
+                    </button>
+                </div>
+                <div class="h-1.5 rounded-full bg-white/5 mb-8 overflow-hidden">
+                    <div id="quiz-barra" class="h-full bg-karina-orange rounded-full transition-all duration-300" style="width: 25%"></div>
+                </div>
+
+                <div id="quiz-pergunta" aria-live="polite"></div>
+                <div id="quiz-resultado" class="hidden" aria-live="polite"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 4. O CAMINHO ATÉ OS 5 KM ===== -->
+    <section id="caminho" class="py-20 bg-dark-bg border-b border-white/5 scroll-mt-24">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-xs uppercase font-bold text-karina-orange tracking-widest bg-karina-orange/10 px-3.5 py-1 rounded-full">Passo a passo</span>
+                <h2 class="text-3xl md:text-5xl font-oswald font-extrabold uppercase italic mt-4 mb-3">O caminho até os 5 km</h2>
+                <p class="text-gray-400 text-sm md:text-base">Três etapas. Toque em cada uma para ver o que fazer.</p>
+            </div>
+
+            <div class="flex gap-2 md:gap-3 mb-6" role="tablist" aria-label="Etapas para começar a correr">
+                <button class="etapa-tab" role="tab" id="tab-1" aria-controls="etapa-1" aria-selected="true"><span class="etapa-num">Etapa 1</span>Antes de começar</button>
+                <button class="etapa-tab" role="tab" id="tab-2" aria-controls="etapa-2" aria-selected="false" tabindex="-1"><span class="etapa-num">Etapa 2</span>Primeiras 4 semanas</button>
+                <button class="etapa-tab" role="tab" id="tab-3" aria-controls="etapa-3" aria-selected="false" tabindex="-1"><span class="etapa-num">Etapa 3</span>Primeira prova</button>
+            </div>
+
+            <div class="rounded-3xl bg-dark-card border border-white/10 p-6 md:p-8">
+                <div id="etapa-1" role="tabpanel" aria-labelledby="tab-1">
+                    <h3 class="font-oswald text-2xl uppercase text-white mb-4">Prepare o terreno</h3>
+                    <ul class="space-y-3 text-gray-300 text-sm leading-relaxed mb-6">
+                        <li class="flex gap-3"><i data-lucide="heart-pulse" class="w-5 h-5 text-karina-orange flex-none"></i> Faça uma avaliação médica, principalmente se está parado(a) há muito tempo ou tem alguma condição de saúde.</li>
+                        <li class="flex gap-3"><i data-lucide="footprints" class="w-5 h-5 text-karina-orange flex-none"></i> Use um tênis de corrida confortável. Não precisa ser caro, precisa servir bem no seu pé.</li>
+                        <li class="flex gap-3"><i data-lucide="calendar-check" class="w-5 h-5 text-karina-orange flex-none"></i> Escolha 3 dias fixos na semana, com um dia de descanso entre eles.</li>
+                        <li class="flex gap-3"><i data-lucide="target" class="w-5 h-5 text-karina-orange flex-none"></i> Defina uma meta simples, como completar 5 km em 2 ou 3 meses.</li>
+                    </ul>
+                    <a href="/blog/como-comecar-a-correr-do-zero/" class="inline-flex items-center gap-2 text-karina-orange font-semibold text-sm hover:underline">Ler: Como começar a correr do zero <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                </div>
+
+                <div id="etapa-2" role="tabpanel" aria-labelledby="tab-2" hidden>
+                    <h3 class="font-oswald text-2xl uppercase text-white mb-4">Construa a base</h3>
+                    <ul class="space-y-3 text-gray-300 text-sm leading-relaxed mb-6">
+                        <li class="flex gap-3"><i data-lucide="repeat" class="w-5 h-5 text-karina-orange flex-none"></i> Alterne corrida e caminhada (por exemplo, 1 minuto correndo e 2 caminhando) e vá aumentando a corrida aos poucos.</li>
+                        <li class="flex gap-3"><i data-lucide="message-circle" class="w-5 h-5 text-karina-orange flex-none"></i> Corra num ritmo em que dá para falar frases curtas. Se não dá, diminua.</li>
+                        <li class="flex gap-3"><i data-lucide="dumbbell" class="w-5 h-5 text-karina-orange flex-none"></i> Inclua fortalecimento de pernas e core 1 ou 2 vezes por semana. Ele protege contra lesões.</li>
+                        <li class="flex gap-3"><i data-lucide="alert-triangle" class="w-5 h-5 text-karina-orange flex-none"></i> Cansaço e um pouco de dor muscular são normais. Dor pontual, que piora ou que faz mancar, não é: pare.</li>
+                    </ul>
+                    <a href="/blog/erros-comuns-corrida-iniciantes/" class="inline-flex items-center gap-2 text-karina-orange font-semibold text-sm hover:underline">Ler: Erros comuns de quem está começando <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                </div>
+
+                <div id="etapa-3" role="tabpanel" aria-labelledby="tab-3" hidden>
+                    <h3 class="font-oswald text-2xl uppercase text-white mb-4">Rumo aos primeiros 5 km</h3>
+                    <ul class="space-y-3 text-gray-300 text-sm leading-relaxed mb-6">
+                        <li class="flex gap-3"><i data-lucide="trending-up" class="w-5 h-5 text-karina-orange flex-none"></i> Aumente o volume aos poucos, sem dar saltos grandes de uma semana para a outra.</li>
+                        <li class="flex gap-3"><i data-lucide="flag" class="w-5 h-5 text-karina-orange flex-none"></i> Escolha uma prova de 5 km para daqui a 8 a 12 semanas. Ter uma data ajuda a manter o foco.</li>
+                        <li class="flex gap-3"><i data-lucide="droplets" class="w-5 h-5 text-karina-orange flex-none"></i> Cuide da hidratação e do sono nos dias anteriores à prova.</li>
+                        <li class="flex gap-3"><i data-lucide="smile" class="w-5 h-5 text-karina-orange flex-none"></i> No dia, largue devagar. A meta da primeira prova é terminar bem e querer correr a próxima.</li>
+                    </ul>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-6">
+                        <a href="/blog/plano-de-treino-para-correr-5km-em-8-semanas-iniciantes/" class="inline-flex items-center gap-2 text-karina-orange font-semibold text-sm hover:underline">Ler: Plano de 5 km em 8 semanas <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                        <a href="/eventos/" class="inline-flex items-center gap-2 text-gray-300 font-semibold text-sm hover:text-white">Ver próximas provas <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 5. CHECKLIST DA 1ª SEMANA ===== -->
+    <section id="checklist" class="py-20 bg-[#0c0c0c] border-b border-white/5 scroll-mt-24">
+        <div class="max-w-2xl mx-auto px-6">
+            <div class="text-center mb-10">
+                <span class="text-xs uppercase font-bold text-karina-orange tracking-widest bg-karina-orange/10 px-3.5 py-1 rounded-full">Para marcar</span>
+                <h2 class="text-3xl md:text-5xl font-oswald font-extrabold uppercase italic mt-4 mb-3">Checklist da 1ª semana</h2>
+                <p class="text-gray-400 text-sm md:text-base">Vá marcando conforme fizer. Fica salvo neste aparelho.</p>
+            </div>
+
+            <div class="rounded-3xl bg-dark-card border border-white/10 p-6 md:p-8">
+                <div class="flex items-center justify-between mb-2 text-sm">
+                    <span class="text-gray-400">Seu progresso</span>
+                    <span id="check-progresso-texto" class="font-bold text-white">0 de 7</span>
+                </div>
+                <div class="h-2 rounded-full bg-white/5 mb-6 overflow-hidden">
+                    <div id="check-barra" class="h-full bg-karina-orange rounded-full transition-all duration-300" style="width: 0%"></div>
+                </div>
+
+                <div id="checklist-itens" class="space-y-4 text-sm text-gray-200">
+                    <label class="check-item flex gap-3 cursor-pointer"><input type="checkbox" data-id="medico"><span>Marquei (ou fiz) minha avaliação médica</span></label>
+                    <label class="check-item flex gap-3 cursor-pointer"><input type="checkbox" data-id="tenis"><span>Separei um tênis de corrida confortável</span></label>
+                    <label class="check-item flex gap-3 cursor-pointer"><input type="checkbox" data-id="dias"><span>Escolhi meus 3 dias de treino na semana</span></label>
+                    <label class="check-item flex gap-3 cursor-pointer"><input type="checkbox" data-id="treino1"><span>Fiz o 1º treino: 20 a 30 min alternando caminhada e trote</span></label>
+                    <label class="check-item flex gap-3 cursor-pointer"><input type="checkbox" data-id="treino2"><span>Fiz o 2º treino, com pelo menos 1 dia de descanso antes</span></label>
+                    <label class="check-item flex gap-3 cursor-pointer"><input type="checkbox" data-id="treino3"><span>Fiz o 3º treino da semana</span></label>
+                    <label class="check-item flex gap-3 cursor-pointer"><input type="checkbox" data-id="anotei"><span>Anotei como me senti (cansaço, fôlego, alguma dor)</span></label>
+                </div>
+
+                <div id="check-parabens" class="hidden mt-6 p-4 rounded-2xl bg-karina-orange/10 border border-karina-orange/30 text-sm text-white">
+                    <p class="font-bold mb-1">Primeira semana concluída! 🎉</p>
+                    <p class="text-gray-300">O mais difícil é começar, e você já começou. Quer seguir com um plano feito para você?
+                        <a href="#proximo-passo" class="text-karina-orange font-semibold hover:underline">Veja o próximo passo</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 6. FAQ ===== -->
+    <section class="py-20 bg-dark-bg border-b border-white/5" id="faq">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-xs uppercase font-bold text-karina-orange tracking-widest bg-karina-orange/10 px-3.5 py-1 rounded-full">Dúvidas de iniciante</span>
+                <h2 class="text-3xl md:text-5xl font-oswald font-extrabold uppercase italic mt-4 mb-4">O que todo mundo pergunta</h2>
+            </div>
+
+            <div class="faq-container space-y-4">
+                <div class="faq-item">
+                    <button class="faq-question text-left text-white" aria-expanded="false">Fico sem fôlego em 1 minuto de corrida. É normal?</button>
+                    <div class="faq-answer"><p>É normal no começo, e quase sempre é sinal de que você está correndo rápido demais. Diminua o ritmo até conseguir falar frases curtas enquanto corre e alterne corrida com caminhada. Em 3 a 4 semanas de treino constante a respiração melhora bastante.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question text-left text-white" aria-expanded="false">Sinto dor na canela quando corro. O que faço?</button>
+                    <div class="faq-answer"><p>Dor na canela no começo costuma vir de aumentar o volume rápido demais. Reduza o tempo de corrida, aumente as pausas de caminhada e faça fortalecimento de panturrilha. Se a dor for pontual, piorar durante o treino ou não passar com descanso, pare e procure um profissional de saúde.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question text-left text-white" aria-expanded="false">Preciso de um tênis caro para começar?</button>
+                    <div class="faq-answer"><p>Não. O melhor tênis para começar é um tênis de corrida confortável no seu pé, que não aperte nem deixe o pé solto. Evite começar com tênis de academia, de caminhada muito duro ou já gasto.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question text-left text-white" aria-expanded="false">Quantas vezes por semana devo correr no início?</button>
+                    <div class="faq-answer"><p>Três vezes por semana, em dias alternados, é suficiente para evoluir com segurança. O descanso entre os treinos faz parte do processo, porque é quando o corpo se adapta.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question text-left text-white" aria-expanded="false">Preciso fazer exames antes de começar a correr?</button>
+                    <div class="faq-answer"><p>É recomendado passar por uma avaliação médica antes de começar, principalmente se você tem mais de 35 anos, está sedentário há muito tempo, tem pressão alta, diabetes, histórico de problemas cardíacos ou sente dor no peito, tontura ou falta de ar fora do normal.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question text-left text-white" aria-expanded="false">Estou acima do peso. Posso começar a correr?</button>
+                    <div class="faq-answer"><p>Pode, com uma progressão mais cuidadosa. Começar com caminhada e trechos curtos de trote protege as articulações enquanto o corpo se fortalece. Ter alguém ajustando a progressão faz muita diferença nessa fase.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question text-left text-white" aria-expanded="false">Em quanto tempo consigo correr 5 km?</button>
+                    <div class="faq-answer"><p>Para quem começa do zero, algo entre 8 e 12 semanas treinando 3 vezes por semana é um prazo realista. Cada corpo tem seu ritmo, e o mais importante é chegar lá sem lesão.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 7. LEITURAS PARA INICIANTES ===== -->
+    <section class="py-20 bg-[#0c0c0c] border-b border-white/5">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-xs uppercase font-bold text-karina-orange tracking-widest bg-karina-orange/10 px-3.5 py-1 rounded-full">Blog</span>
+                <h2 class="text-3xl md:text-5xl font-oswald font-extrabold uppercase italic mt-4">Leituras para quem está começando</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <a href="/blog/como-comecar-a-correr-do-zero/" class="group rounded-2xl overflow-hidden bg-dark-card border border-white/5 hover:border-karina-orange/40 transition">
+                    <img src="/assets/img/cabecalho-correr-do-zero.jpg" alt="Como começar a correr do zero" class="w-full aspect-video object-cover" loading="lazy">
+                    <p class="p-4 font-semibold text-sm text-white group-hover:text-karina-orange">Como começar a correr do zero</p>
+                </a>
+                <a href="/blog/erros-comuns-corrida-iniciantes/" class="group rounded-2xl overflow-hidden bg-dark-card border border-white/5 hover:border-karina-orange/40 transition">
+                    <img src="/assets/img/cabecalho-10-erros-comuns.jpg" alt="Erros comuns de iniciantes na corrida" class="w-full aspect-video object-cover" loading="lazy">
+                    <p class="p-4 font-semibold text-sm text-white group-hover:text-karina-orange">Erros comuns de quem está começando</p>
+                </a>
+                <a href="/blog/plano-de-treino-para-correr-5km-em-8-semanas-iniciantes/" class="group rounded-2xl overflow-hidden bg-dark-card border border-white/5 hover:border-karina-orange/40 transition">
+                    <img src="/assets/img/cabecalho-plano-treino-5km.jpg" alt="Plano de treino para correr 5 km em 8 semanas" class="w-full aspect-video object-cover" loading="lazy">
+                    <p class="p-4 font-semibold text-sm text-white group-hover:text-karina-orange">Plano de 5 km em 8 semanas</p>
+                </a>
+                <a href="/blog/hidratacao-na-corrida-de-rua/" class="group rounded-2xl overflow-hidden bg-dark-card border border-white/5 hover:border-karina-orange/40 transition">
+                    <img src="/assets/img/blog/card-hidratacao-na-corrida-de-rua-1785596363299.webp" alt="Hidratação na corrida de rua" class="w-full aspect-video object-cover" loading="lazy">
+                    <p class="p-4 font-semibold text-sm text-white group-hover:text-karina-orange">Hidratação na corrida de rua</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 8. PRÓXIMO PASSO ===== -->
+    <section id="proximo-passo" class="py-20 bg-gradient-to-b from-dark-bg to-[#141414] border-t border-white/5 scroll-mt-24">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-5xl font-oswald font-black uppercase tracking-tight text-white mb-4">Não precisa começar sozinho(a)</h2>
+                <p class="text-gray-400 max-w-xl mx-auto text-sm md:text-base leading-relaxed">Com a Karina, a progressão é ajustada para você, e alguém acompanha cada passo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="relative rounded-3xl overflow-hidden border border-karina-orange/30 bg-dark-card flex flex-col">
+                    <img src="/assets/img/presencial-iniciante/treino-grupo-votuporanga-1000w.webp" alt="Turma de corrida para iniciantes da Karina Franzin em Votuporanga"
+                        width="1078" height="1075" class="w-full aspect-[16/9] object-cover" loading="lazy">
+                    <div class="p-6 md:p-8 flex flex-col flex-1">
+                        <span class="text-xs uppercase font-bold text-karina-orange tracking-widest mb-2">Mora em Votuporanga?</span>
+                        <h3 class="font-oswald text-2xl uppercase text-white mb-3">Turma Presencial Iniciante</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-1">Treino em grupo toda quarta às 18h30 + 2 treinos online por semana. Início em 11/01/2027, vagas limitadas.</p>
+                        <a href="/corrida-iniciante-votuporanga/?origem=comece-a-correr#lista-vip"
+                            onclick="gtag('event', 'cta_comece_a_correr', { destino: 'presencial' })"
+                            class="inline-flex items-center justify-center gap-2 px-6 py-4 bg-karina-orange hover:bg-[#e0531f] text-white font-bold rounded-xl transition shadow-[0_4px_20px_rgba(255,107,53,0.3)]">
+                            <i data-lucide="crown" class="w-5 h-5"></i> Entrar na Lista VIP
+                        </a>
+                    </div>
+                </div>
+
+                <div class="rounded-3xl border border-white/10 bg-dark-card p-6 md:p-8 flex flex-col">
+                    <span class="text-xs uppercase font-bold text-karina-orange tracking-widest mb-2">De qualquer cidade</span>
+                    <h3 class="font-oswald text-2xl uppercase text-white mb-3">Assessoria online</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">Planilha individual no app Treinus, montada pela Karina para a sua rotina, com ajustes conforme você evolui.</p>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-8 flex-1">
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange flex-none mt-0.5"></i> Treinos no seu horário</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange flex-none mt-0.5"></i> Acompanhamento pelo WhatsApp</li>
+                        <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-karina-orange flex-none mt-0.5"></i> 7 dias de garantia</li>
+                    </ul>
+                    <a href="/planos/?origem=comece-a-correr"
+                        onclick="gtag('event', 'cta_comece_a_correr', { destino: 'planos' })"
+                        class="inline-flex items-center justify-center gap-2 px-6 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-xl border border-white/10 transition">
+                        Conhecer os planos <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz, abas e checklist -->
+    <script>
+    (function () {
+        function track(nome, params) {
+            if (typeof window.gtag === 'function') window.gtag('event', nome, params || {});
+        }
+        function icones() {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') window.lucide.createIcons();
+        }
+
+        // ---------- QUIZ ----------
+        var perguntas = [
+            {
+                id: 'nivel',
+                texto: 'Como está sua relação com a corrida hoje?',
+                opcoes: [
+                    { v: 'zero', t: 'Nunca corri ou estou parado(a) há muito tempo' },
+                    { v: 'parou', t: 'Já comecei antes, mas parei' },
+                    { v: 'pouco', t: 'Já corro um pouco, sem orientação' }
+                ]
+            },
+            {
+                id: 'dor',
+                texto: 'Você sente alguma dor ou tem alguma condição de saúde?',
+                opcoes: [
+                    { v: 'nao', t: 'Não, estou bem' },
+                    { v: 'leve', t: 'Às vezes sinto dor (joelho, canela, costas)' },
+                    { v: 'saude', t: 'Tenho uma condição de saúde (pressão, peso, coração...)' }
+                ]
+            },
+            {
+                id: 'motivo',
+                texto: 'O que mais te atrapalha para começar (ou continuar)?',
+                opcoes: [
+                    { v: 'motivacao', t: 'Falta de motivação e constância' },
+                    { v: 'saber', t: 'Não sei como treinar' },
+                    { v: 'tempo', t: 'Falta de tempo' },
+                    { v: 'medo', t: 'Medo de me machucar ou passar vergonha' }
+                ]
+            },
+            {
+                id: 'cidade',
+                texto: 'Você mora em Votuporanga ou região?',
+                opcoes: [
+                    { v: 'sim', t: 'Sim, moro em Votuporanga ou região' },
+                    { v: 'nao', t: 'Não, moro em outra cidade' }
+                ]
+            }
+        ];
+
+        var dicasMotivo = {
+            motivacao: 'Constância vem de rotina e companhia: ter horário fixo e alguém esperando por você faz toda a diferença.',
+            saber: 'Você não precisa adivinhar o treino: com um plano feito para você, cada dia já tem o que fazer.',
+            tempo: 'Três treinos de 30 a 40 minutos por semana já bastam para evoluir.',
+            medo: 'Começando devagar, alternando caminhada e trote, o risco de lesão cai muito. E ninguém ali começou pronto.'
+        };
+
+        var respostas = {};
+        var atual = 0;
+        var elPergunta = document.getElementById('quiz-pergunta');
+        var elResultado = document.getElementById('quiz-resultado');
+        var elContador = document.getElementById('quiz-contador');
+        var elBarra = document.getElementById('quiz-barra');
+        var elVoltar = document.getElementById('quiz-voltar');
+        var iniciou = false;
+
+        function render() {
+            var p = perguntas[atual];
+            elContador.textContent = 'Pergunta ' + (atual + 1) + ' de ' + perguntas.length;
+            elBarra.style.width = ((atual + 1) / perguntas.length * 100) + '%';
+            elVoltar.classList.toggle('hidden', atual === 0);
+            elVoltar.classList.toggle('inline-flex', atual > 0);
+
+            var html = '<div class="quiz-step"><h3 class="font-oswald text-xl md:text-2xl uppercase text-white mb-6">' + p.texto + '</h3><div class="space-y-3">';
+            p.opcoes.forEach(function (o) {
+                html += '<button type="button" class="quiz-option" data-v="' + o.v + '"><span class="quiz-dot"></span><span>' + o.t + '</span></button>';
+            });
+            html += '</div></div>';
+            elPergunta.innerHTML = html;
+        }
+
+        function resultado() {
+            var r = respostas;
+            var alertaSaude = r.dor === 'saude'
+                ? '<div class="flex gap-3 p-4 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 text-sm text-yellow-100 mb-5"><i data-lucide="heart-pulse" class="w-5 h-5 flex-none text-yellow-400"></i><span>Antes de tudo, faça uma avaliação médica e conte ao seu médico que vai começar a correr.</span></div>'
+                : (r.dor === 'leve'
+                    ? '<div class="flex gap-3 p-4 rounded-2xl bg-yellow-500/10 border border-yellow-500/20 text-sm text-yellow-100 mb-5"><i data-lucide="alert-triangle" class="w-5 h-5 flex-none text-yellow-400"></i><span>Como você sente dores, vale começar com progressão bem gradual e fortalecimento. Se a dor for forte ou persistente, procure um profissional de saúde.</span></div>'
+                    : '');
+
+            var titulo, texto, cta, ctaHref, ctaDestino, secundario;
+            if (r.cidade === 'sim') {
+                titulo = 'Seu caminho: Turma Presencial Iniciante';
+                texto = 'Você está a poucos minutos de uma turma feita para quem está começando. Treino em grupo toda quarta às 18h30, mais 2 treinos online por semana, com a Karina acompanhando de perto. Início em 11/01/2027.';
+                cta = 'Entrar na Lista VIP';
+                ctaHref = '/corrida-iniciante-votuporanga/?origem=quiz-comece-a-correr#lista-vip';
+                ctaDestino = 'presencial';
+                secundario = '<a href="/planos/?origem=quiz-comece-a-correr" class="text-sm text-gray-400 hover:text-white">Prefiro treinar online</a>';
+            } else if (r.nivel === 'pouco' || r.motivo === 'saber' || r.motivo === 'tempo') {
+                titulo = 'Seu caminho: assessoria online';
+                texto = 'Você precisa de um plano feito para a sua rotina, que diga exatamente o que fazer em cada treino. Na assessoria online a Karina monta e ajusta sua planilha no app Treinus.';
+                cta = 'Conhecer os planos';
+                ctaHref = '/planos/?origem=quiz-comece-a-correr';
+                ctaDestino = 'planos';
+                secundario = '<a href="#caminho" class="text-sm text-gray-400 hover:text-white">Ver o passo a passo antes</a>';
+            } else {
+                titulo = 'Seu caminho: começar com orientação';
+                texto = 'O mais importante agora é começar devagar e com segurança. Veja o passo a passo abaixo e, se quiser alguém ajustando cada treino para você, a assessoria online é o próximo passo.';
+                cta = 'Ver o passo a passo';
+                ctaHref = '#caminho';
+                ctaDestino = 'caminho';
+                secundario = '<a href="/planos/?origem=quiz-comece-a-correr" class="text-sm text-gray-400 hover:text-white">Conhecer os planos</a>';
+            }
+
+            elPergunta.innerHTML = '';
+            elPergunta.classList.add('hidden');
+            elContador.textContent = 'Seu resultado';
+            elBarra.style.width = '100%';
+            elVoltar.classList.add('hidden');
+            elVoltar.classList.remove('inline-flex');
+
+            elResultado.innerHTML =
+                '<div class="quiz-step">' +
+                alertaSaude +
+                '<h3 class="font-oswald text-2xl md:text-3xl uppercase text-white mb-3">' + titulo + '</h3>' +
+                '<p class="text-gray-300 text-sm md:text-base leading-relaxed mb-4">' + texto + '</p>' +
+                '<p class="text-gray-400 text-sm leading-relaxed mb-8 border-l-2 border-karina-orange pl-4">' + dicasMotivo[r.motivo] + '</p>' +
+                '<div class="flex flex-col sm:flex-row sm:items-center gap-4">' +
+                '<a href="' + ctaHref + '" id="quiz-cta" class="inline-flex items-center justify-center gap-2 px-6 py-4 bg-karina-orange hover:bg-[#e0531f] text-white font-bold rounded-xl transition shadow-[0_4px_20px_rgba(255,107,53,0.3)]">' + cta + ' <i data-lucide="arrow-right" class="w-5 h-5"></i></a>' +
+                secundario +
+                '</div>' +
+                '<button type="button" id="quiz-refazer" class="mt-6 inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-300"><i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Refazer o quiz</button>' +
+                '</div>';
+            elResultado.classList.remove('hidden');
+            icones();
+
+            track('quiz_comece_a_correr_resultado', {
+                resultado: ctaDestino, nivel: r.nivel, dor: r.dor, motivo: r.motivo, cidade: r.cidade
+            });
+            document.getElementById('quiz-cta').addEventListener('click', function () {
+                track('cta_comece_a_correr', { destino: ctaDestino, origem: 'quiz' });
+            });
+            document.getElementById('quiz-refazer').addEventListener('click', function () {
+                respostas = {};
+                atual = 0;
+                elResultado.classList.add('hidden');
+                elResultado.innerHTML = '';
+                elPergunta.classList.remove('hidden');
+                render();
+            });
+        }
+
+        elPergunta.addEventListener('click', function (e) {
+            var btn = e.target.closest('.quiz-option');
+            if (!btn) return;
+            if (!iniciou) { iniciou = true; track('quiz_comece_a_correr_inicio'); }
+            respostas[perguntas[atual].id] = btn.getAttribute('data-v');
+            if (atual < perguntas.length - 1) {
+                atual++;
+                render();
+            } else {
+                resultado();
+            }
+        });
+        elVoltar.addEventListener('click', function () {
+            if (atual > 0) { atual--; render(); }
+        });
+        render();
+
+        // ---------- ABAS DO CAMINHO ----------
+        var tabs = Array.prototype.slice.call(document.querySelectorAll('.etapa-tab'));
+        function ativar(tab, foco) {
+            tabs.forEach(function (t) {
+                var sel = t === tab;
+                t.setAttribute('aria-selected', sel ? 'true' : 'false');
+                t.setAttribute('tabindex', sel ? '0' : '-1');
+                document.getElementById(t.getAttribute('aria-controls')).hidden = !sel;
+            });
+            if (foco) tab.focus();
+        }
+        tabs.forEach(function (tab, i) {
+            tab.addEventListener('click', function () {
+                ativar(tab);
+                track('etapa_comece_a_correr', { etapa: i + 1 });
+            });
+            tab.addEventListener('keydown', function (e) {
+                if (e.key === 'ArrowRight') ativar(tabs[(i + 1) % tabs.length], true);
+                if (e.key === 'ArrowLeft') ativar(tabs[(i - 1 + tabs.length) % tabs.length], true);
+            });
+        });
+
+        // ---------- CHECKLIST ----------
+        var CHAVE = 'kf_checklist_1a_semana';
+        var caixas = Array.prototype.slice.call(document.querySelectorAll('#checklist-itens input[type="checkbox"]'));
+        var salvo = {};
+        try { salvo = JSON.parse(localStorage.getItem(CHAVE) || '{}') || {}; } catch (e) { salvo = {}; }
+        caixas.forEach(function (c) { c.checked = !!salvo[c.getAttribute('data-id')]; });
+
+        function atualizar(salvar) {
+            var feitos = caixas.filter(function (c) { return c.checked; }).length;
+            document.getElementById('check-progresso-texto').textContent = feitos + ' de ' + caixas.length;
+            document.getElementById('check-barra').style.width = (feitos / caixas.length * 100) + '%';
+            document.getElementById('check-parabens').classList.toggle('hidden', feitos !== caixas.length);
+            if (salvar) {
+                var estado = {};
+                caixas.forEach(function (c) { if (c.checked) estado[c.getAttribute('data-id')] = true; });
+                try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) { }
+                if (feitos === caixas.length) track('checklist_comece_a_correr_completo');
+            }
+        }
+        caixas.forEach(function (c) { c.addEventListener('change', function () { atualizar(true); }); });
+        atualizar(false);
+
+        icones();
+        window.addEventListener('load', icones);
+    })();
+    </script>
+
+    <!-- FOOTER_PLACEHOLDER -->
+</body>
+
+</html>
