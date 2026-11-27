@@ -1099,36 +1099,6 @@
       segmentPolylines.push(poly);
     });
 
-    // Marcador de Largada / Chegada
-    const startPt = points[0];
-    const startIcon = L.divIcon({
-      className: "",
-      html: `<div class="special-marker-badge" style="background:#10b981;color:#052e16;">Largada/Chegada</div>`,
-      iconSize: [96, 24],
-      iconAnchor: [48, 12]
-    });
-    L.marker([startPt.lat, startPt.lon], { icon: startIcon }).addTo(kmMarkersLayer);
-
-    // Marcadores do ponto mais alto e mais baixo do percurso (calculados do GPX)
-    const maxPt = points.reduce((best, p) => (p.ele > best.ele ? p : best), points[0]);
-    const minPt = points.reduce((best, p) => (p.ele < best.ele ? p : best), points[0]);
-
-    const peakIcon = L.divIcon({
-      className: "",
-      html: `<div class="special-marker-badge" style="background:#ef4444;color:#fff;">Topo ${formatEle(maxPt.ele)}</div>`,
-      iconSize: [96, 22],
-      iconAnchor: [48, 26]
-    });
-    L.marker([maxPt.lat, maxPt.lon], { icon: peakIcon }).addTo(kmMarkersLayer);
-
-    const valleyIcon = L.divIcon({
-      className: "",
-      html: `<div class="special-marker-badge" style="background:#38bdf8;color:#0f172a;">Vale ${formatEle(minPt.ele)}</div>`,
-      iconSize: [96, 22],
-      iconAnchor: [48, -6]
-    });
-    L.marker([minPt.lat, minPt.lon], { icon: valleyIcon }).addTo(kmMarkersLayer);
-
     // Marcadores de cada Km
     kmSplits.forEach((km) => {
       if (km.isPartial || !km.lat || !km.lon) return;
