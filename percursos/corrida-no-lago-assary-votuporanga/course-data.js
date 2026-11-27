@@ -51,7 +51,7 @@ window.COURSE_DATA = {
   segmentDefinitions: [
     {
       "id": 1,
-      "name": "Largada e Ida e Volta na Beira da Represa",
+      "name": "Largada na Beira da Represa",
       "shortName": "Seg 1 · Ida e Volta",
       "type": "rolling",
       "badge": "Plano",
@@ -59,7 +59,7 @@ window.COURSE_DATA = {
       "startOrigIdx": 0,
       "endOrigIdx": 370,
       "tacticalTitle": "1,1 km plano, com retorno no Km 0,6",
-      "tacticalTip": "A largada sai de dentro do Assary, vira à esquerda na Av. João Gonçalves Leite e logo entra na Av. Francisco Ramalho de Mendonça, na beira da represa, até o retorno do Km 0,6. A volta é pelo mesmo caminho, quase sem desnível. Com o pelotão ainda junto, não gaste energia trocando de posição: chegue ao retorno no seu ritmo e use a volta para encaixar a passada. Por ser plano, o pace aqui fica um pouco mais rápido que a média da prova.",
+      "tacticalTip": "A largada sai de dentro do Assary, contorna a lagoa e segue até o retorno do Km 0,6. A volta é pela Av. Francisco Ramalho de Mendonça, quase sem desnível. Com o pelotão ainda junto, não gaste energia trocando de posição: chegue ao retorno no seu ritmo e use a volta para encaixar a passada. Por ser plano, o pace aqui fica um pouco mais rápido que a média da prova.",
       "mentalCue": "Largada controlada: o ritmo se acha na volta do retorno."
     },
     {
@@ -72,7 +72,7 @@ window.COURSE_DATA = {
       "startOrigIdx": 370,
       "endOrigIdx": 551,
       "tacticalTitle": "+14m em 450m: o primeiro aviso",
-      "tacticalTip": "No fim da volta o percurso vira à direita na Av. João Gonçalves Leite, passa perto da largada e começa a subir. A parte mais inclinada (cerca de 5%) fica em volta da curva à direita para a Rua João da Cruz Oliveira, no Km 1,4, e a rua ainda sobe até o topo deste trecho (484m, Km 1,6). É uma subida curta: segure o esforço, não force o pace, porque a subida que decide a prova ainda está por vir (Km 3,3).",
+      "tacticalTip": "No fim da volta o percurso vira à direita na Av. João Gonçalves Leite. A parte mais inclinada (cerca de 5%) fica em volta da curva à direita para a Rua João da Cruz Oliveira, no Km 1,4, e a rua ainda sobe até o topo deste trecho (484m, Km 1,6). É uma subida curta: segure o esforço, não force o pace, porque a subida que decide a prova ainda está por vir (Km 3,3).",
       "mentalCue": "Subida curta: segure o esforço, não o pace."
     },
     {
@@ -86,7 +86,7 @@ window.COURSE_DATA = {
       "endOrigIdx": 824,
       "tacticalTitle": "-9m em 780m para recuperar",
       "tacticalTip": "Do topo (Km 1,6) a Rua João da Cruz Oliveira desce bem de leve até a curva à direita para a Av. Paschoalino Pedrazzoli (Km 1,8). A avenida segue plana por uns 200m e depois desce (cerca de 4% perto do Km 2,1) até a curva à direita do Km 2,3. Aproveite a descida para soltar as pernas e ganhar alguns segundos, sem exagerar.",
-      "mentalCue": "Passos curtos e rápidos, sem frear com o calcanhar."
+      "mentalCue": "Passos rápidos, sem frear com o calcanhar."
     },
     {
       "id": 4,
@@ -124,7 +124,7 @@ window.COURSE_DATA = {
       "startOrigIdx": 1542,
       "endOrigIdx": 1651,
       "tacticalTitle": "-25m em 360m: a descida mais forte da prova",
-      "tacticalTip": "Logo depois do ponto mais alto, uma curva fechada à esquerda (Km 4,3) leva à Av. Campo Grande, que desce sem parar até a ponta sul da represa (Km 4,7), a parte mais baixa da prova. A descida fica mais forte no final. Deixe a gravidade trabalhar e ganhe os segundos que você investiu na Grande Subida, mas com passos curtos e controle: logo depois vem a curva para entrar no clube.",
+      "tacticalTip": "Logo depois do ponto mais alto, uma curva fechada à esquerda (Km 4,3) leva à Av. Campo Grande, que desce sem parar até a ponta sul da represa (Km 4,7), a parte mais baixa da prova. A descida fica mais forte no final. Deixe a gravidade trabalhar e ganhe os segundos que você investiu na Grande Subida, logo depois vem a curva para entrar no clube.",
       "mentalCue": "Incline o corpo à frente e deixe a passada abrir."
     },
     {
@@ -137,7 +137,7 @@ window.COURSE_DATA = {
       "startOrigIdx": 1651,
       "endOrigIdx": 1748,
       "tacticalTitle": "300m finais até a chegada",
-      "tacticalTip": "Na ponta sul da represa o percurso vira à esquerda (Km 4,8) e entra no Assary, subindo de leve (cerca de 3m) até a chegada, no mesmo lugar da largada. Logo depois da descida, essa subidinha pesa: por isso o pace deste trecho fica mais lento que a média. Mantenha os braços ativos e a passada firme, e dispare tudo o que sobrou só quando avistar o pórtico.",
+      "tacticalTip": "Na ponta sul da represa o percurso vira à esquerda (Km 4,8) e entra no Assary. Mantenha os braços ativos e a passada firme, e dispare tudo o que sobrou quando avistar o pórtico.",
       "mentalCue": "Passada firme na subidinha, sprint ao avistar o pórtico."
     }
   ],
