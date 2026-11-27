@@ -228,6 +228,26 @@
         .whats span { display: block; font-size: 0.8rem; color: rgba(255, 255, 255, 0.85); margin-top: 2px; }
         .whats .go { margin-left: auto; width: 20px; height: 20px; opacity: 0.9; }
 
+        /* Comece a Correr (quiz para iniciantes) */
+        .quiz {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            background: #141414;
+            border-color: rgba(255, 107, 53, 0.45);
+        }
+        .quiz .quiz-emoji {
+            width: 42px; height: 42px; flex-shrink: 0;
+            display: grid; place-items: center;
+            border-radius: 999px;
+            background: rgba(255, 107, 53, 0.16);
+            font-size: 1.3rem;
+        }
+        .quiz strong { display: block; font-size: 1rem; }
+        .quiz span.sub { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+        .quiz .go { margin-left: auto; width: 20px; height: 20px; flex-shrink: 0; color: var(--orange); }
+
         /* Plano Performance */
         .perf {
             display: flex;
@@ -431,6 +451,16 @@
                 </div>
             </a>
             -->
+
+            <!-- Comece a Correr: quiz "Por onde eu começo?" -->
+            <a class="card quiz" data-track="comece_a_correr" href="/comece-a-correr/?origem=links#quiz">
+                <span class="quiz-emoji" aria-hidden="true">👟</span>
+                <div>
+                    <strong>Quero começar a correr</strong>
+                    <span class="sub">Descubra por onde começar em 4 perguntas</span>
+                </div>
+                <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </a>
 
             <!-- WhatsApp -->
             <a class="card whats" data-track="whatsapp" target="_blank" rel="noopener noreferrer"
